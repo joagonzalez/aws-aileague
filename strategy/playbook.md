@@ -22,7 +22,7 @@ Our agents react about 2x slower than fast opponents (813ms vs 370ms in match 00
 
 ### Pattern 3: Coordinated Press
 - **Trigger**: Opponent has the ball
-- **Execution**: Only one player presses the ball carrier, chosen by zone: FWD1 in their half, MID in midfield, DEF near our box. Everyone else INTERCEPTs the nearest passing lane or MARKs their attacker.
+- **Execution** (v4): their half — FWD1; middle lane of our half outside our box — MID; inside our box — DEF. Nobody presses a wide carrier in our half. Everyone else INTERCEPTs the nearest passing lane or MARKs their attacker. Middle lane = the strip as wide as the box, goal to goal.
 - **Key**: Match 001 had 124 PRESS commands and the opponent still kept 82% possession. Mass chasing does not work against faster agents. Intercepts created our goal.
 - **Who's involved**: All outfield agents
 
@@ -46,7 +46,8 @@ The platform accepts live messages during a match, and they change agent behavio
 | Situation | Message | Status |
 |-----------|---------|--------|
 | No shots, team passive | "Be more aggressive and hit the ball. Shoot whenever you have a clear line to goal." | **Proven** — goal at 2' in match 001 |
-| Opponent keeps passing around our press | "Only the closest player presses. Everyone else cut the passing lanes." | Untested |
+| Opponent keeps passing around our press | "One presser per zone only. Everyone else cut the passing lanes." | Untested |
+| Players drifting to the flanks, middle open | "Protect the middle. Do not follow the ball into the corners." | Untested |
 | Protecting a late lead | "Defend deep. MARK every attacker. CLEAR the ball long, no risks." | Untested |
 | Chasing a goal late | "Everyone attack. MID join the forwards. SHOOT on sight." | Untested |
 
@@ -56,4 +57,5 @@ Rules:
 
 ## Adjustments Log
 
+- **Match 002 (v3)**: Drew 2-2. Shots went up (SHOOT 14 → 37), but we conceded from an empty middle and the forwards ran into the corner. → v4 adds middle-lane defending, a wide exit for the forwards and one shared shooting trigger for MID/FWD1/FWD2.
 - **Match 001 (v1)**: Won 1-0. Controlled possession never happened (18% possession). Counter-attacking plus the coach's aggression message produced the only goal. → v3 makes Quick Counter + Strike on Sight the default, coordinates pressing, and retires Controlled Possession.

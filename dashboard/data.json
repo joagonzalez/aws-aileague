@@ -63,7 +63,10 @@
         "intercept_share": 14.4,
         "mark_share": 0.6,
         "pass_share": 3.3,
-        "shoot_share": 4.2
+        "shoot_share": 4.2,
+        "prompt_chars_avg": 1518,
+        "prompt_chars_max": 1827,
+        "prompt_rules_avg": 6.4
       },
       "coach_interventions": [
         {
@@ -85,6 +88,43 @@
         "mid": "1",
         "fwd1": "1",
         "fwd2": "1"
+      },
+      "prompt_stats": {
+        "gk": {
+          "version": "1",
+          "chars": 1163,
+          "words": 222,
+          "rules": 5,
+          "constraints": 3
+        },
+        "def": {
+          "version": "1",
+          "chars": 1364,
+          "words": 255,
+          "rules": 6,
+          "constraints": 4
+        },
+        "mid": {
+          "version": "1",
+          "chars": 1827,
+          "words": 327,
+          "rules": 7,
+          "constraints": 3
+        },
+        "fwd1": {
+          "version": "1",
+          "chars": 1552,
+          "words": 293,
+          "rules": 7,
+          "constraints": 3
+        },
+        "fwd2": {
+          "version": "1",
+          "chars": 1686,
+          "words": 318,
+          "rules": 7,
+          "constraints": 3
+        }
       },
       "performance": {
         "gk": "strong",
@@ -117,28 +157,176 @@
         "Re-analysis: 14 SHOOT commands produced only 2 recorded shots. Check whether SHOOT was issued without the ball (wasted commands).",
         "Re-analysis: Every model was 680\u2013950ms, Haiku included, against the opponent's 370ms. Switching models alone will not close that gap."
       ]
+    },
+    {
+      "file": "match-log/practice/002-vs-the-benchmark-fc.md",
+      "type": "practice",
+      "number": 2,
+      "opponent": "The Benchmark FC",
+      "score_us": 2,
+      "score_them": 2,
+      "result": "D",
+      "date": "2026-10-05",
+      "formation": "1-1-2",
+      "strategy": "Counter",
+      "deploy_tag": "deploy-v3-2026-10-05",
+      "metrics": {
+        "commands_us": 725,
+        "latency_avg_us": 863,
+        "commands_them": 725,
+        "latency_avg_them": 199,
+        "commands": {
+          "move": 286,
+          "press": 218,
+          "intercept": 106,
+          "mark": 10,
+          "pass": 40,
+          "shoot": 37,
+          "clear": 28,
+          "gk_dist": 0
+        },
+        "agents": {
+          "gk": {
+            "latency_avg": 707,
+            "latency_p95": null,
+            "success": 100
+          },
+          "def": {
+            "latency_avg": 1020,
+            "latency_p95": null,
+            "success": 100
+          },
+          "mid": {
+            "latency_avg": 1050,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd1": {
+            "latency_avg": 713,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd2": {
+            "latency_avg": 999,
+            "latency_p95": null,
+            "success": 100
+          }
+        },
+        "success_avg": 100.0,
+        "latency_gap": 664,
+        "press_share": 30.1,
+        "intercept_share": 14.6,
+        "mark_share": 1.4,
+        "pass_share": 5.5,
+        "shoot_share": 5.1,
+        "prompt_chars_avg": 1849,
+        "prompt_chars_max": 1955,
+        "prompt_rules_avg": 7.4
+      },
+      "coach_interventions": [],
+      "models": {
+        "gk": "Claude Haiku",
+        "def": "Claude Haiku",
+        "mid": "Claude Sonnet",
+        "fwd1": "Claude Haiku",
+        "fwd2": "Claude Haiku"
+      },
+      "versions": {
+        "gk": "3",
+        "def": "3",
+        "mid": "3",
+        "fwd1": "3",
+        "fwd2": "3"
+      },
+      "prompt_stats": {
+        "gk": {
+          "version": "3",
+          "chars": 1683,
+          "words": 325,
+          "rules": 6,
+          "constraints": 4
+        },
+        "def": {
+          "version": "3",
+          "chars": 1816,
+          "words": 351,
+          "rules": 7,
+          "constraints": 4
+        },
+        "mid": {
+          "version": "3",
+          "chars": 1955,
+          "words": 377,
+          "rules": 8,
+          "constraints": 4
+        },
+        "fwd1": {
+          "version": "3",
+          "chars": 1837,
+          "words": 356,
+          "rules": 8,
+          "constraints": 4
+        },
+        "fwd2": {
+          "version": "3",
+          "chars": 1954,
+          "words": 377,
+          "rules": 8,
+          "constraints": 4
+        }
+      },
+      "performance": {
+        "gk": "adequate",
+        "def": "weak",
+        "mid": "weak",
+        "fwd1": "adequate",
+        "fwd2": "adequate"
+      },
+      "action_items": [
+        "FWD1/FWD2: Add an exit for wide carries. Near the end line or corner, SHOOT if there is an angle, otherwise PASS to the middle. Carry toward the middle of the goal, never along the touchline. (priority: high)",
+        "MID: Widen the shooting trigger to the whole attacking third with no defender directly between ball and goal, and put it before the pass rule. (priority: high)",
+        "ALL attackers: Raise SHOOT frequency (platform Coach's Corner). (priority: high)",
+        "FWD1/FWD2: Fix the double press in the opponent's half (v3 audit). (priority: high)",
+        "GK: Resolve the rush-out vs never-leave-the-box contradiction (v3 audit). Check why there were zero GK Dist commands. (priority: medium)",
+        "Models: Latency is now the biggest gap (863 vs 199ms) and prompt wording didn't move it. Test Nova Micro on one of the slow Haiku positions (DEF 1020, MID 1050, FWD2 999) in practice. (priority: high)",
+        "ALL: Central protection. One player always holds the middle in front of our goal when the opponent has the ball; nobody follows the ball into the corners except the single presser for that zone. (priority: high)",
+        "GK: Get back to the goal line as soon as an opponent has the ball in a position to shoot, including long range. (priority: high)",
+        "Deploy: Check every model dropdown against the prompt headers before Redeploy (MID was left on Sonnet). (priority: high)",
+        "Debrief: Record how the other 3 goals happened and any coach messages. (priority: medium)"
+      ],
+      "observations": [
+        "Formation effectiveness: 1-1-2 scored twice (up from 1) but conceded twice (up from 0). The opponent was much faster this time: 199ms vs 370ms in match 001.",
+        "Should we change formation? Not yet. The first goal conceded is a shape problem (players spread to the flanks and the middle left open), which prompt rules can fix. If v4 still concedes through the middle, test 2-1-1.",
+        "Coordination gaps: v3 audit found two pressers in the opponent's half (FWD1 always presses; FWD2 also presses when closer).",
+        "Opponent patterns: Even more press-heavy (289, 40%), no intercepts or marks, 6% passes. Platform advice to them: add INTERCEPT to cover transition gaps. Their transitions are where we can hurt them.",
+        "Opponent formation: Unknown.",
+        "Latency: Both teams issued exactly 725 commands (334 vs 335 in match 001), so the platform polls both teams at the same rate. Our slower agents don't get fewer decisions; each decision acts on an older picture of the pitch (~0.86 s vs ~0.2 s). That fits the forwards over-running to the corner.",
+        "Tempo line (\"keep any reasoning to a few words\"): no measurable effect. Our average went 813 \u2192 863ms while the opponent went 370 \u2192 199ms, so platform-side variance exists too. It isn't the coach's internet connection: agents run server-side on AWS, and the opponent was measured at ~200ms in the same match.",
+        "Same model, very different speeds: Haiku agents ran 707\u2013713ms (GK, FWD1) and 999\u20131020ms (DEF, FWD2). MID's 1050ms was Sonnet. FWD2 on Haiku (999ms) was slower than on Nova Lite 2 in match 001 (840ms). The slower ones handle more complex situations, so most likely they write more per decision.",
+        "Command mix vs match 001: SHOOT 14 \u2192 37, PRESS share 37% \u2192 30%, PASS 3% \u2192 6%, INTERCEPT 14% \u2192 15%, MARK 1% \u2192 1%."
+      ]
     }
   ],
   "current_formation": "1-1-2",
   "current_config": {
     "gk": {
-      "version": "3",
+      "version": "4",
       "model": "Claude Haiku"
     },
     "def": {
-      "version": "3",
+      "version": "4",
       "model": "Claude Haiku"
     },
     "mid": {
-      "version": "3",
+      "version": "4",
       "model": "Claude Haiku"
     },
     "fwd1": {
-      "version": "3",
+      "version": "4",
       "model": "Claude Haiku"
     },
     "fwd2": {
-      "version": "3",
+      "version": "4",
       "model": "Claude Haiku"
     }
   },
@@ -146,31 +334,188 @@
     "gk": [
       "v1",
       "v2",
-      "v3"
+      "v3",
+      "v4"
     ],
     "def": [
       "v1",
       "v2",
-      "v3"
+      "v3",
+      "v4"
     ],
     "mid": [
       "v1",
       "v2",
-      "v3"
+      "v3",
+      "v4"
     ],
     "fwd1": [
       "v1",
       "v2",
-      "v3"
+      "v3",
+      "v4"
     ],
     "fwd2": [
       "v1",
       "v2",
-      "v3"
+      "v3",
+      "v4"
     ]
   },
+  "version_stats": {
+    "gk": {
+      "v1": {
+        "version": "1",
+        "chars": 1163,
+        "words": 222,
+        "rules": 5,
+        "constraints": 3
+      },
+      "v2": {
+        "version": "2",
+        "chars": 1408,
+        "words": 271,
+        "rules": 6,
+        "constraints": 3
+      },
+      "v3": {
+        "version": "3",
+        "chars": 1683,
+        "words": 325,
+        "rules": 6,
+        "constraints": 4
+      },
+      "v4": {
+        "version": "4",
+        "chars": 1636,
+        "words": 316,
+        "rules": 5,
+        "constraints": 4
+      }
+    },
+    "def": {
+      "v1": {
+        "version": "1",
+        "chars": 1364,
+        "words": 255,
+        "rules": 6,
+        "constraints": 4
+      },
+      "v2": {
+        "version": "2",
+        "chars": 1659,
+        "words": 306,
+        "rules": 7,
+        "constraints": 5
+      },
+      "v3": {
+        "version": "3",
+        "chars": 1816,
+        "words": 351,
+        "rules": 7,
+        "constraints": 4
+      },
+      "v4": {
+        "version": "4",
+        "chars": 1973,
+        "words": 399,
+        "rules": 8,
+        "constraints": 4
+      }
+    },
+    "mid": {
+      "v1": {
+        "version": "1",
+        "chars": 1827,
+        "words": 327,
+        "rules": 7,
+        "constraints": 3
+      },
+      "v2": {
+        "version": "2",
+        "chars": 2104,
+        "words": 383,
+        "rules": 8,
+        "constraints": 4
+      },
+      "v3": {
+        "version": "3",
+        "chars": 1955,
+        "words": 377,
+        "rules": 8,
+        "constraints": 4
+      },
+      "v4": {
+        "version": "4",
+        "chars": 1997,
+        "words": 406,
+        "rules": 9,
+        "constraints": 3
+      }
+    },
+    "fwd1": {
+      "v1": {
+        "version": "1",
+        "chars": 1552,
+        "words": 293,
+        "rules": 7,
+        "constraints": 3
+      },
+      "v2": {
+        "version": "2",
+        "chars": 1755,
+        "words": 334,
+        "rules": 8,
+        "constraints": 4
+      },
+      "v3": {
+        "version": "3",
+        "chars": 1837,
+        "words": 356,
+        "rules": 8,
+        "constraints": 4
+      },
+      "v4": {
+        "version": "4",
+        "chars": 1967,
+        "words": 395,
+        "rules": 8,
+        "constraints": 4
+      }
+    },
+    "fwd2": {
+      "v1": {
+        "version": "1",
+        "chars": 1686,
+        "words": 318,
+        "rules": 7,
+        "constraints": 3
+      },
+      "v2": {
+        "version": "2",
+        "chars": 1799,
+        "words": 340,
+        "rules": 8,
+        "constraints": 3
+      },
+      "v3": {
+        "version": "3",
+        "chars": 1954,
+        "words": 377,
+        "rules": 8,
+        "constraints": 4
+      },
+      "v4": {
+        "version": "4",
+        "chars": 1983,
+        "words": 395,
+        "rules": 8,
+        "constraints": 4
+      }
+    }
+  },
   "stats": {
-    "total_matches": 1,
+    "total_matches": 2,
     "competitive": {
       "played": 0,
       "remaining": 10,
@@ -181,32 +526,32 @@
       "goals_against": 0
     },
     "practice": {
-      "played": 1,
+      "played": 2,
       "wins": 1,
-      "draws": 0,
+      "draws": 1,
       "losses": 0
     }
   },
   "performance_trends": {
     "gk": {
-      "avg": 3.0,
-      "matches_rated": 1
+      "avg": 2.5,
+      "matches_rated": 2
     },
     "def": {
-      "avg": 2.0,
-      "matches_rated": 1
+      "avg": 1.5,
+      "matches_rated": 2
     },
     "mid": {
       "avg": 1.0,
-      "matches_rated": 1
+      "matches_rated": 2
     },
     "fwd1": {
-      "avg": 3.0,
-      "matches_rated": 1
+      "avg": 2.5,
+      "matches_rated": 2
     },
     "fwd2": {
       "avg": 2.0,
-      "matches_rated": 1
+      "matches_rated": 2
     }
   }
 }

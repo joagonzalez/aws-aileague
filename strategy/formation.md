@@ -70,19 +70,21 @@ Priority experiments:
 
 ## Positioning Philosophy (current 1-1-2)
 
-- **GK**: Stays on the goal line by default. Comes out only for 1v1s or loose balls in the box. Distributes long to the forwards when opponents press.
-- **DEF**: Sits in front of GK. MARKs the most advanced attacker and presses ball carriers near our box. Clears long toward the forwards.
-- **MID**: The pivot. Presses in midfield when closest and otherwise intercepts lanes. Plays forward first and shoots from the edge of the box.
-- **FWD1**: Left/central forward. Primary finisher. Leads the press in the opponent's half. Shoots on sight.
-- **FWD2**: Right-side forward. Second finisher. Cuts passing lanes while FWD1 presses. Shoots on sight.
+Middle lane = the strip as wide as the box, goal to goal (v4).
+
+- **GK**: On the goal line whenever an opponent has the ball outside our box, long range included. Leaves the line only inside our box. Distributes long to the forwards ("distribute" is the only distribution verb).
+- **DEF**: Never leaves the middle lane and never follows wide carriers into the corners. MARKs the attacker in the lane closest to our goal, PRESSes only inside our box, CLEARs long.
+- **MID**: Screens the middle lane in our half and PRESSes carriers there (outside our box). In their half it stays just behind the ball and SHOOTs anywhere in the attacking third with a clear line.
+- **FWD1**: Primary finisher and the only presser in their half. Takes short carries toward the middle. Near the corner, PASSes to the middle instead of running on.
+- **FWD2**: Second finisher. Never presses; cuts passing lanes. Counter outlet beside the center circle, not out wide.
 
 ## Shape Principles
 
 1. **Compactness**: Keep distance between lines tight. Don't let gaps open between DEF and MID.
-2. **Width on attack**: FWDs spread wide to stretch the opponent. MID fills the center.
+2. **Attack through the middle**: forwards attack the box, not the flanks. A carry that drifts wide ends with a PASS to the middle (match 002 corner-running).
 3. **Narrow on defense**: Everyone tucks in centrally. Protect the middle.
 4. **Transition speed**: Whoever wins the ball hits it forward at once: a pass to a free forward, or a long clear toward them.
-5. **One presser**: Only one player presses the ball, chosen by zone (FWD1 in their half, MID in midfield, DEF near our box). The rest intercept or mark.
+5. **One presser per zone** (v4, word for word in every prompt): their half — FWD1; middle lane of our half outside our box — MID; inside our box — DEF. Nobody presses a wide carrier in our half. The rest MARK or INTERCEPT.
 
 ## Formation Change Protocol
 
@@ -97,3 +99,4 @@ When switching formations:
 ## Adjustments Log
 
 - **Match 001 (1-1-2, v1)**: Won 1-0 but under siege (18% possession, 7 shots against, 0 on target). DEF+GK held. The two forwards produced the goal on the counter. Debrief suggested 1-2-1 for possession, but possession is not our game against faster agents (see `playbook.md`). **Decision**: keep 1-1-2 for the v3 test so the prompt change is the only variable. If v3 concedes, try 2-1-1 next.
+- **Match 002 (1-1-2, v3)**: Drew 2-2. One goal conceded was a long shot from near halfway with the middle empty, because our players had followed the ball to the flanks. That's a behavior problem, not a numbers problem: a second DEF with the same 'press and force wide' rules would get pulled out too. **Decision**: v4 stays 1-1-2 with middle-lane rules. **Switch to 2-1-1** if v4 concedes through the middle again, concedes 2 or more, or DEF is still visibly overloaded.
