@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Parse match logs and prompt metadata into a JSON file for the dashboard."""
 
+import importlib.util
 import json
 import os
 import re
@@ -13,6 +14,29 @@ PROMPTS_DIR = ROOT / "prompts"
 STRATEGY_DIR = ROOT / "strategy"
 OUTPUT_DIR = ROOT / "dashboard"
 POSITIONS = ["gk", "def", "mid", "fwd1", "fwd2"]
+
+# Reuse the paste-ready generator so "chars" means exactly what gets pasted into the platform.
+_spec = importlib.util.spec_from_file_location("paste_ready", ROOT / "scripts" / "build-paste-ready.py")
+paste_ready = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(paste_ready)
+
+
+def prompt_stats(pos, version):
+    """Size and complexity of prompts/<pos>/v<version>.md as it would be pasted."""
+    f = PROMPTS_DIR / pos / f"v{version}.md"
+    if not f.exists():
+        return None
+    prompt = paste_ready.parse_prompt(f.read_text())
+    if any(s not in prompt["sections"] for s in paste_ready.REQUIRED_SECTIONS):
+        return None
+    text = paste_ready.build_paste_text(prompt["sections"])
+    return {
+        "version": str(version),
+        "chars": len(text),
+        "words": len(text.split()),
+        "rules": len(re.findall(r"^\d+\.", prompt["sections"]["Decision Framework"], re.MULTILINE)),
+        "constraints": len(re.findall(r"^- ", prompt["sections"]["Constraints"], re.MULTILINE)),
+    }
 
 
 def get_section(text, heading):
@@ -199,6 +223,19 @@ def parse_match_file(filepath):
             "fwd2": versions_m.group(5),
         }
 
+    # Prompt size/complexity of the versions deployed in this match
+    if match.get("versions"):
+        stats = {pos: prompt_stats(pos, v) for pos, v in match["versions"].items()}
+        stats = {pos: s for pos, s in stats.items() if s}
+        if stats:
+            match["prompt_stats"] = stats
+            chars = [s["chars"] for s in stats.values()]
+            rules = [s["rules"] for s in stats.values()]
+            match.setdefault("metrics", {})
+            match["metrics"]["prompt_chars_avg"] = round(sum(chars) / len(chars))
+            match["metrics"]["prompt_chars_max"] = max(chars)
+            match["metrics"]["prompt_rules_avg"] = round(sum(rules) / len(rules), 1)
+
     # Parse per-position performance
     positions = {}
     for pos in ["GK", "DEF", "MID", "FWD1", "FWD2"]:
@@ -250,15 +287,27 @@ def get_current_prompt_info():
     return info
 
 
+def version_key(f):
+    return int(re.sub(r"\D", "", f.stem) or 0)
+
+
 def get_all_versions():
     """List all version files per position."""
     versions = {}
     for pos in ["gk", "def", "mid", "fwd1", "fwd2"]:
         pos_dir = PROMPTS_DIR / pos
         if pos_dir.exists():
-            v_files = sorted(pos_dir.glob("v*.md"))
+            v_files = sorted(pos_dir.glob("v*.md"), key=version_key)
             versions[pos] = [f.stem for f in v_files]
     return versions
+
+
+def get_version_stats():
+    """Prompt size/complexity for every version file, per position."""
+    out = {}
+    for pos, stems in get_all_versions().items():
+        out[pos] = {stem: prompt_stats(pos, stem[1:]) for stem in stems}
+    return out
 
 
 def build_dashboard_data():
@@ -291,6 +340,7 @@ def build_dashboard_data():
 
     # Version history
     data["versions"] = get_all_versions()
+    data["version_stats"] = get_version_stats()
 
     # Stats
     competitive = [m for m in matches if m.get("type") == "competitive"]

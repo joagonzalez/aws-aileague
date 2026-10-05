@@ -4,11 +4,12 @@
 | # | Type | Score | Our versions |
 |---|------|-------|--------------|
 | 001 | practice | 1-0 W | all v1 |
+| 002 | practice | 2-2 D | all v3 |
 
 ## Profile
-- **Speed**: Fast agents, 370ms average latency (ours was 813ms). They react about twice as fast.
-- **Style**: Heavy pressing (140 press commands, 42%). Dominates possession (82%).
-- **Finishing**: Poor. 7 shots, 0 on target.
+- **Speed**: 370ms average in 001, 199ms in 002 (every position 196–207ms). Ours: 813ms, then 863ms. They react 2–4x faster.
+- **Style**: Heavy pressing (42% in 001, 40% in 002). Dominates possession (82% in 001). In 002: no intercepts or marks, 6% passes.
+- **Finishing**: Poor in 001 (7 shots, 0 on target), but scored 2 against v3 in 002.
 - **Formation**: Unknown.
 
 ## Exploitable Weaknesses

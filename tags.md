@@ -6,7 +6,7 @@ Every commit that introduces a new prompt release gets an annotated tag, even if
 |-----|------|--------|-------------------|-----------|---------|
 | `deploy-v1-2026-10-05` | 2026-10-05 | `c1c5346` | all (initial) | 001 | Initial release, 1-1-2. MID on Sonnet, FWD2 on Nova Lite 2. |
 | `deploy-v2-2026-10-05` | 2026-10-05 | `36edf53` | all | — (never played) | Possession and passing emphasis, all Haiku. Superseded by v3 before any match. |
-| `deploy-v3-2026-10-05` | 2026-10-05 | see tag | all | — (pending) | Counter-punch: coach's "aggressive, hit the ball" message built in, zone pressing, long GK distribution, tempo line for latency. |
+| `deploy-v3-2026-10-05` | 2026-10-05 | see tag | all | 002 | Counter-punch: coach's "aggressive, hit the ball" message built in, zone pressing, long GK distribution, tempo line for latency. |
 
 ## Format
 

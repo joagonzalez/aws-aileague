@@ -450,6 +450,7 @@
 
     <div class="card">
       <h2>Version History</h2>
+      <p class="chart-sub">Pasted characters per version</p>
       <div id="version-history">
         <div class="empty-state">No versions yet</div>
       </div>
@@ -510,6 +511,9 @@
       { id: 'on-ball', title: 'Pass & Shoot Commands', sub: 'Our commands per match', integer: true, format: fmtInt, series: [
         { label: 'Pass', color: 'var(--series-1)', get: m => cmd(m, 'pass') },
         { label: 'Shoot', color: 'var(--series-2)', get: m => cmd(m, 'shoot') } ] },
+      { id: 'prompt-size', title: 'Prompt Size', sub: 'Pasted characters across the 5 deployed prompts (Haiku budget 2000)', integer: true, format: fmtInt, series: [
+        { label: 'Average', color: 'var(--series-1)', get: m => met(m).prompt_chars_avg },
+        { label: 'Longest', color: 'var(--series-2)', get: m => met(m).prompt_chars_max } ] },
     ];
 
     const viz = { matches: [], charts: [], heatmap: null, hoverIndex: null };
@@ -576,14 +580,16 @@
 
       const table = el('table', { class: 'tt-config' });
       const hr = el('tr');
-      ['Pos', 'Model', 'Prompt'].forEach(h => hr.append(el('th', {}, h)));
+      ['Pos', 'Model', 'Prompt', 'Chars', 'Rules'].forEach(h => hr.append(el('th', {}, h)));
       table.append(hr);
       for (const pos of POSITIONS) {
         const tr = el('tr');
         tr.append(
           el('td', {}, POS_NAMES[pos]),
           el('td', {}, m.models?.[pos] || '—'),
-          el('td', {}, m.versions?.[pos] ? `v${m.versions[pos]}` : '—'));
+          el('td', {}, m.versions?.[pos] ? `v${m.versions[pos]}` : '—'),
+          el('td', {}, fmtInt(m.prompt_stats?.[pos]?.chars)),
+          el('td', {}, fmtInt(m.prompt_stats?.[pos]?.rules)));
         table.append(tr);
       }
       tt.append(table);
@@ -769,6 +775,11 @@
               values.push({ color: 'transparent', label: 'p95 latency', value: fmtMs(agent.latency_p95) });
               values.push({ color: 'transparent', label: 'success', value: fmtPct(agent.success) });
             }
+            const ps = row.key === 'opp' ? null : m.prompt_stats?.[row.key];
+            if (ps) {
+              values.push({ color: 'transparent', label: `prompt v${ps.version} chars`, value: fmtInt(ps.chars) });
+              values.push({ color: 'transparent', label: 'decision rules', value: fmtInt(ps.rules) });
+            }
             const tt = document.getElementById('viz-tooltip');
             fillTooltip(tt, m, values);
             placeTooltip(tt, e.clientX, e.clientY);
@@ -855,6 +866,13 @@
       group('Our commands (count, share)');
       [['Move', 'move'], ['Press', 'press'], ['Intercept', 'intercept'], ['Mark', 'mark'], ['Pass', 'pass'], ['Shoot', 'shoot'], ['Clear', 'clear'], ['GK distribution', 'gk_dist']]
         .forEach(([label, key]) => row(label, cmdCell(key)));
+      group('Prompts (version / chars / rules)');
+      row('Average chars', m => fmtInt(met(m).prompt_chars_avg));
+      row('Average rules', m => (isNum(met(m).prompt_rules_avg) ? String(met(m).prompt_rules_avg) : null));
+      POSITIONS.forEach(pos => row(`${POS_NAMES[pos]} prompt`, m => {
+        const s = m.prompt_stats?.[pos];
+        return s ? `v${s.version} / ${s.chars} / ${s.rules}` : null;
+      }));
       group('Agents (avg latency / p95 / success)');
       POSITIONS.forEach(pos => row(`${POS_NAMES[pos]} (${PLAYER_NAMES[pos]})`, m => {
         const a = met(m).agents?.[pos];
@@ -997,7 +1015,8 @@
           const chips = vers.map(v => {
             const num = v.replace('v', '');
             const isCurrent = num === currentV;
-            return `<span class="version-chip ${isCurrent ? 'current' : ''}">${v}${isCurrent ? ' (active)' : ''}</span>`;
+            const chars = data.version_stats?.[pos]?.[v]?.chars;
+            return `<span class="version-chip ${isCurrent ? 'current' : ''}" title="${chars ? chars + ' pasted chars' : ''}">${v}${chars ? ' · ' + chars : ''}${isCurrent ? ' (active)' : ''}</span>`;
           }).join('');
           versionContainer.innerHTML += `
             <div class="stat-row">
