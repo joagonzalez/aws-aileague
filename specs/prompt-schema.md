@@ -72,9 +72,13 @@ The AWS platform auto-adds game commands and formatting. Key implications:
 3. **Plain English works best** — no code, no coordinates, no API calls.
 4. **The pitch is directional** — our team attacks toward the opponent's goal.
 5. **Priorities in order, be specific** — e.g., "if inside the box, shoot" (from AWS tip).
+6. **6000 character limit** per player prompt on the platform.
 
 ## Quality Guidelines
 
-- **Conciseness**: Each section should be as short as possible while being unambiguous. Target under 300 words total per prompt. For fast/simple models (Nova Micro, Nova Lite), keep under 150 words with simple if/then rules.
+- **Character budget**: Hard limit is 6000 chars. Only the behavioral text is pasted (no header/model/changelog metadata).
+  - Fast models (Haiku, Nova Micro): keep lean, ~1500 chars. Simple if/then rules.
+  - Smart models (Sonnet, Nova Pro): can go richer, up to ~4000-5000 chars. More situational depth.
+- **Conciseness**: Each section should be as short as possible while being unambiguous.
 - **Specificity**: Avoid wording like "try to", "consider", "if possible". Use imperative: "do X", "never Y".
 - **Testability**: Every rule in the decision framework should be verifiable — you should be able to watch a match and say "yes, the agent followed rule #3" or "no, it violated rule #5".

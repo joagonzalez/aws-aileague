@@ -4,13 +4,13 @@ This repo persists prompts, strategy, and match analysis for the AWS Agentic Foo
 
 ## Team
 
-| # | Position | Model | Prompt |
-|---|----------|-------|--------|
-| 1 | GK (Goalkeeper) | Claude Haiku | `prompts/gk/current.md` |
-| 2 | DEF (Defender) | Claude Haiku | `prompts/def/current.md` |
-| 3 | MID (Midfielder) | Claude Sonnet | `prompts/mid/current.md` |
-| 4 | FWD1 (Forward 1) | Claude Haiku | `prompts/fwd1/current.md` |
-| 5 | FWD2 (Forward 2) | Nova Lite 2 | `prompts/fwd2/current.md` |
+| # | Name | Position | Model | Prompt | Chars |
+|---|------|----------|-------|--------|-------|
+| 1 | Shannon | GK (Goalkeeper) | Claude Haiku | `prompts/gk/current.md` | ~1300/6000 |
+| 2 | Turing | DEF (Defender) | Claude Haiku | `prompts/def/current.md` | ~1500/6000 |
+| 3 | Tesla | MID (Midfielder) | Claude Sonnet | `prompts/mid/current.md` | ~2000/6000 |
+| 4 | Hertz | FWD1 (Forward 1) | Claude Haiku | `prompts/fwd1/current.md` | ~1700/6000 |
+| 5 | Lovelace | FWD2 (Forward 2) | Nova Lite 2 | `prompts/fwd2/current.md` | ~1900/6000 |
 
 ## Repo Structure
 
@@ -49,6 +49,7 @@ See `workflows/match-debrief.md` for details.
 
 ## Degrees of Freedom
 
-1. **Prompt content** — the decision rules, personality, constraints for each agent
+1. **Prompt content** — the decision rules, personality, constraints for each agent (max 6000 chars per player)
 2. **Model selection** — speed vs intelligence trade-off per position (see `strategy/model-selection.md`)
 3. **Formation/tactics** — how agents coordinate (see `strategy/formation.md`, `strategy/playbook.md`)
+4. **Prompt density** — lean prompts (~1500 chars) for fast models, rich prompts (~4000-5000 chars) for smart models
