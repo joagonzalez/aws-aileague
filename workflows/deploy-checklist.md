@@ -22,14 +22,15 @@ Run through this checklist before every deployment to the AWS platform.
 
 ### Git Hygiene
 - [ ] All changes committed with descriptive messages
-- [ ] Tag created: `deploy-vN-YYYY-MM-DD`
-- [ ] Tag logged in `tags.md`
+- [ ] Annotated tag created on the release commit: `deploy-vN-YYYY-MM-DD`
+- [ ] Tag logged in `tags.md` (update "Played in" after each match)
+- [ ] Pushed with `git push origin master --follow-tags`
 - [ ] Commit messages reference match context where applicable
 
 ## Deploy Steps
 
 1. Verify all checks above are green
-2. Copy prompt content from each `prompts/<position>/current.md` into the AWS platform
+2. Run `python3 scripts/build-paste-ready.py` (fails on missing sections or >6000 chars; review any warnings), then copy each player's code block from `deploy/paste-ready.md` into the AWS platform
 3. Select model for each agent
 4. Click "Deploy changes" (first time) or "Redeploy changes" (updates)
 5. Verify deployment succeeded on the platform

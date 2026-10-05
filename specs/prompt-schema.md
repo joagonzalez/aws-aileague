@@ -39,13 +39,14 @@ Behavioral biases that guide edge cases not covered by the decision framework:
 - Any other relevant bias
 
 ### 5. Coordination
-How this agent interacts with adjacent positions:
-- Which position(s) it communicates with
-- What information it shares or expects
-- How it responds to calls from teammates
+How this agent's positioning fits with adjacent positions. Agents cannot talk to each other. Each one only sees the game state, so coordination means **positional expectations**, not messages:
+- Where this agent should be relative to teammates (e.g., "FWD2 stays on the opposite side to FWD1")
+- Who this agent passes to, and who it expects the ball from
+- Who presses and who covers in each zone
 
 Rules:
-- Must be bidirectionally consistent (if GK tells DEF to push up, DEF's prompt must mention listening to GK)
+- Must be bidirectionally consistent (if DEF clears long toward the forwards, the forwards' prompts must say to stay high for it)
+- No "tell", "call for", "signal" or "communicate". Match 001's command list has no talk command, so these instructions do nothing
 - Keep coordination simple — complex multi-agent protocols break down
 
 ### 6. Constraints
@@ -61,8 +62,6 @@ Version history:
 - v2: [What changed and why, referencing match if applicable]
 ```
 
-## Platform Note
-
 ## Platform Rules
 
 The AWS platform auto-adds game commands and formatting. Key implications:
@@ -73,12 +72,16 @@ The AWS platform auto-adds game commands and formatting. Key implications:
 4. **The pitch is directional** — our team attacks toward the opponent's goal.
 5. **Priorities in order, be specific** — e.g., "if inside the box, shoot" (from AWS tip).
 6. **6000 character limit** per player prompt on the platform.
+7. **Name the commands**: use the platform's command words in actions — MOVE, PRESS, INTERCEPT, MARK, PASS, SHOOT, CLEAR (and distribute for GK) — so each rule maps directly to one command. Avoid actions with no command behind them ("shield", "wait", "make yourself big").
+8. **State, not time**: agents see game state, not a clock. Write conditions about positions ("if the ball passes you"), not durations ("press for 3 seconds").
+9. **Live coach messages**: the coach can type instructions during a match. A message that works should be written into the base prompt for the next version (see `strategy/playbook.md` → In-Match Coaching).
 
 ## Quality Guidelines
 
-- **Character budget**: Hard limit is 6000 chars. Only the behavioral text is pasted (no header/model/changelog metadata).
-  - Fast models (Haiku, Nova Micro): keep lean, ~1500 chars. Simple if/then rules.
-  - Smart models (Sonnet, Nova Pro): can go richer, up to ~4000-5000 chars. More situational depth.
+- **Character budget**: Hard limit is 6000 chars of pasted text (see `deploy/paste-ready.md`, which reports the count per player). Header, model and changelog are not pasted.
+  - Fast models (Haiku, Nova Micro): ≤ 2000 chars pasted. Simple if/then rules.
+  - Smart models (Sonnet, Nova Pro): up to ~4000-5000 chars. More situational depth.
+- **Priority shadowing**: a higher rule whose situation overlaps a lower one blocks the lower one. Put the more dangerous or more specific situation first (e.g., "attacker with the ball near our goal" above "attacker without the ball near you").
 - **Conciseness**: Each section should be as short as possible while being unambiguous.
 - **Specificity**: Avoid wording like "try to", "consider", "if possible". Use imperative: "do X", "never Y".
 - **Testability**: Every rule in the decision framework should be verifiable — you should be able to watch a match and say "yes, the agent followed rule #3" or "no, it violated rule #5".

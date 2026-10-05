@@ -5,11 +5,21 @@
 - Date: 2026-10-05
 - Type: practice
 - Formation: 1-1-2
+- Strategy: Possession
+- Deploy tag: deploy-v1-2026-10-05
 - Prompt versions deployed: GK v1, DEF v1, MID v1, FWD1 v1, FWD2 v1
 - Models: GK Claude Haiku, DEF Claude Haiku, MID Claude Sonnet, FWD1 Claude Haiku, FWD2 Nova Lite 2
 
 ## Key Moments
-1. 2': Goal — scored from quick transition after intercepting opponent's aggressive press. Clinical finish.
+1. Before 2': Coach sent a live message telling the team to be more aggressive and hit the ball (see Coach Interventions). Sent once only.
+2. 2': Goal — scored from quick transition after intercepting opponent's aggressive press. Clinical finish. This came right after the coach message and was our only goal.
+
+## Coach Interventions
+| When | Message (paraphrased) | Observed effect |
+|------|-----------------------|-----------------|
+| Before 2' | Be more aggressive and hit the ball | Goal at 2', our only goal. The base prompts had produced nothing until then. Sent only once and never repeated. No further goals for the rest of the match, so the effect may have faded or the opponent adjusted. |
+
+Takeaway: the v1 prompts were too passive on the ball. That aggression must be in the base prompts, not depend on someone typing it mid-match.
 
 ## Raw Stats
 - Possession: 18% vs 82%
@@ -63,7 +73,7 @@
 - Performance: strong
 - What worked: Scored the winning goal at 2'. Fast (678ms). Part of 14 shoot commands.
 - What failed: Only 18% possession means FWDs barely had the ball to work with.
-- Root cause: FWD prompt is fine — the issue is upstream (MID not feeding them).
+- Root cause: The goal only came after the coach's live "be aggressive, hit the ball" message. The base prompt was not aggressive enough on its own. Also upstream: MID was not feeding the forwards.
 
 ### FWD2
 - Performance: adequate
@@ -77,15 +87,24 @@
 - Coordination gaps: MID is not connecting to FWDs — only 11 passes total. The link between defense and attack is broken.
 - Opponent patterns: Benchmark FC pressed aggressively (140 press commands, 42%) but couldn't shoot on target. They lacked finishing despite domination.
 - Opponent formation: Unknown — but they had fast agents (370ms avg vs our 813ms).
+- Re-analysis (post-v2 review): The low pass count is a symptom of 18% possession, not the cause. We cannot out-pass agents that react about 2x faster. Our only goal came from aggression plus a direct strike, right after the coach asked for it.
+- Re-analysis: 124 PRESS commands (37%) did not stop 82% opposition possession. Everyone chased the ball instead of one player pressing while the others cut passing lanes. INTERCEPT (48) is what created the goal.
+- Re-analysis: 14 SHOOT commands produced only 2 recorded shots. Check whether SHOOT was issued without the ball (wasted commands).
+- Re-analysis: Every model was 680–950ms, Haiku included, against the opponent's 370ms. Switching models alone will not close that gap.
 
 ## Action Items
-- [ ] MID: Add explicit PASS and MARK instructions. MID should pass way more. (priority: high)
-- [ ] DEF: Add MARK as a primary action — only 2 marks is dangerous. (priority: high)
-- [ ] MID model: Consider switching from Sonnet to Haiku — 948ms is too slow, costing us tempo. (priority: high)
-- [ ] FWD2 model: Consider switching from Nova Lite 2 to Haiku — 840ms vs 678ms for FWD1. (priority: medium)
-- [ ] ALL: Address passing — 11 passes total is critically low. Every outfield prompt needs more emphasis on passing. (priority: high)
-- [ ] Strategy: Our counter-attack identity works (scored from transition). Keep that but add more build-up. (priority: medium)
-- [ ] Formation: Test 1-2-1 to get more midfield presence and possession. (priority: medium)
+- [x] MID: Add explicit PASS and MARK instructions. MID should pass way more. (priority: high) — done in v2
+- [x] DEF: Add MARK as a primary action — only 2 marks is dangerous. (priority: high) — done in v2
+- [x] MID model: Consider switching from Sonnet to Haiku — 948ms is too slow, costing us tempo. (priority: high) — done in v2
+- [x] FWD2 model: Consider switching from Nova Lite 2 to Haiku — 840ms vs 678ms for FWD1. (priority: medium) — done in v2
+- [x] ALL: Address passing — 11 passes total is critically low. Every outfield prompt needs more emphasis on passing. (priority: high) — done in v2, partly reversed in v3 (passing must be forward and direct, not possession)
+- [ ] ALL: Make the coach's "be aggressive, hit the ball" message the default: shoot on sight near goal, attack loose balls, hit it forward when you win it. (priority: high) — v3
+- [ ] ALL: Coordinate pressing: one player presses the ball, the others INTERCEPT lanes or MARK. (priority: high) — v3
+- [ ] ALL: Remove instructions agents cannot execute (talking to teammates, "for N seconds", shielding/waiting). (priority: medium) — v3
+- [ ] Strategy: Our counter-attack identity works (scored from transition). Make it the default playbook pattern instead of controlled possession. (priority: high) — v3
+- [ ] Formation: Keep 1-1-2 for the v3 test so the prompt change is the only variable. Revisit 2-1-1 if we concede. (priority: medium)
+- [ ] Coaching: Log every live message with its time and effect in the Coach Interventions section. (priority: medium)
 
 ## Opponent Scouting Notes
 - The Benchmark FC: aggressive pressing (140 cmds), high possession (82%), but zero shots on target from 7 attempts. Poor finishing. Vulnerable to counter-attacks on turnovers. Fast agents (370ms avg).
+- Saved to `strategy/opponent-notes/the-benchmark-fc.md`.

@@ -31,6 +31,25 @@ Decision-critical positions  →  smarter models
 | FWD1 | Claude Haiku | Finishing is about timing and instinct. Fast model, sharp prompts. Scored at 2' in match 001. |
 | FWD2 | Claude Haiku | v1 used Nova Lite 2 (840ms — slower than FWD1's 678ms). Unified to Haiku for consistent team speed. |
 
+### Latency Findings (match 001)
+
+| Model | Position | Latency |
+|-------|----------|---------|
+| Claude Haiku | FWD1 / GK / DEF | 678 / 682 / 802ms |
+| Nova Lite 2 | FWD2 | 840ms |
+| Claude Sonnet | MID | 948ms |
+| *Opponent average* | — | *370ms* |
+
+- Every model we used was 680–950ms. Switching models alone cannot reach the opponent's 370ms.
+- The same model (Haiku) varied by 120ms across positions. Prompt complexity and how much the agent writes before acting probably matter as much as the model.
+- Why output length matters: latency is roughly a fixed startup cost plus time per output token. The model reads input much faster than it writes output, so a longer prompt costs little, but every word of reasoning the agent writes before its command adds delay.
+- v3 adds a tempo line to every prompt: "Choose one command immediately and keep any reasoning to a few words — no explanations." Compare per-agent latency in the next match against these numbers. If Haiku drops well below 680ms, output length is the lever.
+- Caveats: the platform adds its own formatting, and if that asks for a reasoning field our line can only shorten it. Less reasoning can also mean worse decisions, so check decision quality in the debrief alongside latency.
+
+### Next Model Experiments (one at a time, after v3 has a baseline)
+1. **GK on Nova Micro**: the GK has the simplest decision tree. If latency drops a lot with no extra goals conceded, try DEF next.
+2. **FWD1 on Nova Micro**: finishing depends on timing. Only try this if experiment 1 shows Nova Micro is much faster.
+
 ### Alternative Configurations to Test
 
 **Config A: All Claude (speed gradient)**

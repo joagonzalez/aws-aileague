@@ -30,30 +30,32 @@ Every prompt change follows the Writer → Reviewer → Evaluator pipeline:
 1. **Writer** drafts/revises a prompt following `specs/prompt-schema.md`
 2. **Reviewer** validates against schema + `specs/evaluation-criteria.md` → PASS or FAIL (with feedback back to Writer, max 3 iterations)
 3. **Evaluator** checks team coherence across all 5 prompts → APPROVE or REJECT (with feedback back to Writer)
-4. On APPROVE: update `current.md`, commit, tag, deploy
+4. On APPROVE: update `current.md`, run `python3 scripts/build-paste-ready.py`, commit, tag, deploy
 
 See `workflows/prompt-development.md` for the full pipeline.
 
 ## Match Feedback Loop (Critical)
 
 After every match:
-1. Log the result in `match-log/practice/` or `match-log/competitive/`
+1. Log the result in `match-log/practice/` or `match-log/competitive/` (including live coach messages)
 2. Use `workflows/match-debrief.md` to analyze what happened
 3. Feed findings into the Writer agent for the next prompt iteration
 4. The match log IS the data — never skip this step
 
 ## Git Conventions
 
-- **Tags**: Every deployment gets a tag: `deploy-vN-YYYY-MM-DD` with a message describing what changed
+- **Tags**: Every commit that introduces a new prompt release gets an annotated tag `deploy-vN-YYYY-MM-DD` (N = team prompt release), even if it is never played. The message says what changed. Push with `--follow-tags`
 - **Commits**: Descriptive messages linking to match context when applicable
 - **Branches**: Use feature branches for experimental prompt strategies, merge to master for deployment
-- Log all tags in `tags.md` for quick reference
+- Log all tags in `tags.md` for quick reference, including which matches each release played in
 
 ## Dashboard
 
 A static dashboard is deployed to GitHub Pages on every push to master. It visualizes:
 - Match results (W/L/D, scores, timeline)
 - Current deployment config (prompt versions + models per position)
+- Per-match metric trends: goals, possession, shots, shots on target, latency (avg/p95 vs opponent), command success, ball-winning and on-ball command counts. Hovering a match shows models, prompt versions, strategy, formation, deploy tag and coach messages
+- Agent latency heatmap (agent × match) and a table view of every metric
 - Per-position performance trends
 - Action items from debriefs
 
@@ -65,6 +67,8 @@ To rebuild locally: `python3 scripts/build-dashboard.py` then open `dashboard/in
 - Prompts only define WHEN and WHERE to do things — pure tactical instructions
 - Plain English works best, no code or coordinates
 - Model is configurable per player — see `strategy/model-selection.md`
+- Agents cannot talk to each other. Coordination is positional only (no "tell", "call for", "signal")
+- The coach can type live messages during a match, and they change behavior. Log every one in the match log's Coach Interventions section. If one works, write it into the next prompt version
 
 ## Rules to Follow
 

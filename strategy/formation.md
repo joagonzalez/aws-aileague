@@ -70,18 +70,19 @@ Priority experiments:
 
 ## Positioning Philosophy (current 1-1-2)
 
-- **GK**: Stays on goal line by default. Only advances for 1v1 situations.
-- **DEF**: Sits in front of GK. Marks the most dangerous attacker. Clears the ball upfield.
-- **MID**: The pivot. Links defense to attack. Covers for DEF when drawn out. Distributes to FWDs.
-- **FWD1**: Left-biased forward. Primary finisher. Runs behind defense.
-- **FWD2**: Right-biased forward. Support striker. Holds up play.
+- **GK**: Stays on the goal line by default. Comes out only for 1v1s or loose balls in the box. Distributes long to the forwards when opponents press.
+- **DEF**: Sits in front of GK. MARKs the most advanced attacker and presses ball carriers near our box. Clears long toward the forwards.
+- **MID**: The pivot. Presses in midfield when closest and otherwise intercepts lanes. Plays forward first and shoots from the edge of the box.
+- **FWD1**: Left/central forward. Primary finisher. Leads the press in the opponent's half. Shoots on sight.
+- **FWD2**: Right-side forward. Second finisher. Cuts passing lanes while FWD1 presses. Shoots on sight.
 
 ## Shape Principles
 
 1. **Compactness**: Keep distance between lines tight. Don't let gaps open between DEF and MID.
 2. **Width on attack**: FWDs spread wide to stretch the opponent. MID fills the center.
 3. **Narrow on defense**: Everyone tucks in centrally. Protect the middle.
-4. **Transition speed**: When we win the ball, MID's first instinct is to look forward to FWDs.
+4. **Transition speed**: Whoever wins the ball hits it forward at once: a pass to a free forward, or a long clear toward them.
+5. **One presser**: Only one player presses the ball, chosen by zone (FWD1 in their half, MID in midfield, DEF near our box). The rest intercept or mark.
 
 ## Formation Change Protocol
 
@@ -95,5 +96,4 @@ When switching formations:
 
 ## Adjustments Log
 
-_Update after matches:_
-- _No data yet — awaiting first match._
+- **Match 001 (1-1-2, v1)**: Won 1-0 but under siege (18% possession, 7 shots against, 0 on target). DEF+GK held. The two forwards produced the goal on the counter. Debrief suggested 1-2-1 for possession, but possession is not our game against faster agents (see `playbook.md`). **Decision**: keep 1-1-2 for the v3 test so the prompt change is the only variable. If v3 concedes, try 2-1-1 next.

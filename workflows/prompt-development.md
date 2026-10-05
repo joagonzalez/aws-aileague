@@ -40,7 +40,7 @@ Structured Development Design (SDD) pipeline for creating and revising player pr
 **Instructions**:
 1. Read `specs/prompt-schema.md` and `specs/evaluation-criteria.md`
 2. Read the Writer's draft
-3. Run through every Reviewer check in `specs/evaluation-criteria.md`
+3. Run `python3 scripts/build-paste-ready.py` for the automated checks (sections, character budget, untestable phrases), then go through every remaining Reviewer check in `specs/evaluation-criteria.md` by hand, including priority shadowing
 4. If revising: read relevant `match-log/` entries — verify the draft addresses identified issues
 
 **Output**: PASS or FAIL
