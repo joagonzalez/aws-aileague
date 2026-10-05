@@ -27,9 +27,9 @@ Decision-critical positions  →  smarter models
 |----------|-------|-----------|
 | GK | Claude Haiku | Needs instant reactions (save, rush, hold). Simple decision tree but must be FAST. Haiku is fast AND sharp. |
 | DEF | Claude Haiku | Quick marking/clearing decisions. Speed matters more than creativity. |
-| MID | Claude Sonnet | The brain. Must read the game, choose between multiple options (pass left/right, hold, drop back). Needs best reasoning. |
-| FWD1 | Claude Haiku | Finishing is about timing and instinct. Fast model, sharp prompts. |
-| FWD2 | Nova Lite 2 | Experiment: newer balanced model. If FWD2 holds up play, needs some intelligence but not max. |
+| MID | Claude Haiku | v1 used Sonnet (948ms — too slow). Haiku is fast AND sharp enough for passing/marking decisions. Speed > deep reasoning here. |
+| FWD1 | Claude Haiku | Finishing is about timing and instinct. Fast model, sharp prompts. Scored at 2' in match 001. |
+| FWD2 | Claude Haiku | v1 used Nova Lite 2 (840ms — slower than FWD1's 678ms). Unified to Haiku for consistent team speed. |
 
 ### Alternative Configurations to Test
 

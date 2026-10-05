@@ -1,47 +1,101 @@
 {
-  "matches": [],
+  "matches": [
+    {
+      "file": "match-log/practice/001-vs-benchmark-fc.md",
+      "type": "practice",
+      "number": 1,
+      "opponent": "The Benchmark FC",
+      "score_us": 1,
+      "score_them": 0,
+      "result": "W",
+      "date": "2026-10-05",
+      "formation": "1-1-2",
+      "models": {
+        "gk": "Claude Haiku",
+        "def": "Claude Haiku",
+        "mid": "Claude Sonnet",
+        "fwd1": "Claude Haiku",
+        "fwd2": "Nova Lite 2"
+      },
+      "versions": {
+        "gk": "1",
+        "def": "1",
+        "mid": "1",
+        "fwd1": "1",
+        "fwd2": "1"
+      },
+      "performance": {
+        "gk": "strong",
+        "def": "adequate",
+        "mid": "weak",
+        "fwd1": "strong",
+        "fwd2": "adequate"
+      },
+      "action_items": [
+        "MID: Add explicit PASS and MARK instructions. MID should pass way more. (priority: high)",
+        "DEF: Add MARK as a primary action \u2014 only 2 marks is dangerous. (priority: high)",
+        "MID model: Consider switching from Sonnet to Haiku \u2014 948ms is too slow, costing us tempo. (priority: high)",
+        "FWD2 model: Consider switching from Nova Lite 2 to Haiku \u2014 840ms vs 678ms for FWD1. (priority: medium)",
+        "ALL: Address passing \u2014 11 passes total is critically low. Every outfield prompt needs more emphasis on passing. (priority: high)",
+        "Strategy: Our counter-attack identity works (scored from transition). Keep that but add more build-up. (priority: medium)",
+        "Formation: Test 1-2-1 to get more midfield presence and possession. (priority: medium)"
+      ],
+      "observations": [
+        "Formation effectiveness: 1-1-2 survived but we were under siege. 82% possession for opponent is dangerous.",
+        "Should we change formation? Consider 2-1-1 (add second DEF) or 1-2-1 (add second MID for possession) to address the imbalance.",
+        "Coordination gaps: MID is not connecting to FWDs \u2014 only 11 passes total. The link between defense and attack is broken.",
+        "Opponent patterns: Benchmark FC pressed aggressively (140 press commands, 42%) but couldn't shoot on target. They lacked finishing despite domination.",
+        "Opponent formation: Unknown \u2014 but they had fast agents (370ms avg vs our 813ms)."
+      ]
+    }
+  ],
   "current_formation": "1-1-2",
   "current_config": {
     "gk": {
-      "version": "1",
+      "version": "2",
       "model": "Claude Haiku"
     },
     "def": {
-      "version": "1",
+      "version": "2",
       "model": "Claude Haiku"
     },
     "mid": {
-      "version": "1",
-      "model": "Claude Sonnet"
+      "version": "2",
+      "model": "Claude Haiku"
     },
     "fwd1": {
-      "version": "1",
+      "version": "2",
       "model": "Claude Haiku"
     },
     "fwd2": {
-      "version": "1",
-      "model": "Nova Lite 2"
+      "version": "2",
+      "model": "Claude Haiku"
     }
   },
   "versions": {
     "gk": [
-      "v1"
+      "v1",
+      "v2"
     ],
     "def": [
-      "v1"
+      "v1",
+      "v2"
     ],
     "mid": [
-      "v1"
+      "v1",
+      "v2"
     ],
     "fwd1": [
-      "v1"
+      "v1",
+      "v2"
     ],
     "fwd2": [
-      "v1"
+      "v1",
+      "v2"
     ]
   },
   "stats": {
-    "total_matches": 0,
+    "total_matches": 1,
     "competitive": {
       "played": 0,
       "remaining": 10,
@@ -52,11 +106,32 @@
       "goals_against": 0
     },
     "practice": {
-      "played": 0,
-      "wins": 0,
+      "played": 1,
+      "wins": 1,
       "draws": 0,
       "losses": 0
     }
   },
-  "performance_trends": {}
+  "performance_trends": {
+    "gk": {
+      "avg": 3.0,
+      "matches_rated": 1
+    },
+    "def": {
+      "avg": 2.0,
+      "matches_rated": 1
+    },
+    "mid": {
+      "avg": 1.0,
+      "matches_rated": 1
+    },
+    "fwd1": {
+      "avg": 3.0,
+      "matches_rated": 1
+    },
+    "fwd2": {
+      "avg": 2.0,
+      "matches_rated": 1
+    }
+  }
 }
