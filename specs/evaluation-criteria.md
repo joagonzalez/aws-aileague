@@ -48,6 +48,7 @@ Used by the Reviewer and Evaluator agents to assess prompt quality.
 - [ ] Changes don't undo fixes that worked in previous matches
 - [ ] If a previous version's decision rule was effective (per match-log), it's preserved or improved, not removed
 - [ ] Fixes target causes, not symptoms (e.g., don't add passing rules to fix a low pass count caused by low possession)
+- [ ] Command counts are clues, not goals. A change aimed at moving a count (e.g. more GK Dist) must also state the on-pitch outcome it expects. Match 003: the 'distribute' wording lifted GK Dist from 0 to 8 but sent the ball short to DEF instead of upfield
 
 ## Scoring (for Reviewer)
 

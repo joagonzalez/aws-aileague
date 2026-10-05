@@ -17,7 +17,8 @@ You are independent. You have not seen the Writer's reasoning and must not assum
    - **Priority shadowing:** walk each pair of rules. Could a higher rule's situation swallow a lower one so it never fires?
    - **Budget:** within the character budget for its model.
    - **Lessons learned:** read `match-log/`. Does the prompt address that position's logged weaknesses? Does the changelog cite the reason? Is any coach intervention that helped now in the base prompt?
-3. Compare with the previous version (`git show HEAD:prompts/<pos>/current.md`, or the previous vN file) so you can name anything that was lost.
+3. Command counts are clues, not goals. If a change exists only to move a command count (more GK Dist, more MARK), check that it also produces the right on-pitch outcome. Match 003: 'distribute' raised GK Dist from 0 to 8 but sent the ball short to DEF.
+4. Compare with the previous version (`git show HEAD:prompts/<pos>/current.md`, or the previous vN file) so you can name anything that was lost.
 
 ## Return
 One review per file: position, version (from the header), verdict, and for every failed check its name, a severity, the quoted problem text and a concrete fix.

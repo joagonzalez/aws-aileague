@@ -5,11 +5,12 @@
 |---|------|-------|--------------|
 | 001 | practice | 1-0 W | all v1 |
 | 002 | practice | 2-2 D | all v3 |
+| 003 | practice | 2-1 W | all v4 |
 
 ## Profile
 - **Speed**: 370ms average in 001, 199ms in 002 (every position 196–207ms). Ours: 813ms, then 863ms. They react 2–4x faster.
-- **Style**: Heavy pressing (42% in 001, 40% in 002). Dominates possession (82% in 001). In 002: no intercepts or marks, 6% passes.
-- **Finishing**: Poor in 001 (7 shots, 0 on target), but scored 2 against v3 in 002.
+- **Style**: Heavy pressing (42% in 001, 40% in 002, 28% in 003). Possession 82% in 001 but only 46% in 003. Never intercepts or marks. Their DEF (Norm Easy, 195ms) was the platform MVP in 003.
+- **Finishing**: Poor in 001 (7 shots, 0 on target). Scored 2 against v3 in 002. In 003: 5 shots, 1 on target, 1 goal (at 1').
 - **Formation**: Unknown.
 
 ## Exploitable Weaknesses
