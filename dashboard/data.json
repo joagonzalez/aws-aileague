@@ -1,0 +1,62 @@
+{
+  "matches": [],
+  "current_formation": "1-1-2",
+  "current_config": {
+    "gk": {
+      "version": "1",
+      "model": "Claude Haiku"
+    },
+    "def": {
+      "version": "1",
+      "model": "Claude Haiku"
+    },
+    "mid": {
+      "version": "1",
+      "model": "Claude Sonnet"
+    },
+    "fwd1": {
+      "version": "1",
+      "model": "Claude Haiku"
+    },
+    "fwd2": {
+      "version": "1",
+      "model": "Nova Lite 2"
+    }
+  },
+  "versions": {
+    "gk": [
+      "v1"
+    ],
+    "def": [
+      "v1"
+    ],
+    "mid": [
+      "v1"
+    ],
+    "fwd1": [
+      "v1"
+    ],
+    "fwd2": [
+      "v1"
+    ]
+  },
+  "stats": {
+    "total_matches": 0,
+    "competitive": {
+      "played": 0,
+      "remaining": 10,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "goals_for": 0,
+      "goals_against": 0
+    },
+    "practice": {
+      "played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0
+    }
+  },
+  "performance_trends": {}
+}

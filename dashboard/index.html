@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI League Dashboard</title>
+  <style>
+    :root {
+      --bg: #0a0e17;
+      --card: #141a28;
+      --border: #1e2a3a;
+      --text: #e0e6ed;
+      --text-dim: #7a8a9e;
+      --accent: #00e676;
+      --accent2: #00b0ff;
+      --win: #00e676;
+      --draw: #ffc107;
+      --loss: #ff5252;
+      --strong: #00e676;
+      --adequate: #ffc107;
+      --weak: #ff5252;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Courier New', monospace;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    h1 {
+      color: var(--accent);
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .subtitle {
+      color: var(--text-dim);
+      margin-bottom: 2rem;
+      font-size: 0.85rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+
+    .card h2 {
+      color: var(--accent2);
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stat-row:last-child { border-bottom: none; }
+
+    .stat-label { color: var(--text-dim); font-size: 0.85rem; }
+    .stat-value { font-weight: bold; font-size: 1.1rem; }
+
+    .big-number {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: var(--accent);
+      text-align: center;
+      padding: 1rem 0;
+    }
+
+    .big-label {
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+    }
+
+    .wdl {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+
+    .wdl-item { text-align: center; }
+    .wdl-num { font-size: 1.8rem; font-weight: bold; }
+    .wdl-label { font-size: 0.7rem; text-transform: uppercase; color: var(--text-dim); }
+
+    .w-color { color: var(--win); }
+    .d-color { color: var(--draw); }
+    .l-color { color: var(--loss); }
+
+    .config-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .config-table th {
+      text-align: left;
+      color: var(--text-dim);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      padding: 0.4rem 0.6rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .config-table td {
+      padding: 0.5rem 0.6rem;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.85rem;
+    }
+
+    .config-table tr:last-child td { border-bottom: none; }
+
+    .pos-badge {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--bg);
+      padding: 0.15rem 0.5rem;
+      border-radius: 3px;
+      font-weight: bold;
+      font-size: 0.75rem;
+    }
+
+    .model-tag {
+      display: inline-block;
+      background: var(--border);
+      color: var(--accent2);
+      padding: 0.15rem 0.5rem;
+      border-radius: 3px;
+      font-size: 0.75rem;
+    }
+
+    .match-list { list-style: none; }
+
+    .match-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .match-item:last-child { border-bottom: none; }
+
+    .match-result {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    .match-result.W { background: var(--win); color: var(--bg); }
+    .match-result.D { background: var(--draw); color: var(--bg); }
+    .match-result.L { background: var(--loss); color: var(--bg); }
+
+    .match-info { flex: 1; }
+    .match-opponent { font-weight: bold; font-size: 0.9rem; }
+    .match-score { color: var(--text-dim); font-size: 0.8rem; }
+    .match-meta { color: var(--text-dim); font-size: 0.75rem; }
+    .match-type {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      padding: 0.1rem 0.4rem;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+    }
+
+    .perf-bar-container {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 0.4rem 0;
+    }
+
+    .perf-bar-label {
+      width: 50px;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    .perf-bar-track {
+      flex: 1;
+      height: 20px;
+      background: var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .perf-bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.5s ease;
+    }
+
+    .perf-bar-value {
+      width: 40px;
+      text-align: right;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+
+    .action-items { list-style: none; }
+
+    .action-item {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.85rem;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .action-item:last-child { border-bottom: none; }
+
+    .action-bullet {
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .empty-state {
+      text-align: center;
+      color: var(--text-dim);
+      padding: 2rem;
+      font-style: italic;
+    }
+
+    .versions-list {
+      display: flex;
+      gap: 0.3rem;
+      flex-wrap: wrap;
+    }
+
+    .version-chip {
+      background: var(--border);
+      color: var(--text);
+      padding: 0.15rem 0.4rem;
+      border-radius: 3px;
+      font-size: 0.7rem;
+    }
+
+    .version-chip.current {
+      background: var(--accent);
+      color: var(--bg);
+      font-weight: bold;
+    }
+
+    .card-wide {
+      grid-column: 1 / -1;
+    }
+
+    .timestamp {
+      text-align: right;
+      color: var(--text-dim);
+      font-size: 0.7rem;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>AI League Dashboard</h1>
+  <p class="subtitle">Agentic Football Cup — Experiment Tracker</p>
+
+  <!-- Row 1: Key Stats -->
+  <div class="grid" id="stats-grid">
+    <div class="card" id="competitive-card">
+      <h2>Competitive Matches</h2>
+      <div class="big-number" id="comp-remaining">10</div>
+      <div class="big-label">matches remaining</div>
+      <div class="wdl">
+        <div class="wdl-item"><div class="wdl-num w-color" id="comp-w">0</div><div class="wdl-label">wins</div></div>
+        <div class="wdl-item"><div class="wdl-num d-color" id="comp-d">0</div><div class="wdl-label">draws</div></div>
+        <div class="wdl-item"><div class="wdl-num l-color" id="comp-l">0</div><div class="wdl-label">losses</div></div>
+      </div>
+      <div class="stat-row" style="margin-top: 1rem;">
+        <span class="stat-label">Goals For</span>
+        <span class="stat-value" id="comp-gf">0</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Goals Against</span>
+        <span class="stat-value" id="comp-ga">0</span>
+      </div>
+    </div>
+
+    <div class="card" id="practice-card">
+      <h2>Practice Matches</h2>
+      <div class="big-number" id="practice-played">0</div>
+      <div class="big-label">matches played</div>
+      <div class="wdl">
+        <div class="wdl-item"><div class="wdl-num w-color" id="prac-w">0</div><div class="wdl-label">wins</div></div>
+        <div class="wdl-item"><div class="wdl-num d-color" id="prac-d">0</div><div class="wdl-label">draws</div></div>
+        <div class="wdl-item"><div class="wdl-num l-color" id="prac-l">0</div><div class="wdl-label">losses</div></div>
+      </div>
+    </div>
+
+    <div class="card" id="config-card">
+      <h2>Current Deployment</h2>
+      <div class="stat-row" style="margin-bottom: 0.8rem;">
+        <span class="stat-label">Formation</span>
+        <span class="stat-value" id="current-formation" style="color: var(--accent);">1-1-2</span>
+      </div>
+      <table class="config-table">
+        <thead>
+          <tr><th>Pos</th><th>Version</th><th>Model</th></tr>
+        </thead>
+        <tbody id="config-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Row 2: Performance + Match History -->
+  <div class="grid">
+    <div class="card">
+      <h2>Position Performance</h2>
+      <div id="perf-bars">
+        <div class="empty-state">No match data yet</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Match History</h2>
+      <ul class="match-list" id="match-list">
+        <li class="empty-state">No matches played yet</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Version History</h2>
+      <div id="version-history">
+        <div class="empty-state">No versions yet</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Row 3: Action Items -->
+  <div class="grid">
+    <div class="card card-wide">
+      <h2>Action Items (from latest matches)</h2>
+      <ul class="action-items" id="action-items">
+        <li class="empty-state">No action items yet — play a match and debrief!</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="timestamp" id="timestamp"></div>
+
+  <script>
+    const POS_NAMES = { gk: 'GK', def: 'DEF', mid: 'MID', fwd1: 'FWD1', fwd2: 'FWD2' };
+
+    function perfColor(avg) {
+      if (avg >= 2.5) return 'var(--strong)';
+      if (avg >= 1.5) return 'var(--adequate)';
+      return 'var(--weak)';
+    }
+
+    function render(data) {
+      // Stats
+      const cs = data.stats.competitive;
+      const ps = data.stats.practice;
+
+      document.getElementById('comp-remaining').textContent = cs.remaining;
+      document.getElementById('comp-w').textContent = cs.wins;
+      document.getElementById('comp-d').textContent = cs.draws;
+      document.getElementById('comp-l').textContent = cs.losses;
+      document.getElementById('comp-gf').textContent = cs.goals_for;
+      document.getElementById('comp-ga').textContent = cs.goals_against;
+
+      document.getElementById('practice-played').textContent = ps.played;
+      document.getElementById('prac-w').textContent = ps.wins;
+      document.getElementById('prac-d').textContent = ps.draws;
+      document.getElementById('prac-l').textContent = ps.losses;
+
+      // Current formation
+      if (data.current_formation) {
+        document.getElementById('current-formation').textContent = data.current_formation;
+      }
+
+      // Current config
+      const configBody = document.getElementById('config-body');
+      configBody.innerHTML = '';
+      for (const [pos, info] of Object.entries(data.current_config)) {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><span class="pos-badge">${POS_NAMES[pos]}</span></td>
+          <td>v${info.version}</td>
+          <td><span class="model-tag">${info.model}</span></td>
+        `;
+        configBody.appendChild(tr);
+      }
+
+      // Performance bars
+      const perfContainer = document.getElementById('perf-bars');
+      if (Object.keys(data.performance_trends).length > 0) {
+        perfContainer.innerHTML = '';
+        for (const [pos, info] of Object.entries(data.performance_trends)) {
+          const pct = ((info.avg / 3) * 100).toFixed(0);
+          const label = info.avg >= 2.5 ? 'Strong' : info.avg >= 1.5 ? 'OK' : 'Weak';
+          perfContainer.innerHTML += `
+            <div class="perf-bar-container">
+              <div class="perf-bar-label">${POS_NAMES[pos]}</div>
+              <div class="perf-bar-track">
+                <div class="perf-bar-fill" style="width: ${pct}%; background: ${perfColor(info.avg)};"></div>
+              </div>
+              <div class="perf-bar-value" style="color: ${perfColor(info.avg)};">${label}</div>
+            </div>
+          `;
+        }
+      }
+
+      // Match history
+      const matchList = document.getElementById('match-list');
+      if (data.matches.length > 0) {
+        matchList.innerHTML = '';
+        for (const m of data.matches.slice().reverse()) {
+          const li = document.createElement('li');
+          li.className = 'match-item';
+          const score = (m.score_us !== undefined) ? `${m.score_us} - ${m.score_them}` : '? - ?';
+          const versions = m.versions
+            ? Object.entries(m.versions).map(([p, v]) => `${POS_NAMES[p]}:v${v}`).join(' ')
+            : '';
+          const formation = m.formation ? `[${m.formation}]` : '';
+          li.innerHTML = `
+            <div class="match-result ${m.result || ''}">${m.result || '?'}</div>
+            <div class="match-info">
+              <div class="match-opponent">vs ${m.opponent || 'Unknown'} <span style="color:var(--accent);font-size:0.75rem;">${formation}</span></div>
+              <div class="match-score">${score}</div>
+              <div class="match-meta">${m.date || ''} <span class="match-type">${m.type}</span></div>
+              <div class="match-meta">${versions}</div>
+            </div>
+          `;
+          matchList.appendChild(li);
+        }
+      }
+
+      // Version history
+      const versionContainer = document.getElementById('version-history');
+      if (Object.keys(data.versions).length > 0) {
+        versionContainer.innerHTML = '';
+        for (const [pos, vers] of Object.entries(data.versions)) {
+          const currentV = data.current_config[pos]?.version;
+          const chips = vers.map(v => {
+            const num = v.replace('v', '');
+            const isCurrent = num === currentV;
+            return `<span class="version-chip ${isCurrent ? 'current' : ''}">${v}${isCurrent ? ' (active)' : ''}</span>`;
+          }).join('');
+          versionContainer.innerHTML += `
+            <div class="stat-row">
+              <span><span class="pos-badge">${POS_NAMES[pos]}</span></span>
+              <span class="versions-list">${chips}</span>
+            </div>
+          `;
+        }
+      }
+
+      // Action items (from last 3 matches)
+      const actionContainer = document.getElementById('action-items');
+      const recentActions = data.matches
+        .slice(-3)
+        .reverse()
+        .flatMap(m => (m.action_items || []).map(a => ({ text: a, opponent: m.opponent, number: m.number })));
+
+      if (recentActions.length > 0) {
+        actionContainer.innerHTML = '';
+        for (const action of recentActions) {
+          const li = document.createElement('li');
+          li.className = 'action-item';
+          li.innerHTML = `
+            <span class="action-bullet">&#9654;</span>
+            <span><strong>#${action.number} vs ${action.opponent}:</strong> ${action.text}</span>
+          `;
+          actionContainer.appendChild(li);
+        }
+      }
+
+      // Timestamp
+      document.getElementById('timestamp').textContent = `Last updated: ${new Date().toLocaleString()}`;
+    }
+
+    // Load data
+    fetch('data.json')
+      .then(r => r.json())
+      .then(render)
+      .catch(() => {
+        document.getElementById('timestamp').textContent = 'No data.json found — run build-dashboard.py first';
+      });
+  </script>
+</body>
+</html>
