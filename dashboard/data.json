@@ -305,16 +305,166 @@
         "Same model, very different speeds: Haiku agents ran 707\u2013713ms (GK, FWD1) and 999\u20131020ms (DEF, FWD2). MID's 1050ms was Sonnet. FWD2 on Haiku (999ms) was slower than on Nova Lite 2 in match 001 (840ms). The slower ones handle more complex situations, so most likely they write more per decision.",
         "Command mix vs match 001: SHOOT 14 \u2192 37, PRESS share 37% \u2192 30%, PASS 3% \u2192 6%, INTERCEPT 14% \u2192 15%, MARK 1% \u2192 1%."
       ]
+    },
+    {
+      "file": "match-log/practice/003-vs-the-benchmark-fc.md",
+      "type": "practice",
+      "number": 3,
+      "opponent": "The Benchmark FC",
+      "score_us": 2,
+      "score_them": 1,
+      "result": "W",
+      "date": "2026-10-05",
+      "formation": "1-1-2",
+      "strategy": "Counter",
+      "deploy_tag": "deploy-v4-2026-10-05",
+      "metrics": {
+        "possession_us": 54,
+        "possession_them": 46,
+        "shots_us": 3,
+        "shots_them": 5,
+        "on_target_us": 2,
+        "on_target_them": 1,
+        "commands_us": 510,
+        "latency_avg_us": 829,
+        "commands_them": 510,
+        "latency_avg_them": 196,
+        "commands": {
+          "move": 200,
+          "press": 141,
+          "intercept": 79,
+          "mark": 1,
+          "pass": 37,
+          "shoot": 20,
+          "clear": 24,
+          "gk_dist": 8
+        },
+        "agents": {
+          "gk": {
+            "latency_avg": 640,
+            "latency_p95": null,
+            "success": 100
+          },
+          "def": {
+            "latency_avg": 852,
+            "latency_p95": null,
+            "success": 100
+          },
+          "mid": {
+            "latency_avg": 968,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd1": {
+            "latency_avg": 678,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd2": {
+            "latency_avg": 980,
+            "latency_p95": null,
+            "success": 100
+          }
+        },
+        "success_avg": 100.0,
+        "latency_gap": 633,
+        "shot_accuracy": 66.7,
+        "shoot_cmd_to_shot": 15.0,
+        "press_share": 27.6,
+        "intercept_share": 15.5,
+        "mark_share": 0.2,
+        "pass_share": 7.3,
+        "shoot_share": 3.9,
+        "prompt_chars_avg": 1911,
+        "prompt_chars_max": 1997,
+        "prompt_rules_avg": 7.6
+      },
+      "coach_interventions": [],
+      "models": {
+        "gk": "Claude Haiku",
+        "def": "Claude Haiku",
+        "mid": "Claude Haiku",
+        "fwd1": "Claude Haiku",
+        "fwd2": "Claude Haiku"
+      },
+      "versions": {
+        "gk": "4",
+        "def": "4",
+        "mid": "4",
+        "fwd1": "4",
+        "fwd2": "4"
+      },
+      "prompt_stats": {
+        "gk": {
+          "version": "4",
+          "chars": 1636,
+          "words": 316,
+          "rules": 5,
+          "constraints": 4
+        },
+        "def": {
+          "version": "4",
+          "chars": 1973,
+          "words": 399,
+          "rules": 8,
+          "constraints": 4
+        },
+        "mid": {
+          "version": "4",
+          "chars": 1997,
+          "words": 406,
+          "rules": 9,
+          "constraints": 3
+        },
+        "fwd1": {
+          "version": "4",
+          "chars": 1967,
+          "words": 395,
+          "rules": 8,
+          "constraints": 4
+        },
+        "fwd2": {
+          "version": "4",
+          "chars": 1983,
+          "words": 395,
+          "rules": 8,
+          "constraints": 4
+        }
+      },
+      "performance": {
+        "gk": "adequate",
+        "def": "adequate",
+        "mid": "adequate",
+        "fwd1": "strong",
+        "fwd2": "adequate"
+      },
+      "action_items": [
+        "GK: CLEAR long upfield toward the forwards when holding the ball. Never distribute or pass to DEF. (priority: high)",
+        "DEF: Never pass to GK. Never MOVE while holding the ball: PASS to a clearly free teammate further upfield, otherwise CLEAR long. (priority: high)",
+        "DEF: One stable default spot, higher than the edge of our box, while keeping the middle-lane protection that held in this match. (priority: high)",
+        "Specs: Reviewer lesson. A command count (e.g. GK Dist) is a clue, not a target. Judge prompt changes by the on-pitch outcome. (priority: medium)",
+        "Shooting: SHOOT fell from 37 to 20 with 3 shots. Re-check after the build-up fix before changing the shooting trigger again. (priority: medium)",
+        "Debrief: Record whether the suggested coach messages were sent. (priority: medium)"
+      ],
+      "observations": [
+        "Formation effectiveness: 1-1-2 with v4's middle lane: first win since match 001 and first time above 50% possession. Opponent shots on target dropped to 1. The formation switch rule did not trigger (conceded 1, not through an open middle).",
+        "Should we change formation? No. Fix the build-up first.",
+        "Coordination gaps: GK\u2194DEF loop. Neither prompt forbids passing to the other, both stand deep, and MID/forwards are marked by the press. The 54% possession is partly this sterile recycling (\"won via defensive recycling\").",
+        "Opponent patterns: Move-heavy (59%), press 28%, still zero intercepts. Their DEF was the platform MVP at 195ms.",
+        "Opponent formation: Unknown.",
+        "Latency: 829ms average (863 in 002, 813 in 001). Same-model (Haiku) comparisons from v3 to v4: GK 707\u2192640, DEF 1020\u2192852, FWD1 713\u2192678, FWD2 999\u2192980, even though DEF, FWD1 and FWD2 prompts got longer. No sign that prompt length drives latency. Platform variance dominates. MID on Haiku 968 vs Sonnet 1050.",
+        "Timing: all goals in matches 001 and 003 came in the first 3 minutes. Record goal minutes in every match to see if this pattern holds."
+      ]
     }
   ],
   "current_formation": "1-1-2",
   "current_config": {
     "gk": {
-      "version": "4",
+      "version": "5",
       "model": "Claude Haiku"
     },
     "def": {
-      "version": "4",
+      "version": "5",
       "model": "Claude Haiku"
     },
     "mid": {
@@ -335,13 +485,15 @@
       "v1",
       "v2",
       "v3",
-      "v4"
+      "v4",
+      "v5"
     ],
     "def": [
       "v1",
       "v2",
       "v3",
-      "v4"
+      "v4",
+      "v5"
     ],
     "mid": [
       "v1",
@@ -391,6 +543,13 @@
         "words": 316,
         "rules": 5,
         "constraints": 4
+      },
+      "v5": {
+        "version": "5",
+        "chars": 1779,
+        "words": 352,
+        "rules": 5,
+        "constraints": 4
       }
     },
     "def": {
@@ -421,6 +580,13 @@
         "words": 399,
         "rules": 8,
         "constraints": 4
+      },
+      "v5": {
+        "version": "5",
+        "chars": 1984,
+        "words": 402,
+        "rules": 7,
+        "constraints": 5
       }
     },
     "mid": {
@@ -515,7 +681,7 @@
     }
   },
   "stats": {
-    "total_matches": 2,
+    "total_matches": 3,
     "competitive": {
       "played": 0,
       "remaining": 10,
@@ -526,32 +692,32 @@
       "goals_against": 0
     },
     "practice": {
-      "played": 2,
-      "wins": 1,
+      "played": 3,
+      "wins": 2,
       "draws": 1,
       "losses": 0
     }
   },
   "performance_trends": {
     "gk": {
-      "avg": 2.5,
-      "matches_rated": 2
+      "avg": 2.33,
+      "matches_rated": 3
     },
     "def": {
-      "avg": 1.5,
-      "matches_rated": 2
+      "avg": 1.67,
+      "matches_rated": 3
     },
     "mid": {
-      "avg": 1.0,
-      "matches_rated": 2
+      "avg": 1.33,
+      "matches_rated": 3
     },
     "fwd1": {
-      "avg": 2.5,
-      "matches_rated": 2
+      "avg": 2.67,
+      "matches_rated": 3
     },
     "fwd2": {
       "avg": 2.0,
-      "matches_rated": 2
+      "matches_rated": 3
     }
   }
 }

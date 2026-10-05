@@ -27,7 +27,7 @@ scripts/                   — Build scripts (dashboard data generator)
 
 Every prompt change runs the saved Claude workflow **`prompt-development`** (`.claude/workflows/prompt-development.js`). Never hand-edit `prompts/*/vN.md` or `current.md` outside it.
 
-- **Change prompts:** `Workflow({name: "prompt-development", args: {mode: "develop", brief: "<what to change and why, citing the match>", positions: ["mid"], date: "YYYY-MM-DD"}})`. `positions` is optional; without it the Writer decides from the brief and the match logs.
+- **Change prompts:** `Workflow({scriptPath: "/home/delfox/dev/aws-aileague/.claude/workflows/prompt-development.js", args: {mode: "develop", brief: "<what to change and why, citing the match>", positions: ["mid"], date: "YYYY-MM-DD"}})`. Use `scriptPath`, not `name`: calling it by name runs the version loaded when the session started and silently ignores edits made since (this happened on 2026-10-05). `positions` is optional; without it the Writer decides from the brief and the match logs.
 - **Audit the deployed prompts:** `args: {mode: "review", date: "YYYY-MM-DD"}`.
 - **Stages:** `prompt-writer` drafts `vN.md` → `prompt-reviewer` (PASS/FAIL, up to 3 rounds with the Writer) → `prompt-evaluator` (APPROVE/REJECT) → a review record per position in `prompts/<pos>/reviews/vN.md`. On APPROVE the draft is copied to `current.md` and the paste file and dashboard are regenerated. Role definitions live in `.claude/agents/`; Reviewer and Evaluator are read-only and never see the Writer's reasoning.
 - **After it returns:** show the coach the summary and verdicts. Then commit the drafts, `current.md` and the review records together, and tag `deploy-vN-YYYY-MM-DD`. If not approved after 3 rounds, escalate to the coach.

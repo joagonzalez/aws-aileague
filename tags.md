@@ -8,6 +8,7 @@ Every commit that introduces a new prompt release gets an annotated tag, even if
 | `deploy-v2-2026-10-05` | 2026-10-05 | `36edf53` | all | — (never played) | Possession and passing emphasis, all Haiku. Superseded by v3 before any match. |
 | `deploy-v3-2026-10-05` | 2026-10-05 | `5c55dd0` | all | 002 | Counter-punch: coach's "aggressive, hit the ball" message built in, zone pressing, long GK distribution, tempo line for latency. |
 | `deploy-v4-2026-10-05` | 2026-10-05 | `be3b9ca` | all | 003 | First release through the automated workflow (approved round 1 after the loop fix). Middle-lane defending, one presser per zone, wide exit for the forwards, shared shooting trigger, GK 'distribute' only. |
+| `deploy-v5-2026-10-05` | 2026-10-05 | see tag | GK, DEF (MID/FWD1/FWD2 stay v4) | — (pending) | Fixes the back-line loop. GK CLEARs long and never passes to DEF. DEF has one fixed higher spot, never passes to GK, never moves while holding the ball. Middle lane kept. |
 
 ## Format
 

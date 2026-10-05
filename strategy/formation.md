@@ -72,8 +72,8 @@ Priority experiments:
 
 Middle lane = the strip as wide as the box, goal to goal (v4).
 
-- **GK**: On the goal line whenever an opponent has the ball outside our box, long range included. Leaves the line only inside our box. Distributes long to the forwards ("distribute" is the only distribution verb).
-- **DEF**: Never leaves the middle lane and never follows wide carriers into the corners. MARKs the attacker in the lane closest to our goal, PRESSes only inside our box, CLEARs long.
+- **GK** (v5): On the goal line whenever an opponent has the ball outside our box, long range included. Leaves the line only inside our box. With the ball: CLEARs long upfield past DEF toward the forwards. Never passes or distributes to DEF (match 003: v4's 'distribute' went short to DEF and started a back-line loop).
+- **DEF** (v5): One fixed spot in the middle lane, midway between the edge of our box and the halfway line. Leaves it only to MARK the lane attacker closest to our goal (opponent ball in our half) or to win the ball in our box. Never leaves the middle lane, never passes to GK, never moves while holding the ball: PASS to a free teammate further upfield, else CLEAR long.
 - **MID**: Screens the middle lane in our half and PRESSes carriers there (outside our box). In their half it stays just behind the ball and SHOOTs anywhere in the attacking third with a clear line.
 - **FWD1**: Primary finisher and the only presser in their half. Takes short carries toward the middle. Near the corner, PASSes to the middle instead of running on.
 - **FWD2**: Second finisher. Never presses; cuts passing lanes. Counter outlet beside the center circle, not out wide.
@@ -100,3 +100,4 @@ When switching formations:
 
 - **Match 001 (1-1-2, v1)**: Won 1-0 but under siege (18% possession, 7 shots against, 0 on target). DEF+GK held. The two forwards produced the goal on the counter. Debrief suggested 1-2-1 for possession, but possession is not our game against faster agents (see `playbook.md`). **Decision**: keep 1-1-2 for the v3 test so the prompt change is the only variable. If v3 concedes, try 2-1-1 next.
 - **Match 002 (1-1-2, v3)**: Drew 2-2. One goal conceded was a long shot from near halfway with the middle empty, because our players had followed the ball to the flanks. That's a behavior problem, not a numbers problem: a second DEF with the same 'press and force wide' rules would get pulled out too. **Decision**: v4 stays 1-1-2 with middle-lane rules. **Switch to 2-1-1** if v4 concedes through the middle again, concedes 2 or more, or DEF is still visibly overloaded.
+- **Match 003 (1-1-2, v4)**: Won 2-1, 54% possession, conceded only at 1'. The middle lane held, so the switch rule did not trigger. The new problem was build-up: GK and DEF recycled the ball between themselves. → v5 (GK + DEF) keeps the shape and fixes the release. Watch the space behind DEF's new higher spot.
