@@ -12,6 +12,114 @@ MATCH_LOG_DIR = ROOT / "match-log"
 PROMPTS_DIR = ROOT / "prompts"
 STRATEGY_DIR = ROOT / "strategy"
 OUTPUT_DIR = ROOT / "dashboard"
+POSITIONS = ["gk", "def", "mid", "fwd1", "fwd2"]
+
+
+def get_section(text, heading):
+    """Return the body of a '## <heading>' section (heading matched as a prefix)."""
+    m = re.search(rf"^## {re.escape(heading)}[^\n]*\n(.*?)(?=^## |\Z)", text, re.MULTILINE | re.DOTALL)
+    return m.group(1) if m else ""
+
+
+def parse_table(section):
+    """Parse the first markdown table in a section into a list of {header_lower: cell} dicts."""
+    rows = [line.strip() for line in section.splitlines() if line.strip().startswith("|")]
+    if len(rows) < 2:
+        return []
+    split = lambda line: [c.strip() for c in line.strip("|").split("|")]
+    headers = [h.lower() for h in split(rows[0])]
+    return [dict(zip(headers, split(r))) for r in rows[2:]]
+
+
+def to_number(cell):
+    """'682ms' -> 682, '100%' -> 100, '' or placeholder -> None."""
+    m = re.fullmatch(r"\s*(\d+(?:\.\d+)?)\s*(ms|%)?\s*", cell or "")
+    if not m:
+        return None
+    value = float(m.group(1))
+    return int(value) if value.is_integer() else value
+
+
+def ratio(numerator, denominator, scale=100):
+    if numerator is None or not denominator:
+        return None
+    return round(numerator / denominator * scale, 1)
+
+
+def parse_metrics(text):
+    """Parse Raw Stats, Command Breakdown and Agent Latency sections into numbers."""
+    metrics = {}
+    raw = get_section(text, "Raw Stats")
+    pairs = {
+        "possession": r"^- Possession:\s*(\d+)%\s*vs\s*(\d+)%",
+        "shots": r"^- Shots:\s*(\d+)\s*vs\s*(\d+)",
+        "on_target": r"^- Shots on target:\s*(\d+)\s*vs\s*(\d+)",
+    }
+    for key, pattern in pairs.items():
+        m = re.search(pattern, raw, re.MULTILINE)
+        if m:
+            metrics[f"{key}_us"] = int(m.group(1))
+            metrics[f"{key}_them"] = int(m.group(2))
+    for side, label in (("us", "Our"), ("them", "Their")):
+        m = re.search(rf"^- {label} commands:\s*(\d+) total(.*)$", raw, re.MULTILINE)
+        if m:
+            metrics[f"commands_{side}"] = int(m.group(1))
+            avg = re.search(r"(\d+)ms avg", m.group(2))
+            p95 = re.search(r"(\d+)ms p95", m.group(2))
+            if avg:
+                metrics[f"latency_avg_{side}"] = int(avg.group(1))
+            if p95:
+                metrics[f"latency_p95_{side}"] = int(p95.group(1))
+
+    commands = {}
+    for row in parse_table(get_section(text, "Command Breakdown")):
+        count = to_number(row.get("count"))
+        if row.get("command") and count is not None:
+            commands[row["command"].lower().replace(" ", "_")] = count
+    if commands:
+        metrics["commands"] = commands
+
+    agents = {}
+    for row in parse_table(get_section(text, "Agent Latency")):
+        pos = (row.get("position") or "").split(" ")[0].lower()
+        if pos not in POSITIONS:
+            continue
+        agent = {}
+        for header, cell in row.items():
+            if "p95" in header:
+                agent["latency_p95"] = to_number(cell)
+            elif "latency" in header:
+                agent["latency_avg"] = to_number(cell)
+            elif "success" in header:
+                agent["success"] = to_number(cell)
+        agents[pos] = agent
+    if agents:
+        metrics["agents"] = agents
+        successes = [a["success"] for a in agents.values() if a.get("success") is not None]
+        if successes:
+            metrics["success_avg"] = round(sum(successes) / len(successes), 1)
+
+    # Derived metrics
+    if "latency_avg_us" in metrics and "latency_avg_them" in metrics:
+        metrics["latency_gap"] = metrics["latency_avg_us"] - metrics["latency_avg_them"]
+    metrics["shot_accuracy"] = ratio(metrics.get("on_target_us"), metrics.get("shots_us"))
+    metrics["shoot_cmd_to_shot"] = ratio(metrics.get("shots_us"), commands.get("shoot"))
+    total = metrics.get("commands_us") or sum(commands.values())
+    for cmd in ("press", "intercept", "mark", "pass", "shoot"):
+        metrics[f"{cmd}_share"] = ratio(commands.get(cmd), total)
+    return {k: v for k, v in metrics.items() if v is not None}
+
+
+def parse_coach_interventions(text):
+    interventions = []
+    for row in parse_table(get_section(text, "Coach Interventions")):
+        when = row.get("when", "")
+        message = next((v for k, v in row.items() if k.startswith("message")), "")
+        effect = next((v for k, v in row.items() if "effect" in k), "")
+        if not message or when.startswith("[") or message.lower() == "none":
+            continue
+        interventions.append({"when": when, "message": message, "effect": effect})
+    return interventions
 
 
 def parse_match_file(filepath):
@@ -47,6 +155,20 @@ def parse_match_file(filepath):
     formation_m = re.search(r"Formation:\s*(\S+)", text)
     if formation_m:
         match["formation"] = formation_m.group(1)
+
+    strategy_m = re.search(r"^- Strategy:\s*([^\[\n]+?)\s*$", text, re.MULTILINE)
+    if strategy_m:
+        match["strategy"] = strategy_m.group(1)
+
+    tag_m = re.search(r"^- Deploy tag:\s*([^\[\s]\S*)", text, re.MULTILINE)
+    if tag_m:
+        match["deploy_tag"] = tag_m.group(1)
+
+    metrics = parse_metrics(text)
+    if metrics:
+        match["metrics"] = metrics
+
+    match["coach_interventions"] = parse_coach_interventions(text)
 
     # Parse models
     models_m = re.search(

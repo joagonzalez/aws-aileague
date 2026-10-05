@@ -280,6 +280,83 @@
       font-size: 0.7rem;
       margin-top: 2rem;
     }
+
+    /* ---- Match metrics (charts) ---- */
+    :root {
+      --surface: #141a28;      /* chart surface = card */
+      --series-1: #3987e5;     /* blue — "us" / first series */
+      --series-2: #d95926;     /* orange */
+      --series-3: #199e70;     /* aqua — never in the same chart as --context */
+      --context: #898781;      /* gray — opponent / reference */
+      --grid: #1e2a3a;
+      --axis: #33445a;
+      --ink: #0b0b0b;
+    }
+
+    .section-head { margin-bottom: 1rem; }
+    .section-title {
+      color: var(--accent2);
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.3rem;
+    }
+    .section-note { color: var(--text-dim); font-size: 0.8rem; max-width: 70ch; }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .chart-card h2 { margin-bottom: 0.2rem; }
+    .chart-sub { color: var(--text-dim); font-size: 0.75rem; margin-bottom: 0.6rem; }
+
+    .legend { display: flex; flex-wrap: wrap; gap: 0.3rem 1rem; margin-bottom: 0.4rem; font-size: 0.75rem; }
+    .legend-item { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--text); }
+    .legend-item.empty { color: var(--text-dim); }
+    .line-key { display: inline-block; width: 14px; height: 2px; border-radius: 1px; }
+
+    .chart-host { width: 100%; border-radius: 4px; }
+    .chart-host:focus-visible { outline: 2px solid var(--accent2); outline-offset: 4px; }
+    .chart-host svg { display: block; overflow: visible; }
+    .chart-host text { font-family: inherit; font-size: 11px; }
+
+    .heatmap-card { margin-bottom: 1.5rem; }
+    .heat-legend { display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; color: var(--text-dim); margin-bottom: 0.6rem; }
+    .heat-ramp { display: inline-block; width: 160px; height: 8px; border-radius: 4px; }
+    .heat-scroll { overflow-x: auto; }
+
+    .viz-tooltip {
+      position: fixed;
+      z-index: 10;
+      pointer-events: none;
+      background: #0d121d;
+      border: 1px solid var(--axis);
+      border-radius: 6px;
+      padding: 0.6rem 0.75rem;
+      font-size: 0.75rem;
+      color: var(--text);
+      max-width: 340px;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+    }
+    .tt-head { margin-bottom: 0.4rem; }
+    .tt-head strong { display: block; font-size: 0.8rem; }
+    .tt-dim { color: var(--text-dim); }
+    .tt-values { display: grid; grid-template-columns: auto auto 1fr; gap: 0.15rem 0.5rem; align-items: center; margin-bottom: 0.5rem; }
+    .tt-values strong { font-size: 0.85rem; text-align: right; }
+    .tt-meta { border-top: 1px solid var(--border); padding-top: 0.4rem; margin-bottom: 0.3rem; line-height: 1.5; }
+    .tt-config { width: 100%; border-collapse: collapse; margin-bottom: 0.3rem; }
+    .tt-config th { text-align: left; color: var(--text-dim); font-weight: normal; padding: 0.1rem 0.4rem 0.1rem 0; }
+    .tt-config td { padding: 0.1rem 0.4rem 0.1rem 0; }
+    .tt-coach { border-top: 1px solid var(--border); padding-top: 0.4rem; }
+
+    .table-view summary { cursor: pointer; color: var(--accent2); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+    .table-scroll { overflow-x: auto; margin-top: 1rem; }
+    .metrics-table { border-collapse: collapse; font-size: 0.8rem; font-variant-numeric: tabular-nums; }
+    .metrics-table th, .metrics-table td { padding: 0.35rem 0.8rem; border-bottom: 1px solid var(--border); text-align: right; white-space: nowrap; }
+    .metrics-table th:first-child, .metrics-table td:first-child { text-align: left; color: var(--text-dim); }
+    .metrics-table tr.group td { color: var(--accent2); text-transform: uppercase; font-size: 0.7rem; padding-top: 0.9rem; text-align: left; }
   </style>
 </head>
 <body>
@@ -333,7 +410,29 @@
     </div>
   </div>
 
-  <!-- Row 2: Performance + Match History -->
+  <!-- Row 2: Match Metrics -->
+  <section aria-labelledby="metrics-title">
+    <div class="section-head">
+      <h2 class="section-title" id="metrics-title">Match Metrics</h2>
+      <p class="section-note">One point per match. Hover a chart, or tab to it and use the arrow keys, to see that match's setup: models, prompt versions, strategy, formation, deploy tag and coach messages.</p>
+    </div>
+    <div class="metrics-grid" id="metrics-grid">
+      <div class="card empty-state">No match data yet</div>
+    </div>
+    <div class="card card-wide heatmap-card">
+      <h2>Agent Latency</h2>
+      <p class="chart-sub">Average response time per agent, per match. Lighter means slower.</p>
+      <div class="heat-legend" id="heat-legend"></div>
+      <div class="heat-scroll"><div class="chart-host" id="agent-heatmap"></div></div>
+    </div>
+    <details class="card table-view">
+      <summary>Table view: every metric per match</summary>
+      <div class="table-scroll"><table class="metrics-table" id="metrics-table"></table></div>
+    </details>
+  </section>
+  <div class="viz-tooltip" id="viz-tooltip" role="tooltip" hidden></div>
+
+  <!-- Row 3: Performance + Match History -->
   <div class="grid">
     <div class="card">
       <h2>Position Performance</h2>
@@ -357,7 +456,7 @@
     </div>
   </div>
 
-  <!-- Row 3: Action Items -->
+  <!-- Row 4: Action Items -->
   <div class="grid">
     <div class="card card-wide">
       <h2>Action Items (from latest matches)</h2>
@@ -368,6 +467,438 @@
   </div>
 
   <div class="timestamp" id="timestamp"></div>
+
+  <script>
+    // ---- Match metrics: small-multiple line charts, agent latency heatmap, table view ----
+    const SVG_NS = 'http://www.w3.org/2000/svg';
+    const POSITIONS = ['gk', 'def', 'mid', 'fwd1', 'fwd2'];
+    const PLAYER_NAMES = { gk: 'Shannon', def: 'Turing', mid: 'Tesla', fwd1: 'Hertz', fwd2: 'Lovelace' };
+    // Sequential blue ramp for latency on the dark surface: fast (recedes) -> slow (bright).
+    const HEAT_RAMP = ['#184f95', '#1c5cab', '#256abf', '#2a78d6', '#3987e5', '#5598e7', '#86b6ef', '#b7d3f6', '#cde2fb'];
+    const HEAT_INK_FROM = 3; // steps >= this index take dark text, below take white (higher contrast)
+    const HEAT_DOMAIN = [300, 1200];
+
+    const met = m => m.metrics || {};
+    const cmd = (m, key) => met(m).commands?.[key];
+    const isNum = v => typeof v === 'number' && !Number.isNaN(v);
+    const fmtInt = v => (isNum(v) ? Math.round(v).toLocaleString() : '—');
+    const fmtMs = v => (isNum(v) ? `${Math.round(v)}ms` : '—');
+    const fmtPct = v => (isNum(v) ? `${+v.toFixed(1)}%` : '—');
+
+    const CHARTS = [
+      { id: 'goals', title: 'Goals', sub: 'Per match', integer: true, format: fmtInt, series: [
+        { label: 'Us', color: 'var(--series-1)', get: m => m.score_us },
+        { label: 'Opponent', color: 'var(--context)', get: m => m.score_them } ] },
+      { id: 'possession', title: 'Possession', sub: 'Our share of the ball, %', yMax: 100, format: fmtPct, series: [
+        { label: 'Us', color: 'var(--series-1)', get: m => met(m).possession_us } ] },
+      { id: 'shots', title: 'Shots', sub: 'Shots recorded by the platform', integer: true, format: fmtInt, series: [
+        { label: 'Us', color: 'var(--series-1)', get: m => met(m).shots_us },
+        { label: 'Opponent', color: 'var(--context)', get: m => met(m).shots_them } ] },
+      { id: 'on-target', title: 'Shots on Target', sub: 'Per match', integer: true, format: fmtInt, series: [
+        { label: 'Us', color: 'var(--series-1)', get: m => met(m).on_target_us },
+        { label: 'Opponent', color: 'var(--context)', get: m => met(m).on_target_them } ] },
+      { id: 'latency', title: 'Response Latency', sub: 'Milliseconds, lower is faster', format: fmtMs, series: [
+        { label: 'Our avg', color: 'var(--series-1)', get: m => met(m).latency_avg_us },
+        { label: 'Our p95', color: 'var(--series-2)', get: m => met(m).latency_p95_us },
+        { label: 'Opponent avg', color: 'var(--context)', get: m => met(m).latency_avg_them } ] },
+      { id: 'success', title: 'Command Success', sub: 'Average across our 5 agents, %', yMax: 100, format: fmtPct, series: [
+        { label: 'Team', color: 'var(--series-1)', get: m => met(m).success_avg } ] },
+      { id: 'ball-winning', title: 'Ball-Winning Commands', sub: 'Our commands per match', integer: true, format: fmtInt, series: [
+        { label: 'Press', color: 'var(--series-1)', get: m => cmd(m, 'press') },
+        { label: 'Intercept', color: 'var(--series-2)', get: m => cmd(m, 'intercept') },
+        { label: 'Mark', color: 'var(--series-3)', get: m => cmd(m, 'mark') } ] },
+      { id: 'on-ball', title: 'Pass & Shoot Commands', sub: 'Our commands per match', integer: true, format: fmtInt, series: [
+        { label: 'Pass', color: 'var(--series-1)', get: m => cmd(m, 'pass') },
+        { label: 'Shoot', color: 'var(--series-2)', get: m => cmd(m, 'shoot') } ] },
+    ];
+
+    const viz = { matches: [], charts: [], heatmap: null, hoverIndex: null };
+
+    function el(tag, attrs = {}, text) {
+      const node = tag.startsWith('svg:') ? document.createElementNS(SVG_NS, tag.slice(4)) : document.createElement(tag);
+      for (const [k, v] of Object.entries(attrs)) {
+        if (k === 'class') node.setAttribute('class', v);
+        else if (k === 'style') node.style.cssText = v;
+        else node.setAttribute(k, v);
+      }
+      if (text !== undefined) node.textContent = text;
+      return node;
+    }
+
+    function niceScale(maxValue, integer) {
+      const raw = Math.max(maxValue, integer ? 1 : 1e-9) / 4;
+      const mag = 10 ** Math.floor(Math.log10(raw));
+      let step = [1, 2, 2.5, 5, 10].map(f => f * mag).find(s => s >= raw);
+      if (integer) step = Math.max(1, Math.ceil(step));
+      const max = Math.ceil(maxValue / step) * step || step;
+      const ticks = [];
+      for (let v = 0; v <= max + step / 1e6; v += step) ticks.push(+v.toFixed(6));
+      return { max, ticks };
+    }
+
+    function matchTitle(m) {
+      return `#${m.number} vs ${m.opponent || 'Unknown'}`;
+    }
+
+    function matchSubtitle(m) {
+      const score = isNum(m.score_us) ? `${m.result} ${m.score_us}-${m.score_them}` : 'no score';
+      return [score, m.type, m.date].filter(Boolean).join(' · ');
+    }
+
+    // Tooltip: values first (strong), then the match setup.
+    function fillTooltip(tt, m, rows) {
+      tt.textContent = '';
+      const head = el('div', { class: 'tt-head' });
+      head.append(el('strong', {}, matchTitle(m)), el('span', { class: 'tt-dim' }, matchSubtitle(m)));
+      tt.append(head);
+
+      if (rows.length) {
+        const values = el('div', { class: 'tt-values' });
+        for (const r of rows) {
+          values.append(
+            el('span', { class: 'line-key', style: `background:${r.color}` }),
+            el('strong', {}, r.value),
+            el('span', { class: 'tt-dim' }, r.label));
+        }
+        tt.append(values);
+      }
+
+      const meta = el('div', { class: 'tt-meta' });
+      const metaLine = (label, value) => {
+        const line = el('div');
+        line.append(el('span', { class: 'tt-dim' }, `${label} `), document.createTextNode(value || '—'));
+        meta.append(line);
+      };
+      metaLine('Formation', m.formation);
+      metaLine('Strategy', m.strategy);
+      metaLine('Deploy tag', m.deploy_tag);
+      tt.append(meta);
+
+      const table = el('table', { class: 'tt-config' });
+      const hr = el('tr');
+      ['Pos', 'Model', 'Prompt'].forEach(h => hr.append(el('th', {}, h)));
+      table.append(hr);
+      for (const pos of POSITIONS) {
+        const tr = el('tr');
+        tr.append(
+          el('td', {}, POS_NAMES[pos]),
+          el('td', {}, m.models?.[pos] || '—'),
+          el('td', {}, m.versions?.[pos] ? `v${m.versions[pos]}` : '—'));
+        table.append(tr);
+      }
+      tt.append(table);
+
+      const coach = el('div', { class: 'tt-coach' });
+      const interventions = m.coach_interventions || [];
+      if (interventions.length) {
+        coach.append(el('div', { class: 'tt-dim' }, `Coach messages (${interventions.length})`));
+        for (const c of interventions) coach.append(el('div', {}, `${c.when}: "${c.message}"`));
+      } else {
+        coach.append(el('span', { class: 'tt-dim' }, 'No coach messages'));
+      }
+      tt.append(coach);
+    }
+
+    function placeTooltip(tt, x, y) {
+      tt.hidden = false;
+      const pad = 14;
+      const { width, height } = tt.getBoundingClientRect();
+      let left = x + pad;
+      let top = y + pad;
+      if (left + width > window.innerWidth - 8) left = x - width - pad;
+      if (top + height > window.innerHeight - 8) top = Math.max(8, y - height - pad);
+      tt.style.left = `${Math.max(8, left)}px`;
+      tt.style.top = `${top}px`;
+    }
+
+    function hideTooltip() {
+      document.getElementById('viz-tooltip').hidden = true;
+      setHover(null);
+    }
+
+    function setHover(index) {
+      viz.hoverIndex = index;
+      viz.charts.forEach(c => c.setCrosshair(index));
+      viz.heatmap?.setColumn(index);
+    }
+
+    function showChartTooltip(def, index, x, y) {
+      const m = viz.matches[index];
+      setHover(index);
+      const rows = def.series.map(s => ({ color: s.color, label: s.label, value: def.format(s.get(m)) }));
+      const tt = document.getElementById('viz-tooltip');
+      fillTooltip(tt, m, rows);
+      placeTooltip(tt, x, y);
+    }
+
+    function renderLineChart(host, def) {
+      const matches = viz.matches;
+      host.textContent = '';
+      const W = Math.max(260, host.clientWidth);
+      const H = 180;
+      const M = { l: 44, r: 48, t: 10, b: 30 };
+      const pw = W - M.l - M.r;
+      const ph = H - M.t - M.b;
+      const n = matches.length;
+      const slot = pw / n;
+      const xAt = i => M.l + (i + 0.5) * slot;
+
+      const values = def.series.flatMap(s => matches.map(s.get)).filter(isNum);
+      const scale = def.yMax ? { max: def.yMax, ticks: [0, 25, 50, 75, 100] } : niceScale(Math.max(0, ...values), def.integer);
+      const yAt = v => M.t + ph - (v / scale.max) * ph;
+
+      const latest = def.series.map(s => `${s.label} ${def.format(s.get(matches[n - 1]))}`).join(', ');
+      const svg = el('svg:svg', { width: W, height: H, role: 'img', 'aria-label': `${def.title}. Latest match: ${latest}. Full values in the table view.` });
+
+      for (const t of scale.ticks) {
+        const y = yAt(t);
+        svg.append(el('svg:line', { x1: M.l, x2: W - M.r, y1: y, y2: y, stroke: t === 0 ? 'var(--axis)' : 'var(--grid)', 'stroke-width': 1, 'shape-rendering': 'crispEdges' }));
+        svg.append(el('svg:text', { x: M.l - 8, y, 'text-anchor': 'end', 'dominant-baseline': 'middle', fill: 'var(--text-dim)' }, def.yMax ? `${t}%` : t.toLocaleString()));
+      }
+
+      const labelEvery = slot < 30 ? Math.ceil(30 / slot) : 1;
+      matches.forEach((m, i) => {
+        if (i % labelEvery !== 0 && i !== n - 1) return;
+        svg.append(el('svg:text', { x: xAt(i), y: H - M.b + 18, 'text-anchor': 'middle', fill: 'var(--text-dim)' }, `#${m.number}`));
+      });
+
+      const crosshair = el('svg:line', { y1: M.t, y2: M.t + ph, stroke: 'var(--text-dim)', 'stroke-width': 1, visibility: 'hidden', 'shape-rendering': 'crispEdges' });
+      svg.append(crosshair);
+
+      const endLabels = [];
+      for (const s of def.series) {
+        let d = '';
+        let pen = false;
+        matches.forEach((m, i) => {
+          const v = s.get(m);
+          if (!isNum(v)) { pen = false; return; }
+          d += `${pen ? 'L' : 'M'}${xAt(i)},${yAt(v)}`;
+          pen = true;
+        });
+        if (d) svg.append(el('svg:path', { d, fill: 'none', stroke: s.color, 'stroke-width': 2, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }));
+        matches.forEach((m, i) => {
+          const v = s.get(m);
+          if (isNum(v)) svg.append(el('svg:circle', { cx: xAt(i), cy: yAt(v), r: 4, fill: s.color, stroke: 'var(--surface)', 'stroke-width': 2 }));
+        });
+        const last = s.get(matches[n - 1]);
+        if (isNum(last)) endLabels.push({ x: xAt(n - 1) + 8, y: yAt(last), text: def.format(last) });
+      }
+      // Direct end labels only when they don't collide; otherwise legend + tooltip + table carry the values.
+      const ys = endLabels.map(l => l.y).sort((a, b) => a - b);
+      const collides = ys.some((y, i) => i > 0 && y - ys[i - 1] < 13);
+      if (!collides) {
+        for (const l of endLabels) svg.append(el('svg:text', { x: l.x, y: l.y, 'dominant-baseline': 'middle', fill: 'var(--text)' }, l.text));
+      }
+
+      const hit = el('svg:rect', { x: M.l, y: 0, width: pw, height: H, fill: 'transparent' });
+      const indexAt = clientX => {
+        const box = svg.getBoundingClientRect();
+        return Math.min(n - 1, Math.max(0, Math.floor((clientX - box.left - M.l) / slot)));
+      };
+      hit.addEventListener('pointermove', e => showChartTooltip(def, indexAt(e.clientX), e.clientX, e.clientY));
+      hit.addEventListener('pointerleave', hideTooltip);
+      svg.append(hit);
+      host.append(svg);
+
+      const focusAt = index => {
+        const box = svg.getBoundingClientRect();
+        showChartTooltip(def, index, box.left + xAt(index), box.top + M.t);
+      };
+      host.tabIndex = 0;
+      host.onfocus = () => focusAt(viz.hoverIndex ?? n - 1);
+      host.onblur = hideTooltip;
+      host.onkeydown = e => {
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+          e.preventDefault();
+          const step = e.key === 'ArrowLeft' ? -1 : 1;
+          focusAt(Math.min(n - 1, Math.max(0, (viz.hoverIndex ?? n - 1) + step)));
+        } else if (e.key === 'Escape') {
+          hideTooltip();
+        }
+      };
+
+      return {
+        setCrosshair(index) {
+          if (index === null) { crosshair.setAttribute('visibility', 'hidden'); return; }
+          crosshair.setAttribute('x1', xAt(index));
+          crosshair.setAttribute('x2', xAt(index));
+          crosshair.setAttribute('visibility', 'visible');
+        },
+      };
+    }
+
+    function heatStep(v) {
+      const [lo, hi] = HEAT_DOMAIN;
+      const t = Math.min(1, Math.max(0, (v - lo) / (hi - lo)));
+      return Math.round(t * (HEAT_RAMP.length - 1));
+    }
+
+    function renderHeatmap(host) {
+      const matches = viz.matches;
+      host.textContent = '';
+      const rows = [
+        ...POSITIONS.map(pos => ({ key: pos, label: POS_NAMES[pos], get: m => met(m).agents?.[pos]?.latency_avg })),
+        { key: 'opp', label: 'OPP avg', get: m => met(m).latency_avg_them },
+      ];
+      const labelW = 64, cellH = 30, gap = 2, axisH = 22;
+      const cellW = Math.max(56, Math.min(110, (host.clientWidth - labelW) / matches.length));
+      const W = labelW + cellW * matches.length;
+      const H = rows.length * cellH + axisH;
+      const svg = el('svg:svg', { width: W, height: H, role: 'img', 'aria-label': 'Agent latency per match. Full values in the table view.' });
+      const columnOutline = el('svg:rect', { y: 0, width: cellW, height: rows.length * cellH, fill: 'none', stroke: 'var(--text)', 'stroke-width': 1, rx: 4, visibility: 'hidden' });
+
+      rows.forEach((row, r) => {
+        svg.append(el('svg:text', { x: 0, y: r * cellH + cellH / 2, 'dominant-baseline': 'middle', fill: 'var(--text-dim)' }, row.label));
+        matches.forEach((m, c) => {
+          const v = row.get(m);
+          const x = labelW + c * cellW + gap / 2;
+          const y = r * cellH + gap / 2;
+          const step = isNum(v) ? heatStep(v) : null;
+          const fill = step === null ? 'var(--grid)' : HEAT_RAMP[step];
+          const cell = el('svg:rect', { x, y, width: cellW - gap, height: cellH - gap, rx: 4, fill });
+          const text = el('svg:text', {
+            x: x + (cellW - gap) / 2, y: y + (cellH - gap) / 2, 'text-anchor': 'middle', 'dominant-baseline': 'middle',
+            fill: step === null ? 'var(--text-dim)' : (step >= HEAT_INK_FROM ? 'var(--ink)' : '#ffffff'),
+            'pointer-events': 'none',
+          }, isNum(v) ? String(v) : '—');
+          cell.addEventListener('pointermove', e => {
+            setHover(c);
+            const agent = row.key === 'opp' ? null : met(m).agents?.[row.key];
+            const values = [{ color: fill, label: row.key === 'opp' ? 'Opponent avg latency' : `${row.label} (${PLAYER_NAMES[row.key]}) avg latency`, value: fmtMs(v) }];
+            if (agent) {
+              values.push({ color: 'transparent', label: 'p95 latency', value: fmtMs(agent.latency_p95) });
+              values.push({ color: 'transparent', label: 'success', value: fmtPct(agent.success) });
+            }
+            const tt = document.getElementById('viz-tooltip');
+            fillTooltip(tt, m, values);
+            placeTooltip(tt, e.clientX, e.clientY);
+          });
+          cell.addEventListener('pointerleave', hideTooltip);
+          svg.append(cell, text);
+        });
+      });
+      matches.forEach((m, c) => {
+        svg.append(el('svg:text', { x: labelW + c * cellW + cellW / 2, y: rows.length * cellH + 15, 'text-anchor': 'middle', fill: 'var(--text-dim)' }, `#${m.number}`));
+      });
+      svg.append(columnOutline);
+      host.append(svg);
+
+      return {
+        setColumn(index) {
+          if (index === null) { columnOutline.setAttribute('visibility', 'hidden'); return; }
+          columnOutline.setAttribute('x', labelW + index * cellW);
+          columnOutline.setAttribute('visibility', 'visible');
+        },
+      };
+    }
+
+    function renderHeatLegend() {
+      const legend = document.getElementById('heat-legend');
+      legend.textContent = '';
+      legend.append(
+        el('span', {}, `${HEAT_DOMAIN[0]}ms fast`),
+        el('span', { class: 'heat-ramp', style: `background:linear-gradient(90deg, ${HEAT_RAMP.join(', ')})` }),
+        el('span', {}, `${HEAT_DOMAIN[1]}ms+ slow`));
+    }
+
+    function renderMetricsTable() {
+      const matches = viz.matches;
+      const table = document.getElementById('metrics-table');
+      table.textContent = '';
+      const head = el('tr');
+      head.append(el('th', {}, 'Metric'));
+      matches.forEach(m => head.append(el('th', {}, `#${m.number}`)));
+      table.append(head);
+
+      const group = label => {
+        const tr = el('tr', { class: 'group' });
+        tr.append(el('td', { colspan: matches.length + 1 }, label));
+        table.append(tr);
+      };
+      const row = (label, get) => {
+        const tr = el('tr');
+        tr.append(el('td', {}, label));
+        matches.forEach(m => tr.append(el('td', {}, get(m) ?? '—')));
+        table.append(tr);
+      };
+      const cmdCell = key => m => {
+        const count = cmd(m, key);
+        if (!isNum(count)) return null;
+        const total = met(m).commands_us;
+        return isNum(total) && total > 0 ? `${count} (${fmtPct(count / total * 100)})` : String(count);
+      };
+
+      group('Match');
+      row('Opponent', m => m.opponent);
+      row('Type', m => m.type);
+      row('Date', m => m.date);
+      row('Result', m => (isNum(m.score_us) ? `${m.result} ${m.score_us}-${m.score_them}` : null));
+      group('Setup');
+      row('Formation', m => m.formation);
+      row('Strategy', m => m.strategy);
+      row('Deploy tag', m => m.deploy_tag);
+      POSITIONS.forEach(pos => row(`${POS_NAMES[pos]} model / prompt`, m => (m.models?.[pos] ? `${m.models[pos]} / v${m.versions?.[pos] ?? '?'}` : null)));
+      row('Coach messages', m => String((m.coach_interventions || []).length));
+      group('Ball & shots');
+      row('Possession (us)', m => fmtPct(met(m).possession_us));
+      row('Shots (us-them)', m => (isNum(met(m).shots_us) ? `${met(m).shots_us}-${met(m).shots_them}` : null));
+      row('On target (us-them)', m => (isNum(met(m).on_target_us) ? `${met(m).on_target_us}-${met(m).on_target_them}` : null));
+      row('Shot accuracy (us)', m => fmtPct(met(m).shot_accuracy));
+      row('Shots per shoot command', m => fmtPct(met(m).shoot_cmd_to_shot));
+      group('Speed');
+      row('Avg latency (us)', m => fmtMs(met(m).latency_avg_us));
+      row('p95 latency (us)', m => fmtMs(met(m).latency_p95_us));
+      row('Avg latency (opponent)', m => fmtMs(met(m).latency_avg_them));
+      row('Latency gap (us - them)', m => (isNum(met(m).latency_gap) ? `+${met(m).latency_gap}ms` : null));
+      row('Command success (avg)', m => fmtPct(met(m).success_avg));
+      row('Commands (us / them)', m => (isNum(met(m).commands_us) ? `${met(m).commands_us} / ${met(m).commands_them ?? '—'}` : null));
+      group('Our commands (count, share)');
+      [['Move', 'move'], ['Press', 'press'], ['Intercept', 'intercept'], ['Mark', 'mark'], ['Pass', 'pass'], ['Shoot', 'shoot'], ['Clear', 'clear'], ['GK distribution', 'gk_dist']]
+        .forEach(([label, key]) => row(label, cmdCell(key)));
+      group('Agents (avg latency / p95 / success)');
+      POSITIONS.forEach(pos => row(`${POS_NAMES[pos]} (${PLAYER_NAMES[pos]})`, m => {
+        const a = met(m).agents?.[pos];
+        return a ? `${fmtMs(a.latency_avg)} / ${fmtMs(a.latency_p95)} / ${fmtPct(a.success)}` : null;
+      }));
+    }
+
+    function renderCharts() {
+      const grid = document.getElementById('metrics-grid');
+      grid.textContent = '';
+      viz.charts = CHARTS.map(def => {
+        const card = el('div', { class: 'card chart-card' });
+        card.append(el('h2', {}, def.title), el('p', { class: 'chart-sub' }, def.sub));
+        if (def.series.length > 1) {
+          const legend = el('div', { class: 'legend' });
+          for (const s of def.series) {
+            const hasData = viz.matches.some(m => isNum(s.get(m)));
+            const item = el('span', { class: hasData ? 'legend-item' : 'legend-item empty' });
+            item.append(el('span', { class: 'line-key', style: `background:${s.color}` }), document.createTextNode(hasData ? s.label : `${s.label} (no data yet)`));
+            legend.append(item);
+          }
+          card.append(legend);
+        }
+        const host = el('div', { class: 'chart-host' });
+        card.append(host);
+        grid.append(card);
+        return { def, host };
+      }).map(({ def, host }) => renderLineChart(host, def));
+      viz.heatmap = renderHeatmap(document.getElementById('agent-heatmap'));
+    }
+
+    function renderMetrics(data) {
+      viz.matches = (data.matches || []).filter(m => isNum(m.number));
+      if (!viz.matches.length) return;
+      renderHeatLegend();
+      renderCharts();
+      renderMetricsTable();
+      let resizeTimer;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(renderCharts, 150);
+      });
+    }
+  </script>
 
   <script>
     const POS_NAMES = { gk: 'GK', def: 'DEF', mid: 'MID', fwd1: 'FWD1', fwd2: 'FWD2' };
@@ -496,6 +1027,9 @@
           actionContainer.appendChild(li);
         }
       }
+
+      // Match metrics charts
+      renderMetrics(data);
 
       // Timestamp
       document.getElementById('timestamp').textContent = `Last updated: ${new Date().toLocaleString()}`;

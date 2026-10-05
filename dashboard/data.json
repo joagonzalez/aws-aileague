@@ -10,6 +10,68 @@
       "result": "W",
       "date": "2026-10-05",
       "formation": "1-1-2",
+      "strategy": "Possession",
+      "deploy_tag": "deploy-v1-2026-10-05",
+      "metrics": {
+        "possession_us": 18,
+        "possession_them": 82,
+        "shots_us": 2,
+        "shots_them": 7,
+        "on_target_us": 1,
+        "on_target_them": 0,
+        "commands_us": 334,
+        "latency_avg_us": 813,
+        "commands_them": 335,
+        "latency_avg_them": 370,
+        "commands": {
+          "move": 125,
+          "press": 124,
+          "intercept": 48,
+          "shoot": 14,
+          "pass": 11,
+          "clear": 7,
+          "gk_dist": 3,
+          "mark": 2
+        },
+        "agents": {
+          "gk": {
+            "latency_avg": 682,
+            "success": 100
+          },
+          "def": {
+            "latency_avg": 802,
+            "success": 100
+          },
+          "mid": {
+            "latency_avg": 948,
+            "success": 100
+          },
+          "fwd1": {
+            "latency_avg": 678,
+            "success": 100
+          },
+          "fwd2": {
+            "latency_avg": 840,
+            "success": 100
+          }
+        },
+        "success_avg": 100.0,
+        "latency_gap": 443,
+        "shot_accuracy": 50.0,
+        "shoot_cmd_to_shot": 14.3,
+        "press_share": 37.1,
+        "intercept_share": 14.4,
+        "mark_share": 0.6,
+        "pass_share": 3.3,
+        "shoot_share": 4.2
+      },
+      "coach_interventions": [
+        {
+          "when": "Before 2'",
+          "message": "Be more aggressive and hit the ball",
+          "effect": "Goal at 2', our only goal. The base prompts had produced nothing until then. Sent only once and never repeated. No further goals for the rest of the match, so the effect may have faded or the opponent adjusted."
+        }
+      ],
       "models": {
         "gk": "Claude Haiku",
         "def": "Claude Haiku",
@@ -32,66 +94,79 @@
         "fwd2": "adequate"
       },
       "action_items": [
-        "MID: Add explicit PASS and MARK instructions. MID should pass way more. (priority: high)",
-        "DEF: Add MARK as a primary action \u2014 only 2 marks is dangerous. (priority: high)",
-        "MID model: Consider switching from Sonnet to Haiku \u2014 948ms is too slow, costing us tempo. (priority: high)",
-        "FWD2 model: Consider switching from Nova Lite 2 to Haiku \u2014 840ms vs 678ms for FWD1. (priority: medium)",
-        "ALL: Address passing \u2014 11 passes total is critically low. Every outfield prompt needs more emphasis on passing. (priority: high)",
-        "Strategy: Our counter-attack identity works (scored from transition). Keep that but add more build-up. (priority: medium)",
-        "Formation: Test 1-2-1 to get more midfield presence and possession. (priority: medium)"
+        "MID: Add explicit PASS and MARK instructions. MID should pass way more. (priority: high) \u2014 done in v2",
+        "DEF: Add MARK as a primary action \u2014 only 2 marks is dangerous. (priority: high) \u2014 done in v2",
+        "MID model: Consider switching from Sonnet to Haiku \u2014 948ms is too slow, costing us tempo. (priority: high) \u2014 done in v2",
+        "FWD2 model: Consider switching from Nova Lite 2 to Haiku \u2014 840ms vs 678ms for FWD1. (priority: medium) \u2014 done in v2",
+        "ALL: Address passing \u2014 11 passes total is critically low. Every outfield prompt needs more emphasis on passing. (priority: high) \u2014 done in v2, partly reversed in v3 (passing must be forward and direct, not possession)",
+        "ALL: Make the coach's \"be aggressive, hit the ball\" message the default: shoot on sight near goal, attack loose balls, hit it forward when you win it. (priority: high) \u2014 v3",
+        "ALL: Coordinate pressing: one player presses the ball, the others INTERCEPT lanes or MARK. (priority: high) \u2014 v3",
+        "ALL: Remove instructions agents cannot execute (talking to teammates, \"for N seconds\", shielding/waiting). (priority: medium) \u2014 v3",
+        "Strategy: Our counter-attack identity works (scored from transition). Make it the default playbook pattern instead of controlled possession. (priority: high) \u2014 v3",
+        "Formation: Keep 1-1-2 for the v3 test so the prompt change is the only variable. Revisit 2-1-1 if we concede. (priority: medium)",
+        "Coaching: Log every live message with its time and effect in the Coach Interventions section. (priority: medium)"
       ],
       "observations": [
         "Formation effectiveness: 1-1-2 survived but we were under siege. 82% possession for opponent is dangerous.",
         "Should we change formation? Consider 2-1-1 (add second DEF) or 1-2-1 (add second MID for possession) to address the imbalance.",
         "Coordination gaps: MID is not connecting to FWDs \u2014 only 11 passes total. The link between defense and attack is broken.",
         "Opponent patterns: Benchmark FC pressed aggressively (140 press commands, 42%) but couldn't shoot on target. They lacked finishing despite domination.",
-        "Opponent formation: Unknown \u2014 but they had fast agents (370ms avg vs our 813ms)."
+        "Opponent formation: Unknown \u2014 but they had fast agents (370ms avg vs our 813ms).",
+        "Re-analysis (post-v2 review): The low pass count is a symptom of 18% possession, not the cause. We cannot out-pass agents that react about 2x faster. Our only goal came from aggression plus a direct strike, right after the coach asked for it.",
+        "Re-analysis: 124 PRESS commands (37%) did not stop 82% opposition possession. Everyone chased the ball instead of one player pressing while the others cut passing lanes. INTERCEPT (48) is what created the goal.",
+        "Re-analysis: 14 SHOOT commands produced only 2 recorded shots. Check whether SHOOT was issued without the ball (wasted commands).",
+        "Re-analysis: Every model was 680\u2013950ms, Haiku included, against the opponent's 370ms. Switching models alone will not close that gap."
       ]
     }
   ],
   "current_formation": "1-1-2",
   "current_config": {
     "gk": {
-      "version": "2",
+      "version": "3",
       "model": "Claude Haiku"
     },
     "def": {
-      "version": "2",
+      "version": "3",
       "model": "Claude Haiku"
     },
     "mid": {
-      "version": "2",
+      "version": "3",
       "model": "Claude Haiku"
     },
     "fwd1": {
-      "version": "2",
+      "version": "3",
       "model": "Claude Haiku"
     },
     "fwd2": {
-      "version": "2",
+      "version": "3",
       "model": "Claude Haiku"
     }
   },
   "versions": {
     "gk": [
       "v1",
-      "v2"
+      "v2",
+      "v3"
     ],
     "def": [
       "v1",
-      "v2"
+      "v2",
+      "v3"
     ],
     "mid": [
       "v1",
-      "v2"
+      "v2",
+      "v3"
     ],
     "fwd1": [
       "v1",
-      "v2"
+      "v2",
+      "v3"
     ],
     "fwd2": [
       "v1",
-      "v2"
+      "v2",
+      "v3"
     ]
   },
   "stats": {
