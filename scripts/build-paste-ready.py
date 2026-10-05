@@ -3,6 +3,10 @@
 
 Only the behavioral text is pasted into the platform (no header, model line or changelog).
 Exits non-zero if a prompt is missing a required section or exceeds the platform hard limit.
+
+Usage:
+  python3 scripts/build-paste-ready.py                         # regenerate from current.md
+  python3 scripts/build-paste-ready.py --check <file.md> ...   # lint drafts only, write nothing
 """
 
 import re
@@ -95,7 +99,25 @@ def lint(pos, prompt, paste_text):
     return errors, warnings
 
 
+def check_files(paths):
+    """Lint specific prompt files (e.g. drafts prompts/mid/v4.md) without writing paste-ready.md."""
+    failed = False
+    for path in paths:
+        prompt = parse_prompt(Path(path).read_text())
+        paste_text = build_paste_text(prompt["sections"]) if all(s in prompt["sections"] for s in REQUIRED_SECTIONS) else ""
+        errors, warnings = lint(path, prompt, paste_text)
+        print(f"{path}: v{prompt['version']} {prompt['model']} — {len(paste_text)}/{HARD_LIMIT} chars")
+        for e in errors:
+            print(f"ERROR   {e}")
+        for w in warnings:
+            print(f"WARNING {w}")
+        failed = failed or bool(errors)
+    sys.exit(1 if failed else 0)
+
+
 def main():
+    if len(sys.argv) > 2 and sys.argv[1] == "--check":
+        check_files(sys.argv[2:])
     all_errors, all_warnings, blocks, summary = [], [], [], []
 
     for pos, number, name, label in PLAYERS:

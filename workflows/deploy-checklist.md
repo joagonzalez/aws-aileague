@@ -7,6 +7,7 @@ Run through this checklist before every deployment to the AWS platform.
 ### Prompt Readiness
 - [ ] All modified prompts passed the Reviewer (Stage 2 of prompt-development)
 - [ ] All modified prompts passed the Evaluator (Stage 3 of prompt-development)
+- [ ] Each changed position has `prompts/<pos>/reviews/vN.md` with `Reviewer: PASS` and `Evaluator: APPROVE` (the commit hook enforces this)
 - [ ] Each modified prompt's `current.md` is updated with the approved version
 - [ ] Version numbers are incremented correctly
 
@@ -31,7 +32,7 @@ Run through this checklist before every deployment to the AWS platform.
 
 1. Verify all checks above are green
 2. Run `python3 scripts/build-paste-ready.py` (fails on missing sections or >6000 chars; review any warnings), then copy each player's code block from `deploy/paste-ready.md` into the AWS platform
-3. Select model for each agent
+3. Select the model for each agent, and check every dropdown against the `Model:` line in its prompt header (match 002 ran MID on the wrong model)
 4. Click "Deploy changes" (first time) or "Redeploy changes" (updates)
 5. Verify deployment succeeded on the platform
 

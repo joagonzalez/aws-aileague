@@ -3,6 +3,22 @@
 ## Overview
 Structured Development Design (SDD) pipeline for creating and revising player prompts. Three agents, gated progression, max 3 revision loops.
 
+## How it runs (automated)
+This pipeline is a saved Claude workflow: `.claude/workflows/prompt-development.js`. The roles are subagents in `.claude/agents/` (`prompt-writer`, `prompt-reviewer`, `prompt-evaluator`).
+
+| Mode | Args | What happens |
+|------|------|--------------|
+| develop | `{mode: "develop", brief, positions?, date}` | Writer drafts `prompts/<pos>/vN.md` → Reviewer → Evaluator (up to 3 rounds) → review records → on APPROVE, promote to `current.md` and regenerate `deploy/paste-ready.md` and the dashboard |
+| review | `{mode: "review", positions?, date}` | Audits the deployed `current.md` files and writes review records. Changes no prompts |
+
+Every run writes `prompts/<pos>/reviews/vN.md` with `Reviewer: PASS|FAIL`, `Evaluator: APPROVE|REJECT`, the findings and the iteration history. A Claude Code hook (`.claude/hooks/require-prompt-review.py`) refuses commits that change a `current.md` without an approving record. For manual commits outside Claude, install it as a git pre-commit hook too:
+
+```bash
+printf '#!/bin/sh\nexec python3 "$(git rev-parse --show-toplevel)/.claude/hooks/require-prompt-review.py" --git-hook\n' > .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
+```
+
+The stages below describe what each agent does.
+
 ## Trigger
 - New position needs a prompt (first draft)
 - Match debrief identifies a position that needs improvement

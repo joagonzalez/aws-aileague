@@ -25,12 +25,14 @@ scripts/                   — Build scripts (dashboard data generator)
 
 ## Core Workflow: Prompt Development (SDD)
 
-Every prompt change follows the Writer → Reviewer → Evaluator pipeline:
+Every prompt change runs the saved Claude workflow **`prompt-development`** (`.claude/workflows/prompt-development.js`). Never hand-edit `prompts/*/vN.md` or `current.md` outside it.
 
-1. **Writer** drafts/revises a prompt following `specs/prompt-schema.md`
-2. **Reviewer** validates against schema + `specs/evaluation-criteria.md` → PASS or FAIL (with feedback back to Writer, max 3 iterations)
-3. **Evaluator** checks team coherence across all 5 prompts → APPROVE or REJECT (with feedback back to Writer)
-4. On APPROVE: update `current.md`, run `python3 scripts/build-paste-ready.py`, commit, tag, deploy
+- **Change prompts:** `Workflow({name: "prompt-development", args: {mode: "develop", brief: "<what to change and why, citing the match>", positions: ["mid"], date: "YYYY-MM-DD"}})`. `positions` is optional; without it the Writer decides from the brief and the match logs.
+- **Audit the deployed prompts:** `args: {mode: "review", date: "YYYY-MM-DD"}`.
+- **Stages:** `prompt-writer` drafts `vN.md` → `prompt-reviewer` (PASS/FAIL, up to 3 rounds with the Writer) → `prompt-evaluator` (APPROVE/REJECT) → a review record per position in `prompts/<pos>/reviews/vN.md`. On APPROVE the draft is copied to `current.md` and the paste file and dashboard are regenerated. Role definitions live in `.claude/agents/`; Reviewer and Evaluator are read-only and never see the Writer's reasoning.
+- **After it returns:** show the coach the summary and verdicts. Then commit the drafts, `current.md` and the review records together, and tag `deploy-vN-YYYY-MM-DD`. If not approved after 3 rounds, escalate to the coach.
+- **Commit gate:** a PreToolUse hook (`.claude/hooks/require-prompt-review.py`) blocks any `git commit` that changes a `current.md` unless that version has a review record with `Reviewer: PASS` and `Evaluator: APPROVE`.
+- If you are an agent running inside the workflow, do only your own stage.
 
 See `workflows/prompt-development.md` for the full pipeline.
 
