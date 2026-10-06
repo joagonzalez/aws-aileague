@@ -2512,6 +2512,152 @@
         "Opponent formation: Unknown.",
         "Shots on target = goals in every match for both sides, 16 matches running (us 4/4, them 0/0 here)."
       ]
+    },
+    {
+      "file": "match-log/practice/017-vs-the-benchmark-fc.md",
+      "type": "practice",
+      "number": 17,
+      "opponent": "The Benchmark FC",
+      "score_us": 1,
+      "score_them": 0,
+      "result": "W",
+      "date": "2026-10-06",
+      "formation": "1-1-2",
+      "strategy": "Swarm",
+      "deploy_tag": "deploy-v9-2026-10-06",
+      "metrics": {
+        "possession_us": 50,
+        "possession_them": 50,
+        "shots_us": 3,
+        "shots_them": 6,
+        "on_target_us": 1,
+        "on_target_them": 0,
+        "commands_us": 400,
+        "latency_avg_us": 856,
+        "commands_them": 400,
+        "latency_avg_them": 503,
+        "commands": {
+          "move": 172,
+          "press": 158,
+          "intercept": 20,
+          "mark": 0,
+          "pass": 24,
+          "shoot": 19,
+          "clear": 5,
+          "gk_dist": 2
+        },
+        "agents": {
+          "gk": {
+            "latency_avg": 671,
+            "latency_p95": null,
+            "success": 100
+          },
+          "def": {
+            "latency_avg": 929,
+            "latency_p95": null,
+            "success": 100
+          },
+          "mid": {
+            "latency_avg": 980,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd1": {
+            "latency_avg": 684,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd2": {
+            "latency_avg": 915,
+            "latency_p95": null,
+            "success": 100
+          }
+        },
+        "success_avg": 100.0,
+        "latency_gap": 353,
+        "shot_accuracy": 33.3,
+        "shoot_cmd_to_shot": 15.8,
+        "press_share": 39.5,
+        "intercept_share": 5.0,
+        "mark_share": 0.0,
+        "pass_share": 6.0,
+        "shoot_share": 4.8,
+        "prompt_chars_avg": 2903,
+        "prompt_chars_max": 3000,
+        "prompt_rules_avg": 6.8
+      },
+      "coach_interventions": [],
+      "models": {
+        "gk": "Claude Haiku",
+        "def": "Claude Haiku",
+        "mid": "Claude Haiku",
+        "fwd1": "Nova Lite 2",
+        "fwd2": "Nova Lite 2"
+      },
+      "versions": {
+        "gk": "8",
+        "def": "8",
+        "mid": "7",
+        "fwd1": "7",
+        "fwd2": "8"
+      },
+      "prompt_stats": {
+        "gk": {
+          "version": "8",
+          "chars": 2561,
+          "words": 513,
+          "rules": 5,
+          "constraints": 4
+        },
+        "def": {
+          "version": "8",
+          "chars": 2990,
+          "words": 614,
+          "rules": 8,
+          "constraints": 5
+        },
+        "mid": {
+          "version": "7",
+          "chars": 2983,
+          "words": 599,
+          "rules": 8,
+          "constraints": 4
+        },
+        "fwd1": {
+          "version": "7",
+          "chars": 3000,
+          "words": 591,
+          "rules": 7,
+          "constraints": 4
+        },
+        "fwd2": {
+          "version": "8",
+          "chars": 2980,
+          "words": 576,
+          "rules": 6,
+          "constraints": 4
+        }
+      },
+      "performance": {
+        "gk": "strong",
+        "def": "adequate",
+        "mid": "strong",
+        "fwd1": "adequate",
+        "fwd2": "adequate"
+      },
+      "action_items": [
+        "v10 release through the workflow (coach brief): keep the press and the deep spots; DEF and GK close down a carrier near their zone and shoot long when free; FWD1 (Hertz) becomes the runner who seeks open space ahead and central, Lovelace stays beside Tesla as passer and second shooter; Tesla shoots when he has a clear line regardless of teammates and otherwise passes long to the free runner. One practice match with the healthy-signature check before it plays a competitive match. (priority: high)",
+        "Make Hertz's text an official FWD1 version so the platform-state override can go. (priority: high)",
+        "Coach: in the next match, note whether Turing or Shannon moves toward our goal while the opponent does NOT have the ball. (priority: medium)"
+      ],
+      "observations": [
+        "Formation effectiveness: 1-0, fourth straight practice win for the v9 setup (1-0, 3-2, 4-0, 1-0), all with 0 or 2 shots on target against.",
+        "Should we change formation? No. Roles change inside 1-1-2 (see Action Items).",
+        "Coordination gaps: the Swarm line works for pressing (40% press, 0 on target against) but bunches three players in midfield, so Tesla's long shot is often switched off by a free teammate ahead and there is no runner to pass to.",
+        "Opponent patterns: Benchmark unchanged; still cannot finish (0 of 6).",
+        "Opponent formation: Unknown.",
+        "Shots on target = goals, 18 matches running (1/1 us, 0/6 them)."
+      ]
     }
   ],
   "current_formation": "1-1-2",
@@ -2871,7 +3017,7 @@
     }
   },
   "stats": {
-    "total_matches": 17,
+    "total_matches": 18,
     "competitive": {
       "played": 1,
       "remaining": 9,
@@ -2882,32 +3028,32 @@
       "goals_against": 5
     },
     "practice": {
-      "played": 16,
-      "wins": 7,
+      "played": 17,
+      "wins": 8,
       "draws": 1,
       "losses": 8
     }
   },
   "performance_trends": {
     "gk": {
-      "avg": 1.94,
-      "matches_rated": 17
+      "avg": 2.0,
+      "matches_rated": 18
     },
     "def": {
       "avg": 1.94,
-      "matches_rated": 17
+      "matches_rated": 18
     },
     "mid": {
-      "avg": 2.06,
-      "matches_rated": 17
+      "avg": 2.11,
+      "matches_rated": 18
     },
     "fwd1": {
-      "avg": 1.88,
-      "matches_rated": 17
+      "avg": 1.89,
+      "matches_rated": 18
     },
     "fwd2": {
-      "avg": 1.41,
-      "matches_rated": 17
+      "avg": 1.44,
+      "matches_rated": 18
     }
   }
 }

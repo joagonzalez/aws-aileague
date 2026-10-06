@@ -15,6 +15,7 @@
 | 012 | practice | 1-2 L | 1-2-1 test: Hertz on Tesla's MID prompt |
 | 013 | practice | 2-3 L | v8, forward prompts swapped |
 | 014 | practice | 1-0 W | v9 (Lovelace FWD2 v8, Hertz on FWD2 v7 text), both on Nova Lite 2 |
+| 017 | practice | 1-0 W | v9, health check after competitive 001 (Tesla 3') |
 
 ## Official description
 Balanced. Solid fundamentals: plays through the midfield, holds shape, finishes cleanly.
