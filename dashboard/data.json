@@ -755,6 +755,436 @@
         "**Minute 1 is our weakest moment**: we conceded at 1' in 003, 004 and 005. Hypothesis: at kickoff our agents are slow to start (the readiness check showed 1.0\u20131.6 s per call, slower than in-match), so the opponent attacks a standing team. To confirm: does our team stand still for the first seconds?",
         "Platform Coach's Corner wants SHOOTs and strikers closer to goal. 12 SHOOTs, 0 on target."
       ]
+    },
+    {
+      "file": "match-log/practice/006-vs-the-benchmark-fc.md",
+      "type": "practice",
+      "number": 6,
+      "opponent": "The Benchmark FC",
+      "score_us": 2,
+      "score_them": 3,
+      "result": "L",
+      "date": "2026-10-05",
+      "formation": "1-1-2",
+      "strategy": "Counter",
+      "deploy_tag": "deploy-v7-2026-10-05",
+      "metrics": {
+        "possession_us": 56,
+        "possession_them": 44,
+        "shots_us": 5,
+        "shots_them": 12,
+        "on_target_us": 2,
+        "on_target_them": 3,
+        "commands_us": 550,
+        "latency_avg_us": 876,
+        "commands_them": 550,
+        "latency_avg_them": 198,
+        "commands": {
+          "move": 247,
+          "press": 154,
+          "intercept": 71,
+          "mark": 0,
+          "pass": 24,
+          "shoot": 21,
+          "clear": 25,
+          "gk_dist": 8
+        },
+        "agents": {
+          "gk": {
+            "latency_avg": 655,
+            "latency_p95": null,
+            "success": 100
+          },
+          "def": {
+            "latency_avg": 1007,
+            "latency_p95": null,
+            "success": 100
+          },
+          "mid": {
+            "latency_avg": 956,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd1": {
+            "latency_avg": 688,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd2": {
+            "latency_avg": 967,
+            "latency_p95": null,
+            "success": 100
+          }
+        },
+        "success_avg": 100.0,
+        "latency_gap": 678,
+        "shot_accuracy": 40.0,
+        "shoot_cmd_to_shot": 23.8,
+        "press_share": 28.0,
+        "intercept_share": 12.9,
+        "mark_share": 0.0,
+        "pass_share": 4.4,
+        "shoot_share": 3.8,
+        "prompt_chars_avg": 2587,
+        "prompt_chars_max": 2999,
+        "prompt_rules_avg": 7.8
+      },
+      "coach_interventions": [],
+      "models": {
+        "gk": "Claude Haiku",
+        "def": "Claude Haiku",
+        "mid": "Claude Haiku",
+        "fwd1": "Claude Haiku",
+        "fwd2": "Claude Haiku"
+      },
+      "versions": {
+        "gk": "7",
+        "def": "7",
+        "mid": "6",
+        "fwd1": "6",
+        "fwd2": "6"
+      },
+      "prompt_stats": {
+        "gk": {
+          "version": "7",
+          "chars": 1885,
+          "words": 379,
+          "rules": 5,
+          "constraints": 4
+        },
+        "def": {
+          "version": "7",
+          "chars": 2072,
+          "words": 430,
+          "rules": 7,
+          "constraints": 5
+        },
+        "mid": {
+          "version": "6",
+          "chars": 2999,
+          "words": 596,
+          "rules": 9,
+          "constraints": 3
+        },
+        "fwd1": {
+          "version": "6",
+          "chars": 2990,
+          "words": 589,
+          "rules": 9,
+          "constraints": 4
+        },
+        "fwd2": {
+          "version": "6",
+          "chars": 2988,
+          "words": 589,
+          "rules": 9,
+          "constraints": 4
+        }
+      },
+      "performance": {
+        "gk": "weak",
+        "def": "adequate",
+        "mid": "adequate",
+        "fwd1": "adequate",
+        "fwd2": "weak"
+      },
+      "observations": [
+        "Formation effectiveness: Scored 2 (first goals since 003) but conceded 3 from 3 shots on target.",
+        "Should we change formation? See the overall analysis in match 008.",
+        "Coordination gaps: No compact unit. The forwards are far from MID and each other.",
+        "Opponent patterns: Press 45%. Their GK scored from his own end."
+      ]
+    },
+    {
+      "file": "match-log/practice/007-vs-total-attack-united.md",
+      "type": "practice",
+      "number": 7,
+      "opponent": "Total Attack United",
+      "score_us": 0,
+      "score_them": 2,
+      "result": "L",
+      "date": "2026-10-05",
+      "formation": "1-1-2",
+      "strategy": "Counter",
+      "deploy_tag": "deploy-v7-2026-10-05",
+      "metrics": {
+        "possession_us": 57,
+        "possession_them": 43,
+        "shots_us": 3,
+        "shots_them": 10,
+        "on_target_us": 0,
+        "on_target_them": 2,
+        "commands_us": 370,
+        "latency_avg_us": 867,
+        "commands_them": 370,
+        "latency_avg_them": 194,
+        "commands": {
+          "move": 133,
+          "press": 112,
+          "intercept": 68,
+          "mark": 0,
+          "pass": 0,
+          "shoot": 34,
+          "clear": 20,
+          "gk_dist": 3
+        },
+        "agents": {
+          "gk": {
+            "latency_avg": 638,
+            "latency_p95": null,
+            "success": 100
+          },
+          "def": {
+            "latency_avg": 950,
+            "latency_p95": null,
+            "success": 100
+          },
+          "mid": {
+            "latency_avg": 884,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd1": {
+            "latency_avg": 634,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd2": {
+            "latency_avg": 955,
+            "latency_p95": null,
+            "success": 100
+          }
+        },
+        "success_avg": 100.0,
+        "latency_gap": 673,
+        "shot_accuracy": 0.0,
+        "shoot_cmd_to_shot": 8.8,
+        "press_share": 30.3,
+        "intercept_share": 18.4,
+        "mark_share": 0.0,
+        "pass_share": 0.0,
+        "shoot_share": 9.2,
+        "prompt_chars_avg": 2587,
+        "prompt_chars_max": 2999,
+        "prompt_rules_avg": 7.8
+      },
+      "coach_interventions": [],
+      "models": {
+        "gk": "Claude Haiku",
+        "def": "Claude Haiku",
+        "mid": "Claude Haiku",
+        "fwd1": "Claude Haiku",
+        "fwd2": "Claude Haiku"
+      },
+      "versions": {
+        "gk": "7",
+        "def": "7",
+        "mid": "6",
+        "fwd1": "6",
+        "fwd2": "6"
+      },
+      "prompt_stats": {
+        "gk": {
+          "version": "7",
+          "chars": 1885,
+          "words": 379,
+          "rules": 5,
+          "constraints": 4
+        },
+        "def": {
+          "version": "7",
+          "chars": 2072,
+          "words": 430,
+          "rules": 7,
+          "constraints": 5
+        },
+        "mid": {
+          "version": "6",
+          "chars": 2999,
+          "words": 596,
+          "rules": 9,
+          "constraints": 3
+        },
+        "fwd1": {
+          "version": "6",
+          "chars": 2990,
+          "words": 589,
+          "rules": 9,
+          "constraints": 4
+        },
+        "fwd2": {
+          "version": "6",
+          "chars": 2988,
+          "words": 589,
+          "rules": 9,
+          "constraints": 4
+        }
+      },
+      "performance": {
+        "gk": "weak",
+        "def": "adequate",
+        "mid": "weak",
+        "fwd1": "weak",
+        "fwd2": "weak"
+      },
+      "observations": [
+        "Formation effectiveness: 57% possession, 3 shots, 0 on target, conceded at 1' and 2'.",
+        "Coordination gaps: Zero passes. The team plays as 5 individuals.",
+        "Opponent patterns: Press 44%, early goals as advertised. Their GK scored from distance."
+      ]
+    },
+    {
+      "file": "match-log/practice/008-vs-fort-knox-athletic.md",
+      "type": "practice",
+      "number": 8,
+      "opponent": "Fort Knox Athletic",
+      "score_us": 0,
+      "score_them": 1,
+      "result": "L",
+      "date": "2026-10-05",
+      "formation": "1-1-2",
+      "strategy": "Counter",
+      "deploy_tag": "deploy-v7-2026-10-05",
+      "metrics": {
+        "possession_us": 43,
+        "possession_them": 57,
+        "shots_us": 4,
+        "shots_them": 1,
+        "on_target_us": 0,
+        "on_target_them": 1,
+        "commands_us": 445,
+        "latency_avg_us": 884,
+        "commands_them": 445,
+        "latency_avg_them": 193,
+        "commands": {
+          "move": 87,
+          "press": 21,
+          "intercept": 75,
+          "mark": 184,
+          "pass": 52,
+          "shoot": 0,
+          "clear": 13,
+          "gk_dist": 13
+        },
+        "agents": {
+          "gk": {
+            "latency_avg": 644,
+            "latency_p95": null,
+            "success": 100
+          },
+          "def": {
+            "latency_avg": 1067,
+            "latency_p95": null,
+            "success": 100
+          },
+          "mid": {
+            "latency_avg": 965,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd1": {
+            "latency_avg": 671,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd2": {
+            "latency_avg": 985,
+            "latency_p95": null,
+            "success": 100
+          }
+        },
+        "success_avg": 100.0,
+        "latency_gap": 691,
+        "shot_accuracy": 0.0,
+        "press_share": 4.7,
+        "intercept_share": 16.9,
+        "mark_share": 41.3,
+        "pass_share": 11.7,
+        "shoot_share": 0.0,
+        "prompt_chars_avg": 2587,
+        "prompt_chars_max": 2999,
+        "prompt_rules_avg": 7.8
+      },
+      "coach_interventions": [],
+      "models": {
+        "gk": "Claude Haiku",
+        "def": "Claude Haiku",
+        "mid": "Claude Haiku",
+        "fwd1": "Claude Haiku",
+        "fwd2": "Claude Haiku"
+      },
+      "versions": {
+        "gk": "7",
+        "def": "7",
+        "mid": "6",
+        "fwd1": "6",
+        "fwd2": "6"
+      },
+      "prompt_stats": {
+        "gk": {
+          "version": "7",
+          "chars": 1885,
+          "words": 379,
+          "rules": 5,
+          "constraints": 4
+        },
+        "def": {
+          "version": "7",
+          "chars": 2072,
+          "words": 430,
+          "rules": 7,
+          "constraints": 5
+        },
+        "mid": {
+          "version": "6",
+          "chars": 2999,
+          "words": 596,
+          "rules": 9,
+          "constraints": 3
+        },
+        "fwd1": {
+          "version": "6",
+          "chars": 2990,
+          "words": 589,
+          "rules": 9,
+          "constraints": 4
+        },
+        "fwd2": {
+          "version": "6",
+          "chars": 2988,
+          "words": 589,
+          "rules": 9,
+          "constraints": 4
+        }
+      },
+      "performance": {
+        "gk": "adequate",
+        "def": "adequate",
+        "mid": "adequate",
+        "fwd1": "weak",
+        "fwd2": "weak"
+      },
+      "action_items": [
+        "ALL outfield: play as a compact swarm in the center. Short distances to teammates and the ball, never near the touchlines. (priority: high, coach)",
+        "FWD1/FWD2: no wide play. Short passes inside the swarm. Pass back instead of running wide. (priority: high, coach)",
+        "DEF: PASS to a free teammate by default. CLEAR only when close to GK/our goal or under pressure. (priority: high, coach)",
+        "MID/DEF: Cut passive MARKing (184 vs Fort Knox). MARK only the attacker nearest our goal. (priority: high)",
+        "Platform: confirm FOLLOW_PLAYER semantics and the full command list (\"What can my agents do?\"). (priority: high)",
+        "Model: forward behavior unchanged after four rewrites \u2192 test Sonnet on the forwards. (priority: high)",
+        "GK: find out how long balls from their GK/DEF are beating Shannon. (priority: medium)"
+      ],
+      "observations": [
+        "**v7 lost all three: 2-3, 0-2, 0-1.** Since v4's 2-1 win: five straight losses (0-3, 0-1, 2-3, 0-2, 0-1). Since v5 we have not improved.",
+        "**The forwards haven't changed in four rewrites** (v3, v4, v5, v7 forward rules). Rule wording is not the lever. The remaining suspects:",
+        "1. The agents can't turn our spatial instructions into good MOVE_TO targets (state format unknown).",
+        "2. Haiku's spatial reasoning.",
+        "3. Our own long clears (v5\u2013v7 GK/DEF), which land in the corners where the forwards chase them.",
+        "**The command set is bigger than we thought.** The platform's advice to Benchmark lists INTERCEPT, FOLLOW_PLAYER, MARK and SHOOT, and the reports say MOVE_TO and PRESS_BALL. FOLLOW_PLAYER exists and we have never used it. It could be the natural tool for a \"swarm\" (stay with a teammate) if it can target teammates. To confirm in \"What can my agents do?\".",
+        "**Passing collapsed:** 37 (v4) \u2192 15, 28, 24, **0**, 52. v5\u2013v7 pushed CLEAR/SHOOT over PASS. In 3 of 3 matches the platform Coach's Corner asked for more PASS and less MOVE_TO.",
+        "**Long-range goals against us:** Benchmark's GK (006) and Total Attack's GK (007) both scored from their own end, and Benchmark's DEF scored in 003/004. Need to see how these beat Shannon.",
+        "**The 3000-char prompts did not slow anyone down:** MID 956/884/965 (941 at 2000 chars), FWD1 688/634/671 (638), FWD2 967/955/985 (893). Length is still not the latency lever.",
+        "**Shots without SHOOT:** 4 shots and 0 SHOOT commands in 008, so the platform counts some clears/passes toward goal as shots."
+      ]
     }
   ],
   "current_formation": "1-1-2",
@@ -1061,7 +1491,7 @@
     }
   },
   "stats": {
-    "total_matches": 5,
+    "total_matches": 8,
     "competitive": {
       "played": 0,
       "remaining": 10,
@@ -1072,32 +1502,32 @@
       "goals_against": 0
     },
     "practice": {
-      "played": 5,
+      "played": 8,
       "wins": 2,
       "draws": 1,
-      "losses": 2
+      "losses": 5
     }
   },
   "performance_trends": {
     "gk": {
-      "avg": 2.0,
-      "matches_rated": 5
+      "avg": 1.75,
+      "matches_rated": 8
     },
     "def": {
-      "avg": 1.6,
-      "matches_rated": 5
+      "avg": 1.75,
+      "matches_rated": 8
     },
     "mid": {
-      "avg": 1.6,
-      "matches_rated": 5
+      "avg": 1.62,
+      "matches_rated": 8
     },
     "fwd1": {
-      "avg": 2.0,
-      "matches_rated": 5
+      "avg": 1.75,
+      "matches_rated": 8
     },
     "fwd2": {
-      "avg": 1.6,
-      "matches_rated": 5
+      "avg": 1.38,
+      "matches_rated": 8
     }
   }
 }
