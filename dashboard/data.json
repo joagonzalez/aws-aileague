@@ -2968,27 +2968,27 @@
   "current_formation": "1-1-2",
   "current_config": {
     "gk": {
-      "version": "9",
+      "version": "10",
       "model": "Claude Haiku",
       "source": "prompts/gk/current.md"
     },
     "def": {
-      "version": "9",
+      "version": "10",
       "model": "Claude Haiku",
       "source": "prompts/def/current.md"
     },
     "mid": {
-      "version": "8",
+      "version": "9",
       "model": "Claude Haiku",
       "source": "prompts/mid/current.md"
     },
     "fwd1": {
-      "version": "8",
+      "version": "9",
       "model": "Nova Lite 2",
       "source": "prompts/fwd1/current.md"
     },
     "fwd2": {
-      "version": "9",
+      "version": "10",
       "model": "Nova Lite 2",
       "source": "prompts/fwd2/current.md"
     }
@@ -3003,7 +3003,8 @@
       "v6",
       "v7",
       "v8",
-      "v9"
+      "v9",
+      "v10"
     ],
     "def": [
       "v1",
@@ -3014,7 +3015,8 @@
       "v6",
       "v7",
       "v8",
-      "v9"
+      "v9",
+      "v10"
     ],
     "mid": [
       "v1",
@@ -3024,7 +3026,8 @@
       "v5",
       "v6",
       "v7",
-      "v8"
+      "v8",
+      "v9"
     ],
     "fwd1": [
       "v1",
@@ -3034,7 +3037,8 @@
       "v5",
       "v6",
       "v7",
-      "v8"
+      "v8",
+      "v9"
     ],
     "fwd2": [
       "v1",
@@ -3045,7 +3049,8 @@
       "v6",
       "v7",
       "v8",
-      "v9"
+      "v9",
+      "v10"
     ]
   },
   "version_stats": {
@@ -3110,6 +3115,13 @@
         "version": "9",
         "chars": 2936,
         "words": 579,
+        "rules": 5,
+        "constraints": 5
+      },
+      "v10": {
+        "version": "10",
+        "chars": 2834,
+        "words": 563,
         "rules": 5,
         "constraints": 5
       }
@@ -3177,6 +3189,13 @@
         "words": 609,
         "rules": 9,
         "constraints": 4
+      },
+      "v10": {
+        "version": "10",
+        "chars": 2981,
+        "words": 605,
+        "rules": 9,
+        "constraints": 4
       }
     },
     "mid": {
@@ -3233,6 +3252,13 @@
         "version": "8",
         "chars": 2992,
         "words": 592,
+        "rules": 9,
+        "constraints": 4
+      },
+      "v9": {
+        "version": "9",
+        "chars": 2950,
+        "words": 584,
         "rules": 9,
         "constraints": 4
       }
@@ -3293,6 +3319,13 @@
         "words": 586,
         "rules": 6,
         "constraints": 4
+      },
+      "v9": {
+        "version": "9",
+        "chars": 2973,
+        "words": 585,
+        "rules": 6,
+        "constraints": 5
       }
     },
     "fwd2": {
@@ -3357,6 +3390,13 @@
         "chars": 2990,
         "words": 580,
         "rules": 7,
+        "constraints": 4
+      },
+      "v10": {
+        "version": "10",
+        "chars": 2875,
+        "words": 563,
+        "rules": 8,
         "constraints": 4
       }
     }

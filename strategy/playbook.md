@@ -1,6 +1,6 @@
 # Playbook
 
-## Team Identity: Swarm + Runner (v10, current)
+## Team Identity: Swarm + Runner (v11, current)
 
 Strategy name for match logs: **Swarm**.
 
@@ -8,7 +8,7 @@ MID (Tesla) and FWD2 (Lovelace) move as a compact pair around the ball in the ce
 
 Why we switched (matches 006–008, coach direction): after four rewrites the forwards still drifted to the corners and contributed nothing. Our v5–v7 long clears landed in the corners where they chased them, passing collapsed (0 PASS vs Total Attack), and we lost five straight.
 
-Pressing (v10, identical in every prompt): carrier in our half between the sides of our box who is the opponent nearest our goal — DEF (plus GK inside our box); any other carrier — the nearest of MID, FWD2 and FWD1 (ties: MID, then FWD2); the next nearest INTERCEPTs the pass to the opponent closest to the carrier. Nobody else presses.
+Pressing (v11, identical in every prompt): a carrier in our half or within a long pass of halfway — the nearer of MID and FWD2 (ties: MID) PRESSes him, sprinting; the other MARKs tightly the opponent closest to him. A carrier in our half between the sides of our box with no outfield teammate other than DEF between him and our goal — DEF PRESSes him too, GK inside our box. FWD1 never presses; nobody else presses. Why (C002): under v10 the second presser's job was written as "INTERCEPT the pass to X", which the harness ran as FOLLOW (71 FOLLOW, 0 INTERCEPT; INTERCEPT takes no target, see `strategy/platform-reference.md`), DEF pressed only the carrier nearest our goal, and their MID scored three unpressed long shots from midfield. v11 also removes the one-step carry (C003: 89% MOVE, 1 SHOOT), adds one kick-off rule per outfield player, through balls to Hertz, full-power long shots, GK throw/kick, and Lovelace FOLLOWing Tesla a short pass away when we have the ball.
 
 ## Previous Identity: Counter-Punch (v3–v7, retired)
 
