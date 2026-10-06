@@ -1764,6 +1764,150 @@
         "**More SHOOT commands didn't mean more shots:** 42 SHOOT commands gave 4 shots. Two shooters issuing SHOOT gives worse chances, not more goals.",
         "**Formation vs roles:** the platform still labels the players GK/DEF/MID/FWD/FWD after selecting 1-2-1. To be clarified whether roles follow the formation after redeploying."
       ]
+    },
+    {
+      "file": "match-log/practice/013-vs-the-benchmark-fc.md",
+      "type": "practice",
+      "number": 13,
+      "opponent": "The Benchmark FC",
+      "score_us": 2,
+      "score_them": 3,
+      "result": "L",
+      "date": "2026-10-06",
+      "formation": "1-1-2",
+      "strategy": "Swarm",
+      "deploy_tag": "deploy-v8-2026-10-05",
+      "metrics": {
+        "possession_us": 57,
+        "possession_them": 43,
+        "shots_us": 6,
+        "shots_them": 7,
+        "on_target_us": 2,
+        "on_target_them": 3,
+        "commands_us": 560,
+        "latency_avg_us": 900,
+        "commands_them": 560,
+        "latency_avg_them": 348,
+        "commands": {
+          "move": 227,
+          "press": 128,
+          "intercept": 98,
+          "mark": 1,
+          "pass": 29,
+          "shoot": 53,
+          "clear": 23,
+          "gk_dist": 1
+        },
+        "agents": {
+          "gk": {
+            "latency_avg": 647,
+            "latency_p95": null,
+            "success": 100
+          },
+          "def": {
+            "latency_avg": 968,
+            "latency_p95": null,
+            "success": 100
+          },
+          "mid": {
+            "latency_avg": 1308,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd1": {
+            "latency_avg": 656,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd2": {
+            "latency_avg": 1012,
+            "latency_p95": null,
+            "success": 100
+          }
+        },
+        "success_avg": 100.0,
+        "latency_gap": 552,
+        "shot_accuracy": 33.3,
+        "shoot_cmd_to_shot": 11.3,
+        "press_share": 22.9,
+        "intercept_share": 17.5,
+        "mark_share": 0.2,
+        "pass_share": 5.2,
+        "shoot_share": 9.5,
+        "prompt_chars_avg": 2906,
+        "prompt_chars_max": 3000,
+        "prompt_rules_avg": 7.0
+      },
+      "coach_interventions": [],
+      "models": {
+        "gk": "Claude Haiku",
+        "def": "Claude Haiku",
+        "mid": "Claude Haiku",
+        "fwd1": "Nova Lite 2",
+        "fwd2": "Claude Sonnet"
+      },
+      "versions": {
+        "gk": "8",
+        "def": "8",
+        "mid": "7",
+        "fwd1": "7",
+        "fwd2": "7"
+      },
+      "prompt_stats": {
+        "gk": {
+          "version": "8",
+          "chars": 2561,
+          "words": 513,
+          "rules": 5,
+          "constraints": 4
+        },
+        "def": {
+          "version": "8",
+          "chars": 2990,
+          "words": 614,
+          "rules": 8,
+          "constraints": 5
+        },
+        "mid": {
+          "version": "7",
+          "chars": 2983,
+          "words": 599,
+          "rules": 8,
+          "constraints": 4
+        },
+        "fwd1": {
+          "version": "7",
+          "chars": 3000,
+          "words": 591,
+          "rules": 7,
+          "constraints": 4
+        },
+        "fwd2": {
+          "version": "7",
+          "chars": 2997,
+          "words": 590,
+          "rules": 7,
+          "constraints": 4
+        }
+      },
+      "performance": {
+        "gk": "weak",
+        "def": "adequate",
+        "mid": "strong",
+        "fwd1": "strong",
+        "fwd2": "weak"
+      },
+      "action_items": [
+        "Lovelace: fix at the agent level. Delete and recreate the agent if the platform allows it, otherwise redeploy. Compare his \"Advanced\" settings with Hertz's. (priority: high)",
+        "Hertz: keep the FWD2 prompt he played \"way better\" with. (priority: high)",
+        "Validate the setup against Fort Knox / Total Attack before competitive play. (priority: high)",
+        "Opening minute: we keep conceding in minute 1. Revisit kickoff shape and \"Pre-match fitness\". (priority: high)"
+      ],
+      "observations": [
+        "**The swap test points to Lovelace's agent:** the erratic behavior stayed with him on Hertz's prompt.",
+        "Results with the forwards on Nova Lite 2 / Sonnet: 3-0 W, 2-1 W, 1-2 L (1-2-1 test), 2-3 L (swap). All against Benchmark, which had one slow FWD in all four. The setup is not yet validated against Fort Knox or Total Attack.",
+        "Tesla: 8 goals in matches 009\u2013013. He's our scoring engine."
+      ]
     }
   ],
   "current_formation": "1-1-2",
@@ -2110,7 +2254,7 @@
     }
   },
   "stats": {
-    "total_matches": 12,
+    "total_matches": 13,
     "competitive": {
       "played": 0,
       "remaining": 10,
@@ -2121,32 +2265,32 @@
       "goals_against": 0
     },
     "practice": {
-      "played": 12,
+      "played": 13,
       "wins": 4,
       "draws": 1,
-      "losses": 7
+      "losses": 8
     }
   },
   "performance_trends": {
     "gk": {
-      "avg": 1.92,
-      "matches_rated": 12
+      "avg": 1.85,
+      "matches_rated": 13
     },
     "def": {
-      "avg": 1.83,
-      "matches_rated": 12
+      "avg": 1.85,
+      "matches_rated": 13
     },
     "mid": {
-      "avg": 1.92,
-      "matches_rated": 12
+      "avg": 2.0,
+      "matches_rated": 13
     },
     "fwd1": {
-      "avg": 1.67,
-      "matches_rated": 12
+      "avg": 1.77,
+      "matches_rated": 13
     },
     "fwd2": {
-      "avg": 1.33,
-      "matches_rated": 12
+      "avg": 1.31,
+      "matches_rated": 13
     }
   }
 }

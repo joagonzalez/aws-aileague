@@ -58,6 +58,7 @@ Decision-critical positions  →  smarter models
 
 - **Speed is mostly per agent, not per model.** Hertz is ~650ms on Haiku or Nova Lite 2. Lovelace is ~850–1000 on Haiku and 809 on Sonnet. Sonnet costs no extra time in our setup.
 - **Quality:** match 010 (forwards on Nova Lite 2 / Sonnet) was a 3-0 win, but Tesla (Haiku) scored all three with long shots. The forwards' contribution is not yet clear. The press share rose to 39%.
+- **Lovelace's agent is faulty (match 013 swap test).** Erratic across prompts (v3–v8, both forward roles), models (Haiku, Sonnet) and formations, and ~300ms slower than Hertz every match. When Hertz and Lovelace swapped prompts, Hertz played much better and Lovelace stayed erratic. Fix it at the agent level (recreate/redeploy, compare Advanced settings), not with prompts or models.
 - **Rule of thumb from the season so far:** if a behavior survives two prompt rewrites, test the model before writing a third.
 
 ### Next Model Experiments (one at a time, after v3 has a baseline)
