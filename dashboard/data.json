@@ -159,6 +159,156 @@
       ]
     },
     {
+      "file": "match-log/competitive/001-vs-bright-auroras.md",
+      "type": "competitive",
+      "number": 1,
+      "opponent": "Bright Auroras",
+      "score_us": 0,
+      "score_them": 5,
+      "result": "L",
+      "date": "2026-10-06",
+      "formation": "1-1-2",
+      "strategy": "Swarm",
+      "deploy_tag": "deploy-v9-2026-10-06",
+      "metrics": {
+        "possession_us": 74,
+        "possession_them": 26,
+        "shots_us": 8,
+        "shots_them": 8,
+        "on_target_us": 0,
+        "on_target_them": 5,
+        "commands_us": 52,
+        "latency_avg_us": 33,
+        "commands_them": 480,
+        "latency_avg_them": 492,
+        "commands": {
+          "move": 14,
+          "press": 0,
+          "intercept": 1,
+          "mark": 6,
+          "pass": 5,
+          "shoot": 1,
+          "clear": 12,
+          "gk_dist": 0
+        },
+        "agents": {
+          "gk": {
+            "latency_avg": 96,
+            "latency_p95": null,
+            "success": 100
+          },
+          "def": {
+            "latency_avg": 88,
+            "latency_p95": null,
+            "success": 100
+          },
+          "mid": {
+            "latency_avg": 85,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd1": {
+            "latency_avg": 88,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd2": {
+            "latency_avg": 94,
+            "latency_p95": null,
+            "success": 100
+          }
+        },
+        "success_avg": 100.0,
+        "latency_gap": -459,
+        "shot_accuracy": 0.0,
+        "shoot_cmd_to_shot": 800.0,
+        "press_share": 0.0,
+        "intercept_share": 1.9,
+        "mark_share": 11.5,
+        "pass_share": 9.6,
+        "shoot_share": 1.9,
+        "prompt_chars_avg": 2903,
+        "prompt_chars_max": 3000,
+        "prompt_rules_avg": 6.8
+      },
+      "coach_interventions": [],
+      "models": {
+        "gk": "Claude Haiku",
+        "def": "Claude Haiku",
+        "mid": "Claude Haiku",
+        "fwd1": "Nova Lite 2",
+        "fwd2": "Nova Lite 2"
+      },
+      "versions": {
+        "gk": "8",
+        "def": "8",
+        "mid": "7",
+        "fwd1": "7",
+        "fwd2": "8"
+      },
+      "prompt_stats": {
+        "gk": {
+          "version": "8",
+          "chars": 2561,
+          "words": 513,
+          "rules": 5,
+          "constraints": 4
+        },
+        "def": {
+          "version": "8",
+          "chars": 2990,
+          "words": 614,
+          "rules": 8,
+          "constraints": 5
+        },
+        "mid": {
+          "version": "7",
+          "chars": 2983,
+          "words": 599,
+          "rules": 8,
+          "constraints": 4
+        },
+        "fwd1": {
+          "version": "7",
+          "chars": 3000,
+          "words": 591,
+          "rules": 7,
+          "constraints": 4
+        },
+        "fwd2": {
+          "version": "8",
+          "chars": 2980,
+          "words": 576,
+          "rules": 6,
+          "constraints": 4
+        }
+      },
+      "performance": {
+        "gk": "weak",
+        "def": "weak",
+        "mid": "weak",
+        "fwd1": "weak",
+        "fwd2": "weak"
+      },
+      "action_items": [
+        "Platform: open the agents page and confirm each agent shows our prompt text and the right model, and that the deployment status is active. Redeploy regardless, and run the readiness check. (priority: high)",
+        "Platform: look for an error or invocation log for the match (Bedrock throttling, model access, timeouts). Ask the organizers whether a 33ms / 52-command match is a known failure mode. (priority: high)",
+        "Before the next competitive match, play one practice match and confirm the healthy signature (400+ commands, agents at 600\u20131000ms, PRESS the top command) before spending a competitive slot. (priority: high)",
+        "During the next competitive match, check the live stats in the first 15 seconds. If our agents are under 200ms, note it and treat the match as a deployment failure. (priority: high)",
+        "Coach Interventions: record whether the live message was sent. (priority: medium)",
+        "Scouting: Bright Auroras shoot 50 times a match; the only defence is preventing shots. Note for a possible rematch. (priority: low)"
+      ],
+      "observations": [
+        "Formation effectiveness: Not measurable. The team that played was not ours.",
+        "Should we change formation? **No. Change nothing in the prompts or models because of this match.** The v9 setup is 3-0 in the practice matches where it demonstrably ran (400+ commands, 600\u20131000ms per agent).",
+        "Coordination gaps: N/A.",
+        "Opponent patterns: Bright Auroras shoot a lot (50 SHOOT, 10%) and convert (5 of 8 on target). Their outfield agents are 200ms except two slow forwards. Possession 26% and they won 5-0: possession is irrelevant on this platform, as in our own 3-0 at 22%.",
+        "Opponent formation: GK, DEF, MID, FWD, FWD.",
+        "**Detection rule for next time:** before kickoff and in the first seconds, check the live command count and latency. Our healthy signature is ~600\u20131000ms per agent. Anything under 200ms for our agents means the prompts are not loaded.",
+        "Candidate causes to check on the platform, in order: (1) the deployment was not active for the competitive match (a redeploy was needed, or competitive uses a separate deploy step); (2) model access or quota errors for Haiku / Nova Lite 2 at match time, with the platform silently substituting a default (the 100% \"success\" column would then be misleading); (3) a cold start in which the first LLM calls timed out and the platform fell back for the whole match; (4) the \"Pre-match fitness\" or readiness check was not run."
+      ]
+    },
+    {
       "file": "match-log/practice/002-vs-the-benchmark-fc.md",
       "type": "practice",
       "number": 2,
@@ -2721,15 +2871,15 @@
     }
   },
   "stats": {
-    "total_matches": 16,
+    "total_matches": 17,
     "competitive": {
-      "played": 0,
-      "remaining": 10,
+      "played": 1,
+      "remaining": 9,
       "wins": 0,
       "draws": 0,
-      "losses": 0,
+      "losses": 1,
       "goals_for": 0,
-      "goals_against": 0
+      "goals_against": 5
     },
     "practice": {
       "played": 16,
@@ -2740,24 +2890,24 @@
   },
   "performance_trends": {
     "gk": {
-      "avg": 2.0,
-      "matches_rated": 16
+      "avg": 1.94,
+      "matches_rated": 17
     },
     "def": {
-      "avg": 2.0,
-      "matches_rated": 16
+      "avg": 1.94,
+      "matches_rated": 17
     },
     "mid": {
-      "avg": 2.12,
-      "matches_rated": 16
+      "avg": 2.06,
+      "matches_rated": 17
     },
     "fwd1": {
-      "avg": 1.94,
-      "matches_rated": 16
+      "avg": 1.88,
+      "matches_rated": 17
     },
     "fwd2": {
-      "avg": 1.44,
-      "matches_rated": 16
+      "avg": 1.41,
+      "matches_rated": 17
     }
   }
 }
