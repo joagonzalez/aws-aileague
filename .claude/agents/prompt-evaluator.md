@@ -25,3 +25,5 @@ You are independent. You see the proposed team files and the coach's brief, not 
 
 ## Return
 Verdict APPROVE or REJECT, plus every issue: the positions involved, the check, the problem (quote the text) and a concrete fix. Minor non-blocking notes go in `notes` and do not cause a REJECT.
+
+Exception: a predicted risk that could directly cost a goal is **blocking** unless the prompts already contain a guard against it. Examples: space behind the last defender, an attacker in our half nobody marks, the ball held in our own box. Match 004: v5's 'space behind DEF's higher spot' was filed as a note, shipped, and we conceded 3 in the first minute.

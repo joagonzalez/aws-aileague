@@ -83,7 +83,8 @@ To rebuild locally: `python3 scripts/build-dashboard.py` then open `dashboard/in
 
 ## Competition Constraints (from AWS)
 
-- Max 10 matches total (Tuesday–Thursday)
+- Max 10 competitive matches total (Tuesday–Thursday)
+- 30 practice matches against 3 AI teams: The Benchmark FC (balanced), Total Attack United (high press, numbers forward), Fort Knox Athletic (compact, counter-attacking). Scouting notes in `strategy/opponent-notes/`
 - 30-minute cooldown between matches
 - No consecutive/repeated matches against same opponent
 - Must click "Deploy changes" / "Redeploy changes" for updates to take effect

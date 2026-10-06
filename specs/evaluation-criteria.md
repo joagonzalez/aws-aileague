@@ -34,6 +34,7 @@ Used by the Reviewer and Evaluator agents to assess prompt quality.
 
 ### Team Coherence
 - [ ] Coordination sections are bidirectionally consistent across all 5 prompts
+- [ ] Any risk that could directly cost a goal (space behind the last defender, an unmarked attacker in our half, the ball held in our box) has a guard in the prompts. If not, REJECT (match 004)
 - [ ] Exactly one position is responsible for pressing the ball in each zone (their half / midfield / near our box); the others cover
 - [ ] No positional gaps — every area of the pitch has coverage
 - [ ] No positional overlap — agents don't fight over the same responsibilities
