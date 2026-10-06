@@ -2,10 +2,25 @@
   "_about": "What each player actually runs on the platform. deploy/paste-ready.md and the dashboard's Current Deployment card are generated from this. 'prompt': 'current' means prompts/<slot>/current.md; any other value is an explicit file (an override). Update this file whenever what's deployed differs from current.md, and remove an override when a release replaces it.",
   "updated": "2026-10-06",
   "players": {
-    "gk":   { "prompt": "current", "model": "Claude Haiku" },
-    "def":  { "prompt": "current", "model": "Claude Haiku" },
-    "mid":  { "prompt": "current", "model": "Claude Haiku" },
-    "fwd1": { "prompt": "prompts/fwd2/v7.md", "model": "Nova Lite 2", "note": "Hertz runs the FWD2 v7 text since the match 013 swap test (he plays much better with it)." },
-    "fwd2": { "prompt": "current", "model": "Nova Lite 2" }
+    "gk": {
+      "prompt": "current",
+      "model": "Claude Haiku"
+    },
+    "def": {
+      "prompt": "current",
+      "model": "Claude Haiku"
+    },
+    "mid": {
+      "prompt": "current",
+      "model": "Claude Haiku"
+    },
+    "fwd1": {
+      "prompt": "current",
+      "model": "Nova Lite 2"
+    },
+    "fwd2": {
+      "prompt": "current",
+      "model": "Nova Lite 2"
+    }
   }
 }

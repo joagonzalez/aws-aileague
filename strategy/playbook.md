@@ -1,14 +1,14 @@
 # Playbook
 
-## Team Identity: Swarm (v8, current)
+## Team Identity: Swarm + Runner (v10, current)
 
 Strategy name for match logs: **Swarm**.
 
-MID and both forwards move as one compact group around the ball in the center: MID, FWD1 and FWD2 stay a short pass apart around the ball, never wider than it (farther from the goal-to-goal line than the ball is). Only the nearest of them goes to a wide ball. We build with short passes inside the group (PASS first), and SHOOT when the goal is straight in front and close. GK and DEF release short to MID when he's free and clear only when deep or pressed.
+MID (Tesla) and FWD2 (Lovelace) move as a compact pair around the ball in the center; FWD1 (Hertz) is the runner, a long pass ahead between their deepest outfield player and their goal. Tesla SHOOTs from their half on any clear line, even with a teammate ahead, and PASSes long to Hertz when an opponent blocks the line; Lovelace passes long to Hertz when he is free, otherwise shoots from distance. GK and DEF PASS to MID first and otherwise SHOOT long toward their goal (deep shots score on this platform: Turing in 003/006, opposing DEFs 4 times, opposing GKs 4 times from their own end). Every shot on target has been a goal in all 18 matches, so defence means preventing shots. v8 (three-man swarm, pass first) went 4-0 in 014-017 but bunched all three in midfield and switched off Tesla's shot whenever Hertz stood free ahead (coach, 017).
 
 Why we switched (matches 006–008, coach direction): after four rewrites the forwards still drifted to the corners and contributed nothing. Our v5–v7 long clears landed in the corners where they chased them, passing collapsed (0 PASS vs Total Attack), and we lost five straight.
 
-Pressing (v8, identical in every prompt): carrier in or at the edge of our box — DEF; anywhere else — the nearest of MID, FWD1 and FWD2 (ties: MID, then FWD1). The nearest of those three not pressing INTERCEPTs the pass to the opponent closest to the carrier.
+Pressing (v10, identical in every prompt): carrier in our half between the sides of our box who is the opponent nearest our goal — DEF (plus GK inside our box); any other carrier — the nearest of MID, FWD2 and FWD1 (ties: MID, then FWD2); the next nearest INTERCEPTs the pass to the opponent closest to the carrier. Nobody else presses.
 
 ## Previous Identity: Counter-Punch (v3–v7, retired)
 
