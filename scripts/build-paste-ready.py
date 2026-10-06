@@ -150,7 +150,7 @@ def main():
         all_errors += errors
         all_warnings += warnings
         summary.append(f"{name} ({label}) {source}")
-        blocks.append(f"## {number}. {name} ({label}) — {prompt['model']}\n\n```text\n{paste_text}\n```\n")
+        blocks.append(f"## {number}. {name} ({label}) — {prompt['model']} — {len(paste_text)}/{HARD_LIMIT} chars\n\n```text\n{paste_text}\n```\n")
 
     if all_errors:
         for e in all_errors:
