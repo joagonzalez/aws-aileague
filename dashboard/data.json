@@ -1477,6 +1477,150 @@
         "**New command seen: SET_STANCE.**",
         "**Long shots work on this platform.** Across matches 001\u2013010, 6 of our 11 goals came from deep players (Turing twice, Tesla four times). Against us: three goals by opposing GKs from their own end (006, 007, 009), a DEF goal (004) and a long shot from near halfway (002). v7's decision to cut MID's long-range shooting (because of match 007: 34 SHOOT commands, 0 on target) was based on one match and is contradicted here."
       ]
+    },
+    {
+      "file": "match-log/practice/011-vs-the-benchmark-fc.md",
+      "type": "practice",
+      "number": 11,
+      "opponent": "The Benchmark FC",
+      "score_us": 2,
+      "score_them": 1,
+      "result": "W",
+      "date": "2026-10-05",
+      "formation": "1-1-2",
+      "strategy": "Swarm",
+      "deploy_tag": "deploy-v8-2026-10-05",
+      "metrics": {
+        "possession_us": 41,
+        "possession_them": 59,
+        "shots_us": 5,
+        "shots_them": 8,
+        "on_target_us": 2,
+        "on_target_them": 1,
+        "commands_us": 420,
+        "latency_avg_us": 887,
+        "commands_them": 420,
+        "latency_avg_them": 336,
+        "commands": {
+          "move": 201,
+          "press": 118,
+          "intercept": 48,
+          "mark": 0,
+          "pass": 15,
+          "shoot": 18,
+          "clear": 17,
+          "gk_dist": 3
+        },
+        "agents": {
+          "gk": {
+            "latency_avg": 642,
+            "latency_p95": null,
+            "success": 100
+          },
+          "def": {
+            "latency_avg": 892,
+            "latency_p95": null,
+            "success": 100
+          },
+          "mid": {
+            "latency_avg": 993,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd1": {
+            "latency_avg": 666,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd2": {
+            "latency_avg": 918,
+            "latency_p95": null,
+            "success": 100
+          }
+        },
+        "success_avg": 100.0,
+        "latency_gap": 551,
+        "shot_accuracy": 40.0,
+        "shoot_cmd_to_shot": 27.8,
+        "press_share": 28.1,
+        "intercept_share": 11.4,
+        "mark_share": 0.0,
+        "pass_share": 3.6,
+        "shoot_share": 4.3,
+        "prompt_chars_avg": 2906,
+        "prompt_chars_max": 3000,
+        "prompt_rules_avg": 7.0
+      },
+      "coach_interventions": [],
+      "models": {
+        "gk": "Claude Haiku",
+        "def": "Claude Haiku",
+        "mid": "Claude Haiku",
+        "fwd1": "Nova Lite 2",
+        "fwd2": "Claude Sonnet"
+      },
+      "versions": {
+        "gk": "8",
+        "def": "8",
+        "mid": "7",
+        "fwd1": "7",
+        "fwd2": "7"
+      },
+      "prompt_stats": {
+        "gk": {
+          "version": "8",
+          "chars": 2561,
+          "words": 513,
+          "rules": 5,
+          "constraints": 4
+        },
+        "def": {
+          "version": "8",
+          "chars": 2990,
+          "words": 614,
+          "rules": 8,
+          "constraints": 5
+        },
+        "mid": {
+          "version": "7",
+          "chars": 2983,
+          "words": 599,
+          "rules": 8,
+          "constraints": 4
+        },
+        "fwd1": {
+          "version": "7",
+          "chars": 3000,
+          "words": 591,
+          "rules": 7,
+          "constraints": 4
+        },
+        "fwd2": {
+          "version": "7",
+          "chars": 2997,
+          "words": 590,
+          "rules": 7,
+          "constraints": 4
+        }
+      },
+      "performance": {
+        "gk": "strong",
+        "def": "adequate",
+        "mid": "strong",
+        "fwd1": "weak",
+        "fwd2": "weak"
+      },
+      "action_items": [
+        "Formation: test 1-2-1 (coach decision). Lovelace becomes a second long-shooting MID, Hertz is the single FWD. (priority: high)",
+        "FWD (v9): remove all \"move to a spot\" instructions. Use only actions aimed at the ball, teammates or opponents. (priority: high)",
+        "Test against Fort Knox / Total Attack, since both recent wins came against a weakened Benchmark. (priority: high)"
+      ],
+      "observations": [
+        "**Three wins in a row** (010, 011 with forwards on Nova Lite 2/Sonnet). Both came against a Benchmark with one slow FWD, so test against Fort Knox / Total Attack.",
+        "**Tesla is our scorer, the forwards aren't.** Our goals since 006: Hertz 1, Turing 1, Tesla 6.",
+        "**Matches are ~2 minutes of regulation,** then overtime if tied. Every goal happens in minutes 1\u20133, so the first seconds matter most.",
+        "**Sonnet costs no speed:** Lovelace 809 and 918ms on Sonnet vs 893\u2013999 on Haiku."
+      ]
     }
   ],
   "current_formation": "1-1-2",
@@ -1823,7 +1967,7 @@
     }
   },
   "stats": {
-    "total_matches": 10,
+    "total_matches": 11,
     "competitive": {
       "played": 0,
       "remaining": 10,
@@ -1834,32 +1978,32 @@
       "goals_against": 0
     },
     "practice": {
-      "played": 10,
-      "wins": 3,
+      "played": 11,
+      "wins": 4,
       "draws": 1,
       "losses": 6
     }
   },
   "performance_trends": {
     "gk": {
-      "avg": 1.8,
-      "matches_rated": 10
+      "avg": 1.91,
+      "matches_rated": 11
     },
     "def": {
-      "avg": 1.9,
-      "matches_rated": 10
+      "avg": 1.91,
+      "matches_rated": 11
     },
     "mid": {
-      "avg": 1.8,
-      "matches_rated": 10
+      "avg": 1.91,
+      "matches_rated": 11
     },
     "fwd1": {
-      "avg": 1.7,
-      "matches_rated": 10
+      "avg": 1.64,
+      "matches_rated": 11
     },
     "fwd2": {
-      "avg": 1.4,
-      "matches_rated": 10
+      "avg": 1.36,
+      "matches_rated": 11
     }
   }
 }
