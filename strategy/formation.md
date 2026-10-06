@@ -72,11 +72,11 @@ Priority experiments:
 
 Middle lane = the strip as wide as the box, goal to goal (v4).
 
-- **GK** (v5): On the goal line whenever an opponent has the ball outside our box, long range included. Leaves the line only inside our box. With the ball: CLEARs long upfield past DEF toward the forwards. Never passes or distributes to DEF (match 003: v4's 'distribute' went short to DEF and started a back-line loop).
-- **DEF** (v5): One fixed spot in the middle lane, midway between the edge of our box and the halfway line. Leaves it only to MARK the lane attacker closest to our goal (opponent ball in our half) or to win the ball in our box. Never leaves the middle lane, never passes to GK, never moves while holding the ball: PASS to a free teammate further upfield, else CLEAR long.
+- **GK** (v6): On the goal line whenever an opponent has the ball outside our box. Any ball he has or can reach in our box is CLEARed long into the middle lane of their half. Never passes or distributes to DEF.
+- **DEF** (v6): One fixed spot at the edge of our box in the middle lane, even when we attack. Any ball he has or can reach in or at the edge of our box is CLEARed long at once. Leaves the spot only to MARK the attacker closest to our goal, INTERCEPT inside the lane, or win the ball in our box. Never passes to GK, never moves while holding the ball (match 004: the v5 higher spot was exploited three times in minute 1).
 - **MID**: Screens the middle lane in our half and PRESSes carriers there (outside our box). In their half it stays just behind the ball and SHOOTs anywhere in the attacking third with a clear line.
-- **FWD1**: Primary finisher and the only presser in their half. Takes short carries toward the middle. Near the corner, PASSes to the middle instead of running on.
-- **FWD2**: Second finisher. Never presses; cuts passing lanes. Counter outlet beside the center circle, not out wide.
+- **FWD1** (v5): Off the ball, stays in the middle lane between the posts (match 004 corner drift). Only presser in their half, and only carriers in the middle lane. In the attacking third, SHOOTs or passes at once instead of carrying.
+- **FWD2** (v5): Same central off-ball spot on the right of the lane. Never presses; cuts passing lanes. Only the closer forward goes wide, and only for a loose ball.
 
 ## Shape Principles
 
@@ -84,7 +84,7 @@ Middle lane = the strip as wide as the box, goal to goal (v4).
 2. **Attack through the middle**: forwards attack the box, not the flanks. A carry that drifts wide ends with a PASS to the middle (match 002 corner-running).
 3. **Narrow on defense**: Everyone tucks in centrally. Protect the middle.
 4. **Transition speed**: Whoever wins the ball hits it forward at once: a pass to a free forward, or a long clear toward them.
-5. **One presser per zone** (v4, word for word in every prompt): their half — FWD1; middle lane of our half outside our box — MID; inside our box — DEF. Nobody presses a wide carrier in our half. The rest MARK or INTERCEPT.
+5. **One presser per zone** (v6, word for word in every prompt): middle lane of their half — FWD1; middle lane of our half outside our box — MID; inside our box — DEF. Nobody presses a wide carrier. The rest MARK or INTERCEPT.
 
 ## Formation Change Protocol
 

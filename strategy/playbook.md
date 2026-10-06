@@ -22,7 +22,7 @@ Our agents react about 2x slower than fast opponents (813ms vs 370ms in match 00
 
 ### Pattern 3: Coordinated Press
 - **Trigger**: Opponent has the ball
-- **Execution** (v4): their half — FWD1; middle lane of our half outside our box — MID; inside our box — DEF. Nobody presses a wide carrier in our half. Everyone else INTERCEPTs the nearest passing lane or MARKs their attacker. Middle lane = the strip as wide as the box, goal to goal.
+- **Execution** (v6): middle lane of their half — FWD1; middle lane of our half outside our box — MID; inside our box — DEF. Nobody presses a wide carrier. Everyone else INTERCEPTs the nearest passing lane or MARKs their attacker. Middle lane = the strip as wide as the box, goal to goal.
 - **Key**: Match 001 had 124 PRESS commands and the opponent still kept 82% possession. Mass chasing does not work against faster agents. Intercepts created our goal.
 - **Who's involved**: All outfield agents
 

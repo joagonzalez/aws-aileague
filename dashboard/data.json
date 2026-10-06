@@ -455,28 +455,180 @@
         "Latency: 829ms average (863 in 002, 813 in 001). Same-model (Haiku) comparisons from v3 to v4: GK 707\u2192640, DEF 1020\u2192852, FWD1 713\u2192678, FWD2 999\u2192980, even though DEF, FWD1 and FWD2 prompts got longer. No sign that prompt length drives latency. Platform variance dominates. MID on Haiku 968 vs Sonnet 1050.",
         "Timing: all goals in matches 001 and 003 came in the first 3 minutes. Record goal minutes in every match to see if this pattern holds."
       ]
+    },
+    {
+      "file": "match-log/practice/004-vs-the-benchmark-fc.md",
+      "type": "practice",
+      "number": 4,
+      "opponent": "The Benchmark FC",
+      "score_us": 0,
+      "score_them": 3,
+      "result": "L",
+      "date": "2026-10-05",
+      "formation": "1-1-2",
+      "strategy": "Counter",
+      "deploy_tag": "deploy-v5-2026-10-05",
+      "metrics": {
+        "possession_us": 60,
+        "possession_them": 40,
+        "shots_us": 3,
+        "shots_them": 8,
+        "on_target_us": 0,
+        "on_target_them": 3,
+        "commands_us": 374,
+        "latency_avg_us": 952,
+        "commands_them": 390,
+        "latency_avg_them": 203,
+        "commands": {
+          "move": 167,
+          "press": 72,
+          "intercept": 35,
+          "mark": 34,
+          "pass": 15,
+          "shoot": 28,
+          "clear": 21,
+          "gk_dist": 2
+        },
+        "agents": {
+          "gk": {
+            "latency_avg": 620,
+            "latency_p95": null,
+            "success": 100
+          },
+          "def": {
+            "latency_avg": 1313,
+            "latency_p95": null,
+            "success": 100
+          },
+          "mid": {
+            "latency_avg": 1024,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd1": {
+            "latency_avg": 654,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd2": {
+            "latency_avg": 997,
+            "latency_p95": null,
+            "success": 100
+          }
+        },
+        "success_avg": 100.0,
+        "latency_gap": 749,
+        "shot_accuracy": 0.0,
+        "shoot_cmd_to_shot": 10.7,
+        "press_share": 19.3,
+        "intercept_share": 9.4,
+        "mark_share": 9.1,
+        "pass_share": 4.0,
+        "shoot_share": 7.5,
+        "prompt_chars_avg": 1942,
+        "prompt_chars_max": 1997,
+        "prompt_rules_avg": 7.4
+      },
+      "coach_interventions": [],
+      "models": {
+        "gk": "Claude Haiku",
+        "def": "Claude Haiku",
+        "mid": "Claude Haiku",
+        "fwd1": "Claude Haiku",
+        "fwd2": "Claude Haiku"
+      },
+      "versions": {
+        "gk": "5",
+        "def": "5",
+        "mid": "4",
+        "fwd1": "4",
+        "fwd2": "4"
+      },
+      "prompt_stats": {
+        "gk": {
+          "version": "5",
+          "chars": 1779,
+          "words": 352,
+          "rules": 5,
+          "constraints": 4
+        },
+        "def": {
+          "version": "5",
+          "chars": 1984,
+          "words": 402,
+          "rules": 7,
+          "constraints": 5
+        },
+        "mid": {
+          "version": "4",
+          "chars": 1997,
+          "words": 406,
+          "rules": 9,
+          "constraints": 3
+        },
+        "fwd1": {
+          "version": "4",
+          "chars": 1967,
+          "words": 395,
+          "rules": 8,
+          "constraints": 4
+        },
+        "fwd2": {
+          "version": "4",
+          "chars": 1983,
+          "words": 395,
+          "rules": 8,
+          "constraints": 4
+        }
+      },
+      "performance": {
+        "gk": "weak",
+        "def": "weak",
+        "mid": "adequate",
+        "fwd1": "weak",
+        "fwd2": "weak"
+      },
+      "action_items": [
+        "DEF: Go back to v4's depth: one fixed spot at the edge of our box in the middle lane, without v4's moving ball-to-goal line. Keep v5's release rules (never pass to GK, never move with the ball). (priority: high)",
+        "DEF: Ball at his feet or loose within reach in our box \u2192 CLEAR long immediately, never wait. Merge rule 3 into rule 1. (priority: high)",
+        "FWD1/FWD2: Stay inside the middle lane (between the posts) off the ball. Only one forward goes wide, and only for the ball. FWD1 presses only middle-lane carriers. (priority: high)",
+        "FWD1/FWD2: Release faster. In the attacking third, shoot or pass straight away instead of carrying. (priority: high)",
+        "GK: Clear toward the middle of their half, where the central forwards now wait. (priority: medium)",
+        "Process: When the Evaluator names a main risk for a defensive change, add a guard for it, or test it in practice before counting on it. (priority: high)",
+        "Platform: Compare Turing's and Lovelace's settings with Hertz's in \"Advanced\". Try redeploying the two slow agents. (priority: high)"
+      ],
+      "observations": [
+        "Formation effectiveness: The 1-1-2 switch rule (\"concede 2 or more\") formally triggers. But the only change from the 2-1 win in match 003 was the v5 GK/DEF prompts, and the failure matches the risk the Evaluator predicted for DEF's new spot. Fix that first. If the next version still concedes 2 or more, move to 2-1-1.",
+        "Should we change formation? Not before testing whether DEF's v4 depth plus v5's ball release fixes it.",
+        "Coordination gaps: Possession without penetration: 60% possession, MOVE 45%, 3 shots. Forwards wide, so no central options.",
+        "Opponent patterns: Their DEF scored again (DEF goals in 003 and 004 were Norm Easy). Their FWDs are fast (198ms) and finish early.",
+        "**Matches are short.** Commands per agent per match: ~67 (001), ~145 (002), ~102 (003), ~75 (004). Across 001, 003 and 004, five of the six goals with a recorded minute came in minute 1 or 2. The opening minute decides matches, and each of our agents gets only a handful of decisions in it.",
+        "**For the first time, the command counts differ** (374 vs 390). Our slowest agents seem to miss decision slots when their latency is very high (DEF 1313ms).",
+        "**Part of the latency belongs to the agent, not the prompt or model.** Hertz and Lovelace run the same model with prompts of nearly identical length (1967 vs 1983 chars). Yet Hertz is consistently ~300ms faster: 713 vs 999, 678 vs 980, 654 vs 997 (and 1060 vs 1380 in the readiness check). Turing is the slowest in every measurement. This points to how each agent is deployed on the platform or in the AWS account.",
+        "**SHOOT commands rarely become shots**: 14\u21922 (001), 20\u21923 (003), 28\u21923 (004). The likely cause is latency: by the time the command arrives (~1 s), a 200ms opponent has closed the player down or taken the ball. Releasing earlier (first-time shots, no carrying) is the prompt-level lever."
+      ]
     }
   ],
   "current_formation": "1-1-2",
   "current_config": {
     "gk": {
-      "version": "5",
+      "version": "6",
       "model": "Claude Haiku"
     },
     "def": {
-      "version": "5",
+      "version": "6",
       "model": "Claude Haiku"
     },
     "mid": {
-      "version": "4",
+      "version": "5",
       "model": "Claude Haiku"
     },
     "fwd1": {
-      "version": "4",
+      "version": "5",
       "model": "Claude Haiku"
     },
     "fwd2": {
-      "version": "4",
+      "version": "5",
       "model": "Claude Haiku"
     }
   },
@@ -486,32 +638,37 @@
       "v2",
       "v3",
       "v4",
-      "v5"
+      "v5",
+      "v6"
     ],
     "def": [
       "v1",
       "v2",
       "v3",
       "v4",
-      "v5"
+      "v5",
+      "v6"
     ],
     "mid": [
       "v1",
       "v2",
       "v3",
-      "v4"
+      "v4",
+      "v5"
     ],
     "fwd1": [
       "v1",
       "v2",
       "v3",
-      "v4"
+      "v4",
+      "v5"
     ],
     "fwd2": [
       "v1",
       "v2",
       "v3",
-      "v4"
+      "v4",
+      "v5"
     ]
   },
   "version_stats": {
@@ -548,6 +705,13 @@
         "version": "5",
         "chars": 1779,
         "words": 352,
+        "rules": 5,
+        "constraints": 4
+      },
+      "v6": {
+        "version": "6",
+        "chars": 1846,
+        "words": 373,
         "rules": 5,
         "constraints": 4
       }
@@ -587,6 +751,13 @@
         "words": 402,
         "rules": 7,
         "constraints": 5
+      },
+      "v6": {
+        "version": "6",
+        "chars": 1995,
+        "words": 415,
+        "rules": 7,
+        "constraints": 5
       }
     },
     "mid": {
@@ -614,6 +785,13 @@
       "v4": {
         "version": "4",
         "chars": 1997,
+        "words": 406,
+        "rules": 9,
+        "constraints": 3
+      },
+      "v5": {
+        "version": "5",
+        "chars": 2000,
         "words": 406,
         "rules": 9,
         "constraints": 3
@@ -647,6 +825,13 @@
         "words": 395,
         "rules": 8,
         "constraints": 4
+      },
+      "v5": {
+        "version": "5",
+        "chars": 1998,
+        "words": 404,
+        "rules": 9,
+        "constraints": 5
       }
     },
     "fwd2": {
@@ -677,11 +862,18 @@
         "words": 395,
         "rules": 8,
         "constraints": 4
+      },
+      "v5": {
+        "version": "5",
+        "chars": 1986,
+        "words": 400,
+        "rules": 9,
+        "constraints": 5
       }
     }
   },
   "stats": {
-    "total_matches": 3,
+    "total_matches": 4,
     "competitive": {
       "played": 0,
       "remaining": 10,
@@ -692,32 +884,32 @@
       "goals_against": 0
     },
     "practice": {
-      "played": 3,
+      "played": 4,
       "wins": 2,
       "draws": 1,
-      "losses": 0
+      "losses": 1
     }
   },
   "performance_trends": {
     "gk": {
-      "avg": 2.33,
-      "matches_rated": 3
+      "avg": 2.0,
+      "matches_rated": 4
     },
     "def": {
-      "avg": 1.67,
-      "matches_rated": 3
+      "avg": 1.5,
+      "matches_rated": 4
     },
     "mid": {
-      "avg": 1.33,
-      "matches_rated": 3
+      "avg": 1.5,
+      "matches_rated": 4
     },
     "fwd1": {
-      "avg": 2.67,
-      "matches_rated": 3
+      "avg": 2.25,
+      "matches_rated": 4
     },
     "fwd2": {
-      "avg": 2.0,
-      "matches_rated": 3
+      "avg": 1.75,
+      "matches_rated": 4
     }
   }
 }

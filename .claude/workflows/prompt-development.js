@@ -15,6 +15,8 @@ export const meta = {
 //   brief: string                — develop only: what to change and why (coach's words, match refs)
 //   positions?: string[]         — subset of gk, def, mid, fwd1, fwd2 (develop: scope hint; review: files to audit)
 //   date: 'YYYY-MM-DD'           — stamped into review records (scripts cannot read the clock)
+//   prepassed?: string[]         — develop only: positions whose drafts passed review in an earlier run and are
+//                                  unchanged; they skip the round-1 review and go straight to the Evaluator
 // }
 
 const ALL = ['gk', 'def', 'mid', 'fwd1', 'fwd2']
@@ -25,6 +27,7 @@ const input = args || {}
 const mode = input.mode === 'review' ? 'review' : 'develop'
 const brief = input.brief || ''
 const date = input.date || 'undated'
+const prepassed = Array.isArray(input.prepassed) ? input.prepassed.filter(p => ALL.includes(p)) : []
 const scope = Array.isArray(input.positions) && input.positions.length
   ? input.positions.filter(p => ALL.includes(p))
   : null
@@ -229,8 +232,16 @@ if (mode === 'develop') {
       drafts = drafts.filter(x => x.position !== d.position).concat([d])
     }
     writerSummary = written.summary
-    // Re-review a draft if it is new, was changed this round, or has not passed yet.
-    const toReview = drafts.filter(d => iteration === 1 || d.changed || !latest[d.position] || latest[d.position].verdict !== 'PASS')
+    // Seed reviews carried over from an earlier run for unchanged drafts.
+    if (iteration === 1) {
+      for (const d of drafts) {
+        if (prepassed.includes(d.position) && !d.changed) {
+          latest[d.position] = { position: d.position, version: d.version, verdict: 'PASS', failed_checks: [], notes: 'Passed review in an earlier run of this release and unchanged since; carried forward.' }
+        }
+      }
+    }
+    // Re-review a draft if it was changed this round or has not passed yet.
+    const toReview = drafts.filter(d => d.changed || !latest[d.position] || latest[d.position].verdict !== 'PASS')
     const carried = drafts.filter(d => !toReview.includes(d))
     log(`Iteration ${iteration}: reviewing ${toReview.map(d => LABEL[d.position]).join(', ') || 'none'}${carried.length ? `; carrying PASS for ${carried.map(d => LABEL[d.position]).join(', ')}` : ''}`)
 
