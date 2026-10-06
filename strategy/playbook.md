@@ -1,6 +1,16 @@
 # Playbook
 
-## Team Identity: Counter-Punch
+## Team Identity: Swarm (v8, current)
+
+Strategy name for match logs: **Swarm**.
+
+MID and both forwards move as one compact group around the ball in the center: MID, FWD1 and FWD2 stay a short pass apart around the ball, never wider than it (farther from the goal-to-goal line than the ball is). Only the nearest of them goes to a wide ball. We build with short passes inside the group (PASS first), and SHOOT when the goal is straight in front and close. GK and DEF release short to MID when he's free and clear only when deep or pressed.
+
+Why we switched (matches 006–008, coach direction): after four rewrites the forwards still drifted to the corners and contributed nothing. Our v5–v7 long clears landed in the corners where they chased them, passing collapsed (0 PASS vs Total Attack), and we lost five straight.
+
+Pressing (v8, identical in every prompt): carrier in or at the edge of our box — DEF; anywhere else — the nearest of MID, FWD1 and FWD2 (ties: MID, then FWD1). The nearest of those three not pressing INTERCEPTs the pass to the opponent closest to the carrier.
+
+## Previous Identity: Counter-Punch (v3–v7, retired)
 
 Strategy name for match logs: **Counter** (v1 was **Possession**).
 

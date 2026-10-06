@@ -5,7 +5,7 @@
 - Date: YYYY-MM-DD
 - Type: practice | competitive
 - Formation: [e.g., 1-1-2]
-- Strategy: [one word from strategy/playbook.md, e.g. Counter]
+- Strategy: [one word from strategy/playbook.md, e.g. Swarm]
 - Deploy tag: [deploy-vN-YYYY-MM-DD]
 - Prompt versions deployed: GK v_, DEF v_, MID v_, FWD1 v_, FWD2 v_
 - Models: GK [model], DEF [model], MID [model], FWD1 [model], FWD2 [model]

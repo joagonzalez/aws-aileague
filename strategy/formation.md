@@ -72,19 +72,19 @@ Priority experiments:
 
 Middle lane = the strip as wide as the box, goal to goal (v4).
 
-- **GK** (v6): On the goal line whenever an opponent has the ball outside our box. Any ball he has or can reach in our box is CLEARed long into the middle lane of their half. Never passes or distributes to DEF.
-- **DEF** (v6): One fixed spot at the edge of our box in the middle lane, even when we attack. Any ball he has or can reach in or at the edge of our box is CLEARed long at once. Leaves the spot only to MARK the attacker closest to our goal, INTERCEPT inside the lane, or win the ball in our box. Never passes to GK, never moves while holding the ball (match 004: the v5 higher spot was exploited three times in minute 1).
-- **MID** (v6): Screens and presses in the middle lane of our half. In their half, SHOOTs when central with the goal in front of him (same trigger as the forwards); otherwise passes to the free forward nearer the center of their goal. Comes up a short pass behind the forwards.
-- **FWD1** (v6): Off the ball, stays a short pass from MID and FWD2, straight in front of their goal and nearer it than halfway. Presses a carrier in their half when he is the closer forward (wins ties). With the ball: SHOOTs at once when the goal is in front of him; near their end line or a touchline, PASSes back instead of running on; otherwise takes short steps toward the center of their goal.
-- **FWD2** (v6): Mirror of FWD1 on the right. Presses when strictly the closer forward, otherwise covers toward the goal-to-goal line between the ball and MID. Counter outlet just right of center at halfway when the ball is in our half.
+- **GK** (v8): On the goal line whenever an opponent has the ball outside our box, long range included (their GKs scored from their own end in 006/007). INTERCEPTs only inside our box. With the ball: PASS to MID, else to DEF if free with no opponent close, else CLEAR toward the center.
+- **DEF** (v8): Deep spot in front of our goal. PASSes by default to MID or a free teammate further upfield. CLEARs only deep in our box or under pressure. MARKs any attacker inside our box, and otherwise the attacker nearest our goal between the sides of our box. Never passes to GK, never moves while holding the ball.
+- **MID** (v7): Heart of the swarm. Presses when he is the nearest swarm player, otherwise screens toward our goal or cuts the pass. SHOOTs only when near their goal with it in front of him and no better-placed free teammate.
+- **FWD1** (v7): Part of the swarm: a short pass from MID and FWD2, never wider than the ball. SHOOTs with the goal in front and close unless a free teammate is better placed. Near a touchline or end line, PASSes back into the swarm at once.
+- **FWD2** (v7): Mirror of FWD1. Identical shooting and swarm rules, with a strict order so the two forwards never pass back and forth.
 
 ## Shape Principles
 
 1. **Compactness**: Keep distance between lines tight. Don't let gaps open between DEF and MID.
-2. **Attack and shoot through the middle**: the best shots come from straight in front of goal (coach, match 005). Forwards wait there and MID shoots there when free. A carry that drifts wide ends with a PASS back to the middle (matches 002/004/005 corner-running).
+2. **Swarm in the middle** (v8): MID, FWD1 and FWD2 stay a short pass apart around the ball, never wider than it (farther from the goal-to-goal line than the ball is). Only the nearest of them goes to a wide ball. Previously **Attack and shoot through the middle**: the best shots come from straight in front of goal (coach, match 005). Forwards wait there and MID shoots there when free. A carry that drifts wide ends with a PASS back to the middle (matches 002/004/005 corner-running).
 3. **Narrow on defense**: Everyone tucks in centrally. Protect the middle.
 4. **Transition speed**: Whoever wins the ball hits it forward at once: a pass to a free forward, or a long clear toward them.
-5. **One presser per zone** (v7, word for word in every prompt): their half — the forward closer to the carrier (FWD1 if equal); middle lane of our half outside our box — MID; inside our box — DEF. Nobody presses a wide carrier in our half. The rest MARK or INTERCEPT.
+5. **Swarm pressing** (v8, word for word in every prompt): carrier in or at the edge of our box — DEF; anywhere else — the nearest of MID, FWD1 and FWD2 (ties: MID, then FWD1). The nearest of those three not pressing INTERCEPTs the pass to the opponent closest to the carrier.
 
 ## Formation Change Protocol
 
