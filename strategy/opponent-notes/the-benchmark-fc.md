@@ -12,6 +12,7 @@
 | 009 | practice | 1-2 L | v8 |
 | 010 | practice | 3-0 W | v8, forwards on Sonnet/Nova Lite 2 |
 | 011 | practice | 2-1 W | same as 010 |
+| 012 | practice | 1-2 L | 1-2-1 test: Hertz on Tesla's MID prompt |
 
 ## Official description
 Balanced. Solid fundamentals: plays through the midfield, holds shape, finishes cleanly.

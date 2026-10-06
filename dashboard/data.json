@@ -1621,6 +1621,149 @@
         "**Matches are ~2 minutes of regulation,** then overtime if tied. Every goal happens in minutes 1\u20133, so the first seconds matter most.",
         "**Sonnet costs no speed:** Lovelace 809 and 918ms on Sonnet vs 893\u2013999 on Haiku."
       ]
+    },
+    {
+      "file": "match-log/practice/012-vs-the-benchmark-fc.md",
+      "type": "practice",
+      "number": 12,
+      "opponent": "The Benchmark FC",
+      "score_us": 1,
+      "score_them": 2,
+      "result": "L",
+      "date": "2026-10-05",
+      "formation": "1-2-1",
+      "strategy": "Swarm",
+      "deploy_tag": "deploy-v8-2026-10-05",
+      "metrics": {
+        "possession_us": 55,
+        "possession_them": 45,
+        "shots_us": 4,
+        "shots_them": 5,
+        "on_target_us": 1,
+        "on_target_them": 2,
+        "commands_us": 410,
+        "latency_avg_us": 833,
+        "commands_them": 410,
+        "latency_avg_them": 321,
+        "commands": {
+          "move": 201,
+          "press": 102,
+          "intercept": 32,
+          "mark": 2,
+          "pass": 17,
+          "shoot": 42,
+          "clear": 13,
+          "gk_dist": 1
+        },
+        "agents": {
+          "gk": {
+            "latency_avg": 650,
+            "latency_p95": null,
+            "success": 100
+          },
+          "def": {
+            "latency_avg": 781,
+            "latency_p95": null,
+            "success": 100
+          },
+          "mid": {
+            "latency_avg": 919,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd1": {
+            "latency_avg": 625,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd2": {
+            "latency_avg": 970,
+            "latency_p95": null,
+            "success": 100
+          }
+        },
+        "success_avg": 100.0,
+        "latency_gap": 512,
+        "shot_accuracy": 25.0,
+        "shoot_cmd_to_shot": 9.5,
+        "press_share": 24.9,
+        "intercept_share": 7.8,
+        "mark_share": 0.5,
+        "pass_share": 4.1,
+        "shoot_share": 10.2,
+        "prompt_chars_avg": 2906,
+        "prompt_chars_max": 3000,
+        "prompt_rules_avg": 7.0
+      },
+      "coach_interventions": [],
+      "models": {
+        "gk": "Claude Haiku",
+        "def": "Claude Haiku",
+        "mid": "Claude Haiku",
+        "fwd1": "unconfirmed",
+        "fwd2": "unconfirmed"
+      },
+      "versions": {
+        "gk": "8",
+        "def": "8",
+        "mid": "7",
+        "fwd1": "7",
+        "fwd2": "7"
+      },
+      "prompt_stats": {
+        "gk": {
+          "version": "8",
+          "chars": 2561,
+          "words": 513,
+          "rules": 5,
+          "constraints": 4
+        },
+        "def": {
+          "version": "8",
+          "chars": 2990,
+          "words": 614,
+          "rules": 8,
+          "constraints": 5
+        },
+        "mid": {
+          "version": "7",
+          "chars": 2983,
+          "words": 599,
+          "rules": 8,
+          "constraints": 4
+        },
+        "fwd1": {
+          "version": "7",
+          "chars": 3000,
+          "words": 591,
+          "rules": 7,
+          "constraints": 4
+        },
+        "fwd2": {
+          "version": "7",
+          "chars": 2997,
+          "words": 590,
+          "rules": 7,
+          "constraints": 4
+        }
+      },
+      "performance": {
+        "gk": "adequate",
+        "def": "weak",
+        "mid": "adequate",
+        "fwd1": "adequate",
+        "fwd2": "weak"
+      },
+      "action_items": [
+        "Decide: go back to the winning 1-1-2 setup (v8, Hertz Nova Lite 2, Lovelace Sonnet) and validate it against Fort Knox / Total Attack, or build proper 1-2-1 prompts (v9) with distinct midfield roles. (priority: high)",
+        "Lovelace: check his deployed instructions and redeploy his agent. (priority: high)",
+        "Confirm the forwards' models in this match. (priority: low)"
+      ],
+      "observations": [
+        "**The quick 1-2-1 (two copies of Tesla) lost 1-2.** It's one match, against a Benchmark with a slow FWD, and with unadapted prompts, so it's inconclusive. It did not show a clear improvement over the 1-1-2 setup that won 3-0 and 2-1.",
+        "**More SHOOT commands didn't mean more shots:** 42 SHOOT commands gave 4 shots. Two shooters issuing SHOOT gives worse chances, not more goals.",
+        "**Formation vs roles:** the platform still labels the players GK/DEF/MID/FWD/FWD after selecting 1-2-1. To be clarified whether roles follow the formation after redeploying."
+      ]
     }
   ],
   "current_formation": "1-1-2",
@@ -1967,7 +2110,7 @@
     }
   },
   "stats": {
-    "total_matches": 11,
+    "total_matches": 12,
     "competitive": {
       "played": 0,
       "remaining": 10,
@@ -1978,32 +2121,32 @@
       "goals_against": 0
     },
     "practice": {
-      "played": 11,
+      "played": 12,
       "wins": 4,
       "draws": 1,
-      "losses": 6
+      "losses": 7
     }
   },
   "performance_trends": {
     "gk": {
-      "avg": 1.91,
-      "matches_rated": 11
+      "avg": 1.92,
+      "matches_rated": 12
     },
     "def": {
-      "avg": 1.91,
-      "matches_rated": 11
+      "avg": 1.83,
+      "matches_rated": 12
     },
     "mid": {
-      "avg": 1.91,
-      "matches_rated": 11
+      "avg": 1.92,
+      "matches_rated": 12
     },
     "fwd1": {
-      "avg": 1.64,
-      "matches_rated": 11
+      "avg": 1.67,
+      "matches_rated": 12
     },
     "fwd2": {
-      "avg": 1.36,
-      "matches_rated": 11
+      "avg": 1.33,
+      "matches_rated": 12
     }
   }
 }
