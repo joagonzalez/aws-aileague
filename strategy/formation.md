@@ -76,7 +76,7 @@ Middle lane = the strip as wide as the box, goal to goal (v4).
 - **DEF** (v8): Deep spot in front of our goal. PASSes by default to MID or a free teammate further upfield. CLEARs only deep in our box or under pressure. MARKs any attacker inside our box, and otherwise the attacker nearest our goal between the sides of our box. Never passes to GK, never moves while holding the ball.
 - **MID** (v7): Heart of the swarm. Presses when he is the nearest swarm player, otherwise screens toward our goal or cuts the pass. SHOOTs only when near their goal with it in front of him and no better-placed free teammate.
 - **FWD1** (v7): Part of the swarm: a short pass from MID and FWD2, never wider than the ball. SHOOTs with the goal in front and close unless a free teammate is better placed. Near a touchline or end line, PASSes back into the swarm at once.
-- **FWD2** (v7): Mirror of FWD1. Identical shooting and swarm rules, with a strict order so the two forwards never pass back and forth.
+- **FWD2 / Lovelace** (v8, Nova Lite 2): Plays as a second long-range shooter beside Tesla (level with him, never ahead, so Tesla's shooting rule keeps working). Marks their midfielder when they have the ball. Never carries the ball: shoots or passes at once. Stays away from touchlines and corners except when pressing or intercepting under the shared rule. His agent is erratic regardless of prompt (match 013), so the prompt is kept simple. On the platform, Hertz currently runs the FWD2 v7 text (013 swap).
 
 ## Shape Principles
 

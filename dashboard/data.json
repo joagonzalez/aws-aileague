@@ -1929,8 +1929,8 @@
       "model": "Claude Haiku"
     },
     "fwd2": {
-      "version": "7",
-      "model": "Claude Haiku"
+      "version": "8",
+      "model": "Nova Lite 2"
     }
   },
   "versions": {
@@ -1979,7 +1979,8 @@
       "v4",
       "v5",
       "v6",
-      "v7"
+      "v7",
+      "v8"
     ]
   },
   "version_stats": {
@@ -2249,6 +2250,13 @@
         "chars": 2997,
         "words": 590,
         "rules": 7,
+        "constraints": 4
+      },
+      "v8": {
+        "version": "8",
+        "chars": 2980,
+        "words": 576,
+        "rules": 6,
         "constraints": 4
       }
     }
