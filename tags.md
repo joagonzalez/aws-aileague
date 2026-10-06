@@ -10,6 +10,7 @@ Every commit that introduces a new prompt release gets an annotated tag, even if
 | `deploy-v4-2026-10-05` | 2026-10-05 | `be3b9ca` | all | 003 | First release through the automated workflow (approved round 1 after the loop fix). Middle-lane defending, one presser per zone, wide exit for the forwards, shared shooting trigger, GK 'distribute' only. |
 | `deploy-v5-2026-10-05` | 2026-10-05 | `0077329` | GK, DEF (MID/FWD1/FWD2 stay v4) | 004 (0-3 L) | Fixes the back-line loop. GK CLEARs long and never passes to DEF. DEF has one fixed higher spot, never passes to GK, never moves while holding the ball. Middle lane kept. |
 | `deploy-v6-2026-10-05` | 2026-10-05 | `e5d0193` | GK v6, DEF v6, MID v5, FWD1 v5, FWD2 v5 | 005 (0-1 L) | DEF back to v4 depth as one fixed spot at the box edge, CLEARs any ball he has or can reach there. GK CLEARs into the middle of their half. Forwards stay central between the posts and release at once. First run of the improved loop (prepassed carry-forward). |
+| `deploy-v7-2026-10-05` | 2026-10-05 | see tag | MID v6, FWD1 v6, FWD2 v6 (GK v7, DEF v7: Coordination only) | — (pending) | Attack rewrite with visible cues (ball, teammates, goal) instead of pitch areas. Shoot from the middle (MID too). Closer forward presses. Wide → pass back. First 3000-char budget test (MID 2999, FWD 2990/2988). |
 
 ## Format
 

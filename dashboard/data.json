@@ -760,23 +760,23 @@
   "current_formation": "1-1-2",
   "current_config": {
     "gk": {
-      "version": "6",
+      "version": "7",
       "model": "Claude Haiku"
     },
     "def": {
-      "version": "6",
+      "version": "7",
       "model": "Claude Haiku"
     },
     "mid": {
-      "version": "5",
+      "version": "6",
       "model": "Claude Haiku"
     },
     "fwd1": {
-      "version": "5",
+      "version": "6",
       "model": "Claude Haiku"
     },
     "fwd2": {
-      "version": "5",
+      "version": "6",
       "model": "Claude Haiku"
     }
   },
@@ -787,7 +787,8 @@
       "v3",
       "v4",
       "v5",
-      "v6"
+      "v6",
+      "v7"
     ],
     "def": [
       "v1",
@@ -795,28 +796,32 @@
       "v3",
       "v4",
       "v5",
-      "v6"
+      "v6",
+      "v7"
     ],
     "mid": [
       "v1",
       "v2",
       "v3",
       "v4",
-      "v5"
+      "v5",
+      "v6"
     ],
     "fwd1": [
       "v1",
       "v2",
       "v3",
       "v4",
-      "v5"
+      "v5",
+      "v6"
     ],
     "fwd2": [
       "v1",
       "v2",
       "v3",
       "v4",
-      "v5"
+      "v5",
+      "v6"
     ]
   },
   "version_stats": {
@@ -860,6 +865,13 @@
         "version": "6",
         "chars": 1846,
         "words": 373,
+        "rules": 5,
+        "constraints": 4
+      },
+      "v7": {
+        "version": "7",
+        "chars": 1885,
+        "words": 379,
         "rules": 5,
         "constraints": 4
       }
@@ -906,6 +918,13 @@
         "words": 415,
         "rules": 7,
         "constraints": 5
+      },
+      "v7": {
+        "version": "7",
+        "chars": 2072,
+        "words": 430,
+        "rules": 7,
+        "constraints": 5
       }
     },
     "mid": {
@@ -941,6 +960,13 @@
         "version": "5",
         "chars": 2000,
         "words": 406,
+        "rules": 9,
+        "constraints": 3
+      },
+      "v6": {
+        "version": "6",
+        "chars": 2999,
+        "words": 596,
         "rules": 9,
         "constraints": 3
       }
@@ -980,6 +1006,13 @@
         "words": 404,
         "rules": 9,
         "constraints": 5
+      },
+      "v6": {
+        "version": "6",
+        "chars": 2990,
+        "words": 589,
+        "rules": 9,
+        "constraints": 4
       }
     },
     "fwd2": {
@@ -1017,6 +1050,13 @@
         "words": 400,
         "rules": 9,
         "constraints": 5
+      },
+      "v6": {
+        "version": "6",
+        "chars": 2988,
+        "words": 589,
+        "rules": 9,
+        "constraints": 4
       }
     }
   },

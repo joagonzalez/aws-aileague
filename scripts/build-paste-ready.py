@@ -36,7 +36,7 @@ REQUIRED_SECTIONS = [
 
 HARD_LIMIT = 6000
 FAST_MODELS = {"Claude Haiku", "Nova Micro"}
-FAST_BUDGET = 2000
+FAST_BUDGET = 3000  # raised from 2000 for v7: room for clarity (definitions, 'why'), not more rules
 SMART_BUDGET = 5000
 
 # Phrases the agent cannot act on, or vague wording banned by specs/evaluation-criteria.md.

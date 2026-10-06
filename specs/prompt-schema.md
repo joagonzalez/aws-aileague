@@ -79,7 +79,7 @@ The AWS platform auto-adds game commands and formatting. Key implications:
 ## Quality Guidelines
 
 - **Character budget**: Hard limit is 6000 chars of pasted text (see `deploy/paste-ready.md`, which reports the count per player). Header, model and changelog are not pasted.
-  - Fast models (Haiku, Nova Micro): ≤ 2000 chars pasted. Simple if/then rules.
+  - Fast models (Haiku, Nova Micro): ≤ 3000 chars pasted (raised from 2000 for v7). Use the extra room for clarity (plain definitions, observable cues, a short 'why' on critical rules), not more rules. Keep about 8 decision rules. Prompt length showed no link to latency in matches 001–005.
   - Smart models (Sonnet, Nova Pro): up to ~4000-5000 chars. More situational depth.
 - **Priority shadowing**: a higher rule whose situation overlaps a lower one blocks the lower one. Put the more dangerous or more specific situation first (e.g., "attacker with the ball near our goal" above "attacker without the ball near you").
 - **Conciseness**: Each section should be as short as possible while being unambiguous.
