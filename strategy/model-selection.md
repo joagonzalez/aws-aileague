@@ -46,6 +46,20 @@ Decision-critical positions  →  smarter models
 - v3 adds a tempo line to every prompt: "Choose one command immediately and keep any reasoning to a few words — no explanations." Compare per-agent latency in the next match against these numbers. If Haiku drops well below 680ms, output length is the lever.
 - Caveats: the platform adds its own formatting, and if that asks for a reasoning field our line can only shorten it. Less reasoning can also mean worse decisions, so check decision quality in the debrief alongside latency.
 
+### Model Results So Far (matches 001–010)
+
+| Agent | Haiku | Other model |
+|-------|-------|-------------|
+| GK (Shannon) | 620–707ms | — |
+| DEF (Turing) | 802–1313ms | — |
+| MID (Tesla) | 870–1024ms | Sonnet 948, 1050 (001, 002) |
+| FWD1 (Hertz) | 634–713ms | Nova Lite 2 653 (010) |
+| FWD2 (Lovelace) | 893–999ms | Nova Lite 2 840 (001); Sonnet 809 (010); 828 in 009 (model unconfirmed) |
+
+- **Speed is mostly per agent, not per model.** Hertz is ~650ms on Haiku or Nova Lite 2. Lovelace is ~850–1000 on Haiku and 809 on Sonnet. Sonnet costs no extra time in our setup.
+- **Quality:** match 010 (forwards on Nova Lite 2 / Sonnet) was a 3-0 win, but Tesla (Haiku) scored all three with long shots. The forwards' contribution is not yet clear. The press share rose to 39%.
+- **Rule of thumb from the season so far:** if a behavior survives two prompt rewrites, test the model before writing a third.
+
 ### Next Model Experiments (one at a time, after v3 has a baseline)
 1. **GK on Nova Micro**: the GK has the simplest decision tree. If latency drops a lot with no extra goals conceded, try DEF next.
 2. **FWD1 on Nova Micro**: finishing depends on timing. Only try this if experiment 1 shows Nova Micro is much faster.
