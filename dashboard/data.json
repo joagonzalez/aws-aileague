@@ -1914,23 +1914,28 @@
   "current_config": {
     "gk": {
       "version": "8",
-      "model": "Claude Haiku"
+      "model": "Claude Haiku",
+      "source": "prompts/gk/current.md"
     },
     "def": {
       "version": "8",
-      "model": "Claude Haiku"
+      "model": "Claude Haiku",
+      "source": "prompts/def/current.md"
     },
     "mid": {
       "version": "7",
-      "model": "Claude Haiku"
+      "model": "Claude Haiku",
+      "source": "prompts/mid/current.md"
     },
     "fwd1": {
       "version": "7",
-      "model": "Claude Haiku"
+      "model": "Nova Lite 2",
+      "source": "prompts/fwd2/v7.md"
     },
     "fwd2": {
       "version": "8",
-      "model": "Nova Lite 2"
+      "model": "Nova Lite 2",
+      "source": "prompts/fwd2/current.md"
     }
   },
   "versions": {

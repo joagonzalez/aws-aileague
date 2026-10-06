@@ -32,7 +32,8 @@ Run through this checklist before every deployment to the AWS platform.
 
 1. Verify all checks above are green
 2. Run `python3 scripts/build-paste-ready.py` (fails on missing sections or >6000 chars; review any warnings), then copy each player's code block from `deploy/paste-ready.md` into the AWS platform
-3. Select the model for each agent, and check every dropdown against the `Model:` line in its prompt header (match 002 ran MID on the wrong model)
+3. Make sure `deploy/platform-state.json` matches what you are about to deploy (prompt per player, model per player), then regenerate `deploy/paste-ready.md`.
+4. Select the model for each agent, and check every dropdown against the `Model:` line in its prompt header (match 002 ran MID on the wrong model)
 4. Click "Deploy changes" (first time) or "Redeploy changes" (updates)
 5. Verify deployment succeeded on the platform
 

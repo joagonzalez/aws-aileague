@@ -272,17 +272,19 @@ def parse_match_file(filepath):
 
 
 def get_current_prompt_info():
-    """Read current.md for each position and extract version + model."""
+    """What each player runs on the platform (deploy/platform-state.json), with version + model."""
     info = {}
+    state = paste_ready.platform_state()
     for pos in ["gk", "def", "mid", "fwd1", "fwd2"]:
-        current_file = PROMPTS_DIR / pos / "current.md"
-        if current_file.exists():
-            text = current_file.read_text()
+        slot = state[pos]
+        if slot["path"].exists():
+            text = slot["path"].read_text()
             version_m = re.search(r"# .+ — v(\d+)", text)
             model_m = re.search(r"Model:\s*(.+)", text)
             info[pos] = {
                 "version": version_m.group(1) if version_m else "?",
-                "model": model_m.group(1).strip() if model_m else "?",
+                "model": slot["model"] or (model_m.group(1).strip() if model_m else "?"),
+                "source": slot["path"].relative_to(ROOT).as_posix(),
             }
     return info
 
