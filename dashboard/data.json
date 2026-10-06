@@ -1190,23 +1190,23 @@
   "current_formation": "1-1-2",
   "current_config": {
     "gk": {
-      "version": "7",
+      "version": "8",
       "model": "Claude Haiku"
     },
     "def": {
-      "version": "7",
+      "version": "8",
       "model": "Claude Haiku"
     },
     "mid": {
-      "version": "6",
+      "version": "7",
       "model": "Claude Haiku"
     },
     "fwd1": {
-      "version": "6",
+      "version": "7",
       "model": "Claude Haiku"
     },
     "fwd2": {
-      "version": "6",
+      "version": "7",
       "model": "Claude Haiku"
     }
   },
@@ -1218,7 +1218,8 @@
       "v4",
       "v5",
       "v6",
-      "v7"
+      "v7",
+      "v8"
     ],
     "def": [
       "v1",
@@ -1227,7 +1228,8 @@
       "v4",
       "v5",
       "v6",
-      "v7"
+      "v7",
+      "v8"
     ],
     "mid": [
       "v1",
@@ -1235,7 +1237,8 @@
       "v3",
       "v4",
       "v5",
-      "v6"
+      "v6",
+      "v7"
     ],
     "fwd1": [
       "v1",
@@ -1243,7 +1246,8 @@
       "v3",
       "v4",
       "v5",
-      "v6"
+      "v6",
+      "v7"
     ],
     "fwd2": [
       "v1",
@@ -1251,7 +1255,8 @@
       "v3",
       "v4",
       "v5",
-      "v6"
+      "v6",
+      "v7"
     ]
   },
   "version_stats": {
@@ -1302,6 +1307,13 @@
         "version": "7",
         "chars": 1885,
         "words": 379,
+        "rules": 5,
+        "constraints": 4
+      },
+      "v8": {
+        "version": "8",
+        "chars": 2561,
+        "words": 513,
         "rules": 5,
         "constraints": 4
       }
@@ -1355,6 +1367,13 @@
         "words": 430,
         "rules": 7,
         "constraints": 5
+      },
+      "v8": {
+        "version": "8",
+        "chars": 2990,
+        "words": 614,
+        "rules": 8,
+        "constraints": 5
       }
     },
     "mid": {
@@ -1399,6 +1418,13 @@
         "words": 596,
         "rules": 9,
         "constraints": 3
+      },
+      "v7": {
+        "version": "7",
+        "chars": 2983,
+        "words": 599,
+        "rules": 8,
+        "constraints": 4
       }
     },
     "fwd1": {
@@ -1443,6 +1469,13 @@
         "words": 589,
         "rules": 9,
         "constraints": 4
+      },
+      "v7": {
+        "version": "7",
+        "chars": 3000,
+        "words": 591,
+        "rules": 7,
+        "constraints": 4
       }
     },
     "fwd2": {
@@ -1486,6 +1519,13 @@
         "chars": 2988,
         "words": 589,
         "rules": 9,
+        "constraints": 4
+      },
+      "v7": {
+        "version": "7",
+        "chars": 2997,
+        "words": 590,
+        "rules": 7,
         "constraints": 4
       }
     }
