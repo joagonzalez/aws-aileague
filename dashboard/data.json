@@ -1330,6 +1330,151 @@
         "**Hypothesis: fixed positions go stale; tracking commands don't.** A MOVE_TO a spot is fixed when issued and stays wrong for the ~0.65\u20131.1 s until the next decision, so players overshoot to stale places (corners). PRESS (chase the ball), MARK and INTERCEPT keep tracking their target between decisions. Our prompts since v4 are full of \"move to your spot\". MOVE has been 36\u201345% of our commands.",
         "**Opposing goalkeepers scoring from their own end** (006, 007, 009) is our most repeatable leak."
       ]
+    },
+    {
+      "file": "match-log/practice/010-vs-the-benchmark-fc.md",
+      "type": "practice",
+      "number": 10,
+      "opponent": "The Benchmark FC",
+      "score_us": 3,
+      "score_them": 0,
+      "result": "W",
+      "date": "2026-10-05",
+      "formation": "1-1-2",
+      "strategy": "Swarm",
+      "deploy_tag": "deploy-v8-2026-10-05",
+      "metrics": {
+        "possession_us": 22,
+        "possession_them": 78,
+        "shots_us": 3,
+        "shots_them": 2,
+        "on_target_us": 3,
+        "on_target_them": 0,
+        "commands_us": 405,
+        "latency_avg_us": 852,
+        "commands_them": 405,
+        "latency_avg_them": 324,
+        "commands": {
+          "move": 143,
+          "press": 158,
+          "intercept": 44,
+          "mark": 1,
+          "pass": 23,
+          "shoot": 14,
+          "clear": 21,
+          "gk_dist": 1
+        },
+        "agents": {
+          "gk": {
+            "latency_avg": 654,
+            "latency_p95": null,
+            "success": 100
+          },
+          "def": {
+            "latency_avg": 862,
+            "latency_p95": null,
+            "success": 100
+          },
+          "mid": {
+            "latency_avg": 985,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd1": {
+            "latency_avg": 653,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd2": {
+            "latency_avg": 809,
+            "latency_p95": null,
+            "success": 100
+          }
+        },
+        "success_avg": 100.0,
+        "latency_gap": 528,
+        "shot_accuracy": 100.0,
+        "shoot_cmd_to_shot": 21.4,
+        "press_share": 39.0,
+        "intercept_share": 10.9,
+        "mark_share": 0.2,
+        "pass_share": 5.7,
+        "shoot_share": 3.5,
+        "prompt_chars_avg": 2906,
+        "prompt_chars_max": 3000,
+        "prompt_rules_avg": 7.0
+      },
+      "coach_interventions": [],
+      "models": {
+        "gk": "Claude Haiku",
+        "def": "Claude Haiku",
+        "mid": "Claude Haiku",
+        "fwd1": "unconfirmed (Sonnet or Nova Lite 2)",
+        "fwd2": "unconfirmed (Sonnet or Nova Lite 2)"
+      },
+      "versions": {
+        "gk": "8",
+        "def": "8",
+        "mid": "7",
+        "fwd1": "7",
+        "fwd2": "7"
+      },
+      "prompt_stats": {
+        "gk": {
+          "version": "8",
+          "chars": 2561,
+          "words": 513,
+          "rules": 5,
+          "constraints": 4
+        },
+        "def": {
+          "version": "8",
+          "chars": 2990,
+          "words": 614,
+          "rules": 8,
+          "constraints": 5
+        },
+        "mid": {
+          "version": "7",
+          "chars": 2983,
+          "words": 599,
+          "rules": 8,
+          "constraints": 4
+        },
+        "fwd1": {
+          "version": "7",
+          "chars": 3000,
+          "words": 591,
+          "rules": 7,
+          "constraints": 4
+        },
+        "fwd2": {
+          "version": "7",
+          "chars": 2997,
+          "words": 590,
+          "rules": 7,
+          "constraints": 4
+        }
+      },
+      "performance": {
+        "gk": "strong",
+        "def": "strong",
+        "mid": "strong",
+        "fwd1": "adequate",
+        "fwd2": "adequate"
+      },
+      "action_items": [
+        "Replicate: same setup (v8, forwards on Sonnet / Nova Lite 2, rest Haiku) against Fort Knox or Total Attack. (priority: high)",
+        "Confirm which forward ran which model, and how each behaved (group, passing, shooting). (priority: high)",
+        "If one forward model clearly wins, test it on both forwards. (priority: medium)",
+        "Platform: what does SET_STANCE do? (priority: medium)"
+      ],
+      "observations": [
+        "**First win in seven matches**, after the only change: the forwards' models (v8 prompts unchanged). The press share rose to 39% (28% in 009) and 3 of 3 shots were on target.",
+        "**Not yet proof.** Benchmark's slow FWD (853ms) weakened them, Tesla (Haiku) scored two of the three, and it's one match. A replication against a different opponent is needed before we lock the setup.",
+        "**Possession isn't required to win:** 22% possession, 3-0. Pressing and fast finishing beat possession, the same as match 001 (18% possession, 1-0).",
+        "**New command seen: SET_STANCE.**"
+      ]
     }
   ],
   "current_formation": "1-1-2",
@@ -1676,7 +1821,7 @@
     }
   },
   "stats": {
-    "total_matches": 9,
+    "total_matches": 10,
     "competitive": {
       "played": 0,
       "remaining": 10,
@@ -1687,32 +1832,32 @@
       "goals_against": 0
     },
     "practice": {
-      "played": 9,
-      "wins": 2,
+      "played": 10,
+      "wins": 3,
       "draws": 1,
       "losses": 6
     }
   },
   "performance_trends": {
     "gk": {
-      "avg": 1.67,
-      "matches_rated": 9
+      "avg": 1.8,
+      "matches_rated": 10
     },
     "def": {
-      "avg": 1.78,
-      "matches_rated": 9
+      "avg": 1.9,
+      "matches_rated": 10
     },
     "mid": {
-      "avg": 1.67,
-      "matches_rated": 9
+      "avg": 1.8,
+      "matches_rated": 10
     },
     "fwd1": {
-      "avg": 1.67,
-      "matches_rated": 9
+      "avg": 1.7,
+      "matches_rated": 10
     },
     "fwd2": {
-      "avg": 1.33,
-      "matches_rated": 9
+      "avg": 1.4,
+      "matches_rated": 10
     }
   }
 }

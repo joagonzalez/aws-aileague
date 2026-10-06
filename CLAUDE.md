@@ -67,7 +67,7 @@ To rebuild locally: `python3 scripts/build-dashboard.py` then open `dashboard/in
 
 - Agents already know HOW to play (move, pass, shoot, mark, press, intercept, throw, kick)
 - Official platform text ("What can my agents do?"): "You just describe the tactics — your agents already know how to move, pass, shoot, mark opponents, press the ball, intercept, and (for the goalkeeper) throw or kick the ball out. Tell them WHEN and WHERE to do these things. They play on a pitch where your team attacks toward the opponent's goal. You don't need to write any code or coordinates — plain instructions work best."
-- Command names seen in match reports: MOVE_TO, PRESS_BALL, INTERCEPT, MARK, FOLLOW_PLAYER, PASS, SHOOT, CLEAR, GK_DISTRIBUTE. FOLLOW_PLAYER is probably how "mark opponents" works, not a way to follow a teammate. Unconfirmed.
+- Command names seen in match reports: MOVE_TO, PRESS_BALL, INTERCEPT, MARK, FOLLOW_PLAYER, PASS, SHOOT, CLEAR, GK_DISTRIBUTE, SET_STANCE (platform advice: 'lock shape between transitions'; semantics unknown). FOLLOW_PLAYER is probably how "mark opponents" works, not a way to follow a teammate. Unconfirmed.
 - Prompts only define WHEN and WHERE to do things — pure tactical instructions
 - Plain English works best, no code or coordinates
 - Model is configurable per player — see `strategy/model-selection.md`
