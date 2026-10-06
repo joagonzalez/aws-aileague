@@ -457,6 +457,160 @@
       ]
     },
     {
+      "file": "match-log/competitive/002-vs-nankatsu-sc.md",
+      "type": "competitive",
+      "number": 2,
+      "opponent": "Nankatsu SC",
+      "score_us": 5,
+      "score_them": 4,
+      "result": "W",
+      "date": "2026-10-06",
+      "formation": "1-1-2",
+      "strategy": "Swarm",
+      "deploy_tag": "deploy-v10-2026-10-06",
+      "metrics": {
+        "possession_us": 47,
+        "possession_them": 53,
+        "shots_us": 8,
+        "shots_them": 8,
+        "on_target_us": 5,
+        "on_target_them": 4,
+        "commands_us": 615,
+        "latency_avg_us": 730,
+        "commands_them": 615,
+        "latency_avg_them": 514,
+        "commands": {
+          "move": 330,
+          "press": 30,
+          "intercept": 0,
+          "mark": 3,
+          "pass": 67,
+          "shoot": 73,
+          "clear": 35,
+          "gk_dist": 6
+        },
+        "agents": {
+          "gk": {
+            "latency_avg": 658,
+            "latency_p95": null,
+            "success": 100
+          },
+          "def": {
+            "latency_avg": 667,
+            "latency_p95": null,
+            "success": 100
+          },
+          "mid": {
+            "latency_avg": 940,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd1": {
+            "latency_avg": 683,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd2": {
+            "latency_avg": 689,
+            "latency_p95": null,
+            "success": 100
+          }
+        },
+        "success_avg": 100.0,
+        "latency_gap": 216,
+        "shot_accuracy": 62.5,
+        "shoot_cmd_to_shot": 11.0,
+        "press_share": 4.9,
+        "intercept_share": 0.0,
+        "mark_share": 0.5,
+        "pass_share": 10.9,
+        "shoot_share": 11.9,
+        "prompt_chars_avg": 2979,
+        "prompt_chars_max": 2992,
+        "prompt_rules_avg": 7.2
+      },
+      "coach_interventions": [
+        {
+          "when": "\u2014",
+          "message": "None (the match ran unattended; no live messages were sent)",
+          "effect": "\u2014"
+        }
+      ],
+      "models": {
+        "gk": "Claude Haiku",
+        "def": "Claude Haiku",
+        "mid": "Claude Haiku",
+        "fwd1": "Nova Lite 2",
+        "fwd2": "Nova Lite 2"
+      },
+      "versions": {
+        "gk": "9",
+        "def": "9",
+        "mid": "8",
+        "fwd1": "8",
+        "fwd2": "9"
+      },
+      "prompt_stats": {
+        "gk": {
+          "version": "9",
+          "chars": 2936,
+          "words": 579,
+          "rules": 5,
+          "constraints": 5
+        },
+        "def": {
+          "version": "9",
+          "chars": 2990,
+          "words": 609,
+          "rules": 9,
+          "constraints": 4
+        },
+        "mid": {
+          "version": "8",
+          "chars": 2992,
+          "words": 592,
+          "rules": 9,
+          "constraints": 4
+        },
+        "fwd1": {
+          "version": "8",
+          "chars": 2986,
+          "words": 586,
+          "rules": 6,
+          "constraints": 4
+        },
+        "fwd2": {
+          "version": "9",
+          "chars": 2990,
+          "words": 580,
+          "rules": 7,
+          "constraints": 4
+        }
+      },
+      "performance": {
+        "gk": "adequate",
+        "def": "adequate",
+        "mid": "strong",
+        "fwd1": "strong",
+        "fwd2": "adequate"
+      },
+      "action_items": [
+        "v11 brief: close the long-shot gap. DEF presses any carrier in our half between the sides of our box whose line to our goal is clear, not only the one nearest our goal; the swarm presser rule needs a trigger that fires (their MID with the ball in or near our half \u2192 nearest of MID/FWD2 presses, no exceptions). Keep every attacking rule as is. (priority: high)",
+        "v11 brief: write the intercept job as \"INTERCEPT\" with a clear trigger (a pass is being played across you) rather than \"the pass to the opponent closest to him\", which the harness seems to run as FOLLOW. See `strategy/platform-reference.md`. (priority: high)",
+        "Check whether the platform shows a per-agent command breakdown; it would settle where the 71 FOLLOWs and 330 MOVEs come from. (priority: medium)",
+        "Scouting saved: `strategy/opponent-notes/nankatsu-sc.md`. (priority: low)"
+      ],
+      "observations": [
+        "Formation effectiveness: Won 5-4. Attack is the best it has been: 5 goals from 8 shots, 73 SHOOT commands, 67 PASSes, goals from MID and the runner.",
+        "Should we change formation? No. The v10 attacking roles are validated (Tesla 2, Hertz 2, one unattributed).",
+        "Coordination gaps: the defensive layer thinned out under v10. PRESS fell from 158 (017) to 30, INTERCEPT from 20 to 0, and we conceded 4 after conceding 2 in the previous four practice matches combined. Only one swarm player presses at a time by design, Hertz is now too far ahead to ever be the nearest, and DEF presses only the carrier nearest our goal. A MID shooting from midfield with a forward beyond him is pressed by nobody.",
+        "Platform Coach's Corner for us: \"Increase INTERCEPT from 0 to 40+ and add MARK (currently 3)\".",
+        "Opponent patterns: Nankatsu is press-and-shoot (PRESS 54%, INTERCEPT 16%, PASS 2%); fast back three at ~190ms, slow forwards at ~950ms. Same signature as Benchmark FC and Bright Auroras: the human teams appear to run the workshop sample prompts (PRESS_BALL at maximum intensity, INTERCEPT always on). Their gaps behind the press are where our goals came from.",
+        "Opponent formation: GK, DEF, MID, FWD, FWD.",
+        "Health check passed: 615 commands, 658\u2013940ms. The C001 failure did not recur."
+      ]
+    },
+    {
       "file": "match-log/practice/003-vs-the-benchmark-fc.md",
       "type": "practice",
       "number": 3,
@@ -604,6 +758,157 @@
         "Opponent formation: Unknown.",
         "Latency: 829ms average (863 in 002, 813 in 001). Same-model (Haiku) comparisons from v3 to v4: GK 707\u2192640, DEF 1020\u2192852, FWD1 713\u2192678, FWD2 999\u2192980, even though DEF, FWD1 and FWD2 prompts got longer. No sign that prompt length drives latency. Platform variance dominates. MID on Haiku 968 vs Sonnet 1050.",
         "Timing: all goals in matches 001 and 003 came in the first 3 minutes. Record goal minutes in every match to see if this pattern holds."
+      ]
+    },
+    {
+      "file": "match-log/competitive/003-vs-speedy-gonzales.md",
+      "type": "competitive",
+      "number": 3,
+      "opponent": "Speedy Gonzales",
+      "score_us": 2,
+      "score_them": 0,
+      "result": "W",
+      "date": "2026-10-06",
+      "formation": "1-1-2",
+      "strategy": "Swarm",
+      "deploy_tag": "deploy-v10-2026-10-06",
+      "metrics": {
+        "possession_us": 71,
+        "possession_them": 29,
+        "shots_us": 6,
+        "shots_them": 3,
+        "on_target_us": 2,
+        "on_target_them": 0,
+        "commands_us": 350,
+        "latency_avg_us": 1078,
+        "commands_them": 350,
+        "latency_avg_them": 525,
+        "commands": {
+          "move": 310,
+          "press": 2,
+          "intercept": 0,
+          "mark": 0,
+          "pass": 20,
+          "shoot": 1,
+          "clear": 13,
+          "gk_dist": 4
+        },
+        "agents": {
+          "gk": {
+            "latency_avg": 1157,
+            "latency_p95": null,
+            "success": 100
+          },
+          "def": {
+            "latency_avg": 1082,
+            "latency_p95": null,
+            "success": 100
+          },
+          "mid": {
+            "latency_avg": 1159,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd1": {
+            "latency_avg": 968,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd2": {
+            "latency_avg": 1037,
+            "latency_p95": null,
+            "success": 100
+          }
+        },
+        "success_avg": 100.0,
+        "latency_gap": 553,
+        "shot_accuracy": 33.3,
+        "shoot_cmd_to_shot": 600.0,
+        "press_share": 0.6,
+        "intercept_share": 0.0,
+        "mark_share": 0.0,
+        "pass_share": 5.7,
+        "shoot_share": 0.3,
+        "prompt_chars_avg": 2979,
+        "prompt_chars_max": 2992,
+        "prompt_rules_avg": 7.2
+      },
+      "coach_interventions": [
+        {
+          "when": "\u2014",
+          "message": "None (the match ran unattended; no live messages were sent)",
+          "effect": "\u2014"
+        }
+      ],
+      "models": {
+        "gk": "Claude Haiku",
+        "def": "Claude Haiku",
+        "mid": "Claude Haiku",
+        "fwd1": "Nova Lite 2",
+        "fwd2": "Nova Lite 2"
+      },
+      "versions": {
+        "gk": "9",
+        "def": "9",
+        "mid": "8",
+        "fwd1": "8",
+        "fwd2": "9"
+      },
+      "prompt_stats": {
+        "gk": {
+          "version": "9",
+          "chars": 2936,
+          "words": 579,
+          "rules": 5,
+          "constraints": 5
+        },
+        "def": {
+          "version": "9",
+          "chars": 2990,
+          "words": 609,
+          "rules": 9,
+          "constraints": 4
+        },
+        "mid": {
+          "version": "8",
+          "chars": 2992,
+          "words": 592,
+          "rules": 9,
+          "constraints": 4
+        },
+        "fwd1": {
+          "version": "8",
+          "chars": 2986,
+          "words": 586,
+          "rules": 6,
+          "constraints": 4
+        },
+        "fwd2": {
+          "version": "9",
+          "chars": 2990,
+          "words": 580,
+          "rules": 7,
+          "constraints": 4
+        }
+      },
+      "performance": {
+        "gk": "strong",
+        "def": "strong",
+        "mid": "strong",
+        "fwd1": "adequate",
+        "fwd2": "adequate"
+      },
+      "action_items": [
+        "Before the next competitive match, play one practice match and compare the command mix with C002 (SHOOT ~12%, PRESS ~5%, FOLLOW ~12%). If MOVE is above 80% again with normal latency, the v10 on-ball rules are collapsing into the one-step carry (MID rule 5, FWD1 rule 3) and v11 must remove the carry. If it only happens with ~1.1s latency, it is platform load. (priority: high)",
+        "Scouting saved: `strategy/opponent-notes/speedy-gonzales.md`. (priority: low)"
+      ],
+      "observations": [
+        "Formation effectiveness: 2-0, clean sheet, 71% possession. v10 is 2-0 in competitive play (7 scored, 4 conceded).",
+        "Should we change formation? No.",
+        "Coordination gaps: none visible in the result; the command mix says the agents mostly MOVEd, which worked against a team that only pressed. Do not read the 89% MOVE as a tactic to keep.",
+        "Opponent patterns: Speedy Gonzales is the same template as Nankatsu and Bright Auroras: PRESS 51%, INTERCEPT 19%, fast back three at ~210ms, forwards at ~1000ms. 0 shots on target. Weakest competitive opponent so far.",
+        "Opponent formation: GK, DEF, MID, FWD, FWD.",
+        "Competitive matches used: 3 of 10 (C001 was the deployment failure)."
       ]
     },
     {
@@ -3057,15 +3362,15 @@
     }
   },
   "stats": {
-    "total_matches": 18,
+    "total_matches": 20,
     "competitive": {
-      "played": 1,
-      "remaining": 9,
-      "wins": 0,
+      "played": 3,
+      "remaining": 7,
+      "wins": 2,
       "draws": 0,
       "losses": 1,
-      "goals_for": 0,
-      "goals_against": 5
+      "goals_for": 7,
+      "goals_against": 9
     },
     "practice": {
       "played": 17,
@@ -3076,24 +3381,24 @@
   },
   "performance_trends": {
     "gk": {
-      "avg": 2.0,
-      "matches_rated": 18
+      "avg": 2.05,
+      "matches_rated": 20
     },
     "def": {
-      "avg": 1.94,
-      "matches_rated": 18
+      "avg": 2.0,
+      "matches_rated": 20
     },
     "mid": {
-      "avg": 2.11,
-      "matches_rated": 18
+      "avg": 2.2,
+      "matches_rated": 20
     },
     "fwd1": {
-      "avg": 1.89,
-      "matches_rated": 18
+      "avg": 1.95,
+      "matches_rated": 20
     },
     "fwd2": {
-      "avg": 1.44,
-      "matches_rated": 18
+      "avg": 1.5,
+      "matches_rated": 20
     }
   }
 }
