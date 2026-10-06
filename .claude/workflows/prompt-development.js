@@ -334,7 +334,7 @@ const files = drafts.filter(d => d.version > 0).map(d => {
 })
 const promote = approved && mode === 'develop' ? drafts : []
 const record = await agent([
-  'You are the release clerk of the prompt-development workflow. Do exactly the following, nothing else. Do not commit.',
+  'You are the release clerk of the prompt-development workflow. Do exactly the following, nothing else. Do NOT run any git command (no git add, commit, tag or push), even though CLAUDE.md describes committing after approval: that is the main session\'s job, not yours.',
   '1. Write each file below with exactly the given content (create directories as needed; overwrite if present):',
   files.map(f => `=== FILE: ${f.path} ===\n${f.content}=== END FILE ===`).join('\n\n'),
   promote.length
