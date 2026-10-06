@@ -1908,6 +1908,460 @@
         "Results with the forwards on Nova Lite 2 / Sonnet: 3-0 W, 2-1 W, 1-2 L (1-2-1 test), 2-3 L (swap). All against Benchmark, which had one slow FWD in all four. The setup is not yet validated against Fort Knox or Total Attack.",
         "Tesla: 8 goals in matches 009\u2013013. He's our scoring engine."
       ]
+    },
+    {
+      "file": "match-log/practice/014-vs-the-benchmark-fc.md",
+      "type": "practice",
+      "number": 14,
+      "opponent": "The Benchmark FC",
+      "score_us": 1,
+      "score_them": 0,
+      "result": "W",
+      "date": "2026-10-06",
+      "formation": "1-1-2",
+      "strategy": "Swarm",
+      "deploy_tag": "deploy-v9-2026-10-06",
+      "metrics": {
+        "possession_us": 54,
+        "possession_them": 46,
+        "shots_us": 4,
+        "shots_them": 6,
+        "on_target_us": 1,
+        "on_target_them": 0,
+        "commands_us": 375,
+        "latency_avg_us": 804,
+        "commands_them": 375,
+        "latency_avg_them": 502,
+        "commands": {
+          "move": 127,
+          "press": 150,
+          "intercept": 39,
+          "mark": 2,
+          "pass": 21,
+          "shoot": 15,
+          "clear": 12,
+          "gk_dist": 9
+        },
+        "agents": {
+          "gk": {
+            "latency_avg": 625,
+            "latency_p95": null,
+            "success": 100
+          },
+          "def": {
+            "latency_avg": 778,
+            "latency_p95": null,
+            "success": 100
+          },
+          "mid": {
+            "latency_avg": 980,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd1": {
+            "latency_avg": 647,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd2": {
+            "latency_avg": 852,
+            "latency_p95": null,
+            "success": 100
+          }
+        },
+        "success_avg": 100.0,
+        "latency_gap": 302,
+        "shot_accuracy": 25.0,
+        "shoot_cmd_to_shot": 26.7,
+        "press_share": 40.0,
+        "intercept_share": 10.4,
+        "mark_share": 0.5,
+        "pass_share": 5.6,
+        "shoot_share": 4.0,
+        "prompt_chars_avg": 2903,
+        "prompt_chars_max": 3000,
+        "prompt_rules_avg": 6.8
+      },
+      "coach_interventions": [],
+      "models": {
+        "gk": "Claude Haiku",
+        "def": "Claude Haiku",
+        "mid": "Claude Haiku",
+        "fwd1": "Nova Lite 2",
+        "fwd2": "Nova Lite 2"
+      },
+      "versions": {
+        "gk": "8",
+        "def": "8",
+        "mid": "7",
+        "fwd1": "7",
+        "fwd2": "8"
+      },
+      "prompt_stats": {
+        "gk": {
+          "version": "8",
+          "chars": 2561,
+          "words": 513,
+          "rules": 5,
+          "constraints": 4
+        },
+        "def": {
+          "version": "8",
+          "chars": 2990,
+          "words": 614,
+          "rules": 8,
+          "constraints": 5
+        },
+        "mid": {
+          "version": "7",
+          "chars": 2983,
+          "words": 599,
+          "rules": 8,
+          "constraints": 4
+        },
+        "fwd1": {
+          "version": "7",
+          "chars": 3000,
+          "words": 591,
+          "rules": 7,
+          "constraints": 4
+        },
+        "fwd2": {
+          "version": "8",
+          "chars": 2980,
+          "words": 576,
+          "rules": 6,
+          "constraints": 4
+        }
+      },
+      "performance": {
+        "gk": "strong",
+        "def": "strong",
+        "mid": "adequate",
+        "fwd1": "strong",
+        "fwd2": "adequate"
+      },
+      "action_items": [
+        "Validate: play this exact setup (no prompt or model change) against Fort Knox Athletic, then Total Attack United. Log both. (priority: high)",
+        "Tesla: ask the coach where his SHOOT commands came from and whether Hertz stood ahead of him when he had the ball. If MID rule 1 is being switched off by a free Hertz, exempt MID's shot from the teammate clause in the next release. (priority: high)",
+        "Platform: GK Dist 9 vs PASS in GK rule 2. Check in \"What can my agents do?\" whether the GK can PASS at all, and what state fields the agents receive. (priority: high)",
+        "FWD1 release: make Hertz's FWD2 v7 text the official FWD1 v8 with labels switched, so both forwards stop calling themselves FWD2 in the shared Pressers tie-break. (priority: medium)",
+        "Coach Interventions: fill in or write \"None\". (priority: medium)"
+      ],
+      "observations": [
+        "Formation effectiveness: 1-1-2 Swarm, 54% possession, 4 shots, 1 on target, 1 goal; 0 on target against. Fifth win of the season, all five with the opponent held to 0 or 1 shot on target.",
+        "Should we change formation? No. Don't change anything until this setup has played Fort Knox and Total Attack.",
+        "Coordination gaps: SHOOT 15 and PASS 21 are low. 150 PRESS commands won the match. Press share in our wins: 37% (001), 28% (003), 39% (010), 28% (011), 40% (014); in our last four losses 28%, 25%, 23%, 20%.",
+        "Opponent patterns: Benchmark now passes (17%) and uses FOLLOW (10%), and keeps shooting off target (6 shots, 0 on target). Two slow forwards.",
+        "Opponent formation: Unknown (GK, DEF, MID, FWD, FWD).",
+        "**Validation gap:** this is the fifth consecutive result against a weakened Benchmark (one slow FWD in 010\u2013013, two in 014). Results with Hertz on the FWD2 v7 text: 2-3 L (013, Lovelace on FWD1 text), 1-0 W (014, Lovelace on FWD2 v8).",
+        "**Every shot on target is a goal**, both teams, matches 001\u2013014 (12 with stats). Defending means preventing shots; attacking means landing one."
+      ]
+    },
+    {
+      "file": "match-log/practice/015-vs-total-attack-united.md",
+      "type": "practice",
+      "number": 15,
+      "opponent": "Total Attack United",
+      "score_us": 3,
+      "score_them": 2,
+      "result": "W",
+      "date": "2026-10-06",
+      "formation": "1-1-2",
+      "strategy": "Swarm",
+      "deploy_tag": "deploy-v9-2026-10-06",
+      "metrics": {
+        "possession_us": 58,
+        "possession_them": 42,
+        "shots_us": 4,
+        "shots_them": 9,
+        "on_target_us": 3,
+        "on_target_them": 2,
+        "commands_us": 434,
+        "latency_avg_us": 842,
+        "commands_them": 435,
+        "latency_avg_them": 607,
+        "commands": {
+          "move": 178,
+          "press": 112,
+          "intercept": 68,
+          "mark": 0,
+          "pass": 0,
+          "shoot": 58,
+          "clear": 18,
+          "gk_dist": 0
+        },
+        "agents": {
+          "gk": {
+            "latency_avg": 648,
+            "latency_p95": null,
+            "success": 100
+          },
+          "def": {
+            "latency_avg": 865,
+            "latency_p95": null,
+            "success": 100
+          },
+          "mid": {
+            "latency_avg": 989,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd1": {
+            "latency_avg": 612,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd2": {
+            "latency_avg": 919,
+            "latency_p95": null,
+            "success": 100
+          }
+        },
+        "success_avg": 100.0,
+        "latency_gap": 235,
+        "shot_accuracy": 75.0,
+        "shoot_cmd_to_shot": 6.9,
+        "press_share": 25.8,
+        "intercept_share": 15.7,
+        "mark_share": 0.0,
+        "pass_share": 0.0,
+        "shoot_share": 13.4,
+        "prompt_chars_avg": 2903,
+        "prompt_chars_max": 3000,
+        "prompt_rules_avg": 6.8
+      },
+      "coach_interventions": [
+        {
+          "when": "Throughout, repeated",
+          "message": "Be more aggressive and shoot!",
+          "effect": "Sent many times from kickoff. SHOOT commands reached 58 (13%), the season high, and 3 of 4 shots were on target. Cannot be separated from the prompts; the same message was sent in 016."
+        }
+      ],
+      "models": {
+        "gk": "Claude Haiku",
+        "def": "Claude Haiku",
+        "mid": "Claude Haiku",
+        "fwd1": "Nova Lite 2",
+        "fwd2": "Nova Lite 2"
+      },
+      "versions": {
+        "gk": "8",
+        "def": "8",
+        "mid": "7",
+        "fwd1": "7",
+        "fwd2": "8"
+      },
+      "prompt_stats": {
+        "gk": {
+          "version": "8",
+          "chars": 2561,
+          "words": 513,
+          "rules": 5,
+          "constraints": 4
+        },
+        "def": {
+          "version": "8",
+          "chars": 2990,
+          "words": 614,
+          "rules": 8,
+          "constraints": 5
+        },
+        "mid": {
+          "version": "7",
+          "chars": 2983,
+          "words": 599,
+          "rules": 8,
+          "constraints": 4
+        },
+        "fwd1": {
+          "version": "7",
+          "chars": 3000,
+          "words": 591,
+          "rules": 7,
+          "constraints": 4
+        },
+        "fwd2": {
+          "version": "8",
+          "chars": 2980,
+          "words": 576,
+          "rules": 6,
+          "constraints": 4
+        }
+      },
+      "performance": {
+        "gk": "adequate",
+        "def": "adequate",
+        "mid": "strong",
+        "fwd1": "adequate",
+        "fwd2": "adequate"
+      },
+      "action_items": [
+        "Freeze this setup for competitive play (validated against all three AI teams: 1-0, 3-2, 4-0). (priority: high)",
+        "Keep sending \"be more aggressive and shoot!\" from kickoff in competitive matches; it is a legal lever and was present in all three validation wins. (priority: high)",
+        "GK: the opposing GK long ball has now scored four times. Watch Shannon on the next one; if he leaves the line, this is the first candidate for a post-competition fix. (priority: medium)",
+        "Platform: check whether the report's command columns are complete (0 PASS here vs 66 in 016 with the same prompts). (priority: low)"
+      ],
+      "observations": [
+        "Formation effectiveness: 3-2 W, first ever against Total Attack. 58% possession.",
+        "Should we change formation? No.",
+        "Coordination gaps: **0 PASS and 0 MARK team-wide** in the platform breakdown, even though GK, DEF and MID prompts say PASS first and DEF/FWD2 have MARK rules. Either the platform collapsed those columns in this report, or the live \"be aggressive and shoot\" message overrode the pass-first rules. Compare with 016 (66 PASS, 175 MARK, same message): the difference is the opponent, so the rules do fire; against a high press there is nobody free to pass to.",
+        "Opponent patterns: as advertised, early goals (2') and a GK who shoots from his own end. 62% MOVE, 2 of 9 on target.",
+        "Opponent formation: Unknown.",
+        "SHOOT commands to shots: 58 \u2192 4, same ~7% conversion as always, but 3 of the 4 went in."
+      ]
+    },
+    {
+      "file": "match-log/practice/016-vs-fort-knox-athletic.md",
+      "type": "practice",
+      "number": 16,
+      "opponent": "Fort Knox Athletic",
+      "score_us": 4,
+      "score_them": 0,
+      "result": "W",
+      "date": "2026-10-06",
+      "formation": "1-1-2",
+      "strategy": "Swarm",
+      "deploy_tag": "deploy-v9-2026-10-06",
+      "metrics": {
+        "possession_us": 48,
+        "possession_them": 52,
+        "shots_us": 5,
+        "shots_them": 2,
+        "on_target_us": 4,
+        "on_target_them": 0,
+        "commands_us": 440,
+        "latency_avg_us": 809,
+        "commands_them": 440,
+        "latency_avg_them": 459,
+        "commands": {
+          "move": 75,
+          "press": 59,
+          "intercept": 30,
+          "mark": 175,
+          "pass": 66,
+          "shoot": 0,
+          "clear": 25,
+          "gk_dist": 10
+        },
+        "agents": {
+          "gk": {
+            "latency_avg": 634,
+            "latency_p95": null,
+            "success": 100
+          },
+          "def": {
+            "latency_avg": 851,
+            "latency_p95": null,
+            "success": 100
+          },
+          "mid": {
+            "latency_avg": 972,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd1": {
+            "latency_avg": 590,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd2": {
+            "latency_avg": 879,
+            "latency_p95": null,
+            "success": 100
+          }
+        },
+        "success_avg": 100.0,
+        "latency_gap": 350,
+        "shot_accuracy": 80.0,
+        "press_share": 13.4,
+        "intercept_share": 6.8,
+        "mark_share": 39.8,
+        "pass_share": 15.0,
+        "shoot_share": 0.0,
+        "prompt_chars_avg": 2903,
+        "prompt_chars_max": 3000,
+        "prompt_rules_avg": 6.8
+      },
+      "coach_interventions": [
+        {
+          "when": "Throughout, repeated",
+          "message": "Be more aggressive and shoot!",
+          "effect": "Sent many times from kickoff. 0 SHOOT commands were logged, yet 4 of 5 shots went in, so the message did not act through SHOOT here. Same message as in 015."
+        }
+      ],
+      "models": {
+        "gk": "Claude Haiku",
+        "def": "Claude Haiku",
+        "mid": "Claude Haiku",
+        "fwd1": "Nova Lite 2",
+        "fwd2": "Nova Lite 2"
+      },
+      "versions": {
+        "gk": "8",
+        "def": "8",
+        "mid": "7",
+        "fwd1": "7",
+        "fwd2": "8"
+      },
+      "prompt_stats": {
+        "gk": {
+          "version": "8",
+          "chars": 2561,
+          "words": 513,
+          "rules": 5,
+          "constraints": 4
+        },
+        "def": {
+          "version": "8",
+          "chars": 2990,
+          "words": 614,
+          "rules": 8,
+          "constraints": 5
+        },
+        "mid": {
+          "version": "7",
+          "chars": 2983,
+          "words": 599,
+          "rules": 8,
+          "constraints": 4
+        },
+        "fwd1": {
+          "version": "7",
+          "chars": 3000,
+          "words": 591,
+          "rules": 7,
+          "constraints": 4
+        },
+        "fwd2": {
+          "version": "8",
+          "chars": 2980,
+          "words": 576,
+          "rules": 6,
+          "constraints": 4
+        }
+      },
+      "performance": {
+        "gk": "strong",
+        "def": "strong",
+        "mid": "strong",
+        "fwd1": "strong",
+        "fwd2": "adequate"
+      },
+      "action_items": [
+        "Freeze the setup and commit/tag the state before competitive play. (priority: high)",
+        "Competitive routine: paste from `deploy/paste-ready.md`, check the five model dropdowns, redeploy, and send \"be more aggressive and shoot!\" from kickoff. (priority: high)",
+        "Record the scorers, minutes and the coach's message in every competitive log. (priority: high)",
+        "After the first two competitive matches, revisit: the opposing-GK long ball (4 goals against), and a FWD1 v8 release that is Hertz's FWD2 v7 text with the labels switched. No prompt changes before then. (priority: medium)"
+      ],
+      "observations": [
+        "Formation effectiveness: 4-0, the biggest win of the season, with 48% possession.",
+        "Should we change formation? No. **The v9 setup is now validated against all three AI teams: 1-0 Benchmark, 3-2 Total Attack, 4-0 Fort Knox.** Season record 7W 1D 8L; this setup 3W 0L, 8 goals for, 2 against.",
+        "Coordination gaps: none visible in the result. Note the command mix swings completely with the opponent (015: 0 PASS, 0 MARK, 58 SHOOT; 016: 66 PASS, 175 MARK, 0 SHOOT) with identical prompts and the same live message. Command counts describe the opponent as much as our prompts.",
+        "Opponent patterns: Fort Knox plays MOVE-only (70%) with no marking or intercepting; their GK is their best player. Two slow forwards.",
+        "Opponent formation: Unknown.",
+        "Shots on target = goals in every match for both sides, 16 matches running (us 4/4, them 0/0 here)."
+      ]
     }
   ],
   "current_formation": "1-1-2",
@@ -2267,7 +2721,7 @@
     }
   },
   "stats": {
-    "total_matches": 13,
+    "total_matches": 16,
     "competitive": {
       "played": 0,
       "remaining": 10,
@@ -2278,32 +2732,32 @@
       "goals_against": 0
     },
     "practice": {
-      "played": 13,
-      "wins": 4,
+      "played": 16,
+      "wins": 7,
       "draws": 1,
       "losses": 8
     }
   },
   "performance_trends": {
     "gk": {
-      "avg": 1.85,
-      "matches_rated": 13
+      "avg": 2.0,
+      "matches_rated": 16
     },
     "def": {
-      "avg": 1.85,
-      "matches_rated": 13
+      "avg": 2.0,
+      "matches_rated": 16
     },
     "mid": {
-      "avg": 2.0,
-      "matches_rated": 13
+      "avg": 2.12,
+      "matches_rated": 16
     },
     "fwd1": {
-      "avg": 1.77,
-      "matches_rated": 13
+      "avg": 1.94,
+      "matches_rated": 16
     },
     "fwd2": {
-      "avg": 1.31,
-      "matches_rated": 13
+      "avg": 1.44,
+      "matches_rated": 16
     }
   }
 }

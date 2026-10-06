@@ -55,7 +55,7 @@ The platform accepts live messages during a match, and they change agent behavio
 
 | Situation | Message | Status |
 |-----------|---------|--------|
-| No shots, team passive | "Be more aggressive and hit the ball. Shoot whenever you have a clear line to goal." | **Proven** — goal at 2' in match 001 |
+| No shots, team passive | "Be more aggressive and shoot!" (sent repeatedly from kickoff) | **Proven** — goal at 2' in match 001 (sent once); sent throughout 015 (3-2 W) and 016 (4-0 W). Send it in every competitive match |
 | Opponent keeps passing around our press | "One presser per zone only. Everyone else cut the passing lanes." | Untested |
 | Players drifting to the flanks, middle open | "Protect the middle. Do not follow the ball into the corners." | Untested |
 | Protecting a late lead | "Defend deep. MARK every attacker. CLEAR the ball long, no risks." | Untested |

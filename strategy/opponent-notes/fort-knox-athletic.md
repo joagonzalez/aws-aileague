@@ -4,6 +4,7 @@
 | # | Type | Score | Our versions |
 |---|------|-------|--------------|
 | 008 | practice | 0-1 L | v7 |
+| 016 | practice | 4-0 W | v9 (Lovelace FWD2 v8, Hertz on FWD2 v7 text, both Nova Lite 2); coach repeated "be more aggressive and shoot!" |
 
 ## Official description
 Defensive. Compact, disciplined, and lethal on the counter-attack.
@@ -11,6 +12,10 @@ Defensive. Compact, disciplined, and lethal on the counter-attack.
 ## Observed (008)
 - Compact and patient: 57% possession, only 1 shot (on target, the goal at 3'). Move 61%, Press 27%.
 - They pulled us into passive marking: our MARK was 41% (184), press 5%, 0 SHOOT commands. As predicted, they gave our counter little space.
+
+## Observed (016)
+- 70% MOVE, zero MARK, zero INTERCEPT, 2 shots, 0 on target. Two slow forwards (870/927ms, avg 459ms). Their GK was MVP, fastest and most tactical.
+- We won 4-0 in two minutes (Hertz 2, Tesla 2) with MARK at 40% again (175, same share as the 008 loss), 66 PASS and 0 SHOOT commands. The MARK-heavy pattern against them is not passive when the ball also gets to Tesla and Hertz.
 
 ## What we expected before playing them
 - **Danger:** probably our worst match-up. They won't push forward, so our counter has little space to attack. Their own counter targets the space behind DEF's v5 spot (midway between our box and halfway), which the v5 Evaluator flagged as the main risk.
