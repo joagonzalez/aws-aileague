@@ -1185,6 +1185,151 @@
         "**The 3000-char prompts did not slow anyone down:** MID 956/884/965 (941 at 2000 chars), FWD1 688/634/671 (638), FWD2 967/955/985 (893). Length is still not the latency lever.",
         "**Shots without SHOOT:** 4 shots and 0 SHOOT commands in 008, so the platform counts some clears/passes toward goal as shots."
       ]
+    },
+    {
+      "file": "match-log/practice/009-vs-the-benchmark-fc.md",
+      "type": "practice",
+      "number": 9,
+      "opponent": "The Benchmark FC",
+      "score_us": 1,
+      "score_them": 2,
+      "result": "L",
+      "date": "2026-10-05",
+      "formation": "1-1-2",
+      "strategy": "Swarm",
+      "deploy_tag": "deploy-v8-2026-10-05",
+      "metrics": {
+        "possession_us": 35,
+        "possession_them": 65,
+        "shots_us": 3,
+        "shots_them": 4,
+        "on_target_us": 1,
+        "on_target_them": 2,
+        "commands_us": 434,
+        "latency_avg_us": 837,
+        "commands_them": 435,
+        "latency_avg_them": 188,
+        "commands": {
+          "move": 195,
+          "press": 122,
+          "intercept": 47,
+          "mark": 2,
+          "pass": 24,
+          "shoot": 16,
+          "clear": 23,
+          "gk_dist": 5
+        },
+        "agents": {
+          "gk": {
+            "latency_avg": 644,
+            "latency_p95": null,
+            "success": 100
+          },
+          "def": {
+            "latency_avg": 1148,
+            "latency_p95": null,
+            "success": 100
+          },
+          "mid": {
+            "latency_avg": 870,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd1": {
+            "latency_avg": 641,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd2": {
+            "latency_avg": 828,
+            "latency_p95": null,
+            "success": 100
+          }
+        },
+        "success_avg": 100.0,
+        "latency_gap": 649,
+        "shot_accuracy": 33.3,
+        "shoot_cmd_to_shot": 18.8,
+        "press_share": 28.1,
+        "intercept_share": 10.8,
+        "mark_share": 0.5,
+        "pass_share": 5.5,
+        "shoot_share": 3.7,
+        "prompt_chars_avg": 2906,
+        "prompt_chars_max": 3000,
+        "prompt_rules_avg": 7.0
+      },
+      "coach_interventions": [],
+      "models": {
+        "gk": "Claude Haiku",
+        "def": "Claude Haiku",
+        "mid": "Claude Haiku",
+        "fwd1": "Claude Haiku",
+        "fwd2": "unconfirmed (Sonnet planned)"
+      },
+      "versions": {
+        "gk": "8",
+        "def": "8",
+        "mid": "7",
+        "fwd1": "7",
+        "fwd2": "7"
+      },
+      "prompt_stats": {
+        "gk": {
+          "version": "8",
+          "chars": 2561,
+          "words": 513,
+          "rules": 5,
+          "constraints": 4
+        },
+        "def": {
+          "version": "8",
+          "chars": 2990,
+          "words": 614,
+          "rules": 8,
+          "constraints": 5
+        },
+        "mid": {
+          "version": "7",
+          "chars": 2983,
+          "words": 599,
+          "rules": 8,
+          "constraints": 4
+        },
+        "fwd1": {
+          "version": "7",
+          "chars": 3000,
+          "words": 591,
+          "rules": 7,
+          "constraints": 4
+        },
+        "fwd2": {
+          "version": "7",
+          "chars": 2997,
+          "words": 590,
+          "rules": 7,
+          "constraints": 4
+        }
+      },
+      "performance": {
+        "gk": "weak",
+        "def": "adequate",
+        "mid": "adequate",
+        "fwd1": "weak",
+        "fwd2": "weak"
+      },
+      "action_items": [
+        "Models: next match tests the forwards on Sonnet and Nova Lite 2 with v8 prompts unchanged (coach). Record which forward ran which model. (priority: high)",
+        "Control: if the model test doesn't help, replay v4 (our best result) against Benchmark to separate \"our prompts got worse\" from opponent/variance noise. (priority: high)",
+        "GK: observe what Shannon does when the opponent GK kicks long. (priority: high)",
+        "v9 direction (pending tests): fewer, simpler rules built on tracking commands (PRESS/MARK/INTERCEPT, PASS/SHOOT) instead of \"move to a spot\". (priority: medium)"
+      ],
+      "observations": [
+        "**Getting worse, not better:** W 1-0 (v1), D 2-2 (v3), W 2-1 (v4), then L 0-3, 0-1, 2-3, 0-2, 0-1, 1-2. Six straight losses since v4. Prompts grew from ~1500 to ~2900 chars and from ~6 to ~9 rules over the same period. There's no evidence the added complexity helped, and it may have hurt.",
+        "**Forward behavior is unchanged by wording.** Five forward rewrites (v3, v4, v5, v7, v8) ended in the same coach verdict. The remaining levers: the model (being tested), and what kind of command we ask for (see the next point).",
+        "**Hypothesis: fixed positions go stale; tracking commands don't.** A MOVE_TO a spot is fixed when issued and stays wrong for the ~0.65\u20131.1 s until the next decision, so players overshoot to stale places (corners). PRESS (chase the ball), MARK and INTERCEPT keep tracking their target between decisions. Our prompts since v4 are full of \"move to your spot\". MOVE has been 36\u201345% of our commands.",
+        "**Opposing goalkeepers scoring from their own end** (006, 007, 009) is our most repeatable leak."
+      ]
     }
   ],
   "current_formation": "1-1-2",
@@ -1531,7 +1676,7 @@
     }
   },
   "stats": {
-    "total_matches": 8,
+    "total_matches": 9,
     "competitive": {
       "played": 0,
       "remaining": 10,
@@ -1542,32 +1687,32 @@
       "goals_against": 0
     },
     "practice": {
-      "played": 8,
+      "played": 9,
       "wins": 2,
       "draws": 1,
-      "losses": 5
+      "losses": 6
     }
   },
   "performance_trends": {
     "gk": {
-      "avg": 1.75,
-      "matches_rated": 8
+      "avg": 1.67,
+      "matches_rated": 9
     },
     "def": {
-      "avg": 1.75,
-      "matches_rated": 8
+      "avg": 1.78,
+      "matches_rated": 9
     },
     "mid": {
-      "avg": 1.62,
-      "matches_rated": 8
+      "avg": 1.67,
+      "matches_rated": 9
     },
     "fwd1": {
-      "avg": 1.75,
-      "matches_rated": 8
+      "avg": 1.67,
+      "matches_rated": 9
     },
     "fwd2": {
-      "avg": 1.38,
-      "matches_rated": 8
+      "avg": 1.33,
+      "matches_rated": 9
     }
   }
 }
