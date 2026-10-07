@@ -9,7 +9,7 @@ This is the ground truth for what the agents can do and see. Our own observation
 | Fact | Value |
 |------|-------|
 | Format | 5v5, fully automated, documented as 5 minutes *(ours: regulation has ended around 2' in practice, then overtime; confirm the competition length)* |
-| Invocation rate | ~1 invocation per agent every 2 seconds. Each agent is invoked independently per tick with the same game state |
+| Invocation rate | ~1 invocation per agent every 2 seconds. *(ours: when our latency passed ~2 s under evening load, match 038, agents got 46 commands instead of 75-120: the tick is skipped, not delayed)*. Each agent is invoked independently per tick with the same game state |
 | Decision timeout | 5 seconds. If the agent does not answer in time, **the player holds its last command** |
 | Visibility | Only what a player on the pitch could see. Opponent prompts and code are never visible |
 | Default AI | Each player has a built-in AI underneath. `CLEAR_OVERRIDE` returns a player to it; `RESET` clears all overrides for the team. *(ours: competitive 001, 33 ms / 52 commands, was the default AI playing, not our prompts)* |
@@ -105,3 +105,5 @@ The portal exports the team as JSON: `{"version": "1", "exported_at": ..., "team
 
 Model IDs: Claude Haiku = `global.anthropic.claude-haiku-4-5-20251001-v1:0`, Nova Micro = `us.amazon.nova-micro-v1:0`, Nova Lite 2 = `us.amazon.nova-2-lite-v1:0`. `scripts/build-paste-ready.py` now also writes `deploy/agents-import.json` in this schema from the same sources, so a release can be imported in one step if the portal has an import; otherwise paste as before.
 \n
+
+*(ours, 2026-10-07)* The 30-practice-match allowance stated in the competition rules was not enforced: 41 practice matches played.

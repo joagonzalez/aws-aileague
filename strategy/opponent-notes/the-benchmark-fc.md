@@ -20,6 +20,10 @@
 | 024 | practice | 1-1 D | v13, coach watching; long match, MOVE 50% |
 | 027 | practice | 3-0 W | v13, coach watching; three goals in minute 1, 0 on target against |
 | 029 | practice | 6-3 W | v14, coach watching. Hertz hat-trick, Tesla x3; conceded 3 under a 38% press |
+| 031 | practice | 2-1 W | v14 |
+| 034 | practice | 2-1 W | v14 |
+| 037 | practice | 4-3 W | v14, Tesla x4; conceded 3 under a 27% press |
+| 039 | practice | 2-1 W | v14, their GK own goal |
 
 ## Official description
 Balanced. Solid fundamentals: plays through the midfield, holds shape, finishes cleanly.

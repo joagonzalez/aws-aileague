@@ -11,6 +11,11 @@
 | 023 | practice | 1-6 L | v13, coach watching. Their GK x2, DEF, FWD x2 + unknown; PASS 0, 2 shots |
 | 026 | practice | 3-4 L | v13, coach watching. Tesla hat-trick; their DEF x2, FWD x2; PASS 0, GK Dist 1 |
 | 028 | practice | **5-1 W** | v14, coach watching. First win over them unattended: Tesla x2, Hertz, two unknown; no minute-1 concession; their GK scored once |
+| 033 | practice | 3-1 W | v14 |
+| 035 | practice | 4-5 L | v14, our avg 1058 ms; their DEF x2, GK, Vic Surge x2 |
+| 036 | practice | 4-0 W | v14, 0 on target against |
+| 040 | practice | 2-6 L | v14, our avg 1059 ms; **their GK x4**, DEF x2 |
+| 041 | practice | 0-6 L | v14, our avg 1074 ms; Vic Surge x4, GK, MID; four conceded in minute 1 |
 
 ## Official description
 Aggressive. Presses high, commits numbers forward, takes risks for early goals.
