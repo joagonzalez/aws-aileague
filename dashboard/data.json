@@ -3103,6 +3103,158 @@
       ]
     },
     {
+      "file": "match-log/practice/022-vs-total-attack-united.md",
+      "type": "practice",
+      "number": 22,
+      "opponent": "Total Attack United",
+      "score_us": 3,
+      "score_them": 5,
+      "result": "L",
+      "date": "2026-10-06",
+      "formation": "1-1-2",
+      "strategy": "Swarm",
+      "deploy_tag": "deploy-v12-2026-10-06",
+      "metrics": {
+        "possession_us": 61,
+        "possession_them": 39,
+        "shots_us": 3,
+        "shots_them": 10,
+        "on_target_us": 3,
+        "on_target_them": 5,
+        "commands_us": 560,
+        "latency_avg_us": 832,
+        "commands_them": 585,
+        "latency_avg_them": 600,
+        "commands": {
+          "move": 228,
+          "press": 130,
+          "intercept": 85,
+          "mark": 0,
+          "pass": 0,
+          "shoot": 89,
+          "clear": 25,
+          "gk_dist": 3
+        },
+        "agents": {
+          "gk": {
+            "latency_avg": 702,
+            "latency_p95": null,
+            "success": 100
+          },
+          "def": {
+            "latency_avg": 830,
+            "latency_p95": null,
+            "success": 100
+          },
+          "mid": {
+            "latency_avg": 984,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd1": {
+            "latency_avg": 672,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd2": {
+            "latency_avg": 1041,
+            "latency_p95": null,
+            "success": 100
+          }
+        },
+        "success_avg": 100.0,
+        "latency_gap": 232,
+        "shot_accuracy": 100.0,
+        "shoot_cmd_to_shot": 3.4,
+        "press_share": 23.2,
+        "intercept_share": 15.2,
+        "mark_share": 0.0,
+        "pass_share": 0.0,
+        "shoot_share": 15.9,
+        "prompt_chars_avg": 2930,
+        "prompt_chars_max": 2977,
+        "prompt_rules_avg": 7.6
+      },
+      "coach_interventions": [
+        {
+          "when": "\u2014",
+          "message": "None (watched, no messages sent)",
+          "effect": "\u2014"
+        }
+      ],
+      "models": {
+        "gk": "Claude Haiku",
+        "def": "Nova Micro",
+        "mid": "Claude Haiku",
+        "fwd1": "Nova Lite 2",
+        "fwd2": "Nova Lite 2"
+      },
+      "versions": {
+        "gk": "11",
+        "def": "11",
+        "mid": "10",
+        "fwd1": "10",
+        "fwd2": "11"
+      },
+      "prompt_stats": {
+        "gk": {
+          "version": "11",
+          "chars": 2823,
+          "words": 555,
+          "rules": 5,
+          "constraints": 5
+        },
+        "def": {
+          "version": "11",
+          "chars": 2977,
+          "words": 607,
+          "rules": 9,
+          "constraints": 4
+        },
+        "mid": {
+          "version": "10",
+          "chars": 2973,
+          "words": 588,
+          "rules": 9,
+          "constraints": 4
+        },
+        "fwd1": {
+          "version": "10",
+          "chars": 2971,
+          "words": 585,
+          "rules": 7,
+          "constraints": 5
+        },
+        "fwd2": {
+          "version": "11",
+          "chars": 2906,
+          "words": 566,
+          "rules": 8,
+          "constraints": 4
+        }
+      },
+      "performance": {
+        "gk": "weak",
+        "def": "weak",
+        "mid": "strong",
+        "fwd1": "adequate",
+        "fwd2": "weak"
+      },
+      "action_items": [
+        "Docs now: schema rule 7 and CLAUDE.md say CLEAR is CLEAR_OVERRIDE; never write \"clear\" as an action. (priority: high)",
+        "v13 brief (when the coach is ready): (a) remove every CLEAR: GK \"kick it long to FWD1\" only; DEF \"lofted PASS to FWD1, else lofted PASS to MID\"; MID/FWD fallbacks \"lofted PASS to FWD1\" or \"SHOOT at full power\". (b) Swarm press reach: the nearer of MID and FWD2 presses any carrier anywhere except their GK and deepest DEF (Hertz's), so their MID is pressed in his own half too; Lovelace MARKs their MID tightly whenever he is without the ball. (c) Hertz and Lovelace: in their half with a clear line to goal (no outfield opponent directly between you and the goal) \u2192 SHOOT at full power, wherever they stand; the central-third \"goal in front\" test goes. (d) DEF back to Claude Haiku. (priority: high)",
+        "Keep v12 for the Benchmark and Fort Knox tests; compare with 018 (2-1) and 019 (2-1) on v11. (priority: medium)",
+        "Office hours: confirm that the \"Clear\" count is CLEAR_OVERRIDE and what it does mid-match (one tick, or until the next command?). (priority: high)"
+      ],
+      "observations": [
+        "Formation effectiveness: Lost 3-5. v12 is 0-1. Against Total Attack we are 1-3 (015 win on v9 with the live \"be aggressive and shoot\" message; 020, 021, 022 losses unattended).",
+        "Should we change formation? No. The coach tests v12 against Benchmark and Fort Knox next for a general read; v13 brief below is ready.",
+        "Coordination gaps: (1) their MID shoots from his own half unpressed; (2) CLEAR = default AI; (3) wide/runner long shots blocked by the \"goal in front\" test; (4) minute-1 blitz after kick-offs persists.",
+        "Opponent patterns: Total Attack United now has a 670 ms DEF (model change on their side) and passes 22% of commands; 10 shots, 5 on target.",
+        "Opponent formation: GK, DEF, MID, FWD, FWD."
+      ]
+    },
+    {
       "file": "match-log/competitive/001-vs-bright-auroras.md",
       "type": "competitive",
       "number": 1,
@@ -4338,7 +4490,7 @@
     }
   },
   "stats": {
-    "total_matches": 26,
+    "total_matches": 27,
     "competitive": {
       "played": 5,
       "remaining": 5,
@@ -4349,32 +4501,32 @@
       "goals_against": 11
     },
     "practice": {
-      "played": 21,
+      "played": 22,
       "wins": 10,
       "draws": 1,
-      "losses": 10
+      "losses": 11
     }
   },
   "performance_trends": {
     "gk": {
-      "avg": 2.0,
-      "matches_rated": 26
+      "avg": 1.96,
+      "matches_rated": 27
     },
     "def": {
-      "avg": 1.92,
-      "matches_rated": 26
+      "avg": 1.89,
+      "matches_rated": 27
     },
     "mid": {
-      "avg": 2.15,
-      "matches_rated": 26
+      "avg": 2.19,
+      "matches_rated": 27
     },
     "fwd1": {
-      "avg": 1.92,
-      "matches_rated": 26
+      "avg": 1.93,
+      "matches_rated": 27
     },
     "fwd2": {
-      "avg": 1.58,
-      "matches_rated": 26
+      "avg": 1.56,
+      "matches_rated": 27
     }
   }
 }

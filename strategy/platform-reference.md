@@ -47,7 +47,7 @@ The agent returns a JSON array with one command for its player: `commandType`, `
 | `CLEAR_OVERRIDE` | tactical | none | Return this player to the default AI. **Never want this** |
 | `RESET` | tactical | none | Clear all overrides for the team. **Never want this** |
 
-*(ours)* Match reports also count a `CLEAR` command (5 in match 017), which is not in the workshop sample list. The competition harness exposes it; keep using the word, but never write "reset", "override" or "default" in a prompt, since the harness could map them to `CLEAR_OVERRIDE`/`RESET` and hand the player to the default AI.
+*(ours)* Match reports count a "Clear" command (5–35 per match for us). **It is `CLEAR_OVERRIDE`**: match 022's platform overview says "Panic's CLEAR_OVERRIDE spam (25 commands)" where our breakdown shows Clear 25. There is no CLEAR command; every "CLEAR" in our prompts handed that player to the default AI for the decision. Never write "clear", "reset", "override" or "default" as an action; name a receiver or shoot instead. Also *(ours, match 022)*: Nova Micro on DEF answered in 830 ms against 841–947 ms on Haiku, so latency is set by the harness, not the model.
 
 Maintained commands persist for their duration and a timed-out player holds its last command, so a positional job expressed as MARK / FOLLOW / PRESS keeps running between our slow ticks, while a one-shot MOVE_TO is re-decided ~1 s late every tick.
 
