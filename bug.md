@@ -44,6 +44,13 @@ Observation: the ~200 ms, press-heavy, no-MARK, no-SHOOT profile of our agents i
 4. What are the **~200 ms agents**: ours in C004, and the GK/DEF/MID of every opponent and of The Benchmark FC? If that is a built-in or default agent, it changes how the stats should be read.
 5. Can a match in which the platform demonstrably did not run the team's agents (C001: 52 commands at 33 ms) be **replayed or annulled**, since the cause is on the platform side?
 
+## 4b. Command-count questions (practice 023–027 on v13, 2026-10-07)
+
+6. **CLEAR_OVERRIDE persists with the word removed.** v13 has no "clear" anywhere in any prompt; the "Clear" count is still 9–23 per match (v12: 25). What emits CLEAR_OVERRIDE: the agent choosing it, or the harness on a timeout / unparseable response? Does it reset the player to the default AI for one tick or until the next command?
+7. **SHOOT commands are unrelated to shots.** 0 SHOOT commands → 8 shots (025 vs Fort Knox); 79 → 2 (023), 75 → 7 (026). What makes a SHOOT command fail (possession test? range?), and what produced 8 shots with no SHOOT command (the default AI during CLEAR_OVERRIDE ticks?).
+8. **PASS 0** in both matches against Total Attack United (023, 026) with 61–69% possession; 39–67 against the other teams. Is a PASS rejected when the target is marked or the carrier is pressed?
+9. Is there a **per-agent command breakdown** anywhere? Team totals cannot tell which player's rule produced a command.
+
 ## 5. What we do on our side now
 
 - Before each competitive match: open the agents page, confirm the deployment is active and shows our prompt text, run the readiness check.

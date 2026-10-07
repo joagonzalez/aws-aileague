@@ -4011,6 +4011,735 @@
         "Opponent formation: GK, DEF, MID, FWD, FWD.",
         "MOVE share since v10: 54%, 89%, (59% default AI), 62%. Our agents spend most ticks repositioning. v11 removes the one-step carry; check whether MOVE drops below 50%."
       ]
+    },
+    {
+      "file": "match-log/practice/023-vs-total-attack-united.md",
+      "type": "practice",
+      "number": 23,
+      "opponent": "Total Attack United",
+      "score_us": 1,
+      "score_them": 6,
+      "result": "L",
+      "date": "2026-10-07",
+      "formation": "1-2-1",
+      "strategy": "Swarm",
+      "deploy_tag": "deploy-v13-2026-10-06",
+      "metrics": {
+        "possession_us": 69,
+        "possession_them": 31,
+        "shots_us": 2,
+        "shots_them": 13,
+        "on_target_us": 1,
+        "on_target_them": 6,
+        "commands_us": 545,
+        "latency_avg_us": 842,
+        "commands_them": 545,
+        "latency_avg_them": 448,
+        "commands": {
+          "move": 184,
+          "press": 147,
+          "intercept": 107,
+          "mark": 0,
+          "pass": 0,
+          "shoot": 79,
+          "clear": 21,
+          "gk_dist": 7
+        },
+        "agents": {
+          "gk": {
+            "latency_avg": 681,
+            "latency_p95": null,
+            "success": 100
+          },
+          "def": {
+            "latency_avg": 961,
+            "latency_p95": null,
+            "success": 100
+          },
+          "mid": {
+            "latency_avg": 985,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd1": {
+            "latency_avg": 649,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd2": {
+            "latency_avg": 1063,
+            "latency_p95": null,
+            "success": 100
+          }
+        },
+        "success_avg": 100.0,
+        "latency_gap": 394,
+        "shot_accuracy": 50.0,
+        "shoot_cmd_to_shot": 2.5,
+        "press_share": 27.0,
+        "intercept_share": 19.6,
+        "mark_share": 0.0,
+        "pass_share": 0.0,
+        "shoot_share": 14.5,
+        "prompt_chars_avg": 2984,
+        "prompt_chars_max": 2998,
+        "prompt_rules_avg": 8.6
+      },
+      "coach_interventions": [
+        {
+          "when": "\u2014",
+          "message": "None (watched, no messages sent)",
+          "effect": "\u2014"
+        }
+      ],
+      "models": {
+        "gk": "Claude Haiku",
+        "def": "Claude Haiku",
+        "mid": "Claude Haiku",
+        "fwd1": "Nova Lite 2",
+        "fwd2": "Nova Lite 2"
+      },
+      "versions": {
+        "gk": "12",
+        "def": "12",
+        "mid": "11",
+        "fwd1": "11",
+        "fwd2": "12"
+      },
+      "prompt_stats": {
+        "gk": {
+          "version": "12",
+          "chars": 2955,
+          "words": 578,
+          "rules": 6,
+          "constraints": 5
+        },
+        "def": {
+          "version": "12",
+          "chars": 2996,
+          "words": 604,
+          "rules": 10,
+          "constraints": 3
+        },
+        "mid": {
+          "version": "11",
+          "chars": 2998,
+          "words": 591,
+          "rules": 9,
+          "constraints": 3
+        },
+        "fwd1": {
+          "version": "11",
+          "chars": 2984,
+          "words": 587,
+          "rules": 8,
+          "constraints": 5
+        },
+        "fwd2": {
+          "version": "12",
+          "chars": 2986,
+          "words": 584,
+          "rules": 10,
+          "constraints": 4
+        }
+      },
+      "performance": {
+        "gk": "weak",
+        "def": "weak",
+        "mid": "adequate",
+        "fwd1": "weak",
+        "fwd2": "weak"
+      },
+      "action_items": [
+        "v14 (through the workflow): (a) Hertz presses their GK only when the GK is outside his box, never their DEF, otherwise holds the central runner spot (023\u2013027: corners); (b) kick-off is a lofted pass to Hertz or the shot, never a short ground pass into a press (020\u2013026: minute-1 concessions unchanged by the pass variant); (c) \"you have the ball\" instead of \"the ball is at your feet\" (the stricter trigger bought nothing: SHOOT commands still unrelated to shots); (d) Tesla/Lovelace: one step sideways to open the line, then shoot, when nobody is within a few steps (what Total Attack's players do). (priority: high)",
+        "Office hours: CLEAR_OVERRIDE persists with the word removed (what emits it?); SHOOT 0 \u2192 8 shots and 79 \u2192 2 (what rejects a SHOOT, what else produces shots?); PASS 0 under press; per-agent view. (priority: high)"
+      ],
+      "observations": [
+        "See the v13 series summary in match 027's Team-Level Observations and the v14 brief.",
+        "Opponent formation: GK, DEF, MID, FWD, FWD."
+      ]
+    },
+    {
+      "file": "match-log/practice/024-vs-the-benchmark-fc.md",
+      "type": "practice",
+      "number": 24,
+      "opponent": "The Benchmark FC",
+      "score_us": 1,
+      "score_them": 1,
+      "result": "D",
+      "date": "2026-10-07",
+      "formation": "1-2-1",
+      "strategy": "Swarm",
+      "deploy_tag": "deploy-v13-2026-10-06",
+      "metrics": {
+        "commands_us": 664,
+        "latency_avg_us": 926,
+        "commands_them": 665,
+        "latency_avg_them": 493,
+        "commands": {
+          "move": 330,
+          "press": 139,
+          "intercept": 95,
+          "mark": 2,
+          "pass": 39,
+          "shoot": 38,
+          "clear": 14,
+          "gk_dist": 7
+        },
+        "agents": {
+          "gk": {
+            "latency_avg": 702,
+            "latency_p95": null,
+            "success": 100
+          },
+          "def": {
+            "latency_avg": 946,
+            "latency_p95": null,
+            "success": 100
+          },
+          "mid": {
+            "latency_avg": 1003,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd1": {
+            "latency_avg": 705,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd2": {
+            "latency_avg": 1212,
+            "latency_p95": null,
+            "success": 100
+          }
+        },
+        "success_avg": 100.0,
+        "latency_gap": 433,
+        "press_share": 20.9,
+        "intercept_share": 14.3,
+        "mark_share": 0.3,
+        "pass_share": 5.9,
+        "shoot_share": 5.7,
+        "prompt_chars_avg": 2984,
+        "prompt_chars_max": 2998,
+        "prompt_rules_avg": 8.6
+      },
+      "coach_interventions": [
+        {
+          "when": "\u2014",
+          "message": "None (watched, no messages sent)",
+          "effect": "\u2014"
+        }
+      ],
+      "models": {
+        "gk": "Claude Haiku",
+        "def": "Claude Haiku",
+        "mid": "Claude Haiku",
+        "fwd1": "Nova Lite 2",
+        "fwd2": "Nova Lite 2"
+      },
+      "versions": {
+        "gk": "12",
+        "def": "12",
+        "mid": "11",
+        "fwd1": "11",
+        "fwd2": "12"
+      },
+      "prompt_stats": {
+        "gk": {
+          "version": "12",
+          "chars": 2955,
+          "words": 578,
+          "rules": 6,
+          "constraints": 5
+        },
+        "def": {
+          "version": "12",
+          "chars": 2996,
+          "words": 604,
+          "rules": 10,
+          "constraints": 3
+        },
+        "mid": {
+          "version": "11",
+          "chars": 2998,
+          "words": 591,
+          "rules": 9,
+          "constraints": 3
+        },
+        "fwd1": {
+          "version": "11",
+          "chars": 2984,
+          "words": 587,
+          "rules": 8,
+          "constraints": 5
+        },
+        "fwd2": {
+          "version": "12",
+          "chars": 2986,
+          "words": 584,
+          "rules": 10,
+          "constraints": 4
+        }
+      },
+      "performance": {
+        "gk": "adequate",
+        "def": "adequate",
+        "mid": "adequate",
+        "fwd1": "weak",
+        "fwd2": "adequate"
+      },
+      "action_items": [
+        "v14 (through the workflow): (a) Hertz presses their GK only when the GK is outside his box, never their DEF, otherwise holds the central runner spot (023\u2013027: corners); (b) kick-off is a lofted pass to Hertz or the shot, never a short ground pass into a press (020\u2013026: minute-1 concessions unchanged by the pass variant); (c) \"you have the ball\" instead of \"the ball is at your feet\" (the stricter trigger bought nothing: SHOOT commands still unrelated to shots); (d) Tesla/Lovelace: one step sideways to open the line, then shoot, when nobody is within a few steps (what Total Attack's players do). (priority: high)",
+        "Office hours: CLEAR_OVERRIDE persists with the word removed (what emits it?); SHOOT 0 \u2192 8 shots and 79 \u2192 2 (what rejects a SHOOT, what else produces shots?); PASS 0 under press; per-agent view. (priority: high)"
+      ],
+      "observations": [
+        "See the v13 series summary in match 027's Team-Level Observations and the v14 brief.",
+        "Opponent formation: GK, DEF, MID, FWD, FWD."
+      ]
+    },
+    {
+      "file": "match-log/practice/025-vs-fort-knox-athletic.md",
+      "type": "practice",
+      "number": 25,
+      "opponent": "Fort Knox Athletic",
+      "score_us": 3,
+      "score_them": 1,
+      "result": "W",
+      "date": "2026-10-07",
+      "formation": "1-2-1",
+      "strategy": "Swarm",
+      "deploy_tag": "deploy-v13-2026-10-06",
+      "metrics": {
+        "possession_us": 52,
+        "possession_them": 48,
+        "shots_us": 8,
+        "shots_them": 2,
+        "on_target_us": 3,
+        "on_target_them": 1,
+        "commands_us": 425,
+        "latency_avg_us": 893,
+        "commands_them": 425,
+        "latency_avg_them": 477,
+        "commands": {
+          "move": 63,
+          "press": 66,
+          "intercept": 52,
+          "mark": 149,
+          "pass": 67,
+          "shoot": 0,
+          "clear": 21,
+          "gk_dist": 5
+        },
+        "agents": {
+          "gk": {
+            "latency_avg": 657,
+            "latency_p95": null,
+            "success": 100
+          },
+          "def": {
+            "latency_avg": 1043,
+            "latency_p95": null,
+            "success": 100
+          },
+          "mid": {
+            "latency_avg": 894,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd1": {
+            "latency_avg": 609,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd2": {
+            "latency_avg": 1066,
+            "latency_p95": null,
+            "success": 100
+          }
+        },
+        "success_avg": 100.0,
+        "latency_gap": 416,
+        "shot_accuracy": 37.5,
+        "press_share": 15.5,
+        "intercept_share": 12.2,
+        "mark_share": 35.1,
+        "pass_share": 15.8,
+        "shoot_share": 0.0,
+        "prompt_chars_avg": 2984,
+        "prompt_chars_max": 2998,
+        "prompt_rules_avg": 8.6
+      },
+      "coach_interventions": [
+        {
+          "when": "\u2014",
+          "message": "None (watched, no messages sent)",
+          "effect": "\u2014"
+        }
+      ],
+      "models": {
+        "gk": "Claude Haiku",
+        "def": "Claude Haiku",
+        "mid": "Claude Haiku",
+        "fwd1": "Nova Lite 2",
+        "fwd2": "Nova Lite 2"
+      },
+      "versions": {
+        "gk": "12",
+        "def": "12",
+        "mid": "11",
+        "fwd1": "11",
+        "fwd2": "12"
+      },
+      "prompt_stats": {
+        "gk": {
+          "version": "12",
+          "chars": 2955,
+          "words": 578,
+          "rules": 6,
+          "constraints": 5
+        },
+        "def": {
+          "version": "12",
+          "chars": 2996,
+          "words": 604,
+          "rules": 10,
+          "constraints": 3
+        },
+        "mid": {
+          "version": "11",
+          "chars": 2998,
+          "words": 591,
+          "rules": 9,
+          "constraints": 3
+        },
+        "fwd1": {
+          "version": "11",
+          "chars": 2984,
+          "words": 587,
+          "rules": 8,
+          "constraints": 5
+        },
+        "fwd2": {
+          "version": "12",
+          "chars": 2986,
+          "words": 584,
+          "rules": 10,
+          "constraints": 4
+        }
+      },
+      "performance": {
+        "gk": "strong",
+        "def": "strong",
+        "mid": "strong",
+        "fwd1": "strong",
+        "fwd2": "adequate"
+      },
+      "action_items": [
+        "v14 (through the workflow): (a) Hertz presses their GK only when the GK is outside his box, never their DEF, otherwise holds the central runner spot (023\u2013027: corners); (b) kick-off is a lofted pass to Hertz or the shot, never a short ground pass into a press (020\u2013026: minute-1 concessions unchanged by the pass variant); (c) \"you have the ball\" instead of \"the ball is at your feet\" (the stricter trigger bought nothing: SHOOT commands still unrelated to shots); (d) Tesla/Lovelace: one step sideways to open the line, then shoot, when nobody is within a few steps (what Total Attack's players do). (priority: high)",
+        "Office hours: CLEAR_OVERRIDE persists with the word removed (what emits it?); SHOOT 0 \u2192 8 shots and 79 \u2192 2 (what rejects a SHOOT, what else produces shots?); PASS 0 under press; per-agent view. (priority: high)"
+      ],
+      "observations": [
+        "See the v13 series summary in match 027's Team-Level Observations and the v14 brief.",
+        "Opponent formation: GK, DEF, MID, FWD, FWD."
+      ]
+    },
+    {
+      "file": "match-log/practice/026-vs-total-attack-united.md",
+      "type": "practice",
+      "number": 26,
+      "opponent": "Total Attack United",
+      "score_us": 3,
+      "score_them": 4,
+      "result": "L",
+      "date": "2026-10-07",
+      "formation": "1-2-1",
+      "strategy": "Swarm",
+      "deploy_tag": "deploy-v13-2026-10-06",
+      "metrics": {
+        "possession_us": 61,
+        "possession_them": 39,
+        "shots_us": 7,
+        "shots_them": 11,
+        "on_target_us": 3,
+        "on_target_them": 4,
+        "commands_us": 545,
+        "latency_avg_us": 939,
+        "commands_them": 545,
+        "latency_avg_them": 468,
+        "commands": {
+          "move": 301,
+          "press": 65,
+          "intercept": 80,
+          "mark": 0,
+          "pass": 0,
+          "shoot": 75,
+          "clear": 23,
+          "gk_dist": 1
+        },
+        "agents": {
+          "gk": {
+            "latency_avg": 683,
+            "latency_p95": null,
+            "success": 100
+          },
+          "def": {
+            "latency_avg": 1272,
+            "latency_p95": null,
+            "success": 100
+          },
+          "mid": {
+            "latency_avg": 935,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd1": {
+            "latency_avg": 659,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd2": {
+            "latency_avg": 1101,
+            "latency_p95": null,
+            "success": 100
+          }
+        },
+        "success_avg": 100.0,
+        "latency_gap": 471,
+        "shot_accuracy": 42.9,
+        "shoot_cmd_to_shot": 9.3,
+        "press_share": 11.9,
+        "intercept_share": 14.7,
+        "mark_share": 0.0,
+        "pass_share": 0.0,
+        "shoot_share": 13.8,
+        "prompt_chars_avg": 2984,
+        "prompt_chars_max": 2998,
+        "prompt_rules_avg": 8.6
+      },
+      "coach_interventions": [
+        {
+          "when": "\u2014",
+          "message": "None (watched, no messages sent)",
+          "effect": "\u2014"
+        }
+      ],
+      "models": {
+        "gk": "Claude Haiku",
+        "def": "Claude Haiku",
+        "mid": "Claude Haiku",
+        "fwd1": "Nova Lite 2",
+        "fwd2": "Nova Lite 2"
+      },
+      "versions": {
+        "gk": "12",
+        "def": "12",
+        "mid": "11",
+        "fwd1": "11",
+        "fwd2": "12"
+      },
+      "prompt_stats": {
+        "gk": {
+          "version": "12",
+          "chars": 2955,
+          "words": 578,
+          "rules": 6,
+          "constraints": 5
+        },
+        "def": {
+          "version": "12",
+          "chars": 2996,
+          "words": 604,
+          "rules": 10,
+          "constraints": 3
+        },
+        "mid": {
+          "version": "11",
+          "chars": 2998,
+          "words": 591,
+          "rules": 9,
+          "constraints": 3
+        },
+        "fwd1": {
+          "version": "11",
+          "chars": 2984,
+          "words": 587,
+          "rules": 8,
+          "constraints": 5
+        },
+        "fwd2": {
+          "version": "12",
+          "chars": 2986,
+          "words": 584,
+          "rules": 10,
+          "constraints": 4
+        }
+      },
+      "performance": {
+        "gk": "weak",
+        "def": "weak",
+        "mid": "strong",
+        "fwd1": "adequate",
+        "fwd2": "adequate"
+      },
+      "action_items": [
+        "v14 (through the workflow): (a) Hertz presses their GK only when the GK is outside his box, never their DEF, otherwise holds the central runner spot (023\u2013027: corners); (b) kick-off is a lofted pass to Hertz or the shot, never a short ground pass into a press (020\u2013026: minute-1 concessions unchanged by the pass variant); (c) \"you have the ball\" instead of \"the ball is at your feet\" (the stricter trigger bought nothing: SHOOT commands still unrelated to shots); (d) Tesla/Lovelace: one step sideways to open the line, then shoot, when nobody is within a few steps (what Total Attack's players do). (priority: high)",
+        "Office hours: CLEAR_OVERRIDE persists with the word removed (what emits it?); SHOOT 0 \u2192 8 shots and 79 \u2192 2 (what rejects a SHOOT, what else produces shots?); PASS 0 under press; per-agent view. (priority: high)"
+      ],
+      "observations": [
+        "See the v13 series summary in match 027's Team-Level Observations and the v14 brief.",
+        "Opponent formation: GK, DEF, MID, FWD, FWD."
+      ]
+    },
+    {
+      "file": "match-log/practice/027-vs-the-benchmark-fc.md",
+      "type": "practice",
+      "number": 27,
+      "opponent": "The Benchmark FC",
+      "score_us": 3,
+      "score_them": 0,
+      "result": "W",
+      "date": "2026-10-07",
+      "formation": "1-2-1",
+      "strategy": "Swarm",
+      "deploy_tag": "deploy-v13-2026-10-06",
+      "metrics": {
+        "possession_us": 49,
+        "possession_them": 51,
+        "shots_us": 3,
+        "shots_them": 8,
+        "on_target_us": 3,
+        "on_target_them": 0,
+        "commands_us": 405,
+        "latency_avg_us": 899,
+        "commands_them": 405,
+        "latency_avg_them": 504,
+        "commands": {
+          "move": 166,
+          "press": 125,
+          "intercept": 58,
+          "mark": 0,
+          "pass": 11,
+          "shoot": 36,
+          "clear": 9,
+          "gk_dist": 0
+        },
+        "agents": {
+          "gk": {
+            "latency_avg": 677,
+            "latency_p95": null,
+            "success": 100
+          },
+          "def": {
+            "latency_avg": 954,
+            "latency_p95": null,
+            "success": 100
+          },
+          "mid": {
+            "latency_avg": 932,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd1": {
+            "latency_avg": 642,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd2": {
+            "latency_avg": 1008,
+            "latency_p95": null,
+            "success": 100
+          }
+        },
+        "success_avg": 100.0,
+        "latency_gap": 395,
+        "shot_accuracy": 100.0,
+        "shoot_cmd_to_shot": 8.3,
+        "press_share": 30.9,
+        "intercept_share": 14.3,
+        "mark_share": 0.0,
+        "pass_share": 2.7,
+        "shoot_share": 8.9,
+        "prompt_chars_avg": 2984,
+        "prompt_chars_max": 2998,
+        "prompt_rules_avg": 8.6
+      },
+      "coach_interventions": [
+        {
+          "when": "\u2014",
+          "message": "None (watched, no messages sent)",
+          "effect": "\u2014"
+        }
+      ],
+      "models": {
+        "gk": "Claude Haiku",
+        "def": "Claude Haiku",
+        "mid": "Claude Haiku",
+        "fwd1": "Nova Lite 2",
+        "fwd2": "Nova Lite 2"
+      },
+      "versions": {
+        "gk": "12",
+        "def": "12",
+        "mid": "11",
+        "fwd1": "11",
+        "fwd2": "12"
+      },
+      "prompt_stats": {
+        "gk": {
+          "version": "12",
+          "chars": 2955,
+          "words": 578,
+          "rules": 6,
+          "constraints": 5
+        },
+        "def": {
+          "version": "12",
+          "chars": 2996,
+          "words": 604,
+          "rules": 10,
+          "constraints": 3
+        },
+        "mid": {
+          "version": "11",
+          "chars": 2998,
+          "words": 591,
+          "rules": 9,
+          "constraints": 3
+        },
+        "fwd1": {
+          "version": "11",
+          "chars": 2984,
+          "words": 587,
+          "rules": 8,
+          "constraints": 5
+        },
+        "fwd2": {
+          "version": "12",
+          "chars": 2986,
+          "words": 584,
+          "rules": 10,
+          "constraints": 4
+        }
+      },
+      "performance": {
+        "gk": "strong",
+        "def": "strong",
+        "mid": "strong",
+        "fwd1": "adequate",
+        "fwd2": "adequate"
+      },
+      "action_items": [
+        "v14 (through the workflow): (a) Hertz presses their GK only when the GK is outside his box, never their DEF, otherwise holds the central runner spot (023\u2013027: corners); (b) kick-off is a lofted pass to Hertz or the shot, never a short ground pass into a press (020\u2013026: minute-1 concessions unchanged by the pass variant); (c) \"you have the ball\" instead of \"the ball is at your feet\" (the stricter trigger bought nothing: SHOOT commands still unrelated to shots); (d) Tesla/Lovelace: one step sideways to open the line, then shoot, when nobody is within a few steps (what Total Attack's players do). (priority: high)",
+        "Office hours: CLEAR_OVERRIDE persists with the word removed (what emits it?); SHOOT 0 \u2192 8 shots and 79 \u2192 2 (what rejects a SHOOT, what else produces shots?); PASS 0 under press; per-agent view. (priority: high)"
+      ],
+      "observations": [
+        "**v13 series (023\u2013027): 2 W, 1 D, 2 L.** vs Benchmark/Fort Knox: 3-1, 1-1, 3-0 (7 for, 2 against); vs Total Attack: 1-6, 3-4 (4 for, 10 against). Since v9 vs non-aggressive teams: 9-1-1. The aggressive template remains the only thing that beats us: PASS 0 under its press, their DEF/GK long shots (Ray Chase 3, Max Fury 2), camping forwards (Vic Surge 4).",
+        "Three surprises: Clear (CLEAR_OVERRIDE) did not drop after every CLEAR word was removed; SHOOT commands are unrelated to shots (0 \u2192 8, 79 \u2192 2); PASS is 0 in both Total Attack matches.",
+        "Coach, all five matches: Hertz in the corners (rule 7 chases their GK, who holds the ball 80\u2013133 commands a match); Tesla slow at kick-off and the short pass stolen; Tesla and Lovelace shooting less. Shannon solid (0 and 1 on target against in the wins).",
+        "Gate: v13 holds vs balanced/defensive (ship for competitive), fails vs Total Attack. v14 is four targeted edits, validated in one of the 3 remaining practice matches.",
+        "Opponent formation: GK, DEF, MID, FWD, FWD."
+      ]
     }
   ],
   "current_formation": "1-2-1",
@@ -4530,7 +5259,7 @@
     }
   },
   "stats": {
-    "total_matches": 27,
+    "total_matches": 32,
     "competitive": {
       "played": 5,
       "remaining": 5,
@@ -4541,32 +5270,32 @@
       "goals_against": 11
     },
     "practice": {
-      "played": 22,
-      "wins": 10,
-      "draws": 1,
-      "losses": 11
+      "played": 27,
+      "wins": 12,
+      "draws": 2,
+      "losses": 13
     }
   },
   "performance_trends": {
     "gk": {
-      "avg": 1.96,
-      "matches_rated": 27
+      "avg": 1.97,
+      "matches_rated": 32
     },
     "def": {
-      "avg": 1.89,
-      "matches_rated": 27
+      "avg": 1.91,
+      "matches_rated": 32
     },
     "mid": {
-      "avg": 2.19,
-      "matches_rated": 27
+      "avg": 2.25,
+      "matches_rated": 32
     },
     "fwd1": {
-      "avg": 1.93,
-      "matches_rated": 27
+      "avg": 1.91,
+      "matches_rated": 32
     },
     "fwd2": {
-      "avg": 1.56,
-      "matches_rated": 27
+      "avg": 1.59,
+      "matches_rated": 32
     }
   }
 }

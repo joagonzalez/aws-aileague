@@ -8,6 +8,8 @@
 | 020 | practice | 3-7 L | v11, unattended. Five conceded in minute 1; their GK scored twice and DEF once from their own end; 11 shots, 7 on target. Nobody presses their GK under v11 |
 | 021 | practice | 0-2 L | v11, coach watching. 69% possession, 0 shots: GK's untargeted long kick went to DEF and the ball circulated in our box; their MID 1', GK 2' |
 | 022 | practice | 3-5 L | v12 (DEF on Nova Micro, 830 ms: no gain), coach watching. Their MID x2 from his own half unpressed, FWD x3; their GK/DEF did not score for the first time (Hertz presses their GK). Our 'Clear 25' = CLEAR_OVERRIDE |
+| 023 | practice | 1-6 L | v13, coach watching. Their GK x2, DEF, FWD x2 + unknown; PASS 0, 2 shots |
+| 026 | practice | 3-4 L | v13, coach watching. Tesla hat-trick; their DEF x2, FWD x2; PASS 0, GK Dist 1 |
 
 ## Official description
 Aggressive. Presses high, commits numbers forward, takes risks for early goals.
