@@ -3242,7 +3242,7 @@
       },
       "action_items": [
         "Docs now: schema rule 7 and CLAUDE.md say CLEAR is CLEAR_OVERRIDE; never write \"clear\" as an action. (priority: high)",
-        "v13 brief (when the coach is ready): (a) remove every CLEAR: GK \"kick it long to FWD1\" only; DEF \"lofted PASS to FWD1, else lofted PASS to MID\"; MID/FWD fallbacks \"lofted PASS to FWD1\" or \"SHOOT at full power\". (b) Swarm press reach: the nearer of MID and FWD2 presses any carrier anywhere except their GK and deepest DEF (Hertz's), so their MID is pressed in his own half too; Lovelace MARKs their MID tightly whenever he is without the ball. (c) Hertz and Lovelace: in their half with a clear line to goal (no outfield opponent directly between you and the goal) \u2192 SHOOT at full power, wherever they stand; the central-third \"goal in front\" test goes. (d) DEF back to Claude Haiku. (priority: high)",
+        "v13 brief (when the coach is ready): (a) remove every CLEAR: GK \"kick it long to FWD1\" only; DEF \"lofted PASS to FWD1, else lofted PASS to MID\"; MID/FWD fallbacks \"lofted PASS to FWD1\" or \"SHOOT at full power\". (b) Swarm press reach: the nearer of MID and FWD2 presses any carrier anywhere except their GK and deepest DEF (Hertz's), so their MID is pressed in his own half too; Lovelace MARKs their MID tightly whenever he is without the ball. (c) Hertz and Lovelace: in their half with a clear line to goal (no outfield opponent directly between you and the goal) \u2192 SHOOT at full power, wherever they stand; the central-third \"goal in front\" test goes. (d) DEF back to Claude Haiku. (e) From the official Practice page: Total Attack's GK is a sweeper-keeper at halfway, so their goal is empty; every player with the ball and a clear line SHOOTs at full power at the empty goal from wherever he stands when their GK is nearer the halfway line than his own goal (dormant against teams whose GK stays home). (f) SHOOT/PASS only with the ball at your feet (official: possession required; 022 wasted 86 ticks). (g) Second marker rule from the official coordination page: if a teammate already marks that attacker, mark the next nearest. (priority: high)",
         "Keep v12 for the Benchmark and Fort Knox tests; compare with 018 (2-1) and 019 (2-1) on v11. (priority: medium)",
         "Office hours: confirm that the \"Clear\" count is CLEAR_OVERRIDE and what it does mid-match (one tick, or until the next command?). (priority: high)"
       ],
@@ -4022,7 +4022,7 @@
     },
     "def": {
       "version": "11",
-      "model": "Nova Micro",
+      "model": "Claude Haiku",
       "source": "prompts/def/current.md"
     },
     "mid": {

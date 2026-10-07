@@ -17,8 +17,14 @@ Used by the Reviewer and Evaluator agents to assess prompt quality.
 - [ ] No contradictions between Decision Framework rules
 - [ ] No contradictions between Decision Framework and Constraints
 - [ ] No priority shadowing — no higher rule's situation swallows a lower rule so that the lower one can never fire
-- [ ] Actions use platform command words (MOVE, PRESS, INTERCEPT, MARK, PASS, SHOOT, CLEAR, distribute)
-- [ ] No instructions the agent cannot execute: talking to teammates ("tell", "call for", "signal"), time durations ("for 3 seconds"), or actions with no command ("shield", "wait")
+- [ ] Actions use platform command words (MOVE, PRESS, INTERCEPT, MARK, FOLLOW, PASS, SHOOT, throw / kick for GK); never "CLEAR" (it is CLEAR_OVERRIDE, the default AI), never "reset", "override", "default", "tackle"
+- [ ] No instructions the agent cannot execute: talking to teammates ("tell", "call for", "signal"), time durations ("for 3 seconds"), actions with no command ("shield", "wait"), "INTERCEPT the pass to X" (no target), SHOOT or PASS in an off-ball situation (possession required)
+
+### Official Guidance (`specs/prompt-schema.md` → Official Prompt Guidance)
+- [ ] Four layers in order (role, priority hierarchy ending in a default action, optional situational rules, constraints); every sentence influences a decision
+- [ ] Strategy is encoded as behaviours per phase (opponent has the ball / we win it / we have it near their goal), not as a style word
+- [ ] The prompt states the player's zone, primary action, trigger to leave and handoff; every PASS, throw and kick names a receiver
+- [ ] Changelog names the coordination failure pattern the last match showed (Ball Magnet, Ghost Town, Confusion, Statue Garden) and the rule that answers it
 
 ### Conciseness
 - [ ] Pasted text within the character budget for its model (`specs/prompt-schema.md` → Quality Guidelines; `scripts/build-paste-ready.py` reports the counts)

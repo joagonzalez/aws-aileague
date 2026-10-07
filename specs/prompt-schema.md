@@ -49,6 +49,12 @@ Rules:
 - No "tell", "call for", "signal" or "communicate". Match 001's command list has no talk command, so these instructions do nothing
 - Keep coordination simple — complex multi-agent protocols break down
 
+### 5b. Situational Rules (optional, from the official template's layer 3)
+Context overrides from the game state the agent can see (score, clock, stamina). At most 2–3 one-line items, each backed by a logged situation or the official guidance:
+- Stamina: "when your stamina is low, do not sprint" (official: below 30%).
+- Score: only if a match log shows it would have changed a result. Matches are decided in minute 1 (C002: nine goals in two minutes), so "when WINNING play conservatively" has not paid; "when LOSING take more shots" is already the identity.
+Omit the section when there is nothing to say; never add it to fill the template.
+
 ### 6. Constraints
 Hard rules — things to NEVER do:
 - Must be phrased as prohibitions
@@ -85,3 +91,17 @@ The AWS platform auto-adds game commands and formatting. Key implications:
 - **Conciseness**: Each section should be as short as possible while being unambiguous.
 - **Specificity**: Avoid wording like "try to", "consider", "if possible". Use imperative: "do X", "never Y".
 - **Testability**: Every rule in the decision framework should be verifiable — you should be able to watch a match and say "yes, the agent followed rule #3" or "no, it violated rule #5".
+
+## Official Prompt Guidance — check on every iteration
+
+From the workshop's "System Prompt Engineering", "Multi-Agent Coordination" and "Actions and Stats" pages (full text in `strategy/platform-reference.md`). The Writer applies these; the Reviewer checks them.
+
+1. **Four layers, in this order**: identity and role; decision hierarchy (priority order that resolves trade-offs every tick, the last item is the default action); situational rules (optional, see 5b); constraints ("you must NEVER"). Our Coordination section sits between the hierarchy and the constraints.
+2. **Every sentence must influence a decision.** No narrative, no "play well", no reassurance. The official anti-patterns are the Vague Prompt and the Novel; the official response-window advice is "be concise".
+3. **Encode strategy as behaviours per phase**, never as a style word: what to do when the opponent has the ball, when we win it, when we have it in the attacking third. "Counter-attacking", "possession", "aggressive" are not instructions.
+4. **Roles with boundaries** (coordination page): each prompt states the player's zone, primary action, trigger to leave the zone, and handoff (when he defers to a teammate). Handoffs are the shared Swarm and Pressers lines and must be identical in all five prompts.
+5. **Teammate-aware rules** use what the agent sees: a teammate making a forward run gets a through ball into space; don't move into a zone a teammate already covers; move toward a pressed ball carrier to offer a pass; if a teammate already marks that attacker, mark the next nearest threat. The official "before shooting, check for a better-placed teammate" is **not** applied here: it switched Tesla's shot off (017) and shots on target are goals.
+6. **Command realities** (Actions page): SHOOT and PASS need possession, so on-ball rules say "the ball is at your feet" and off-ball rules never say SHOOT or PASS; INTERCEPT positions to cut out a pass (no target); MARK takes a player and LOOSE/TIGHT; PRESS tackles above low intensity; GK_DISTRIBUTE and PASS take a named receiver, so every release names one; sprinting drains stamina; "CLEAR" is CLEAR_OVERRIDE and must never appear.
+7. **Different positions, different prompts**: the GK's hierarchy should look nothing like the striker's. A rule copied across positions needs a reason in the changelog.
+8. **Coordination failure patterns to check against** (coordination page): the Ball Magnet (all chase the ball), the Ghost Town (spread out, never pass), the Confusion (two press the same opponent), the Statue Garden (formation, no reaction). Name in the changelog which pattern the last match showed and which rule answers it.
+
