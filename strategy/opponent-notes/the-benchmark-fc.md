@@ -19,6 +19,7 @@
 | 018 | practice | 2-1 W | v11 validation match (Tesla 1', unknown 2'); Benchmark's first shot on target against us in three matches |
 | 024 | practice | 1-1 D | v13, coach watching; long match, MOVE 50% |
 | 027 | practice | 3-0 W | v13, coach watching; three goals in minute 1, 0 on target against |
+| 029 | practice | 6-3 W | v14, coach watching. Hertz hat-trick, Tesla x3; conceded 3 under a 38% press |
 
 ## Official description
 Balanced. Solid fundamentals: plays through the midfield, holds shape, finishes cleanly.

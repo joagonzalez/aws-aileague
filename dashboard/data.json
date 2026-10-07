@@ -4740,6 +4740,452 @@
         "Gate: v13 holds vs balanced/defensive (ship for competitive), fails vs Total Attack. v14 is four targeted edits, validated in one of the 3 remaining practice matches.",
         "Opponent formation: GK, DEF, MID, FWD, FWD."
       ]
+    },
+    {
+      "file": "match-log/practice/028-vs-total-attack-united.md",
+      "type": "practice",
+      "number": 28,
+      "opponent": "Total Attack United",
+      "score_us": 5,
+      "score_them": 1,
+      "result": "W",
+      "date": "2026-10-07",
+      "formation": "1-2-1",
+      "strategy": "Swarm",
+      "deploy_tag": "deploy-v14-2026-10-07",
+      "metrics": {
+        "possession_us": 65,
+        "possession_them": 35,
+        "shots_us": 4,
+        "shots_them": 6,
+        "on_target_us": 5,
+        "on_target_them": 1,
+        "commands_us": 510,
+        "latency_avg_us": 948,
+        "commands_them": 510,
+        "latency_avg_them": 513,
+        "commands": {
+          "move": 199,
+          "press": 48,
+          "intercept": 165,
+          "mark": 0,
+          "pass": 6,
+          "shoot": 69,
+          "clear": 18,
+          "gk_dist": 5
+        },
+        "agents": {
+          "gk": {
+            "latency_avg": 748,
+            "latency_p95": null,
+            "success": 100
+          },
+          "def": {
+            "latency_avg": 1021,
+            "latency_p95": null,
+            "success": 100
+          },
+          "mid": {
+            "latency_avg": 1045,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd1": {
+            "latency_avg": 726,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd2": {
+            "latency_avg": 987,
+            "latency_p95": null,
+            "success": 100
+          }
+        },
+        "success_avg": 100.0,
+        "latency_gap": 435,
+        "shot_accuracy": 125.0,
+        "shoot_cmd_to_shot": 5.8,
+        "press_share": 9.4,
+        "intercept_share": 32.4,
+        "mark_share": 0.0,
+        "pass_share": 1.2,
+        "shoot_share": 13.5,
+        "prompt_chars_avg": 2952,
+        "prompt_chars_max": 2983,
+        "prompt_rules_avg": 8.6
+      },
+      "coach_interventions": [
+        {
+          "when": "\u2014",
+          "message": "None (watched, no messages sent)",
+          "effect": "\u2014"
+        }
+      ],
+      "models": {
+        "gk": "Claude Haiku",
+        "def": "Claude Haiku",
+        "mid": "Claude Haiku",
+        "fwd1": "Nova Lite 2",
+        "fwd2": "Nova Lite 2"
+      },
+      "versions": {
+        "gk": "13",
+        "def": "13",
+        "mid": "12",
+        "fwd1": "12",
+        "fwd2": "13"
+      },
+      "prompt_stats": {
+        "gk": {
+          "version": "13",
+          "chars": 2936,
+          "words": 573,
+          "rules": 6,
+          "constraints": 5
+        },
+        "def": {
+          "version": "13",
+          "chars": 2970,
+          "words": 597,
+          "rules": 10,
+          "constraints": 3
+        },
+        "mid": {
+          "version": "12",
+          "chars": 2983,
+          "words": 584,
+          "rules": 9,
+          "constraints": 3
+        },
+        "fwd1": {
+          "version": "12",
+          "chars": 2920,
+          "words": 572,
+          "rules": 8,
+          "constraints": 5
+        },
+        "fwd2": {
+          "version": "13",
+          "chars": 2949,
+          "words": 571,
+          "rules": 10,
+          "constraints": 4
+        }
+      },
+      "performance": {
+        "gk": "strong",
+        "def": "strong",
+        "mid": "strong",
+        "fwd1": "strong",
+        "fwd2": "adequate"
+      },
+      "action_items": [
+        "Deploy nothing new. v14 is the competitive version; export a platform backup of it into deploy/backups/. (priority: high)",
+        "Competitive: be present, check the first 15 seconds for 600-1200 ms per agent, send \"be more aggressive and shoot!\" at kick-off. (priority: high)"
+      ],
+      "observations": [
+        "v14 validation series (028-030): 3-0, 15 for, 6 against; 5-1 vs Total Attack, 6-3 vs Benchmark, 4-2 vs Fort Knox. Gate passed: vs Total Attack conceded 1 (v13: 6 and 4); vs Benchmark scored 6 (027: 3) but conceded 3 (027: 0), the press-heavy shape (PRESS 234) leaves gaps behind it; net strongly positive.",
+        "**Decision: freeze v14 for the competitive matches.** The practice allowance is used up (30 of 30), so any further prompt change would go into competitive play untested.",
+        "Open items for after the competition, not before: their GK's long shot from his own end (one goal in each of 028 and 030); conceding 3 to Benchmark under a 38% press; the SHOOT counter not counting our shots against Fort Knox; Clear (CLEAR_OVERRIDE) still 18-27.",
+        "Opponent formation: GK, DEF, MID, FWD, FWD."
+      ]
+    },
+    {
+      "file": "match-log/practice/029-vs-the-benchmark-fc.md",
+      "type": "practice",
+      "number": 29,
+      "opponent": "The Benchmark FC",
+      "score_us": 6,
+      "score_them": 3,
+      "result": "W",
+      "date": "2026-10-07",
+      "formation": "1-2-1",
+      "strategy": "Swarm",
+      "deploy_tag": "deploy-v14-2026-10-07",
+      "metrics": {
+        "possession_us": 66,
+        "possession_them": 34,
+        "shots_us": 9,
+        "shots_them": 6,
+        "on_target_us": 6,
+        "on_target_them": 3,
+        "commands_us": 615,
+        "latency_avg_us": 942,
+        "commands_them": 615,
+        "latency_avg_them": 528,
+        "commands": {
+          "move": 225,
+          "press": 234,
+          "intercept": 39,
+          "mark": 0,
+          "pass": 17,
+          "shoot": 72,
+          "clear": 27,
+          "gk_dist": 1
+        },
+        "agents": {
+          "gk": {
+            "latency_avg": 852,
+            "latency_p95": null,
+            "success": 100
+          },
+          "def": {
+            "latency_avg": 895,
+            "latency_p95": null,
+            "success": 100
+          },
+          "mid": {
+            "latency_avg": 1116,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd1": {
+            "latency_avg": 811,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd2": {
+            "latency_avg": 1046,
+            "latency_p95": null,
+            "success": 100
+          }
+        },
+        "success_avg": 100.0,
+        "latency_gap": 414,
+        "shot_accuracy": 66.7,
+        "shoot_cmd_to_shot": 12.5,
+        "press_share": 38.0,
+        "intercept_share": 6.3,
+        "mark_share": 0.0,
+        "pass_share": 2.8,
+        "shoot_share": 11.7,
+        "prompt_chars_avg": 2952,
+        "prompt_chars_max": 2983,
+        "prompt_rules_avg": 8.6
+      },
+      "coach_interventions": [
+        {
+          "when": "\u2014",
+          "message": "None (watched, no messages sent)",
+          "effect": "\u2014"
+        }
+      ],
+      "models": {
+        "gk": "Claude Haiku",
+        "def": "Claude Haiku",
+        "mid": "Claude Haiku",
+        "fwd1": "Nova Lite 2",
+        "fwd2": "Nova Lite 2"
+      },
+      "versions": {
+        "gk": "13",
+        "def": "13",
+        "mid": "12",
+        "fwd1": "12",
+        "fwd2": "13"
+      },
+      "prompt_stats": {
+        "gk": {
+          "version": "13",
+          "chars": 2936,
+          "words": 573,
+          "rules": 6,
+          "constraints": 5
+        },
+        "def": {
+          "version": "13",
+          "chars": 2970,
+          "words": 597,
+          "rules": 10,
+          "constraints": 3
+        },
+        "mid": {
+          "version": "12",
+          "chars": 2983,
+          "words": 584,
+          "rules": 9,
+          "constraints": 3
+        },
+        "fwd1": {
+          "version": "12",
+          "chars": 2920,
+          "words": 572,
+          "rules": 8,
+          "constraints": 5
+        },
+        "fwd2": {
+          "version": "13",
+          "chars": 2949,
+          "words": 571,
+          "rules": 10,
+          "constraints": 4
+        }
+      },
+      "performance": {
+        "gk": "adequate",
+        "def": "adequate",
+        "mid": "strong",
+        "fwd1": "strong",
+        "fwd2": "adequate"
+      },
+      "action_items": [
+        "Deploy nothing new. v14 is the competitive version; export a platform backup of it into deploy/backups/. (priority: high)",
+        "Competitive: be present, check the first 15 seconds for 600-1200 ms per agent, send \"be more aggressive and shoot!\" at kick-off. (priority: high)"
+      ],
+      "observations": [
+        "v14 validation series (028-030): 3-0, 15 for, 6 against; 5-1 vs Total Attack, 6-3 vs Benchmark, 4-2 vs Fort Knox. Gate passed: vs Total Attack conceded 1 (v13: 6 and 4); vs Benchmark scored 6 (027: 3) but conceded 3 (027: 0), the press-heavy shape (PRESS 234) leaves gaps behind it; net strongly positive.",
+        "**Decision: freeze v14 for the competitive matches.** The practice allowance is used up (30 of 30), so any further prompt change would go into competitive play untested.",
+        "Open items for after the competition, not before: their GK's long shot from his own end (one goal in each of 028 and 030); conceding 3 to Benchmark under a 38% press; the SHOOT counter not counting our shots against Fort Knox; Clear (CLEAR_OVERRIDE) still 18-27.",
+        "Opponent formation: GK, DEF, MID, FWD, FWD."
+      ]
+    },
+    {
+      "file": "match-log/practice/030-vs-fort-knox-athletic.md",
+      "type": "practice",
+      "number": 30,
+      "opponent": "Fort Knox Athletic",
+      "score_us": 4,
+      "score_them": 2,
+      "result": "W",
+      "date": "2026-10-07",
+      "formation": "1-2-1",
+      "strategy": "Swarm",
+      "deploy_tag": "deploy-v14-2026-10-07",
+      "metrics": {
+        "possession_us": 57,
+        "possession_them": 43,
+        "shots_us": 3,
+        "shots_them": 2,
+        "on_target_us": 4,
+        "on_target_them": 2,
+        "commands_us": 510,
+        "latency_avg_us": 869,
+        "commands_them": 510,
+        "latency_avg_them": 544,
+        "commands": {
+          "move": 97,
+          "press": 83,
+          "intercept": 33,
+          "mark": 184,
+          "pass": 77,
+          "shoot": 0,
+          "clear": 27,
+          "gk_dist": 9
+        },
+        "agents": {
+          "gk": {
+            "latency_avg": 672,
+            "latency_p95": null,
+            "success": 100
+          },
+          "def": {
+            "latency_avg": 954,
+            "latency_p95": null,
+            "success": 100
+          },
+          "mid": {
+            "latency_avg": 948,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd1": {
+            "latency_avg": 661,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd2": {
+            "latency_avg": 995,
+            "latency_p95": null,
+            "success": 100
+          }
+        },
+        "success_avg": 100.0,
+        "latency_gap": 325,
+        "shot_accuracy": 133.3,
+        "press_share": 16.3,
+        "intercept_share": 6.5,
+        "mark_share": 36.1,
+        "pass_share": 15.1,
+        "shoot_share": 0.0,
+        "prompt_chars_avg": 2952,
+        "prompt_chars_max": 2983,
+        "prompt_rules_avg": 8.6
+      },
+      "coach_interventions": [
+        {
+          "when": "\u2014",
+          "message": "None (watched, no messages sent)",
+          "effect": "\u2014"
+        }
+      ],
+      "models": {
+        "gk": "Claude Haiku",
+        "def": "Claude Haiku",
+        "mid": "Claude Haiku",
+        "fwd1": "Nova Lite 2",
+        "fwd2": "Nova Lite 2"
+      },
+      "versions": {
+        "gk": "13",
+        "def": "13",
+        "mid": "12",
+        "fwd1": "12",
+        "fwd2": "13"
+      },
+      "prompt_stats": {
+        "gk": {
+          "version": "13",
+          "chars": 2936,
+          "words": 573,
+          "rules": 6,
+          "constraints": 5
+        },
+        "def": {
+          "version": "13",
+          "chars": 2970,
+          "words": 597,
+          "rules": 10,
+          "constraints": 3
+        },
+        "mid": {
+          "version": "12",
+          "chars": 2983,
+          "words": 584,
+          "rules": 9,
+          "constraints": 3
+        },
+        "fwd1": {
+          "version": "12",
+          "chars": 2920,
+          "words": 572,
+          "rules": 8,
+          "constraints": 5
+        },
+        "fwd2": {
+          "version": "13",
+          "chars": 2949,
+          "words": 571,
+          "rules": 10,
+          "constraints": 4
+        }
+      },
+      "performance": {
+        "gk": "adequate",
+        "def": "strong",
+        "mid": "strong",
+        "fwd1": "adequate",
+        "fwd2": "adequate"
+      },
+      "action_items": [
+        "Deploy nothing new. v14 is the competitive version; export a platform backup of it into deploy/backups/. (priority: high)",
+        "Competitive: be present, check the first 15 seconds for 600-1200 ms per agent, send \"be more aggressive and shoot!\" at kick-off. (priority: high)"
+      ],
+      "observations": [
+        "v14 validation series (028-030): 3-0, 15 for, 6 against; 5-1 vs Total Attack, 6-3 vs Benchmark, 4-2 vs Fort Knox. Gate passed: vs Total Attack conceded 1 (v13: 6 and 4); vs Benchmark scored 6 (027: 3) but conceded 3 (027: 0), the press-heavy shape (PRESS 234) leaves gaps behind it; net strongly positive.",
+        "**Decision: freeze v14 for the competitive matches.** The practice allowance is used up (30 of 30), so any further prompt change would go into competitive play untested.",
+        "Open items for after the competition, not before: their GK's long shot from his own end (one goal in each of 028 and 030); conceding 3 to Benchmark under a 38% press; the SHOOT counter not counting our shots against Fort Knox; Clear (CLEAR_OVERRIDE) still 18-27.",
+        "Opponent formation: GK, DEF, MID, FWD, FWD."
+      ]
     }
   ],
   "current_formation": "1-2-1",
@@ -5299,7 +5745,7 @@
     }
   },
   "stats": {
-    "total_matches": 32,
+    "total_matches": 35,
     "competitive": {
       "played": 5,
       "remaining": 5,
@@ -5310,32 +5756,32 @@
       "goals_against": 11
     },
     "practice": {
-      "played": 27,
-      "wins": 12,
+      "played": 30,
+      "wins": 15,
       "draws": 2,
       "losses": 13
     }
   },
   "performance_trends": {
     "gk": {
-      "avg": 1.97,
-      "matches_rated": 32
+      "avg": 2.0,
+      "matches_rated": 35
     },
     "def": {
-      "avg": 1.91,
-      "matches_rated": 32
+      "avg": 1.97,
+      "matches_rated": 35
     },
     "mid": {
-      "avg": 2.25,
-      "matches_rated": 32
+      "avg": 2.31,
+      "matches_rated": 35
     },
     "fwd1": {
-      "avg": 1.91,
-      "matches_rated": 32
+      "avg": 1.97,
+      "matches_rated": 35
     },
     "fwd2": {
-      "avg": 1.59,
-      "matches_rated": 32
+      "avg": 1.63,
+      "matches_rated": 35
     }
   }
 }

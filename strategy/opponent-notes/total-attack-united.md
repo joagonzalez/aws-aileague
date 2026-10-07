@@ -10,6 +10,7 @@
 | 022 | practice | 3-5 L | v12 (DEF on Nova Micro, 830 ms: no gain), coach watching. Their MID x2 from his own half unpressed, FWD x3; their GK/DEF did not score for the first time (Hertz presses their GK). Our 'Clear 25' = CLEAR_OVERRIDE |
 | 023 | practice | 1-6 L | v13, coach watching. Their GK x2, DEF, FWD x2 + unknown; PASS 0, 2 shots |
 | 026 | practice | 3-4 L | v13, coach watching. Tesla hat-trick; their DEF x2, FWD x2; PASS 0, GK Dist 1 |
+| 028 | practice | **5-1 W** | v14, coach watching. First win over them unattended: Tesla x2, Hertz, two unknown; no minute-1 concession; their GK scored once |
 
 ## Official description
 Aggressive. Presses high, commits numbers forward, takes risks for early goals.
