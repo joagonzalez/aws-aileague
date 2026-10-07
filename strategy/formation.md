@@ -21,8 +21,8 @@ Changing formation means changing which positions get assigned AND rewriting pro
 | Formation | Shape | Strengths | Weaknesses |
 |-----------|-------|-----------|------------|
 | 2-1-1 | DEF DEF — MID — FWD | Strong defensively, MID distributes. | Can be outnumbered in attack. |
-| 1-2-1 | DEF — MID MID — FWD | Midfield dominance. Control tempo. | Single DEF is exposed on counters. |
-| 1-1-2 | DEF — MID — FWD FWD | Our current. Good attacking width. | Thin in defense and midfield. |
+| 1-2-1 | DEF — MID MID — FWD | **Our current platform setting since match 012.** Midfield dominance. Control tempo. | Single DEF is exposed on counters. |
+| 1-1-2 | DEF — MID — FWD FWD | Matches 001–011. Good attacking width. | Thin in defense and midfield. |
 
 ### Attacking
 
@@ -40,7 +40,9 @@ Changing formation means changing which positions get assigned AND rewriting pro
 | 0-4-0 | MID MID MID MID | Total control. Everyone can attack and defend. | No specialist finisher. Who scores? |
 | 1-3-0 | DEF — MID MID MID | Possession stranglehold. | Need a MID who can finish. |
 
-## Current Formation: 1-1-2 (GK - DEF - MID - FWD1 - FWD2)
+## Current Formation: 1-2-1 (platform setting; prompt roles GK - DEF - MID - FWD1 - FWD2)
+
+**Correction, 2026-10-07.** The platform's formation selector has been on **1-2-1** since the match 012 test and was never switched back; match logs 013–022 and C001–C005 said 1-1-2 by habit and have been corrected. Every result since 012 (7-1 vs balanced/defensive teams, the competitive 5-4 and 2-0) was obtained with 1-2-1 on the platform and prompts written for the GK/DEF/MID/FWD1/FWD2 roles, which the platform keeps labelling the same way (012 log). What the selector changes is the starting/reset positions after each goal; the roles come from our prompts. **Decision: keep 1-2-1.** It is what works; switching to 1-1-2 now would be an untested change. Open question for the coach: under 1-2-1, which of slots 3 (Hertz) and 4 (Lovelace) starts in the second midfield spot and which as the lone forward?
 
 ```
         FWD1     FWD2
@@ -68,7 +70,7 @@ Priority experiments:
 2. **1-2-1** — Add a second MID, drop to 1 FWD. Test if midfield control compensates for fewer finishers.
 3. **2-0-2** — No MID, direct play. Test if skipping midfield with long balls is effective.
 
-## Positioning Philosophy (current 1-1-2)
+## Positioning Philosophy (prompt roles; platform formation 1-2-1)
 
 Middle lane = the strip as wide as the box, goal to goal (v4).
 

@@ -4,7 +4,7 @@
 - Score: 3 - 5 (LOSS)
 - Date: 2026-10-06
 - Type: practice
-- Formation: 1-1-2
+- Formation: 1-2-1 (platform setting since the match 012 test; this log originally said 1-1-2 by habit — corrected 2026-10-07)
 - Strategy: Swarm
 - Deploy tag: deploy-v12-2026-10-06
 - Prompt versions deployed: GK v11, DEF v11, MID v10, FWD1 v10, FWD2 v11

@@ -1,6 +1,6 @@
 # Paste-Ready Prompts
 
-Paste each block into that player's instructions, set the model shown, then click "Redeploy changes". Formation 1-1-2.
+Paste each block into that player's instructions, set the model shown, then click "Redeploy changes". Formation on the platform: 1-2-1 (since match 012; the prompt roles stay GK/DEF/MID/FWD1/FWD2).
 
 ## 1. Shannon (GK) — Claude Haiku — 2955/6000 chars
 

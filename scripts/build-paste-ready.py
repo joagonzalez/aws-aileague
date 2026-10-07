@@ -200,7 +200,7 @@ def main():
     OUTPUT_FILE.write_text(
         "# Paste-Ready Prompts\n\n"
         "Paste each block into that player's instructions, set the model shown, then click \"Redeploy changes\". "
-        "Formation 1-1-2.\n\n"
+        "Formation on the platform: 1-2-1 (since match 012; the prompt roles stay GK/DEF/MID/FWD1/FWD2).\n\n"
         + "\n".join(blocks)
     )
     print(f"Wrote {OUTPUT_FILE.relative_to(ROOT)}")

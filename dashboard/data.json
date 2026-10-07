@@ -1774,7 +1774,7 @@
       "score_them": 3,
       "result": "L",
       "date": "2026-10-06",
-      "formation": "1-1-2",
+      "formation": "1-2-1",
       "strategy": "Swarm",
       "deploy_tag": "deploy-v8-2026-10-05",
       "metrics": {
@@ -1918,7 +1918,7 @@
       "score_them": 0,
       "result": "W",
       "date": "2026-10-06",
-      "formation": "1-1-2",
+      "formation": "1-2-1",
       "strategy": "Swarm",
       "deploy_tag": "deploy-v9-2026-10-06",
       "metrics": {
@@ -2067,7 +2067,7 @@
       "score_them": 2,
       "result": "W",
       "date": "2026-10-06",
-      "formation": "1-1-2",
+      "formation": "1-2-1",
       "strategy": "Swarm",
       "deploy_tag": "deploy-v9-2026-10-06",
       "metrics": {
@@ -2220,7 +2220,7 @@
       "score_them": 0,
       "result": "W",
       "date": "2026-10-06",
-      "formation": "1-1-2",
+      "formation": "1-2-1",
       "strategy": "Swarm",
       "deploy_tag": "deploy-v9-2026-10-06",
       "metrics": {
@@ -2372,7 +2372,7 @@
       "score_them": 0,
       "result": "W",
       "date": "2026-10-06",
-      "formation": "1-1-2",
+      "formation": "1-2-1",
       "strategy": "Swarm",
       "deploy_tag": "deploy-v9-2026-10-06",
       "metrics": {
@@ -2518,7 +2518,7 @@
       "score_them": 1,
       "result": "W",
       "date": "2026-10-06",
-      "formation": "1-1-2",
+      "formation": "1-2-1",
       "strategy": "Swarm",
       "deploy_tag": "deploy-v11-2026-10-06",
       "metrics": {
@@ -2667,7 +2667,7 @@
       "score_them": 1,
       "result": "W",
       "date": "2026-10-06",
-      "formation": "1-1-2",
+      "formation": "1-2-1",
       "strategy": "Swarm",
       "deploy_tag": "deploy-v11-2026-10-06",
       "metrics": {
@@ -2809,7 +2809,7 @@
       "score_them": 7,
       "result": "L",
       "date": "2026-10-06",
-      "formation": "1-1-2",
+      "formation": "1-2-1",
       "strategy": "Swarm",
       "deploy_tag": "deploy-v11-2026-10-06",
       "metrics": {
@@ -2962,7 +2962,7 @@
       "score_them": 2,
       "result": "L",
       "date": "2026-10-06",
-      "formation": "1-1-2",
+      "formation": "1-2-1",
       "strategy": "Swarm",
       "deploy_tag": "deploy-v11-2026-10-06",
       "metrics": {
@@ -3111,7 +3111,7 @@
       "score_them": 5,
       "result": "L",
       "date": "2026-10-06",
-      "formation": "1-1-2",
+      "formation": "1-2-1",
       "strategy": "Swarm",
       "deploy_tag": "deploy-v12-2026-10-06",
       "metrics": {
@@ -3263,7 +3263,7 @@
       "score_them": 5,
       "result": "L",
       "date": "2026-10-06",
-      "formation": "1-1-2",
+      "formation": "1-2-1",
       "strategy": "Swarm",
       "deploy_tag": "deploy-v9-2026-10-06",
       "metrics": {
@@ -3413,7 +3413,7 @@
       "score_them": 4,
       "result": "W",
       "date": "2026-10-06",
-      "formation": "1-1-2",
+      "formation": "1-2-1",
       "strategy": "Swarm",
       "deploy_tag": "deploy-v10-2026-10-06",
       "metrics": {
@@ -3567,7 +3567,7 @@
       "score_them": 0,
       "result": "W",
       "date": "2026-10-06",
-      "formation": "1-1-2",
+      "formation": "1-2-1",
       "strategy": "Swarm",
       "deploy_tag": "deploy-v10-2026-10-06",
       "metrics": {
@@ -3718,7 +3718,7 @@
       "score_them": 0,
       "result": "W",
       "date": "2026-10-06",
-      "formation": "1-1-2",
+      "formation": "1-2-1",
       "strategy": "Swarm",
       "deploy_tag": "deploy-v10-2026-10-06",
       "metrics": {
@@ -3868,7 +3868,7 @@
       "score_them": 2,
       "result": "L",
       "date": "2026-10-06",
-      "formation": "1-1-2",
+      "formation": "1-2-1",
       "strategy": "Swarm",
       "deploy_tag": "deploy-v10-2026-10-06",
       "metrics": {
@@ -4013,7 +4013,7 @@
       ]
     }
   ],
-  "current_formation": "1-1-2",
+  "current_formation": "1-2-1",
   "current_config": {
     "gk": {
       "version": "12",
