@@ -16,6 +16,7 @@
 | 036 | practice | 4-0 W | v14, 0 on target against |
 | 040 | practice | 2-6 L | v14, our avg 1059 ms; **their GK x4**, DEF x2 |
 | 041 | practice | 0-6 L | v14, our avg 1074 ms; Vic Surge x4, GK, MID; four conceded in minute 1 |
+| 045 | practice | 2-1 W | v14 redeployed; Tesla x2, their GK long shot; 1094 ms avg, Turing 1890 ms |
 
 ## Official description
 Aggressive. Presses high, commits numbers forward, takes risks for early goals.
