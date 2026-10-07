@@ -131,10 +131,45 @@ def check_files(paths):
     sys.exit(1 if failed else 0)
 
 
+# Bedrock model IDs as the platform export names them (deploy/backups/*.json). Add new ones from an export.
+MODEL_IDS = {
+    "Claude Haiku": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+    "Nova Micro": "us.amazon.nova-micro-v1:0",
+    "Nova Lite 2": "us.amazon.nova-2-lite-v1:0",
+}
+IMPORT_FILE = ROOT / "deploy" / "agents-import.json"
+BACKUP_DIR = ROOT / "deploy" / "backups"
+
+
+def write_import_json(agents):
+    """deploy/agents-import.json in the platform's export schema: the same text as paste-ready, one file."""
+    import datetime
+    import json
+    characters = {}
+    backups = sorted(BACKUP_DIR.glob("*.json")) if BACKUP_DIR.is_dir() else []
+    if backups:
+        for a in json.loads(backups[-1].read_text()).get("agents", []):
+            if a.get("character"):
+                characters[a.get("name")] = a["character"]
+    out = []
+    for a in agents:
+        model_id = MODEL_IDS.get(a["model"])
+        if not model_id:
+            print(f"WARNING {a['name']}: no Bedrock model id known for '{a['model']}'; fill model_id by hand in {IMPORT_FILE.name}")
+        entry = {"position": a["position"], "name": a["name"], "system_prompt": a["system_prompt"], "model_id": model_id or ""}
+        if a["name"] in characters:
+            entry["character"] = characters[a["name"]]
+        out.append(entry)
+    doc = {"version": "1", "exported_at": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="milliseconds").replace("+00:00", "Z"),
+           "team_name": "Kernel Panic FC", "agents": out}
+    IMPORT_FILE.write_text(json.dumps(doc, indent=2, ensure_ascii=False) + "\n")
+    print(f"Wrote {IMPORT_FILE.relative_to(ROOT)}")
+
+
 def main():
     if len(sys.argv) > 2 and sys.argv[1] == "--check":
         check_files(sys.argv[2:])
-    all_errors, all_warnings, blocks, summary = [], [], [], []
+    all_errors, all_warnings, blocks, summary, agents = [], [], [], [], []
     state = platform_state()
 
     for pos, number, name, label in PLAYERS:
@@ -152,12 +187,15 @@ def main():
         all_errors += errors
         all_warnings += warnings
         summary.append(f"{name} ({label}) {source}")
+        agents.append({"position": str(number - 1), "name": name, "system_prompt": paste_text + "\n", "model": prompt["model"]})
         blocks.append(f"## {number}. {name} ({label}) — {prompt['model']} — {len(paste_text)}/{HARD_LIMIT} chars\n\n```text\n{paste_text}\n```\n")
 
     if all_errors:
         for e in all_errors:
             print(f"ERROR   {e}")
         sys.exit(1)
+
+    write_import_json(agents)
 
     OUTPUT_FILE.write_text(
         "# Paste-Ready Prompts\n\n"

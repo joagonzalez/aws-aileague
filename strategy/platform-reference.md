@@ -97,3 +97,11 @@ Template: position + player id + team; one-sentence role; decision priorities 1â
 
 *(ours)* Our schema is the four layers with the Coordination section added (layer 2 is the Decision Framework, layer 4 the Constraints). We had no layer 3; the schema now allows a short Situational section when a logged situation justifies it (stamina is the safe one; score-based play has not paid in a match decided in minute 1). The page's own example constraint "never SHOOT from beyond the midfield line" is the opposite of what our data says: every shot on target is a goal, and 26 of Tesla's goals are long shots.
 
+
+
+## Platform export format (from `deploy/backups/kernel-panic-fc-agents.json`, 2026-10-07)
+
+The portal exports the team as JSON: `{"version": "1", "exported_at": ..., "team_name": ..., "agents": [{"position": "0".."4", "name", "system_prompt", "model_id", "character"?}]}`. **`system_prompt` is exactly the text we paste**, byte for byte (checked against the `deploy-v12` paste file: all five identical). So what we write is the agent's whole system prompt as far as the portal is concerned; the command list and response format come from the harness, not from our text.
+
+Model IDs: Claude Haiku = `global.anthropic.claude-haiku-4-5-20251001-v1:0`, Nova Micro = `us.amazon.nova-micro-v1:0`, Nova Lite 2 = `us.amazon.nova-2-lite-v1:0`. `scripts/build-paste-ready.py` now also writes `deploy/agents-import.json` in this schema from the same sources, so a release can be imported in one step if the portal has an import; otherwise paste as before.
+\n
