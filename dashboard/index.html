@@ -455,7 +455,7 @@
       </div>
       <table class="config-table">
         <thead>
-          <tr><th>Pos</th><th>Version</th><th>Model</th></tr>
+          <tr><th>Pos</th><th title="prompts/&lt;pos&gt;/vN.md — numbered per position, independently of the team release">Prompt file</th><th>Model</th></tr>
         </thead>
         <tbody id="config-body"></tbody>
       </table>
@@ -1189,7 +1189,7 @@
         const tr = document.createElement('tr');
         tr.innerHTML = `
           <td><span class="pos-badge">${POS_NAMES[pos]}</span></td>
-          <td>v${info.version}</td>
+          <td title="${info.source || ''}">${POS_NAMES[pos].toLowerCase()}/v${info.version}</td>
           <td><span class="model-tag">${info.model}</span></td>
         `;
         configBody.appendChild(tr);
