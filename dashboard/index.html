@@ -354,6 +354,7 @@
     .legend-item { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--text); }
     .legend-item.empty { color: var(--text-dim); }
     .line-key { display: inline-block; width: 14px; height: 2px; border-radius: 1px; }
+    .line-key.dashed { height: 0; border-top: 2px dashed; }
 
     .chart-host { width: 100%; border-radius: 4px; }
     .chart-host:focus-visible { outline: 2px solid var(--accent2); outline-offset: 4px; }
@@ -570,25 +571,23 @@
     const fmtInt = v => (isNum(v) ? Math.round(v).toLocaleString() : '—');
     const fmtMs = v => (isNum(v) ? `${Math.round(v)}ms` : '—');
     const fmtPct = v => (isNum(v) ? `${+v.toFixed(1)}%` : '—');
+    const ratioPct = (num, den) => (isNum(num) && isNum(den) && den > 0 ? num / den * 100 : null);
 
     const CHARTS = [
-      { id: 'goals', title: 'Goals', sub: 'Per match', integer: true, format: fmtInt, series: [
-        { label: 'Us', color: 'var(--series-1)', get: m => m.score_us },
-        { label: 'Opponent', color: 'var(--context)', get: m => m.score_them } ] },
+      { id: 'shots-goals', title: 'Shots & Goals', sub: 'Shots (dashed) and goals (solid) per match. On this platform every shot on target has been a goal, so goals stand in for shots on target.', integer: true, format: fmtInt, series: [
+        { label: 'Our goals', color: 'var(--series-1)', get: m => m.score_us },
+        { label: 'Our shots', color: 'var(--series-1)', dash: true, get: m => met(m).shots_us },
+        { label: 'Their goals', color: 'var(--context)', get: m => m.score_them },
+        { label: 'Their shots', color: 'var(--context)', dash: true, get: m => met(m).shots_them } ] },
+      { id: 'accuracy', title: 'Shot Accuracy', sub: 'Shots on target as a share of shots, %', yMax: 100, format: fmtPct, series: [
+        { label: 'Us', color: 'var(--series-1)', get: m => ratioPct(met(m).on_target_us, met(m).shots_us) },
+        { label: 'Opponent', color: 'var(--context)', get: m => ratioPct(met(m).on_target_them, met(m).shots_them) } ] },
       { id: 'possession', title: 'Possession', sub: 'Our share of the ball, %', yMax: 100, format: fmtPct, series: [
         { label: 'Us', color: 'var(--series-1)', get: m => met(m).possession_us } ] },
-      { id: 'shots', title: 'Shots', sub: 'Shots recorded by the platform', integer: true, format: fmtInt, series: [
-        { label: 'Us', color: 'var(--series-1)', get: m => met(m).shots_us },
-        { label: 'Opponent', color: 'var(--context)', get: m => met(m).shots_them } ] },
-      { id: 'on-target', title: 'Shots on Target', sub: 'Per match', integer: true, format: fmtInt, series: [
-        { label: 'Us', color: 'var(--series-1)', get: m => met(m).on_target_us },
-        { label: 'Opponent', color: 'var(--context)', get: m => met(m).on_target_them } ] },
       { id: 'latency', title: 'Response Latency', sub: 'Milliseconds, lower is faster', format: fmtMs, series: [
         { label: 'Our avg', color: 'var(--series-1)', get: m => met(m).latency_avg_us },
         { label: 'Our p95', color: 'var(--series-2)', get: m => met(m).latency_p95_us },
         { label: 'Opponent avg', color: 'var(--context)', get: m => met(m).latency_avg_them } ] },
-      { id: 'success', title: 'Command Success', sub: 'Average across our 5 agents, %', yMax: 100, format: fmtPct, series: [
-        { label: 'Team', color: 'var(--series-1)', get: m => met(m).success_avg } ] },
       { id: 'ball-winning', title: 'Ball-Winning Commands', sub: 'Our commands per match', integer: true, format: fmtInt, series: [
         { label: 'Press', color: 'var(--series-1)', get: m => cmd(m, 'press') },
         { label: 'Intercept', color: 'var(--series-2)', get: m => cmd(m, 'intercept') },
@@ -798,7 +797,7 @@
           d += `${pen ? 'L' : 'M'}${xAt(i)},${yAt(v)}`;
           pen = true;
         });
-        if (d) svg.append(el('svg:path', { d, fill: 'none', stroke: s.color, 'stroke-width': 2, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }));
+        if (d) svg.append(el('svg:path', { d, fill: 'none', stroke: s.color, 'stroke-width': 2, 'stroke-linejoin': 'round', 'stroke-linecap': 'round', ...(s.dash ? { 'stroke-dasharray': '6 4' } : {}) }));
         matches.forEach((m, i) => {
           const v = s.get(m);
           if (isNum(v)) svg.append(el('svg:circle', { cx: xAt(i), cy: yAt(v), r: R, fill: s.color, stroke: 'var(--surface)', 'stroke-width': 2 }));
@@ -1004,7 +1003,7 @@
       for (const s of def.series) {
         const hasData = viz.matches.some(m => isNum(s.get(m)));
         const item = el('span', { class: hasData ? 'legend-item' : 'legend-item empty' });
-        item.append(el('span', { class: 'line-key', style: `background:${s.color}` }), document.createTextNode(hasData ? s.label : `${s.label} (no data yet)`));
+        item.append(el('span', { class: s.dash ? 'line-key dashed' : 'line-key', style: s.dash ? `border-color:${s.color}` : `background:${s.color}` }), document.createTextNode(hasData ? s.label : `${s.label} (no data yet)`));
         legend.append(item);
       }
     }
