@@ -6948,6 +6948,301 @@
       ]
     },
     {
+      "file": "match-log/practice/043-vs-fort-knox-athletic.md",
+      "type": "practice",
+      "number": 43,
+      "opponent": "Fort Knox Athletic",
+      "score_us": 2,
+      "score_them": 0,
+      "result": "W",
+      "date": "2026-10-07",
+      "formation": "1-2-1",
+      "strategy": "Swarm",
+      "deploy_tag": "deploy-v14-2026-10-07",
+      "metrics": {
+        "possession_us": 53,
+        "possession_them": 47,
+        "shots_us": 3,
+        "shots_them": 2,
+        "on_target_us": 2,
+        "on_target_them": 0,
+        "commands_us": 219,
+        "latency_avg_us": 1402,
+        "commands_them": 220,
+        "latency_avg_them": 533,
+        "commands": {
+          "move": 34,
+          "press": 24,
+          "intercept": 17,
+          "mark": 95,
+          "pass": 33,
+          "shoot": 0,
+          "clear": 11,
+          "gk_dist": 5
+        },
+        "agents": {
+          "gk": {
+            "latency_avg": 655,
+            "latency_p95": null,
+            "success": 100
+          },
+          "def": {
+            "latency_avg": 1303,
+            "latency_p95": null,
+            "success": 100
+          },
+          "mid": {
+            "latency_avg": 954,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd1": {
+            "latency_avg": 625,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd2": {
+            "latency_avg": 2442,
+            "latency_p95": null,
+            "success": 100
+          }
+        },
+        "success_avg": 100.0,
+        "latency_gap": 869,
+        "shot_accuracy": 66.7,
+        "press_share": 11.0,
+        "intercept_share": 7.8,
+        "mark_share": 43.4,
+        "pass_share": 15.1,
+        "shoot_share": 0.0,
+        "prompt_chars_avg": 2952,
+        "prompt_chars_max": 2983,
+        "prompt_rules_avg": 8.6
+      },
+      "coach_interventions": [
+        {
+          "when": "\u2014",
+          "message": "None (watched, no messages sent)",
+          "effect": "\u2014"
+        }
+      ],
+      "models": {
+        "gk": "Claude Haiku",
+        "def": "Claude Haiku",
+        "mid": "Claude Haiku",
+        "fwd1": "Nova Lite 2",
+        "fwd2": "Nova Lite 2"
+      },
+      "versions": {
+        "gk": "13",
+        "def": "13",
+        "mid": "12",
+        "fwd1": "12",
+        "fwd2": "13"
+      },
+      "prompt_stats": {
+        "gk": {
+          "version": "13",
+          "chars": 2936,
+          "words": 573,
+          "rules": 6,
+          "constraints": 5
+        },
+        "def": {
+          "version": "13",
+          "chars": 2970,
+          "words": 597,
+          "rules": 10,
+          "constraints": 3
+        },
+        "mid": {
+          "version": "12",
+          "chars": 2983,
+          "words": 584,
+          "rules": 9,
+          "constraints": 3
+        },
+        "fwd1": {
+          "version": "12",
+          "chars": 2920,
+          "words": 572,
+          "rules": 8,
+          "constraints": 5
+        },
+        "fwd2": {
+          "version": "13",
+          "chars": 2949,
+          "words": 571,
+          "rules": 10,
+          "constraints": 4
+        }
+      },
+      "performance": {
+        "gk": "adequate",
+        "def": "adequate",
+        "mid": "adequate",
+        "fwd1": "adequate",
+        "fwd2": "adequate"
+      },
+      "action_items": [
+        "Competitive: first-15-second latency check; if our agents are above ~1050 ms, expect missed ticks; \"be more aggressive and shoot!\" at kick-off. (priority: high)",
+        "Post-competition v16 candidates (one per practice match): Tesla sprints on his support move (rule 9) and his on-ball \"nobody within a few steps\" shot relaxed to \"no opponent within a step\"; Lovelace's model (Haiku 893-999 ms, Nova Lite 2 840-1276, Sonnet 809: none fast). (priority: low)"
+      ],
+      "observations": [
+        "v14 after the rollback: 2-0, 1-0 with the platform at 1400-1600 ms average and half the normal command count. Both behaviours the coach saw (Lovelace freezing, Tesla reached before he moves) are latency: a decision above 2 s misses the tick and the player holds his last command.",
+        "Decision: no prompt change before the competitive matches (v15's untested change cost a validation match). Play when the platform is fast; check the first-15-second latency.",
+        "Opponent formation: GK, DEF, MID, FWD, FWD."
+      ]
+    },
+    {
+      "file": "match-log/practice/044-vs-the-benchmark-fc.md",
+      "type": "practice",
+      "number": 44,
+      "opponent": "The Benchmark FC",
+      "score_us": 1,
+      "score_them": 0,
+      "result": "W",
+      "date": "2026-10-07",
+      "formation": "1-2-1",
+      "strategy": "Swarm",
+      "deploy_tag": "deploy-v14-2026-10-07",
+      "metrics": {
+        "possession_us": 44,
+        "possession_them": 56,
+        "shots_us": 5,
+        "shots_them": 2,
+        "on_target_us": 1,
+        "on_target_them": 0,
+        "commands_us": 158,
+        "latency_avg_us": 1592,
+        "commands_them": 160,
+        "latency_avg_them": 664,
+        "commands": {
+          "move": 60,
+          "press": 60,
+          "intercept": 17,
+          "mark": 0,
+          "pass": 10,
+          "shoot": 7,
+          "clear": 4,
+          "gk_dist": 0
+        },
+        "agents": {
+          "gk": {
+            "latency_avg": 1003,
+            "latency_p95": null,
+            "success": 100
+          },
+          "def": {
+            "latency_avg": 1988,
+            "latency_p95": null,
+            "success": 100
+          },
+          "mid": {
+            "latency_avg": 1064,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd1": {
+            "latency_avg": 657,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd2": {
+            "latency_avg": 1865,
+            "latency_p95": null,
+            "success": 100
+          }
+        },
+        "success_avg": 100.0,
+        "latency_gap": 928,
+        "shot_accuracy": 20.0,
+        "shoot_cmd_to_shot": 71.4,
+        "press_share": 38.0,
+        "intercept_share": 10.8,
+        "mark_share": 0.0,
+        "pass_share": 6.3,
+        "shoot_share": 4.4,
+        "prompt_chars_avg": 2952,
+        "prompt_chars_max": 2983,
+        "prompt_rules_avg": 8.6
+      },
+      "coach_interventions": [
+        {
+          "when": "\u2014",
+          "message": "None (watched, no messages sent)",
+          "effect": "\u2014"
+        }
+      ],
+      "models": {
+        "gk": "Claude Haiku",
+        "def": "Claude Haiku",
+        "mid": "Claude Haiku",
+        "fwd1": "Nova Lite 2",
+        "fwd2": "Nova Lite 2"
+      },
+      "versions": {
+        "gk": "13",
+        "def": "13",
+        "mid": "12",
+        "fwd1": "12",
+        "fwd2": "13"
+      },
+      "prompt_stats": {
+        "gk": {
+          "version": "13",
+          "chars": 2936,
+          "words": 573,
+          "rules": 6,
+          "constraints": 5
+        },
+        "def": {
+          "version": "13",
+          "chars": 2970,
+          "words": 597,
+          "rules": 10,
+          "constraints": 3
+        },
+        "mid": {
+          "version": "12",
+          "chars": 2983,
+          "words": 584,
+          "rules": 9,
+          "constraints": 3
+        },
+        "fwd1": {
+          "version": "12",
+          "chars": 2920,
+          "words": 572,
+          "rules": 8,
+          "constraints": 5
+        },
+        "fwd2": {
+          "version": "13",
+          "chars": 2949,
+          "words": 571,
+          "rules": 10,
+          "constraints": 4
+        }
+      },
+      "performance": {
+        "gk": "adequate",
+        "def": "adequate",
+        "mid": "adequate",
+        "fwd1": "adequate",
+        "fwd2": "adequate"
+      },
+      "action_items": [
+        "Competitive: first-15-second latency check; if our agents are above ~1050 ms, expect missed ticks; \"be more aggressive and shoot!\" at kick-off. (priority: high)",
+        "Post-competition v16 candidates (one per practice match): Tesla sprints on his support move (rule 9) and his on-ball \"nobody within a few steps\" shot relaxed to \"no opponent within a step\"; Lovelace's model (Haiku 893-999 ms, Nova Lite 2 840-1276, Sonnet 809: none fast). (priority: low)"
+      ],
+      "observations": [
+        "v14 after the rollback: 2-0, 1-0 with the platform at 1400-1600 ms average and half the normal command count. Both behaviours the coach saw (Lovelace freezing, Tesla reached before he moves) are latency: a decision above 2 s misses the tick and the player holds his last command.",
+        "Decision: no prompt change before the competitive matches (v15's untested change cost a validation match). Play when the platform is fast; check the first-15-second latency.",
+        "Opponent formation: GK, DEF, MID, FWD, FWD."
+      ]
+    },
+    {
       "file": "match-log/competitive/006-vs-cloud-queens.md",
       "type": "competitive",
       "number": 6,
@@ -7698,7 +7993,7 @@
     }
   },
   "stats": {
-    "total_matches": 48,
+    "total_matches": 50,
     "competitive": {
       "played": 6,
       "remaining": 4,
@@ -7709,8 +8004,8 @@
       "goals_against": 15
     },
     "practice": {
-      "played": 42,
-      "wins": 23,
+      "played": 44,
+      "wins": 25,
       "draws": 2,
       "losses": 17
     }
@@ -7718,23 +8013,23 @@
   "performance_trends": {
     "gk": {
       "avg": 2.06,
-      "matches_rated": 48
+      "matches_rated": 50
     },
     "def": {
       "avg": 2.04,
-      "matches_rated": 48
+      "matches_rated": 50
     },
     "mid": {
-      "avg": 2.29,
-      "matches_rated": 48
+      "avg": 2.28,
+      "matches_rated": 50
     },
     "fwd1": {
       "avg": 2.04,
-      "matches_rated": 48
+      "matches_rated": 50
     },
     "fwd2": {
-      "avg": 1.79,
-      "matches_rated": 48
+      "avg": 1.8,
+      "matches_rated": 50
     }
   }
 }

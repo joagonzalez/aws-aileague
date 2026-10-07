@@ -10,6 +10,7 @@
 | 030 | practice | 4-2 W | v14, coach watching. Tesla x4; their GK scored from his own end; MARK 184, PASS 77, SHOOT 0 commands |
 | 032 | practice | 4-0 W | v14, Tesla x4, MARK 126 |
 | 038 | practice | 2-0 W | v14, Hertz x2; platform slow (1451 ms avg, 229 commands) |
+| 043 | practice | 2-0 W | v14 redeployed; platform slow (1402 ms, Lovelace 2442 ms) |
 
 ## Official description
 Defensive. Compact, disciplined, and lethal on the counter-attack.
