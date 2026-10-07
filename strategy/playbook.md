@@ -1,6 +1,6 @@
 # Playbook
 
-## Team Identity: Swarm + Runner (v12, current)
+## Team Identity: Swarm + Runner (v13, current)
 
 Strategy name for match logs: **Swarm**.
 
@@ -8,7 +8,7 @@ MID (Tesla) and FWD2 (Lovelace) move as a compact pair around the ball in the ce
 
 Why we switched (matches 006–008, coach direction): after four rewrites the forwards still drifted to the corners and contributed nothing. Our v5–v7 long clears landed in the corners where they chased them, passing collapsed (0 PASS vs Total Attack), and we lost five straight.
 
-Pressing (v12, identical in every prompt): a carrier in our half or within a long pass of halfway — the nearer of MID and FWD2 (ties: MID) PRESSes him, sprinting; the other MARKs tightly the opponent closest to him. A carrier in our half between the sides of our box with no outfield teammate other than DEF between him and our goal — DEF PRESSes him too, GK inside our box. FWD1 presses only their GK or their deepest DEF with the ball; nobody else presses. Why (020–021): v11 let nobody press deeper than a long pass from halfway, and opposing GKs (7 goals against us) and DEFs (5) shot from their own end; Hertz, the only player near their goal, now presses them. v12 also: every attacker SHOOTs at once inside their box (the 'goal in front' test was false near the end line, so Hertz passed back from in front of goal); Tesla's kick-off is a through ball or a ground pass, never a center-spot shot (020: 87 SHOOT commands, 5 shots); DEF marks a goal-side attacker before pressing a shooter; GK kicks long to Hertz by name and DEF lofts to Hertz (021: the GK's untargeted kick went to DEF, 0 shots from 69% possession).
+Pressing (v13, identical in every prompt): any carrier anywhere except their GK and their deepest DEF in their half — the nearer of MID and FWD2 (ties: MID) PRESSes him, sprinting; the other MARKs tightly the goal-side attacker DEF is not marking (goal-side: no ball, nearer our goal than the ball, in our box or in our half between its sides), else INTERCEPTs to cut out his pass. A central carrier in our half with nobody but DEF between him and our goal — DEF PRESSes him too, GK inside our box. FWD1 presses only those two. Why (022): their MID scored four times in three matches from his own half, beyond v12's 'long pass from halfway' reach; their camping forwards (Vic Surge 3+3) had only DEF to beat, so the second swarm player now marks the one DEF is not marking (the official 'mark the next nearest' handoff). v13 also: no CLEAR anywhere (it is CLEAR_OVERRIDE: the player drops to the default AI), SHOOT/PASS only with the ball at your feet (022 wasted 86 ticks), the empty-goal shot for all five when their GK is up near halfway with an open line, open-line long shots for Hertz and Lovelace, no sprint below 30 stamina.
 
 ## Previous Identity: Counter-Punch (v3–v7, retired)
 

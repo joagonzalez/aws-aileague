@@ -88,6 +88,8 @@ def build_paste_text(sections):
         "Check these rules in order and do the first one that matches:\n" + sections["Decision Framework"],
         "Style:\n" + sections["Personality / Tendencies"],
         "Teammates:\n" + sections["Coordination"],
+        # Optional section (official template layer 3): pasted only when the prompt has it.
+        *(["Situational:\n" + sections["Situational Rules"]] if sections.get("Situational Rules") else []),
         "Hard rules:\n" + sections["Constraints"],
     ])
 
