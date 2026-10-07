@@ -289,6 +289,32 @@ def get_current_prompt_info():
     return info
 
 
+def get_current_release(config):
+    """Which team release the deployed per-player versions correspond to (tags.md), plus the
+    platform-state notes. Matches the versions column of tags.md against what is deployed."""
+    import json as _json
+    release = {"tag": None, "date": None, "summary": None, "updated": None, "notes": {}}
+    state_file = ROOT / "deploy" / "platform-state.json"
+    if state_file.exists():
+        st = _json.loads(state_file.read_text())
+        release["updated"] = st.get("updated")
+        for pos, entry in (st.get("players") or {}).items():
+            if entry.get("note"):
+                release["notes"][pos] = entry["note"]
+    tags_file = ROOT / "tags.md"
+    if tags_file.exists() and config:
+        want = {pos: str(config[pos]["version"]) for pos in config}
+        for line in tags_file.read_text().splitlines():
+            m = re.match(r"\|\s*`(deploy-v\d+-[\d-]+)`\s*\|\s*([\d-]+)\s*\|[^|]*\|([^|]*)\|[^|]*\|([^|]*)\|", line)
+            if not m:
+                continue
+            tag, date, versions_col, summary = m.group(1), m.group(2), m.group(3), m.group(4).strip()
+            found = dict(re.findall(r"(GK|DEF|MID|FWD1|FWD2) v(\d+)", versions_col))
+            if len(found) == 5 and all(found[pos.upper()] == want[pos] for pos in want):
+                release.update({"tag": tag, "date": date, "summary": summary})  # latest matching row wins
+    return release
+
+
 def version_key(f):
     return int(re.sub(r"\D", "", f.stem) or 0)
 
@@ -341,6 +367,7 @@ def build_dashboard_data():
 
     # Current deployment info
     data["current_config"] = get_current_prompt_info()
+    data["current_release"] = get_current_release(data["current_config"])
 
     # Version history
     data["versions"] = get_all_versions()

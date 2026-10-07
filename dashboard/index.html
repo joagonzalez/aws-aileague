@@ -287,6 +287,8 @@
       --series-1: #3987e5;     /* blue — "us" / first series */
       --series-2: #d95926;     /* orange */
       --series-3: #199e70;     /* aqua — never in the same chart as --context */
+      --series-4: #8f66cc;     /* purple — validated with 1-3 and --context (dark surface) */
+      --series-5: #d05a8a;     /* rose */
       --context: #898781;      /* gray — opponent / reference */
       --grid: #1e2a3a;
       --axis: #33445a;
@@ -393,6 +395,11 @@
     .metrics-table th, .metrics-table td { padding: 0.35rem 0.8rem; border-bottom: 1px solid var(--border); text-align: right; white-space: nowrap; }
     .metrics-table th:first-child, .metrics-table td:first-child { text-align: left; color: var(--text-dim); }
     .metrics-table tr.group td { color: var(--accent2); text-transform: uppercase; font-size: 0.7rem; padding-top: 0.9rem; text-align: left; }
+    .release-table th, .release-table td { text-align: left; white-space: normal; }
+    .release-table td.num, .release-table th.num { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+    .release-table tr.current td { background: rgba(0, 176, 255, 0.08); }
+    .release-table .w { color: var(--win); } .release-table .l { color: var(--loss); } .release-table .d { color: var(--draw); }
+    .band-label { font-size: 10px; fill: var(--text-dim); }
   </style>
 </head>
 <body>
@@ -437,12 +444,21 @@
         <span class="stat-label">Formation</span>
         <span class="stat-value" id="current-formation" style="color: var(--accent);">1-1-2</span>
       </div>
+      <div class="stat-row" style="margin-bottom: 0.4rem;">
+        <span class="stat-label">Release</span>
+        <span class="stat-value" id="current-release">—</span>
+      </div>
+      <div class="stat-row" style="margin-bottom: 0.8rem;">
+        <span class="stat-label">Recorded</span>
+        <span class="stat-value" id="current-updated" style="color: var(--text-dim); font-weight: normal;">—</span>
+      </div>
       <table class="config-table">
         <thead>
           <tr><th>Pos</th><th>Version</th><th>Model</th></tr>
         </thead>
         <tbody id="config-body"></tbody>
       </table>
+      <p class="chart-sub" id="current-note" style="margin-top: 0.6rem; margin-bottom: 0;" hidden></p>
     </div>
   </div>
 
@@ -518,6 +534,14 @@
     </div>
   </div>
 
+  <div class="grid">
+    <div class="card card-wide">
+      <h2>Results by Release</h2>
+      <p class="chart-sub">Every match grouped by the deploy tag it was played on. Deployment failures (our agents on the default AI) are counted but flagged in the match logs.</p>
+      <div class="table-scroll"><table class="metrics-table release-table" id="release-table"></table></div>
+    </div>
+  </div>
+
   <!-- Row 4: Action Items -->
   <div class="grid">
     <div class="card card-wide">
@@ -572,6 +596,9 @@
       { id: 'on-ball', title: 'Pass & Shoot Commands', sub: 'Our commands per match', integer: true, format: fmtInt, series: [
         { label: 'Pass', color: 'var(--series-1)', get: m => cmd(m, 'pass') },
         { label: 'Shoot', color: 'var(--series-2)', get: m => cmd(m, 'shoot') } ] },
+      { id: 'agent-latency', title: 'Agent Latency Over Time', sub: 'Average response time per agent and match. Shaded bands show the release deployed; hover a point for each agent\'s prompt version and model.', format: fmtMs, wide: true, bands: true, series: [
+        ...POSITIONS.map((pos, i) => ({ label: `${pos.toUpperCase()} (${PLAYER_NAMES[pos]})`, color: `var(--series-${i + 1})`, get: m => met(m).agents?.[pos]?.latency_avg, version: m => (m.versions?.[pos] ? `v${m.versions[pos]}` : null) })),
+        { label: 'Opponent avg', color: 'var(--context)', get: m => met(m).latency_avg_them } ] },
       { id: 'prompt-size', title: 'Prompt Size', sub: 'Pasted characters across the 5 deployed prompts (fast-model budget 3000)', integer: true, format: fmtInt, series: [
         { label: 'Average', color: 'var(--series-1)', get: m => met(m).prompt_chars_avg },
         { label: 'Longest', color: 'var(--series-2)', get: m => met(m).prompt_chars_max } ] },
@@ -608,6 +635,9 @@
 
     // Practice and competitive matches are numbered separately: '#7' is practice 007, 'C2' is competitive 002.
     const matchLabel = m => (m.type === 'competitive' ? `C${m.number}` : `#${m.number}`);
+
+    // 'deploy-v14-2026-10-07' -> 'v14'
+    const releaseLabel = m => (m.deploy_tag ? (m.deploy_tag.match(/deploy-(v\d+)/) || [])[1] || m.deploy_tag : null);
 
     function matchTitle(m) {
       return `${matchLabel(m)} vs ${m.opponent || 'Unknown'}`;
@@ -701,7 +731,7 @@
     function showChartTooltip(def, index, x, y) {
       const m = viz.matches[index];
       setHover(index);
-      const rows = def.series.map(s => ({ color: s.color, label: s.label, value: def.format(s.get(m)) }));
+      const rows = def.series.map(s => ({ color: s.color, label: s.version && s.version(m) ? `${s.label} · ${s.version(m)}` : s.label, value: def.format(s.get(m)) }));
       const tt = document.getElementById('viz-tooltip');
       fillTooltip(tt, m, rows);
       placeTooltip(tt, x, y);
@@ -732,6 +762,21 @@
         const y = yAt(t);
         svg.append(el('svg:line', { x1: M.l, x2: W - M.r, y1: y, y2: y, stroke: t === 0 ? 'var(--axis)' : 'var(--grid)', 'stroke-width': 1, 'shape-rendering': 'crispEdges' }));
         svg.append(el('svg:text', { x: M.l - 8, y, 'text-anchor': 'end', 'dominant-baseline': 'middle', fill: 'var(--text-dim)' }, def.yMax ? `${t}%` : t.toLocaleString()));
+      }
+
+      if (def.bands) {
+        // One band per run of consecutive matches on the same release; alternate shading, label at the top.
+        let start = 0;
+        for (let i = 1; i <= n; i++) {
+          if (i === n || releaseLabel(matches[i]) !== releaseLabel(matches[start])) {
+            const x0 = M.l + start * slot, x1 = M.l + i * slot;
+            const band = Math.floor(((start === 0) ? 0 : svg.querySelectorAll('rect.band').length) % 2);
+            svg.append(el('svg:rect', { class: 'band', x: x0, y: M.t, width: x1 - x0, height: ph, fill: band ? 'rgba(255,255,255,0.035)' : 'transparent', 'pointer-events': 'none' }));
+            const label = releaseLabel(matches[start]);
+            if (label && (x1 - x0) >= 22) svg.append(el('svg:text', { class: 'band-label', x: (x0 + x1) / 2, y: M.t + 10, 'text-anchor': 'middle', 'pointer-events': 'none' }, label));
+            start = i;
+          }
+        }
       }
 
       const labelEvery = slot < 30 ? Math.ceil(30 / slot) : 1;
@@ -969,7 +1014,7 @@
       grid.textContent = '';
       grid.classList.toggle('size-large', viz.size === 'large');
       viz.charts = CHARTS.map(def => {
-        const card = el('div', { class: 'card chart-card' });
+        const card = el('div', { class: def.wide ? 'card chart-card card-wide' : 'card chart-card' });
         card.append(el('h2', {}, def.title), el('p', { class: 'chart-sub' }, def.sub));
         const expand = el('button', { type: 'button', class: 'expand-btn', 'aria-label': `Expand ${def.title}` }, 'Expand');
         expand.addEventListener('click', () => openFocus(def));
@@ -1110,6 +1155,33 @@
       if (data.current_formation) {
         document.getElementById('current-formation').textContent = data.current_formation;
       }
+
+      // Current release (from tags.md + deploy/platform-state.json)
+      const rel = data.current_release || {};
+      const relEl = document.getElementById('current-release');
+      relEl.textContent = rel.tag ? `${(rel.tag.match(/deploy-(v\d+)/) || [])[1] || rel.tag} · ${rel.date || ''}` : 'unreleased mix';
+      relEl.title = rel.summary || '';
+      document.getElementById('current-updated').textContent = rel.updated ? `platform-state ${rel.updated}` : '—';
+      const noteEl = document.getElementById('current-note');
+      const notes = Object.values(rel.notes || {});
+      if (notes.length) { noteEl.textContent = notes[0]; noteEl.hidden = false; }
+
+      // Results by release
+      const relTable = document.getElementById('release-table');
+      relTable.innerHTML = '';
+      const groups = [];
+      for (const m of data.matches) {
+        const key = m.deploy_tag || 'untagged';
+        let g = groups.find(x => x.key === key);
+        if (!g) { g = { key, label: (key.match(/deploy-(v\d+)/) || [])[1] || key, p: [0, 0, 0], c: [0, 0, 0], gf: 0, ga: 0, list: [] }; groups.push(g); }
+        const idx = m.result === 'W' ? 0 : m.result === 'D' ? 1 : 2;
+        (m.type === 'competitive' ? g.c : g.p)[idx]++;
+        g.gf += m.score_us || 0; g.ga += m.score_them || 0;
+        g.list.push(`${m.type === 'competitive' ? 'C' : '#'}${m.number} ${m.result} ${m.score_us}-${m.score_them}`);
+      }
+      const wdl = a => `<span class="w">${a[0]}</span>-<span class="d">${a[1]}</span>-<span class="l">${a[2]}</span>`;
+      relTable.innerHTML = '<tr><th>Release</th><th class="num">Practice W-D-L</th><th class="num">Competitive W-D-L</th><th class="num">GF-GA</th><th>Matches</th></tr>'
+        + groups.map(g => `<tr class="${rel.tag === g.key ? 'current' : ''}"><td>${g.label}${rel.tag === g.key ? ' (deployed)' : ''}</td><td class="num">${wdl(g.p)}</td><td class="num">${wdl(g.c)}</td><td class="num">${g.gf}-${g.ga}</td><td>${g.list.join(', ')}</td></tr>`).join('');
 
       // Current config
       const configBody = document.getElementById('config-body');

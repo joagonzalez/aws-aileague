@@ -7571,6 +7571,19 @@
       "source": "prompts/fwd2/v13.md"
     }
   },
+  "current_release": {
+    "tag": "deploy-v14-2026-10-07",
+    "date": "2026-10-07",
+    "summary": "v13 plus four edits: Hertz presses only their GK outside his box (he lived in the corners chasing keepers), kick-off lofted pass to Hertz free or not, 'you have the ball' wording, Tesla/Lovelace sidestep to open a blocked line then shoot. Validate in one practice match before competitive use.",
+    "updated": "2026-10-07",
+    "notes": {
+      "gk": "v14 release file; v15 failed its validation match (practice 042, 0-4 vs Benchmark, 1 shot) and was rolled back on 2026-10-07",
+      "def": "v14 release file; v15 failed its validation match (practice 042, 0-4 vs Benchmark, 1 shot) and was rolled back on 2026-10-07",
+      "mid": "v14 release file; v15 failed its validation match (practice 042, 0-4 vs Benchmark, 1 shot) and was rolled back on 2026-10-07",
+      "fwd1": "v14 release file; v15 failed its validation match (practice 042, 0-4 vs Benchmark, 1 shot) and was rolled back on 2026-10-07",
+      "fwd2": "v14 release file; v15 failed its validation match (practice 042, 0-4 vs Benchmark, 1 shot) and was rolled back on 2026-10-07"
+    }
+  },
   "versions": {
     "gk": [
       "v1",
