@@ -35,16 +35,16 @@ The agent returns a JSON array with one command for its player: `commandType`, `
 | Command | Kind | Parameters | Notes |
 |---------|------|------------|-------|
 | `MOVE_TO` | one-shot | `target_x`, `target_y`, `sprint` (bool) | Sprint is faster but drains stamina |
-| `PASS` | one-shot | `target_player_id`, `type` = `GROUND` / `AERIAL` / `THROUGH` | Only with the ball. "Through ball" and "lofted/aerial pass" are the plain-English hooks |
-| `SHOOT` | one-shot | `aim_location` = `TL` / `TR` / `BL` / `BR` / `CENTER`, `power` 0–1 | Only with the ball. Corners are real aim points |
+| `PASS` | one-shot | `target_player_id`, `type` = `GROUND` / `AERIAL` / `THROUGH` | **Player must have possession.** THROUGH "plays the ball into space ahead of the target". "Through ball" and "lofted/aerial pass" are the plain-English hooks |
+| `SHOOT` | one-shot | `aim_location` = `TL` / `TR` / `BL` / `BR` / `CENTER`, `power` 0–1 | **Player must have possession**; a SHOOT without the ball is dropped. *(ours: 89 SHOOT commands → 3 shots in match 022, 36 → 0 in 021: agents issue it without the ball and waste the tick.)* Corners are real aim points |
 | `SLIDE_TACKLE` | one-shot | `target_player_id`, `sprint`, `distance` | "Risky aggressive tackle": the foul source. We never ask for it |
-| `GK_DISTRIBUTE` | one-shot | `target_player_id`, `method` = `THROW` / `KICK` | GK only. Logged as "GK Dist" in match reports |
-| `PRESS_BALL` | maintained | `intensity` 0–1 | |
-| `MARK` | maintained | `target_player_id`, `tightness` = `LOOSE` / `TIGHT` | |
-| `INTERCEPT` | maintained | `aggressive` (bool) | |
+| `GK_DISTRIBUTE` | one-shot | `target_player_id`, `method` = `THROW` / `KICK` | GK only, **to a named teammate**. Logged as "GK Dist" in match reports |
+| `PRESS_BALL` | maintained | `intensity` 0–1 | "Chase and pressure the ball carrier. Above 0.5 the player sprints; above 0.3 they attempt tackles." So pressing is the tackle (foul) source; "press hard" = sprint + tackles |
+| `MARK` | maintained | `target_player_id`, `tightness` = `LOOSE` / `TIGHT` | "Man-mark a specific opponent" |
+| `INTERCEPT` | maintained | `aggressive` (bool) | "**Position to cut out a pass.** aggressive: true commits more forcefully." No target: the engine picks the lane. A legitimate second-presser job; "INTERCEPT the pass to X" is still inexpressible |
 | `FOLLOW_PLAYER` | maintained | `target_player_id`, `target_team` = `HOME` / `AWAY`, `distance` | **Works on teammates too**: shadow a player at a set distance. Loose marking or tracking a run |
-| `SET_STANCE` | tactical | `stance` 0 = Balanced, 1 = Attack, 2 = Defend | Stance of the underlying default AI |
-| `CLEAR_OVERRIDE` | tactical | none | Return this player to the default AI. **Never want this** |
+| `SET_STANCE` | tactical | `stance` 0 = Balanced, 1 = Attacking, 2 = Defensive | Tactical commands "stay active until explicitly cleared" |
+| `CLEAR_OVERRIDE` | tactical | none | "Remove active manual command — player returns to default AI behavior." **Never want this**; it is what our "CLEAR" produced |
 | `RESET` | tactical | none | Clear all overrides for the team. **Never want this** |
 
 *(ours)* Match reports count a "Clear" command (5–35 per match for us). **It is `CLEAR_OVERRIDE`**: match 022's platform overview says "Panic's CLEAR_OVERRIDE spam (25 commands)" where our breakdown shows Clear 25. There is no CLEAR command; every "CLEAR" in our prompts handed that player to the default AI for the decision. Never write "clear", "reset", "override" or "default" as an action; name a receiver or shoot instead. Also *(ours, match 022)*: Nova Micro on DEF answered in 830 ms against 841–947 ms on Haiku, so latency is set by the harness, not the model.
