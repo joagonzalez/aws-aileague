@@ -16,6 +16,7 @@
 | 013 | practice | 2-3 L | v8, forward prompts swapped |
 | 014 | practice | 1-0 W | v9 (Lovelace FWD2 v8, Hertz on FWD2 v7 text), both on Nova Lite 2 |
 | 017 | practice | 1-0 W | v9, health check after competitive 001 (Tesla 3') |
+| 018 | practice | 2-1 W | v11 validation match (Tesla 1', unknown 2'); Benchmark's first shot on target against us in three matches |
 
 ## Official description
 Balanced. Solid fundamentals: plays through the midfield, holds shape, finishes cleanly.

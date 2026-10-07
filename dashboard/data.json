@@ -3266,6 +3266,155 @@
         "Opponent formation: Unknown.",
         "Shots on target = goals, 18 matches running (1/1 us, 0/6 them)."
       ]
+    },
+    {
+      "file": "match-log/practice/018-vs-the-benchmark-fc.md",
+      "type": "practice",
+      "number": 18,
+      "opponent": "The Benchmark FC",
+      "score_us": 2,
+      "score_them": 1,
+      "result": "W",
+      "date": "2026-10-06",
+      "formation": "1-1-2",
+      "strategy": "Swarm",
+      "deploy_tag": "deploy-v11-2026-10-06",
+      "metrics": {
+        "possession_us": 50,
+        "possession_them": 50,
+        "shots_us": 3,
+        "shots_them": 5,
+        "on_target_us": 2,
+        "on_target_them": 1,
+        "commands_us": 400,
+        "latency_avg_us": 877,
+        "commands_them": 400,
+        "latency_avg_them": 506,
+        "commands": {
+          "move": 152,
+          "press": 151,
+          "intercept": 37,
+          "mark": 1,
+          "pass": 18,
+          "shoot": 30,
+          "clear": 11,
+          "gk_dist": 0
+        },
+        "agents": {
+          "gk": {
+            "latency_avg": 714,
+            "latency_p95": null,
+            "success": 100
+          },
+          "def": {
+            "latency_avg": 903,
+            "latency_p95": null,
+            "success": 100
+          },
+          "mid": {
+            "latency_avg": 1028,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd1": {
+            "latency_avg": 691,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd2": {
+            "latency_avg": 867,
+            "latency_p95": null,
+            "success": 100
+          }
+        },
+        "success_avg": 100.0,
+        "latency_gap": 371,
+        "shot_accuracy": 66.7,
+        "shoot_cmd_to_shot": 10.0,
+        "press_share": 37.8,
+        "intercept_share": 9.2,
+        "mark_share": 0.2,
+        "pass_share": 4.5,
+        "shoot_share": 7.5,
+        "prompt_chars_avg": 2923,
+        "prompt_chars_max": 2981,
+        "prompt_rules_avg": 7.4
+      },
+      "coach_interventions": [],
+      "models": {
+        "gk": "Claude Haiku",
+        "def": "Claude Haiku",
+        "mid": "Claude Haiku",
+        "fwd1": "Nova Lite 2",
+        "fwd2": "Nova Lite 2"
+      },
+      "versions": {
+        "gk": "10",
+        "def": "10",
+        "mid": "9",
+        "fwd1": "9",
+        "fwd2": "10"
+      },
+      "prompt_stats": {
+        "gk": {
+          "version": "10",
+          "chars": 2834,
+          "words": 563,
+          "rules": 5,
+          "constraints": 5
+        },
+        "def": {
+          "version": "10",
+          "chars": 2981,
+          "words": 605,
+          "rules": 9,
+          "constraints": 4
+        },
+        "mid": {
+          "version": "9",
+          "chars": 2950,
+          "words": 584,
+          "rules": 9,
+          "constraints": 4
+        },
+        "fwd1": {
+          "version": "9",
+          "chars": 2973,
+          "words": 585,
+          "rules": 6,
+          "constraints": 5
+        },
+        "fwd2": {
+          "version": "10",
+          "chars": 2875,
+          "words": 563,
+          "rules": 8,
+          "constraints": 4
+        }
+      },
+      "performance": {
+        "gk": "adequate",
+        "def": "adequate",
+        "mid": "strong",
+        "fwd1": "adequate",
+        "fwd2": "adequate"
+      },
+      "action_items": [
+        "Office hours: per-agent command breakdown? How are MARK / FOLLOW / GK_DISTRIBUTE chosen from the prompt text (why 58 MARKs in C005 and 1 in 018 from similar wording)? Why do SHOOT commands outnumber shots 10:1? (priority: high)",
+        "Play the next competitive match on v11. Check the live latency in the first 15 seconds (under 300 ms = prompts not running). (priority: high)",
+        "v12 candidates, one rule each, only if the next match shows the problem: (a) pressed in our half \u2192 long ball to Hertz before the short pass to MID (C005 1'); (b) if Lovelace keeps drifting, replace \"FOLLOW Tesla\" with the v9 MOVE-to-a-spot rule since FOLLOW does not map; (c) if a goal comes behind DEF while he presses, add \"and no attacker without the ball is inside our box\" to DEF rule 5. (priority: medium)",
+        "Through balls are rare (PASS 18). Check in the next match whether Hertz receives any long pass; if not, the MID rule 2 trigger (blocker + Hertz free) is too narrow against low-press teams. (priority: medium)"
+      ],
+      "observations": [
+        "Formation effectiveness: Won 2-1, v11 validated for competitive use on the signature and the three measurable fixes (MOVE down to 38%, PRESS up to 38%, INTERCEPT back at 9%).",
+        "Should we change formation? No.",
+        "**MARK/FOLLOW mapping is the open problem.** Across four healthy matches, the same kind of wording produced MARK 3 / FOLLOW 71 (C002), MARK 0 / FOLLOW 0 (C003), MARK 58 / FOLLOW 0 (C005), MARK 1 / FOLLOW 0 (018). Possession explains part of it (defensive jobs fire less at 71%), but C005 (56%) and 018 (50%) differ by 57 MARKs. Either the harness translation varies, or those jobs are being executed as PRESS (151 this match, two pressers on the carrier). Ask at office hours whether a per-agent command view exists.",
+        "**GK Dist 0** for the first time since logging (2\u20137 in every healthy match). v10's throw/kick verbs did not produce GK_DISTRIBUTE. Harmless so far.",
+        "SHOOT commands vs shots: 30 \u2192 3. Agents issue SHOOT without a shot resulting. Possibly SHOOT when not in possession, or blocked. Same question for office hours.",
+        "Benchmark FC shows the same latency profile as every human opponent (back three ~206 ms, forwards ~1 s), and 32 FOLLOWs. The reference team's back three is the same thing the human teams run.",
+        "Opponent patterns: Benchmark got 5 shots this time (017: 6, 0 on target; 014: ?). Pressing at 17% only; passes 11%.",
+        "Opponent formation: GK, DEF, MID, FWD, FWD."
+      ]
     }
   ],
   "current_formation": "1-1-2",
@@ -3705,7 +3854,7 @@
     }
   },
   "stats": {
-    "total_matches": 22,
+    "total_matches": 23,
     "competitive": {
       "played": 5,
       "remaining": 5,
@@ -3716,32 +3865,32 @@
       "goals_against": 11
     },
     "practice": {
-      "played": 17,
-      "wins": 8,
+      "played": 18,
+      "wins": 9,
       "draws": 1,
       "losses": 8
     }
   },
   "performance_trends": {
     "gk": {
-      "avg": 2.05,
-      "matches_rated": 22
+      "avg": 2.04,
+      "matches_rated": 23
     },
     "def": {
-      "avg": 1.95,
-      "matches_rated": 22
+      "avg": 1.96,
+      "matches_rated": 23
     },
     "mid": {
-      "avg": 2.14,
-      "matches_rated": 22
+      "avg": 2.17,
+      "matches_rated": 23
     },
     "fwd1": {
       "avg": 2.0,
-      "matches_rated": 22
+      "matches_rated": 23
     },
     "fwd2": {
-      "avg": 1.55,
-      "matches_rated": 22
+      "avg": 1.57,
+      "matches_rated": 23
     }
   }
 }
