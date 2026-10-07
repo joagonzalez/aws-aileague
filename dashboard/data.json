@@ -2659,6 +2659,301 @@
       ]
     },
     {
+      "file": "match-log/practice/019-vs-fort-knox-athletic.md",
+      "type": "practice",
+      "number": 19,
+      "opponent": "Fort Knox Athletic",
+      "score_us": 2,
+      "score_them": 1,
+      "result": "W",
+      "date": "2026-10-06",
+      "formation": "1-1-2",
+      "strategy": "Swarm",
+      "deploy_tag": "deploy-v11-2026-10-06",
+      "metrics": {
+        "possession_us": 56,
+        "possession_them": 44,
+        "shots_us": 2,
+        "shots_them": 0,
+        "on_target_us": 2,
+        "on_target_them": 1,
+        "commands_us": 380,
+        "latency_avg_us": 887,
+        "commands_them": 380,
+        "latency_avg_them": 597,
+        "commands": {
+          "move": 100,
+          "press": 63,
+          "intercept": 42,
+          "mark": 101,
+          "pass": 53,
+          "shoot": 0,
+          "clear": 13,
+          "gk_dist": 8
+        },
+        "agents": {
+          "gk": {
+            "latency_avg": 668,
+            "latency_p95": null,
+            "success": 100
+          },
+          "def": {
+            "latency_avg": 841,
+            "latency_p95": null,
+            "success": 100
+          },
+          "mid": {
+            "latency_avg": 1026,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd1": {
+            "latency_avg": 641,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd2": {
+            "latency_avg": 1066,
+            "latency_p95": null,
+            "success": 100
+          }
+        },
+        "success_avg": 100.0,
+        "latency_gap": 290,
+        "shot_accuracy": 100.0,
+        "press_share": 16.6,
+        "intercept_share": 11.1,
+        "mark_share": 26.6,
+        "pass_share": 13.9,
+        "shoot_share": 0.0,
+        "prompt_chars_avg": 2923,
+        "prompt_chars_max": 2981,
+        "prompt_rules_avg": 7.4
+      },
+      "coach_interventions": [],
+      "models": {
+        "gk": "Claude Haiku",
+        "def": "Claude Haiku",
+        "mid": "Claude Haiku",
+        "fwd1": "Nova Lite 2",
+        "fwd2": "Nova Lite 2"
+      },
+      "versions": {
+        "gk": "10",
+        "def": "10",
+        "mid": "9",
+        "fwd1": "9",
+        "fwd2": "10"
+      },
+      "prompt_stats": {
+        "gk": {
+          "version": "10",
+          "chars": 2834,
+          "words": 563,
+          "rules": 5,
+          "constraints": 5
+        },
+        "def": {
+          "version": "10",
+          "chars": 2981,
+          "words": 605,
+          "rules": 9,
+          "constraints": 4
+        },
+        "mid": {
+          "version": "9",
+          "chars": 2950,
+          "words": 584,
+          "rules": 9,
+          "constraints": 4
+        },
+        "fwd1": {
+          "version": "9",
+          "chars": 2973,
+          "words": 585,
+          "rules": 6,
+          "constraints": 5
+        },
+        "fwd2": {
+          "version": "10",
+          "chars": 2875,
+          "words": 563,
+          "rules": 8,
+          "constraints": 4
+        }
+      },
+      "performance": {
+        "gk": "strong",
+        "def": "strong",
+        "mid": "strong",
+        "fwd1": "adequate",
+        "fwd2": "adequate"
+      },
+      "action_items": [
+        "See match 020's action items (v12 brief). (priority: high)"
+      ],
+      "observations": [
+        "Formation effectiveness: Won 2-1; v11 is 2-0 in practice. The defensive layer v11 was built for showed up (MARK 101, INTERCEPT 42, PRESS 63, one shot on target against).",
+        "Should we change formation? No.",
+        "Coordination gaps: none visible.",
+        "Opponent patterns: Fort Knox unchanged: compact, MOVE-heavy, few shots; back three at ~200 ms, forwards at ~1.1 s.",
+        "Opponent formation: GK, DEF, MID, FWD, FWD."
+      ]
+    },
+    {
+      "file": "match-log/practice/020-vs-total-attack-united.md",
+      "type": "practice",
+      "number": 20,
+      "opponent": "Total Attack United",
+      "score_us": 3,
+      "score_them": 7,
+      "result": "L",
+      "date": "2026-10-06",
+      "formation": "1-1-2",
+      "strategy": "Swarm",
+      "deploy_tag": "deploy-v11-2026-10-06",
+      "metrics": {
+        "possession_us": 66,
+        "possession_them": 34,
+        "shots_us": 5,
+        "shots_them": 11,
+        "on_target_us": 3,
+        "on_target_them": 7,
+        "commands_us": 600,
+        "latency_avg_us": 812,
+        "commands_them": 600,
+        "latency_avg_them": 511,
+        "commands": {
+          "move": 234,
+          "press": 33,
+          "intercept": 210,
+          "mark": 0,
+          "pass": 5,
+          "shoot": 87,
+          "clear": 28,
+          "gk_dist": 3
+        },
+        "agents": {
+          "gk": {
+            "latency_avg": 696,
+            "latency_p95": null,
+            "success": 100
+          },
+          "def": {
+            "latency_avg": 929,
+            "latency_p95": null,
+            "success": 100
+          },
+          "mid": {
+            "latency_avg": 998,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd1": {
+            "latency_avg": 678,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd2": {
+            "latency_avg": 916,
+            "latency_p95": null,
+            "success": 100
+          }
+        },
+        "success_avg": 100.0,
+        "latency_gap": 301,
+        "shot_accuracy": 60.0,
+        "shoot_cmd_to_shot": 5.7,
+        "press_share": 5.5,
+        "intercept_share": 35.0,
+        "mark_share": 0.0,
+        "pass_share": 0.8,
+        "shoot_share": 14.5,
+        "prompt_chars_avg": 2923,
+        "prompt_chars_max": 2981,
+        "prompt_rules_avg": 7.4
+      },
+      "coach_interventions": [
+        {
+          "when": "\u2014",
+          "message": "None (watched, no messages sent)",
+          "effect": "\u2014"
+        }
+      ],
+      "models": {
+        "gk": "Claude Haiku",
+        "def": "Claude Haiku",
+        "mid": "Claude Haiku",
+        "fwd1": "Nova Lite 2",
+        "fwd2": "Nova Lite 2"
+      },
+      "versions": {
+        "gk": "10",
+        "def": "10",
+        "mid": "9",
+        "fwd1": "9",
+        "fwd2": "10"
+      },
+      "prompt_stats": {
+        "gk": {
+          "version": "10",
+          "chars": 2834,
+          "words": 563,
+          "rules": 5,
+          "constraints": 5
+        },
+        "def": {
+          "version": "10",
+          "chars": 2981,
+          "words": 605,
+          "rules": 9,
+          "constraints": 4
+        },
+        "mid": {
+          "version": "9",
+          "chars": 2950,
+          "words": 584,
+          "rules": 9,
+          "constraints": 4
+        },
+        "fwd1": {
+          "version": "9",
+          "chars": 2973,
+          "words": 585,
+          "rules": 6,
+          "constraints": 5
+        },
+        "fwd2": {
+          "version": "10",
+          "chars": 2875,
+          "words": 563,
+          "rules": 8,
+          "constraints": 4
+        }
+      },
+      "performance": {
+        "gk": "weak",
+        "def": "weak",
+        "mid": "adequate",
+        "fwd1": "weak",
+        "fwd2": "adequate"
+      },
+      "action_items": [
+        "v12 brief (through the workflow): FWD1 \u2014 \"You have the ball inside their box \u2014 SHOOT at once at full power\" above the end-line pass rule, and the end-line rule excludes the box. MID \u2014 kick-off: through ball to Hertz if free, else ground PASS to FWD2 (no shot from the center spot). FWD1 \u2014 PRESS their GK (and their DEF when he is the deepest carrier) when he has the ball, sprinting: the one exception to \"never presses\"; it stops the GK long shot at the source (6 GK goals against us, 5 DEF). DEF \u2014 put the MARK guards (7\u20138) above the clear-line press (5) when an attacker without the ball is already goal-side, so he marks first and presses second. (priority: high)",
+        "Model test, one practice match: Turing (DEF) on Nova Micro with the v12 prompt. Record his latency and whether the marking improves. If he drops well under 600 ms with the same behaviour, try Hertz too. (priority: medium)",
+        "Watch the next replay for the kick-off sequence: does Tesla's center-spot shot reach their GK? (priority: medium)",
+        "Office hours: MARK translated as MARK (101) in 019 and as nothing/INTERCEPT (0 / 210) in 020 from identical prompts; SHOOT 0 in 019 with 2 goals. Ask how commands are derived from the prompt text. (priority: high)"
+      ],
+      "observations": [
+        "Formation effectiveness: Lost 3-7. v11 is 2-1 in practice (2-1, 2-1, 3-7). Against Total Attack, v9 won 3-2 (015) with the coach's \"be aggressive and shoot\" sent live; v11 unattended lost by four.",
+        "Should we change formation? No. Three rule fixes and one open question (DEF's slowness), see Action Items.",
+        "Coordination gaps: (1) nobody presses their GK or DEF with the ball at their own end, and they score from there; (2) the kick-off shot from the center may hand the ball to their GK; (3) Hertz passes back from the one place he should shoot.",
+        "Opponent patterns: Total Attack is the same template at the back (182\u2013186 ms, MOVE 58%) but their GK is the MVP: 120 commands, two goals, launches every attack. Their FWD Vic Surge scored three. Their 11 shots is the most against us in 25 matches.",
+        "Opponent formation: GK, DEF, MID, FWD, FWD.",
+        "Model question (coach): would smaller models make Hertz and Turing react faster? Our agents have never answered under ~600 ms on any model we tried (Haiku, Sonnet, Nova Lite 2); the opponents' 180\u2013210 ms agents are a different thing (see `bug.md`). Hertz's problem is a rule (above). Turing's may be both; a Nova Micro test on DEF in one practice match would answer the speed half, the rule fix answers the other."
+      ]
+    },
+    {
       "file": "match-log/competitive/001-vs-bright-auroras.md",
       "type": "competitive",
       "number": 1,
@@ -3854,7 +4149,7 @@
     }
   },
   "stats": {
-    "total_matches": 23,
+    "total_matches": 25,
     "competitive": {
       "played": 5,
       "remaining": 5,
@@ -3865,32 +4160,32 @@
       "goals_against": 11
     },
     "practice": {
-      "played": 18,
-      "wins": 9,
+      "played": 20,
+      "wins": 10,
       "draws": 1,
-      "losses": 8
+      "losses": 9
     }
   },
   "performance_trends": {
     "gk": {
       "avg": 2.04,
-      "matches_rated": 23
+      "matches_rated": 25
     },
     "def": {
       "avg": 1.96,
-      "matches_rated": 23
+      "matches_rated": 25
     },
     "mid": {
-      "avg": 2.17,
-      "matches_rated": 23
+      "avg": 2.2,
+      "matches_rated": 25
     },
     "fwd1": {
-      "avg": 2.0,
-      "matches_rated": 23
+      "avg": 1.96,
+      "matches_rated": 25
     },
     "fwd2": {
-      "avg": 1.57,
-      "matches_rated": 23
+      "avg": 1.6,
+      "matches_rated": 25
     }
   }
 }

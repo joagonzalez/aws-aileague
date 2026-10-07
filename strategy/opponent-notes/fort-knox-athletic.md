@@ -5,6 +5,7 @@
 |---|------|-------|--------------|
 | 008 | practice | 0-1 L | v7 |
 | 016 | practice | 4-0 W | v9 (Lovelace FWD2 v8, Hertz on FWD2 v7 text, both Nova Lite 2); coach repeated "be more aggressive and shoot!" |
+| 019 | practice | 2-1 W | v11, unattended (Tesla 1', 3'); one shot on target against; MARK 101, PASS 53 |
 
 ## Official description
 Defensive. Compact, disciplined, and lethal on the counter-attack.
