@@ -6,6 +6,7 @@
 | 007 | practice | 0-2 L | v7 |
 | 015 | practice | 3-2 W | v9 (Lovelace FWD2 v8, Hertz on FWD2 v7 text, both Nova Lite 2); coach repeated "be more aggressive and shoot!" |
 | 020 | practice | 3-7 L | v11, unattended. Five conceded in minute 1; their GK scored twice and DEF once from their own end; 11 shots, 7 on target. Nobody presses their GK under v11 |
+| 021 | practice | 0-2 L | v11, coach watching. 69% possession, 0 shots: GK's untargeted long kick went to DEF and the ball circulated in our box; their MID 1', GK 2' |
 
 ## Official description
 Aggressive. Presses high, commits numbers forward, takes risks for early goals.
