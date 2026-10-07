@@ -12,6 +12,12 @@
 ## Official description
 Aggressive. Presses high, commits numbers forward, takes risks for early goals.
 
+Practice page (official): "Extremely Aggressive — GK plays sweeper-keeper, DEF joins every attack, FWDs camp near goal — exposes weak counter-attacking." This is the workshop's **Aggressive Team sample prompts** (Appendix): the GK "MOVE_TO the halfway line or beyond", shoots within ~35 units and presses in his half; the DEF carries forward and shoots from ~30; the MID is a second striker shooting from anywhere within ~35; both FWDs camp in the box, shoot from ~40 at power 1.0, never track back past halfway.
+
+What that explains (020–022): their GK scored twice (020) and once (021), their DEF once, their MID four times, all long shots from their own half, because their prompts tell them to. Max Fury is MVP with 117–120 commands because the sweeper-keeper is involved in every phase.
+
+**How to beat them (v13 candidate): their goal is empty whenever their GK is up at halfway.** Every shot on target is a goal on this engine, so any of our players with the ball and a clear line should SHOOT at full power at the empty goal from wherever they stand, the moment their GK is nearer the halfway line than his own goal. Their DEF joins every attack, so the space behind him is where Hertz's through balls go (the page says this team "exposes weak counter-attacking": our GK kick / DEF loft to Hertz is the counter). Their MID must be pressed in his own half (swarm reach), not only near halfway.
+
 ## Observed (007)
 - As advertised: goals at 1' (FWD Vic Surge) and 2' (their GK Max Fury, directly from his own end). Press 44%, 10 shots (2 on target). Never intercepts or marks.
 - We had 57% possession but 0 passes and 0 shots on target. Our counter never got going, because the forwards were wide and isolated.

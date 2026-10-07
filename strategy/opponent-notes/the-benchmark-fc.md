@@ -21,6 +21,8 @@
 ## Official description
 Balanced. Solid fundamentals: plays through the midfield, holds shape, finishes cleanly.
 
+Practice page (official): "Balanced — Standard positioning — a good baseline to measure overall performance." This is the workshop's Balanced Team sample prompts. Our baseline opponent: 10 matches, use it to compare releases (017 v9 1-0, 018 v11 2-1).
+
 ## Profile
 - **Speed**: 370ms average in 001, 199ms in 002 (every position 196–207ms). Ours: 813ms, then 863ms. They react 2–4x faster.
 - **Style**: Heavy pressing (42% in 001, 40% in 002, 28% in 003). Possession 82% in 001 but only 46% in 003. Never intercepts or marks. Their DEF (Norm Easy, 195ms) was the platform MVP in 003.

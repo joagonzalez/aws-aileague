@@ -10,6 +10,8 @@
 ## Official description
 Defensive. Compact, disciplined, and lethal on the counter-attack.
 
+Practice page (official): "Extremely Defensive — All players stay deep, MID acts as extra defender, minimal shooting — tests whether your attack can break a low block." The workshop's Defensive Team sample prompts. Our answer so far is the long shot (016 4-0, 019 2-1: Tesla from distance); a low block cannot be passed through, it is shot over. Their minimal shooting is why 019 had one shot on target against.
+
 ## Observed (008)
 - Compact and patient: 57% possession, only 1 shot (on target, the goal at 3'). Move 61%, Press 27%.
 - They pulled us into passive marking: our MARK was 41% (184), press 5%, 0 SHOOT commands. As predicted, they gave our counter little space.

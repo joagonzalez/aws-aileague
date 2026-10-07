@@ -64,3 +64,24 @@ Maintained commands persist for their duration and a timed-out player holds its 
 - Thresholds the authors consider normal: SHOOT within ~35 units (MID) to ~40 units (forwards) of goal, DEF from ~30; `power` 1.0 for every shot; PRESS intensity 0.9–1.0; INTERCEPT `aggressive: true`.
 - Their own advice: "Keep prompts concise — your agent has a 5-second response window. Every unnecessary token is time wasted."
 - The aggressive GK is told to come to the halfway line and shoot from ~35 units. Opposing GKs have scored on us from their own end four times, which is consistent with long shots being strong on this engine.
+
+## Practice opponents (official "Practice" page)
+
+| Opponent | Style | What it tests |
+|---|---|---|
+| The Benchmark FC | Balanced | Standard positioning — a good baseline to measure overall performance |
+| Total Attack United | Extremely Aggressive | GK plays sweeper-keeper, DEF joins every attack, FWDs camp near goal — exposes weak counter-attacking |
+| Fort Knox Athletic | Extremely Defensive | All players stay deep, MID acts as extra defender, minimal shooting — tests whether your attack can break a low block |
+
+These are the Balanced / Aggressive / Defensive sample prompts from the workshop Appendix (the Aggressive set is captured above). *(ours)* Total Attack's GK, DEF and MID goals from their own end are those prompts' long-shot rules; their goal is empty while the sweeper-keeper is at halfway.
+
+## Coordination (official "Multi-Agent Coordination" page)
+
+Losing patterns the page names: the Ball Magnet (all five chase the ball), the Ghost Town (spread out, never pass), the Confusion (two press the same opponent / run to the same spot), the Statue Garden (perfect formation, no reaction). "These aren't individual agent failures. They're coordination failures."
+
+Recommended mechanism, **roles with boundaries**; for each role define the primary zone, the primary action, the trigger to leave the zone, and the handoff rules ("when does this player defer to a teammate?"). Example given: Defender — zone: defensive third; primary action: MARK the nearest opponent in my zone; trigger to leave: ball in our half and no teammate closer; handoff: if the ball enters midfield and a midfielder is closer, let them handle it. Midfielder — zone: midfield; primary action: support the ball carrier, position for a pass; trigger to leave: losing and time running out, push into the attacking third; handoff: ball in the defensive third belongs to the defenders. "The handoff rules are critical."
+
+Awareness rules the page suggests (agents see every teammate's position): before shooting, check whether a teammate is in a better position and PASS; a teammate making a forward run gets a THROUGH pass into space; don't move into a zone a teammate already covers; move toward a ball carrier under pressure to offer a pass. Fixes table: all chase the ball → a position and zone per agent; agents ignore open teammates → teammate-aware passing rules; two mark the same opponent → "if a teammate is already marking this player, mark the next nearest threat"; formation collapses under pressure → "maintain shape" rules that override ball-chasing.
+
+*(ours)* Our schema's Role / Decision Framework / Coordination / Constraints sections are this recipe (zone, primary action, triggers, handoffs); the shared Swarm and Pressers lines are the handoff rules. Two of the page's suggestions we have tested and rejected on data: "before shooting, check for a better-placed teammate" switched Tesla's shot off whenever Hertz stood free (017, 14 goals say shoot); and the clock-based "losing and time running out" trigger is moot in a 2.5-minute match decided in minute 1. The "if a teammate is already marking this player, mark the next nearest threat" rule is worth adding where two of ours can mark the same attacker (DEF and the swarm's second player).
+
