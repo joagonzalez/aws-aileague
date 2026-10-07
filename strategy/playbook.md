@@ -1,6 +1,6 @@
 # Playbook
 
-## Team Identity: Swarm + Runner (v14, current)
+## Team Identity: Swarm + Runner (v15, current)
 
 Strategy name for match logs: **Swarm**.
 
@@ -8,7 +8,7 @@ MID (Tesla) and FWD2 (Lovelace) move as a compact pair around the ball in the ce
 
 Why we switched (matches 006–008, coach direction): after four rewrites the forwards still drifted to the corners and contributed nothing. Our v5–v7 long clears landed in the corners where they chased them, passing collapsed (0 PASS vs Total Attack), and we lost five straight.
 
-Pressing (v14, identical in every prompt): any carrier except their GK — the nearer of MID and FWD2 (ties: MID) PRESSes him, sprinting; the other MARKs tightly the goal-side attacker DEF is not marking (goal-side: no ball, nearer our goal than the ball, in our box or in our half between its sides), else INTERCEPTs to cut out his pass. A central carrier in our half with nobody but DEF between him and our goal — DEF PRESSes him too, GK inside our box. FWD1 presses only their GK outside his box; nobody else presses him. Why (023–027): v13's press on any keeper and deepest DEF kept Hertz in the corners (keepers hold the ball 80–133 commands a match) and did not stop the sweeper-keeper's long shots; the swarm now takes their deepest DEF and Hertz presses only a keeper out of his box. v14 also: kick-off is a lofted pass to Hertz far ahead (the short ground pass was stolen by Total Attack's camping forwards), 'you have the ball' wording, and Tesla/Lovelace step sideways to open a blocked line and shoot when nobody is close (copied from Total Attack).
+Pressing (v15, identical in every prompt): any carrier except their GK — the nearer of MID and FWD2 (ties: MID) PRESSes him, sprinting; the other MARKs tightly the goal-side attacker DEF is not marking (goal-side: no ball, nearer our goal than the ball, in our box or in our half between its sides), else INTERCEPTs to cut out his pass. A central carrier in our half with nobody but DEF between him and our goal — DEF PRESSes him too, GK inside our box. FWD1 presses only their GK when he is nearer halfway than his goal line; nobody else presses him. Why (041, C006): Hertz's press on a keeper outside his box did not stop Max Fury (six goals in the three v14 losses, taken from inside or at the edge of his box) and pressing a keeper in his box put Hertz in the corners (023–027), so the press narrows to the sweeper stance where the empty-goal shot applies. v15 also: the empty-goal shot outranks the kick-off loft (the post-concession cascade), and DEF/MID loft to Hertz when pressed at the back (PASS 0–1 in every Total Attack match; C005/021 first goals from turnovers).
 
 ## Previous Identity: Counter-Punch (v3–v7, retired)
 
