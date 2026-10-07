@@ -328,7 +328,9 @@ def build_dashboard_data():
                 if parsed.get("number"):
                     matches.append(parsed)
 
-    data["matches"] = sorted(matches, key=lambda m: m.get("number", 0))
+    # Date first, then practice before competitive on the same day, then number. Practice and
+    # competitive are numbered separately, so sorting by number alone interleaves them.
+    data["matches"] = sorted(matches, key=lambda m: (str(m.get("date") or ""), m.get("type") == "competitive", m.get("number", 0)))
 
     # Current formation from strategy/formation.md
     formation_file = STRATEGY_DIR / "formation.md"

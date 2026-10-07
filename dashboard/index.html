@@ -305,11 +305,47 @@
 
     .metrics-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
       gap: 1.5rem;
       margin-bottom: 1.5rem;
     }
-    .chart-card h2 { margin-bottom: 0.2rem; }
+    .metrics-grid.size-large { grid-template-columns: repeat(auto-fit, minmax(560px, 1fr)); }
+    .metrics-grid.size-large .chart-host text { font-size: 12px; }
+    @media (max-width: 640px) { .metrics-grid, .metrics-grid.size-large { grid-template-columns: 1fr; } }
+    .chart-card { position: relative; }
+    .chart-card h2 { margin-bottom: 0.2rem; padding-right: 5rem; }
+    .section-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 0.6rem 1.5rem; }
+    .section-tools { display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; color: var(--text-dim); }
+    .view-toggle { display: inline-flex; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+    .view-toggle button {
+      background: transparent; color: var(--text-dim); border: 0; padding: 0.35rem 0.8rem;
+      font: inherit; font-size: 0.75rem; cursor: pointer; text-transform: uppercase; letter-spacing: 1px;
+    }
+    .view-toggle button[aria-pressed="true"] { background: var(--border); color: var(--text); }
+    .view-toggle button:focus-visible { outline: 2px solid var(--accent2); outline-offset: -2px; }
+    .expand-btn {
+      position: absolute; top: 1rem; right: 1rem;
+      background: transparent; color: var(--text-dim); border: 1px solid var(--border); border-radius: 6px;
+      padding: 0.25rem 0.6rem; font: inherit; font-size: 0.7rem; cursor: pointer; text-transform: uppercase; letter-spacing: 1px;
+    }
+    .expand-btn:hover, .expand-btn:focus-visible { color: var(--text); border-color: var(--accent2); outline: none; }
+
+    .chart-dialog {
+      width: min(1400px, 96vw); max-width: none; max-height: 94vh;
+      background: var(--card); color: var(--text); border: 1px solid var(--border); border-radius: 12px;
+      padding: 1.5rem; overflow: auto;
+    }
+    .chart-dialog::backdrop { background: rgba(5, 8, 14, 0.75); }
+    .chart-dialog .dialog-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 0.4rem; }
+    .chart-dialog h2 { color: var(--accent2); font-size: 1.1rem; margin-bottom: 0.2rem; }
+    .chart-dialog .close-btn {
+      background: transparent; color: var(--text-dim); border: 1px solid var(--border); border-radius: 6px;
+      padding: 0.3rem 0.7rem; font: inherit; font-size: 0.75rem; cursor: pointer;
+    }
+    .chart-dialog .close-btn:hover, .chart-dialog .close-btn:focus-visible { color: var(--text); border-color: var(--accent2); outline: none; }
+    .chart-dialog .chart-host text { font-size: 12px; }
+    .chart-dialog .table-scroll { margin-top: 1.2rem; }
+    .chart-dialog .metrics-table td.hl, .chart-dialog .metrics-table th.hl { background: var(--border); }
     .chart-sub { color: var(--text-dim); font-size: 0.75rem; margin-bottom: 0.6rem; }
 
     .legend { display: flex; flex-wrap: wrap; gap: 0.3rem 1rem; margin-bottom: 0.4rem; font-size: 0.75rem; }
@@ -414,7 +450,20 @@
   <section aria-labelledby="metrics-title">
     <div class="section-head">
       <h2 class="section-title" id="metrics-title">Match Metrics</h2>
-      <p class="section-note">One point per match. Hover a chart, or tab to it and use the arrow keys, to see that match's setup: models, prompt versions, strategy, formation, deploy tag and coach messages.</p>
+      <p class="section-note">One point per match. Hover a chart, or tab to it and use the arrow keys, to see that match's setup: models, prompt versions, strategy, formation, deploy tag and coach messages. Expand any chart to read it full width with its values.</p>
+      <div class="section-tools">
+        <span>Show</span>
+        <div class="view-toggle" role="group" aria-label="Match type" id="match-filter">
+          <button type="button" data-filter="all" aria-pressed="true">All</button>
+          <button type="button" data-filter="practice" aria-pressed="false">Practice</button>
+          <button type="button" data-filter="competitive" aria-pressed="false">Competitive</button>
+        </div>
+        <span>Chart size</span>
+        <div class="view-toggle" role="group" aria-label="Chart size">
+          <button type="button" data-size="compact" aria-pressed="false">Compact</button>
+          <button type="button" data-size="large" aria-pressed="true">Large</button>
+        </div>
+      </div>
     </div>
     <div class="metrics-grid" id="metrics-grid">
       <div class="card empty-state">No match data yet</div>
@@ -431,6 +480,18 @@
     </details>
   </section>
   <div class="viz-tooltip" id="viz-tooltip" role="tooltip" hidden></div>
+  <dialog class="chart-dialog" id="chart-dialog" aria-labelledby="chart-dialog-title">
+    <div class="dialog-head">
+      <div>
+        <h2 id="chart-dialog-title"></h2>
+        <p class="chart-sub" id="chart-dialog-sub"></p>
+        <div class="legend" id="chart-dialog-legend"></div>
+      </div>
+      <button type="button" class="close-btn" id="chart-dialog-close">Close (Esc)</button>
+    </div>
+    <div class="chart-host" id="chart-dialog-host"></div>
+    <div class="table-scroll"><table class="metrics-table" id="chart-dialog-table"></table></div>
+  </dialog>
 
   <!-- Row 3: Performance + Match History -->
   <div class="grid">
@@ -511,12 +572,17 @@
       { id: 'on-ball', title: 'Pass & Shoot Commands', sub: 'Our commands per match', integer: true, format: fmtInt, series: [
         { label: 'Pass', color: 'var(--series-1)', get: m => cmd(m, 'pass') },
         { label: 'Shoot', color: 'var(--series-2)', get: m => cmd(m, 'shoot') } ] },
-      { id: 'prompt-size', title: 'Prompt Size', sub: 'Pasted characters across the 5 deployed prompts (Haiku budget 2000)', integer: true, format: fmtInt, series: [
+      { id: 'prompt-size', title: 'Prompt Size', sub: 'Pasted characters across the 5 deployed prompts (fast-model budget 3000)', integer: true, format: fmtInt, series: [
         { label: 'Average', color: 'var(--series-1)', get: m => met(m).prompt_chars_avg },
         { label: 'Longest', color: 'var(--series-2)', get: m => met(m).prompt_chars_max } ] },
     ];
 
-    const viz = { matches: [], charts: [], heatmap: null, hoverIndex: null };
+    // Chart sizes: 'compact' keeps many charts in view, 'large' (default) gives each one room to read.
+    const CHART_SIZES = { compact: { height: 200, marker: 4 }, large: { height: 300, marker: 5 } };
+    const readSize = () => { try { const v = localStorage.getItem('chartSize'); return v in CHART_SIZES ? v : 'large'; } catch { return 'large'; } };
+    const MATCH_FILTERS = ['all', 'practice', 'competitive'];
+    const readFilter = () => { try { const v = localStorage.getItem('matchFilter'); return MATCH_FILTERS.includes(v) ? v : 'all'; } catch { return 'all'; } };
+    const viz = { allMatches: [], matches: [], charts: [], heatmap: null, hoverIndex: null, size: readSize(), filter: readFilter(), focus: null };
 
     function el(tag, attrs = {}, text) {
       const node = tag.startsWith('svg:') ? document.createElementNS(SVG_NS, tag.slice(4)) : document.createElement(tag);
@@ -540,8 +606,11 @@
       return { max, ticks };
     }
 
+    // Practice and competitive matches are numbered separately: '#7' is practice 007, 'C2' is competitive 002.
+    const matchLabel = m => (m.type === 'competitive' ? `C${m.number}` : `#${m.number}`);
+
     function matchTitle(m) {
-      return `#${m.number} vs ${m.opponent || 'Unknown'}`;
+      return `${matchLabel(m)} vs ${m.opponent || 'Unknown'}`;
     }
 
     function matchSubtitle(m) {
@@ -625,6 +694,7 @@
     function setHover(index) {
       viz.hoverIndex = index;
       viz.charts.forEach(c => c.setCrosshair(index));
+      viz.focus?.chart.setCrosshair(index);
       viz.heatmap?.setColumn(index);
     }
 
@@ -637,12 +707,14 @@
       placeTooltip(tt, x, y);
     }
 
-    function renderLineChart(host, def) {
+    function renderLineChart(host, def, opts = {}) {
       const matches = viz.matches;
       host.textContent = '';
+      const size = CHART_SIZES[viz.size];
       const W = Math.max(260, host.clientWidth);
-      const H = 180;
-      const M = { l: 44, r: 48, t: 10, b: 30 };
+      const H = opts.height || size.height;
+      const R = opts.marker || size.marker;
+      const M = { l: 48, r: 56, t: 12, b: 32 };
       const pw = W - M.l - M.r;
       const ph = H - M.t - M.b;
       const n = matches.length;
@@ -665,7 +737,7 @@
       const labelEvery = slot < 30 ? Math.ceil(30 / slot) : 1;
       matches.forEach((m, i) => {
         if (i % labelEvery !== 0 && i !== n - 1) return;
-        svg.append(el('svg:text', { x: xAt(i), y: H - M.b + 18, 'text-anchor': 'middle', fill: 'var(--text-dim)' }, `#${m.number}`));
+        svg.append(el('svg:text', { x: xAt(i), y: H - M.b + 18, 'text-anchor': 'middle', fill: 'var(--text-dim)' }, matchLabel(m)));
       });
 
       const crosshair = el('svg:line', { y1: M.t, y2: M.t + ph, stroke: 'var(--text-dim)', 'stroke-width': 1, visibility: 'hidden', 'shape-rendering': 'crispEdges' });
@@ -684,7 +756,7 @@
         if (d) svg.append(el('svg:path', { d, fill: 'none', stroke: s.color, 'stroke-width': 2, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }));
         matches.forEach((m, i) => {
           const v = s.get(m);
-          if (isNum(v)) svg.append(el('svg:circle', { cx: xAt(i), cy: yAt(v), r: 4, fill: s.color, stroke: 'var(--surface)', 'stroke-width': 2 }));
+          if (isNum(v)) svg.append(el('svg:circle', { cx: xAt(i), cy: yAt(v), r: R, fill: s.color, stroke: 'var(--surface)', 'stroke-width': 2 }));
         });
         const last = s.get(matches[n - 1]);
         if (isNum(last)) endLabels.push({ x: xAt(n - 1) + 8, y: yAt(last), text: def.format(last) });
@@ -746,8 +818,9 @@
         ...POSITIONS.map(pos => ({ key: pos, label: POS_NAMES[pos], get: m => met(m).agents?.[pos]?.latency_avg })),
         { key: 'opp', label: 'OPP avg', get: m => met(m).latency_avg_them },
       ];
-      const labelW = 64, cellH = 30, gap = 2, axisH = 22;
-      const cellW = Math.max(56, Math.min(110, (host.clientWidth - labelW) / matches.length));
+      const large = viz.size === 'large';
+      const labelW = 64, cellH = large ? 38 : 30, gap = 2, axisH = 22;
+      const cellW = Math.max(56, Math.min(large ? 140 : 110, (host.clientWidth - labelW) / matches.length));
       const W = labelW + cellW * matches.length;
       const H = rows.length * cellH + axisH;
       const svg = el('svg:svg', { width: W, height: H, role: 'img', 'aria-label': 'Agent latency per match. Full values in the table view.' });
@@ -789,7 +862,7 @@
         });
       });
       matches.forEach((m, c) => {
-        svg.append(el('svg:text', { x: labelW + c * cellW + cellW / 2, y: rows.length * cellH + 15, 'text-anchor': 'middle', fill: 'var(--text-dim)' }, `#${m.number}`));
+        svg.append(el('svg:text', { x: labelW + c * cellW + cellW / 2, y: rows.length * cellH + 15, 'text-anchor': 'middle', fill: 'var(--text-dim)' }, matchLabel(m)));
       });
       svg.append(columnOutline);
       host.append(svg);
@@ -818,7 +891,7 @@
       table.textContent = '';
       const head = el('tr');
       head.append(el('th', {}, 'Metric'));
-      matches.forEach(m => head.append(el('th', {}, `#${m.number}`)));
+      matches.forEach(m => head.append(el('th', {}, matchLabel(m))));
       table.append(head);
 
       const group = label => {
@@ -880,34 +953,123 @@
       }));
     }
 
+    function fillLegend(legend, def) {
+      legend.textContent = '';
+      if (def.series.length < 2) return;
+      for (const s of def.series) {
+        const hasData = viz.matches.some(m => isNum(s.get(m)));
+        const item = el('span', { class: hasData ? 'legend-item' : 'legend-item empty' });
+        item.append(el('span', { class: 'line-key', style: `background:${s.color}` }), document.createTextNode(hasData ? s.label : `${s.label} (no data yet)`));
+        legend.append(item);
+      }
+    }
+
     function renderCharts() {
       const grid = document.getElementById('metrics-grid');
       grid.textContent = '';
+      grid.classList.toggle('size-large', viz.size === 'large');
       viz.charts = CHARTS.map(def => {
         const card = el('div', { class: 'card chart-card' });
         card.append(el('h2', {}, def.title), el('p', { class: 'chart-sub' }, def.sub));
-        if (def.series.length > 1) {
-          const legend = el('div', { class: 'legend' });
-          for (const s of def.series) {
-            const hasData = viz.matches.some(m => isNum(s.get(m)));
-            const item = el('span', { class: hasData ? 'legend-item' : 'legend-item empty' });
-            item.append(el('span', { class: 'line-key', style: `background:${s.color}` }), document.createTextNode(hasData ? s.label : `${s.label} (no data yet)`));
-            legend.append(item);
-          }
-          card.append(legend);
-        }
+        const expand = el('button', { type: 'button', class: 'expand-btn', 'aria-label': `Expand ${def.title}` }, 'Expand');
+        expand.addEventListener('click', () => openFocus(def));
+        card.append(expand);
+        const legend = el('div', { class: 'legend' });
+        fillLegend(legend, def);
+        if (def.series.length > 1) card.append(legend);
         const host = el('div', { class: 'chart-host' });
         card.append(host);
         grid.append(card);
         return { def, host };
       }).map(({ def, host }) => renderLineChart(host, def));
       viz.heatmap = renderHeatmap(document.getElementById('agent-heatmap'));
+      if (viz.focus) renderFocus();
+    }
+
+    function applyFilter() {
+      viz.matches = viz.filter === 'all' ? viz.allMatches : viz.allMatches.filter(m => m.type === viz.filter);
+      document.querySelectorAll('#match-filter button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.filter === viz.filter)));
+    }
+
+    function setMatchFilter(filter) {
+      if (!MATCH_FILTERS.includes(filter)) return;
+      viz.filter = filter;
+      try { localStorage.setItem('matchFilter', filter); } catch { /* per-viewer convenience only */ }
+      viz.hoverIndex = null;
+      applyFilter();
+      if (!viz.matches.length) { viz.filter = 'all'; applyFilter(); }
+      renderCharts();
+      renderMetricsTable();
+    }
+
+    function setChartSize(size) {
+      if (!(size in CHART_SIZES)) return;
+      viz.size = size;
+      try { localStorage.setItem('chartSize', size); } catch { /* per-viewer convenience only */ }
+      document.querySelectorAll('.view-toggle button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.size === size)));
+      renderCharts();
+    }
+
+    // Focus view: one chart at full width in a dialog, with its values per match underneath.
+    function renderFocus() {
+      const { def } = viz.focus;
+      const host = document.getElementById('chart-dialog-host');
+      const height = Math.round(Math.min(560, Math.max(320, window.innerHeight * 0.5)));
+      viz.focus.chart = renderLineChart(host, def, { height, marker: 6 });
+      const table = document.getElementById('chart-dialog-table');
+      table.textContent = '';
+      const head = el('tr');
+      head.append(el('th', {}, 'Match'));
+      viz.matches.forEach(m => head.append(el('th', {}, matchLabel(m))));
+      table.append(head);
+      const row = (label, get) => {
+        const tr = el('tr');
+        tr.append(el('td', {}, label));
+        viz.matches.forEach(m => tr.append(el('td', {}, get(m) ?? '—')));
+        table.append(tr);
+      };
+      row('Opponent', m => m.opponent);
+      row('Result', m => (isNum(m.score_us) ? `${m.result} ${m.score_us}-${m.score_them}` : null));
+      row('Deploy tag', m => m.deploy_tag);
+      for (const s of def.series) row(s.label, m => (isNum(s.get(m)) ? def.format(s.get(m)) : null));
+    }
+
+    function openFocus(def) {
+      const dialog = document.getElementById('chart-dialog');
+      document.getElementById('chart-dialog-title').textContent = def.title;
+      document.getElementById('chart-dialog-sub').textContent = def.sub;
+      fillLegend(document.getElementById('chart-dialog-legend'), def);
+      viz.focus = { def, chart: null };
+      if (typeof dialog.showModal === 'function') dialog.showModal(); else dialog.setAttribute('open', '');
+      renderFocus();
+      document.getElementById('chart-dialog-host').focus();
+    }
+
+    function closeFocus() {
+      const dialog = document.getElementById('chart-dialog');
+      if (typeof dialog.close === 'function' && dialog.open) dialog.close(); else dialog.removeAttribute('open');
+      viz.focus = null;
+      hideTooltip();
+      document.getElementById('chart-dialog-host').textContent = '';
+    }
+
+    function wireFocusDialog() {
+      const dialog = document.getElementById('chart-dialog');
+      document.getElementById('chart-dialog-close').addEventListener('click', closeFocus);
+      dialog.addEventListener('close', () => { viz.focus = null; hideTooltip(); });
+      dialog.addEventListener('click', e => { if (e.target === dialog) closeFocus(); });
+      document.querySelectorAll('.view-toggle button[data-size]').forEach(b => b.addEventListener('click', () => setChartSize(b.dataset.size)));
+      document.querySelectorAll('.view-toggle button[data-size]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.size === viz.size)));
+      document.querySelectorAll('#match-filter button').forEach(b => b.addEventListener('click', () => setMatchFilter(b.dataset.filter)));
     }
 
     function renderMetrics(data) {
-      viz.matches = (data.matches || []).filter(m => isNum(m.number));
-      if (!viz.matches.length) return;
+      viz.allMatches = (data.matches || []).filter(m => isNum(m.number));
+      if (!viz.allMatches.length) return;
+      applyFilter();
+      if (!viz.matches.length) { viz.filter = 'all'; applyFilter(); }
       renderHeatLegend();
+      wireFocusDialog();
       renderCharts();
       renderMetricsTable();
       let resizeTimer;

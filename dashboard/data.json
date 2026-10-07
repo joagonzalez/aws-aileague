@@ -159,156 +159,6 @@
       ]
     },
     {
-      "file": "match-log/competitive/001-vs-bright-auroras.md",
-      "type": "competitive",
-      "number": 1,
-      "opponent": "Bright Auroras",
-      "score_us": 0,
-      "score_them": 5,
-      "result": "L",
-      "date": "2026-10-06",
-      "formation": "1-1-2",
-      "strategy": "Swarm",
-      "deploy_tag": "deploy-v9-2026-10-06",
-      "metrics": {
-        "possession_us": 74,
-        "possession_them": 26,
-        "shots_us": 8,
-        "shots_them": 8,
-        "on_target_us": 0,
-        "on_target_them": 5,
-        "commands_us": 52,
-        "latency_avg_us": 33,
-        "commands_them": 480,
-        "latency_avg_them": 492,
-        "commands": {
-          "move": 14,
-          "press": 0,
-          "intercept": 1,
-          "mark": 6,
-          "pass": 5,
-          "shoot": 1,
-          "clear": 12,
-          "gk_dist": 0
-        },
-        "agents": {
-          "gk": {
-            "latency_avg": 96,
-            "latency_p95": null,
-            "success": 100
-          },
-          "def": {
-            "latency_avg": 88,
-            "latency_p95": null,
-            "success": 100
-          },
-          "mid": {
-            "latency_avg": 85,
-            "latency_p95": null,
-            "success": 100
-          },
-          "fwd1": {
-            "latency_avg": 88,
-            "latency_p95": null,
-            "success": 100
-          },
-          "fwd2": {
-            "latency_avg": 94,
-            "latency_p95": null,
-            "success": 100
-          }
-        },
-        "success_avg": 100.0,
-        "latency_gap": -459,
-        "shot_accuracy": 0.0,
-        "shoot_cmd_to_shot": 800.0,
-        "press_share": 0.0,
-        "intercept_share": 1.9,
-        "mark_share": 11.5,
-        "pass_share": 9.6,
-        "shoot_share": 1.9,
-        "prompt_chars_avg": 2903,
-        "prompt_chars_max": 3000,
-        "prompt_rules_avg": 6.8
-      },
-      "coach_interventions": [],
-      "models": {
-        "gk": "Claude Haiku",
-        "def": "Claude Haiku",
-        "mid": "Claude Haiku",
-        "fwd1": "Nova Lite 2",
-        "fwd2": "Nova Lite 2"
-      },
-      "versions": {
-        "gk": "8",
-        "def": "8",
-        "mid": "7",
-        "fwd1": "7",
-        "fwd2": "8"
-      },
-      "prompt_stats": {
-        "gk": {
-          "version": "8",
-          "chars": 2561,
-          "words": 513,
-          "rules": 5,
-          "constraints": 4
-        },
-        "def": {
-          "version": "8",
-          "chars": 2990,
-          "words": 614,
-          "rules": 8,
-          "constraints": 5
-        },
-        "mid": {
-          "version": "7",
-          "chars": 2983,
-          "words": 599,
-          "rules": 8,
-          "constraints": 4
-        },
-        "fwd1": {
-          "version": "7",
-          "chars": 3000,
-          "words": 591,
-          "rules": 7,
-          "constraints": 4
-        },
-        "fwd2": {
-          "version": "8",
-          "chars": 2980,
-          "words": 576,
-          "rules": 6,
-          "constraints": 4
-        }
-      },
-      "performance": {
-        "gk": "weak",
-        "def": "weak",
-        "mid": "weak",
-        "fwd1": "weak",
-        "fwd2": "weak"
-      },
-      "action_items": [
-        "Platform: open the agents page and confirm each agent shows our prompt text and the right model, and that the deployment status is active. Redeploy regardless, and run the readiness check. (priority: high)",
-        "Platform: look for an error or invocation log for the match (Bedrock throttling, model access, timeouts). Ask the organizers whether a 33ms / 52-command match is a known failure mode. (priority: high)",
-        "Before the next competitive match, play one practice match and confirm the healthy signature (400+ commands, agents at 600\u20131000ms, PRESS the top command) before spending a competitive slot. (priority: high)",
-        "During the next competitive match, check the live stats in the first 15 seconds. If our agents are under 200ms, note it and treat the match as a deployment failure. (priority: high)",
-        "Coach Interventions: record whether the live message was sent. (priority: medium)",
-        "Scouting: Bright Auroras shoot 50 times a match; the only defence is preventing shots. Note for a possible rematch. (priority: low)"
-      ],
-      "observations": [
-        "Formation effectiveness: Not measurable. The team that played was not ours.",
-        "Should we change formation? **No. Change nothing in the prompts or models because of this match.** The v9 setup is 3-0 in the practice matches where it demonstrably ran (400+ commands, 600\u20131000ms per agent).",
-        "Coordination gaps: N/A.",
-        "Opponent patterns: Bright Auroras shoot a lot (50 SHOOT, 10%) and convert (5 of 8 on target). Their outfield agents are 200ms except two slow forwards. Possession 26% and they won 5-0: possession is irrelevant on this platform, as in our own 3-0 at 22%.",
-        "Opponent formation: GK, DEF, MID, FWD, FWD.",
-        "**Detection rule for next time:** before kickoff and in the first seconds, check the live command count and latency. Our healthy signature is ~600\u20131000ms per agent. Anything under 200ms for our agents means the prompts are not loaded.",
-        "Candidate causes to check on the platform, in order: (1) the deployment was not active for the competitive match (a redeploy was needed, or competitive uses a separate deploy step); (2) model access or quota errors for Haiku / Nova Lite 2 at match time, with the platform silently substituting a default (the 100% \"success\" column would then be misleading); (3) a cold start in which the first LLM calls timed out and the platform fell back for the whole match; (4) the \"Pre-match fitness\" or readiness check was not run."
-      ]
-    },
-    {
       "file": "match-log/practice/002-vs-the-benchmark-fc.md",
       "type": "practice",
       "number": 2,
@@ -454,160 +304,6 @@
         "Tempo line (\"keep any reasoning to a few words\"): no measurable effect. Our average went 813 \u2192 863ms while the opponent went 370 \u2192 199ms, so platform-side variance exists too. It isn't the coach's internet connection: agents run server-side on AWS, and the opponent was measured at ~200ms in the same match.",
         "Same model, very different speeds: Haiku agents ran 707\u2013713ms (GK, FWD1) and 999\u20131020ms (DEF, FWD2). MID's 1050ms was Sonnet. FWD2 on Haiku (999ms) was slower than on Nova Lite 2 in match 001 (840ms). The slower ones handle more complex situations, so most likely they write more per decision.",
         "Command mix vs match 001: SHOOT 14 \u2192 37, PRESS share 37% \u2192 30%, PASS 3% \u2192 6%, INTERCEPT 14% \u2192 15%, MARK 1% \u2192 1%."
-      ]
-    },
-    {
-      "file": "match-log/competitive/002-vs-nankatsu-sc.md",
-      "type": "competitive",
-      "number": 2,
-      "opponent": "Nankatsu SC",
-      "score_us": 5,
-      "score_them": 4,
-      "result": "W",
-      "date": "2026-10-06",
-      "formation": "1-1-2",
-      "strategy": "Swarm",
-      "deploy_tag": "deploy-v10-2026-10-06",
-      "metrics": {
-        "possession_us": 47,
-        "possession_them": 53,
-        "shots_us": 8,
-        "shots_them": 8,
-        "on_target_us": 5,
-        "on_target_them": 4,
-        "commands_us": 615,
-        "latency_avg_us": 730,
-        "commands_them": 615,
-        "latency_avg_them": 514,
-        "commands": {
-          "move": 330,
-          "press": 30,
-          "intercept": 0,
-          "mark": 3,
-          "pass": 67,
-          "shoot": 73,
-          "clear": 35,
-          "gk_dist": 6
-        },
-        "agents": {
-          "gk": {
-            "latency_avg": 658,
-            "latency_p95": null,
-            "success": 100
-          },
-          "def": {
-            "latency_avg": 667,
-            "latency_p95": null,
-            "success": 100
-          },
-          "mid": {
-            "latency_avg": 940,
-            "latency_p95": null,
-            "success": 100
-          },
-          "fwd1": {
-            "latency_avg": 683,
-            "latency_p95": null,
-            "success": 100
-          },
-          "fwd2": {
-            "latency_avg": 689,
-            "latency_p95": null,
-            "success": 100
-          }
-        },
-        "success_avg": 100.0,
-        "latency_gap": 216,
-        "shot_accuracy": 62.5,
-        "shoot_cmd_to_shot": 11.0,
-        "press_share": 4.9,
-        "intercept_share": 0.0,
-        "mark_share": 0.5,
-        "pass_share": 10.9,
-        "shoot_share": 11.9,
-        "prompt_chars_avg": 2979,
-        "prompt_chars_max": 2992,
-        "prompt_rules_avg": 7.2
-      },
-      "coach_interventions": [
-        {
-          "when": "\u2014",
-          "message": "None (the match ran unattended; no live messages were sent)",
-          "effect": "\u2014"
-        }
-      ],
-      "models": {
-        "gk": "Claude Haiku",
-        "def": "Claude Haiku",
-        "mid": "Claude Haiku",
-        "fwd1": "Nova Lite 2",
-        "fwd2": "Nova Lite 2"
-      },
-      "versions": {
-        "gk": "9",
-        "def": "9",
-        "mid": "8",
-        "fwd1": "8",
-        "fwd2": "9"
-      },
-      "prompt_stats": {
-        "gk": {
-          "version": "9",
-          "chars": 2936,
-          "words": 579,
-          "rules": 5,
-          "constraints": 5
-        },
-        "def": {
-          "version": "9",
-          "chars": 2990,
-          "words": 609,
-          "rules": 9,
-          "constraints": 4
-        },
-        "mid": {
-          "version": "8",
-          "chars": 2992,
-          "words": 592,
-          "rules": 9,
-          "constraints": 4
-        },
-        "fwd1": {
-          "version": "8",
-          "chars": 2986,
-          "words": 586,
-          "rules": 6,
-          "constraints": 4
-        },
-        "fwd2": {
-          "version": "9",
-          "chars": 2990,
-          "words": 580,
-          "rules": 7,
-          "constraints": 4
-        }
-      },
-      "performance": {
-        "gk": "adequate",
-        "def": "adequate",
-        "mid": "strong",
-        "fwd1": "strong",
-        "fwd2": "adequate"
-      },
-      "action_items": [
-        "v11 brief: close the long-shot gap. DEF presses any carrier in our half between the sides of our box whose line to our goal is clear, not only the one nearest our goal; the swarm presser rule needs a trigger that fires (their MID with the ball in or near our half \u2192 nearest of MID/FWD2 presses, no exceptions). Keep every attacking rule as is. (priority: high)",
-        "v11 brief: write the intercept job as \"INTERCEPT\" with a clear trigger (a pass is being played across you) rather than \"the pass to the opponent closest to him\", which the harness seems to run as FOLLOW. See `strategy/platform-reference.md`. (priority: high)",
-        "Check whether the platform shows a per-agent command breakdown; it would settle where the 71 FOLLOWs and 330 MOVEs come from. (priority: medium)",
-        "Scouting saved: `strategy/opponent-notes/nankatsu-sc.md`. (priority: low)"
-      ],
-      "observations": [
-        "Formation effectiveness: Won 5-4. Attack is the best it has been: 5 goals from 8 shots, 73 SHOOT commands, 67 PASSes, goals from MID and the runner.",
-        "Should we change formation? No. The v10 attacking roles are validated (Tesla 2, Hertz 2, one unattributed).",
-        "Coordination gaps: the defensive layer thinned out under v10. PRESS fell from 158 (017) to 30, INTERCEPT from 20 to 0, and we conceded 4 after conceding 2 in the previous four practice matches combined. Only one swarm player presses at a time by design, Hertz is now too far ahead to ever be the nearest, and DEF presses only the carrier nearest our goal. A MID shooting from midfield with a forward beyond him is pressed by nobody.",
-        "Platform Coach's Corner for us: \"Increase INTERCEPT from 0 to 40+ and add MARK (currently 3)\".",
-        "Opponent patterns: Nankatsu is press-and-shoot (PRESS 54%, INTERCEPT 16%, PASS 2%); fast back three at ~190ms, slow forwards at ~950ms. Same signature as Benchmark FC and Bright Auroras: the human teams appear to run the workshop sample prompts (PRESS_BALL at maximum intensity, INTERCEPT always on). Their gaps behind the press are where our goals came from.",
-        "Opponent formation: GK, DEF, MID, FWD, FWD.",
-        "Health check passed: 615 commands, 658\u2013940ms. The C001 failure did not recur."
       ]
     },
     {
@@ -758,157 +454,6 @@
         "Opponent formation: Unknown.",
         "Latency: 829ms average (863 in 002, 813 in 001). Same-model (Haiku) comparisons from v3 to v4: GK 707\u2192640, DEF 1020\u2192852, FWD1 713\u2192678, FWD2 999\u2192980, even though DEF, FWD1 and FWD2 prompts got longer. No sign that prompt length drives latency. Platform variance dominates. MID on Haiku 968 vs Sonnet 1050.",
         "Timing: all goals in matches 001 and 003 came in the first 3 minutes. Record goal minutes in every match to see if this pattern holds."
-      ]
-    },
-    {
-      "file": "match-log/competitive/003-vs-speedy-gonzales.md",
-      "type": "competitive",
-      "number": 3,
-      "opponent": "Speedy Gonzales",
-      "score_us": 2,
-      "score_them": 0,
-      "result": "W",
-      "date": "2026-10-06",
-      "formation": "1-1-2",
-      "strategy": "Swarm",
-      "deploy_tag": "deploy-v10-2026-10-06",
-      "metrics": {
-        "possession_us": 71,
-        "possession_them": 29,
-        "shots_us": 6,
-        "shots_them": 3,
-        "on_target_us": 2,
-        "on_target_them": 0,
-        "commands_us": 350,
-        "latency_avg_us": 1078,
-        "commands_them": 350,
-        "latency_avg_them": 525,
-        "commands": {
-          "move": 310,
-          "press": 2,
-          "intercept": 0,
-          "mark": 0,
-          "pass": 20,
-          "shoot": 1,
-          "clear": 13,
-          "gk_dist": 4
-        },
-        "agents": {
-          "gk": {
-            "latency_avg": 1157,
-            "latency_p95": null,
-            "success": 100
-          },
-          "def": {
-            "latency_avg": 1082,
-            "latency_p95": null,
-            "success": 100
-          },
-          "mid": {
-            "latency_avg": 1159,
-            "latency_p95": null,
-            "success": 100
-          },
-          "fwd1": {
-            "latency_avg": 968,
-            "latency_p95": null,
-            "success": 100
-          },
-          "fwd2": {
-            "latency_avg": 1037,
-            "latency_p95": null,
-            "success": 100
-          }
-        },
-        "success_avg": 100.0,
-        "latency_gap": 553,
-        "shot_accuracy": 33.3,
-        "shoot_cmd_to_shot": 600.0,
-        "press_share": 0.6,
-        "intercept_share": 0.0,
-        "mark_share": 0.0,
-        "pass_share": 5.7,
-        "shoot_share": 0.3,
-        "prompt_chars_avg": 2979,
-        "prompt_chars_max": 2992,
-        "prompt_rules_avg": 7.2
-      },
-      "coach_interventions": [
-        {
-          "when": "\u2014",
-          "message": "None (the match ran unattended; no live messages were sent)",
-          "effect": "\u2014"
-        }
-      ],
-      "models": {
-        "gk": "Claude Haiku",
-        "def": "Claude Haiku",
-        "mid": "Claude Haiku",
-        "fwd1": "Nova Lite 2",
-        "fwd2": "Nova Lite 2"
-      },
-      "versions": {
-        "gk": "9",
-        "def": "9",
-        "mid": "8",
-        "fwd1": "8",
-        "fwd2": "9"
-      },
-      "prompt_stats": {
-        "gk": {
-          "version": "9",
-          "chars": 2936,
-          "words": 579,
-          "rules": 5,
-          "constraints": 5
-        },
-        "def": {
-          "version": "9",
-          "chars": 2990,
-          "words": 609,
-          "rules": 9,
-          "constraints": 4
-        },
-        "mid": {
-          "version": "8",
-          "chars": 2992,
-          "words": 592,
-          "rules": 9,
-          "constraints": 4
-        },
-        "fwd1": {
-          "version": "8",
-          "chars": 2986,
-          "words": 586,
-          "rules": 6,
-          "constraints": 4
-        },
-        "fwd2": {
-          "version": "9",
-          "chars": 2990,
-          "words": 580,
-          "rules": 7,
-          "constraints": 4
-        }
-      },
-      "performance": {
-        "gk": "strong",
-        "def": "strong",
-        "mid": "strong",
-        "fwd1": "adequate",
-        "fwd2": "adequate"
-      },
-      "action_items": [
-        "Before the next competitive match, play one practice match and compare the command mix with C002 (SHOOT ~12%, PRESS ~5%, FOLLOW ~12%). If MOVE is above 80% again with normal latency, the v10 on-ball rules are collapsing into the one-step carry (MID rule 5, FWD1 rule 3) and v11 must remove the carry. If it only happens with ~1.1s latency, it is platform load. (priority: high)",
-        "Scouting saved: `strategy/opponent-notes/speedy-gonzales.md`. (priority: low)"
-      ],
-      "observations": [
-        "Formation effectiveness: 2-0, clean sheet, 71% possession. v10 is 2-0 in competitive play (7 scored, 4 conceded).",
-        "Should we change formation? No.",
-        "Coordination gaps: none visible in the result; the command mix says the agents mostly MOVEd, which worked against a team that only pressed. Do not read the 89% MOVE as a tactic to keep.",
-        "Opponent patterns: Speedy Gonzales is the same template as Nankatsu and Bright Auroras: PRESS 51%, INTERCEPT 19%, fast back three at ~210ms, forwards at ~1000ms. 0 shots on target. Weakest competitive opponent so far.",
-        "Opponent formation: GK, DEF, MID, FWD, FWD.",
-        "Competitive matches used: 3 of 10 (C001 was the deployment failure)."
       ]
     },
     {
@@ -1064,156 +609,6 @@
       ]
     },
     {
-      "file": "match-log/competitive/004-vs-bright-artisans.md",
-      "type": "competitive",
-      "number": 4,
-      "opponent": "Bright Artisans",
-      "score_us": 2,
-      "score_them": 0,
-      "result": "W",
-      "date": "2026-10-06",
-      "formation": "1-1-2",
-      "strategy": "Swarm",
-      "deploy_tag": "deploy-v10-2026-10-06",
-      "metrics": {
-        "possession_us": 75,
-        "possession_them": 25,
-        "shots_us": 6,
-        "shots_them": 1,
-        "on_target_us": 2,
-        "on_target_them": 0,
-        "commands_us": 365,
-        "latency_avg_us": 199,
-        "commands_them": 365,
-        "latency_avg_them": 510,
-        "commands": {
-          "move": 217,
-          "press": 115,
-          "intercept": 0,
-          "mark": 0,
-          "pass": 19,
-          "shoot": 0,
-          "clear": 7,
-          "gk_dist": 7
-        },
-        "agents": {
-          "gk": {
-            "latency_avg": 209,
-            "latency_p95": null,
-            "success": 100
-          },
-          "def": {
-            "latency_avg": 205,
-            "latency_p95": null,
-            "success": 100
-          },
-          "mid": {
-            "latency_avg": 204,
-            "latency_p95": null,
-            "success": 100
-          },
-          "fwd1": {
-            "latency_avg": 201,
-            "latency_p95": null,
-            "success": 100
-          },
-          "fwd2": {
-            "latency_avg": 209,
-            "latency_p95": null,
-            "success": 100
-          }
-        },
-        "success_avg": 100.0,
-        "latency_gap": -311,
-        "shot_accuracy": 33.3,
-        "press_share": 31.5,
-        "intercept_share": 0.0,
-        "mark_share": 0.0,
-        "pass_share": 5.2,
-        "shoot_share": 0.0,
-        "prompt_chars_avg": 2979,
-        "prompt_chars_max": 2992,
-        "prompt_rules_avg": 7.2
-      },
-      "coach_interventions": [
-        {
-          "when": "\u2014",
-          "message": "None (the match ran unattended; no live messages were sent)",
-          "effect": "\u2014"
-        }
-      ],
-      "models": {
-        "gk": "Claude Haiku",
-        "def": "Claude Haiku",
-        "mid": "Claude Haiku",
-        "fwd1": "Nova Lite 2",
-        "fwd2": "Nova Lite 2"
-      },
-      "versions": {
-        "gk": "9",
-        "def": "9",
-        "mid": "8",
-        "fwd1": "8",
-        "fwd2": "9"
-      },
-      "prompt_stats": {
-        "gk": {
-          "version": "9",
-          "chars": 2936,
-          "words": 579,
-          "rules": 5,
-          "constraints": 5
-        },
-        "def": {
-          "version": "9",
-          "chars": 2990,
-          "words": 609,
-          "rules": 9,
-          "constraints": 4
-        },
-        "mid": {
-          "version": "8",
-          "chars": 2992,
-          "words": 592,
-          "rules": 9,
-          "constraints": 4
-        },
-        "fwd1": {
-          "version": "8",
-          "chars": 2986,
-          "words": 586,
-          "rules": 6,
-          "constraints": 4
-        },
-        "fwd2": {
-          "version": "9",
-          "chars": 2990,
-          "words": 580,
-          "rules": 7,
-          "constraints": 4
-        }
-      },
-      "performance": {
-        "gk": "adequate",
-        "def": "adequate",
-        "mid": "adequate",
-        "fwd1": "strong",
-        "fwd2": "adequate"
-      },
-      "action_items": [
-        "Platform: before every competitive match, open the agents page and confirm the deployment is active and shows our prompt text; run the readiness check. The first 15 seconds of the live stats tell the truth: under 300 ms per agent means the default AI is playing. (priority: high)",
-        "Ask the organizers whether a full-count match with every agent at ~200 ms is a known fallback (model throttling, timeout fallback) and whether it is logged. (priority: high)",
-        "Scouting: treat the ~200 ms back three of every opponent as the platform's default AI; plan to beat the default AI, not a human tactic. (priority: medium)"
-      ],
-      "observations": [
-        "Formation effectiveness: Not measurable. The default AI won 2-0 with 75% possession against the weakest opponent so far (1 shot).",
-        "Should we change formation? No. Change nothing because of this match.",
-        "**Second deployment-failure signature.** C001: 33 ms, 52 commands (nothing ran). C004: ~200 ms, full command count, 0 SHOOT / MARK / INTERCEPT (default AI ran). Detection rule update: our agents under 300 ms means the prompts are not loaded, whatever the command count.",
-        "**Scouting insight.** Every competitive opponent (Bright Auroras, Nankatsu, Speedy Gonzales, Bright Artisans, Pantera Onca) shows GK/DEF/MID at ~200 ms with a PRESS-heavy, no-MARK profile, and only the two forwards at ~1 s. The ~200 ms profile is what our own default-AI match looks like. Working hypothesis: most teams run real agents only on their forwards and the platform's default AI on the back three. Their back three cannot be out-thought, only out-shot; their forwards are LLM agents and slow.",
-        "Candidate causes to check on the platform: whether v11 was pasted and \"Redeploy\" was mid-flight when the match started, whether the deployment showed as active, Bedrock throttling (five matches in a row for everyone at the same venue), or the readiness check."
-      ]
-    },
-    {
       "file": "match-log/practice/005-vs-the-benchmark-fc.md",
       "type": "practice",
       "number": 5,
@@ -1359,159 +754,6 @@
         "Results by release: v1 W 1-0, v3 D 2-2, v4 W 2-1, v5 L 0-3, v6 L 0-1. Goals for: 1, 2, 2, 0, 0. With one match per version and Benchmark's own variance, single results are noisy.",
         "**Minute 1 is our weakest moment**: we conceded at 1' in 003, 004 and 005. Hypothesis: at kickoff our agents are slow to start (the readiness check showed 1.0\u20131.6 s per call, slower than in-match), so the opponent attacks a standing team. To confirm: does our team stand still for the first seconds?",
         "Platform Coach's Corner wants SHOOTs and strikers closer to goal. 12 SHOOTs, 0 on target."
-      ]
-    },
-    {
-      "file": "match-log/competitive/005-vs-pantera-onca-dz-team.md",
-      "type": "competitive",
-      "number": 5,
-      "opponent": "Pantera Onca DZ Team",
-      "score_us": 1,
-      "score_them": 2,
-      "result": "L",
-      "date": "2026-10-06",
-      "formation": "1-1-2",
-      "strategy": "Swarm",
-      "deploy_tag": "deploy-v10-2026-10-06",
-      "metrics": {
-        "possession_us": 56,
-        "possession_them": 44,
-        "shots_us": 2,
-        "shots_them": 4,
-        "on_target_us": 1,
-        "on_target_them": 2,
-        "commands_us": 400,
-        "latency_avg_us": 679,
-        "commands_them": 400,
-        "latency_avg_them": 504,
-        "commands": {
-          "move": 246,
-          "press": 13,
-          "intercept": 0,
-          "mark": 58,
-          "pass": 26,
-          "shoot": 33,
-          "clear": 22,
-          "gk_dist": 2
-        },
-        "agents": {
-          "gk": {
-            "latency_avg": 637,
-            "latency_p95": null,
-            "success": 100
-          },
-          "def": {
-            "latency_avg": 649,
-            "latency_p95": null,
-            "success": 100
-          },
-          "mid": {
-            "latency_avg": 713,
-            "latency_p95": null,
-            "success": 100
-          },
-          "fwd1": {
-            "latency_avg": 661,
-            "latency_p95": null,
-            "success": 100
-          },
-          "fwd2": {
-            "latency_avg": 675,
-            "latency_p95": null,
-            "success": 100
-          }
-        },
-        "success_avg": 100.0,
-        "latency_gap": 175,
-        "shot_accuracy": 50.0,
-        "shoot_cmd_to_shot": 6.1,
-        "press_share": 3.2,
-        "intercept_share": 0.0,
-        "mark_share": 14.5,
-        "pass_share": 6.5,
-        "shoot_share": 8.2,
-        "prompt_chars_avg": 2979,
-        "prompt_chars_max": 2992,
-        "prompt_rules_avg": 7.2
-      },
-      "coach_interventions": [
-        {
-          "when": "\u2014",
-          "message": "None (the match ran unattended; no live messages were sent)",
-          "effect": "\u2014"
-        }
-      ],
-      "models": {
-        "gk": "Claude Haiku",
-        "def": "Claude Haiku",
-        "mid": "Claude Haiku",
-        "fwd1": "Nova Lite 2",
-        "fwd2": "Nova Lite 2"
-      },
-      "versions": {
-        "gk": "9",
-        "def": "9",
-        "mid": "8",
-        "fwd1": "8",
-        "fwd2": "9"
-      },
-      "prompt_stats": {
-        "gk": {
-          "version": "9",
-          "chars": 2936,
-          "words": 579,
-          "rules": 5,
-          "constraints": 5
-        },
-        "def": {
-          "version": "9",
-          "chars": 2990,
-          "words": 609,
-          "rules": 9,
-          "constraints": 4
-        },
-        "mid": {
-          "version": "8",
-          "chars": 2992,
-          "words": 592,
-          "rules": 9,
-          "constraints": 4
-        },
-        "fwd1": {
-          "version": "8",
-          "chars": 2986,
-          "words": 586,
-          "rules": 6,
-          "constraints": 4
-        },
-        "fwd2": {
-          "version": "9",
-          "chars": 2990,
-          "words": 580,
-          "rules": 7,
-          "constraints": 4
-        }
-      },
-      "performance": {
-        "gk": "adequate",
-        "def": "weak",
-        "mid": "weak",
-        "fwd1": "adequate",
-        "fwd2": "adequate"
-      },
-      "action_items": [
-        "Deploy v11 and play one practice match: confirm the healthy signature (600\u20131200 ms), MOVE under 50%, MARK and PRESS both present, FOLLOW only when we have the ball, DEF PRESS count. Then the next competitive match. (priority: high)",
-        "v12 candidate if the practice match repeats the C005 1' turnover: DEF and GK under pressure in our half CLEAR long toward Hertz (the runner) before passing short to MID. (priority: medium)",
-        "Investigate the SHOOT-command vs shot gap (33 commands, 2 shots): are agents issuing SHOOT without the ball? The platform may have a per-agent view. (priority: medium)",
-        "Scouting saved: `strategy/opponent-notes/pantera-onca-dz-team.md`. (priority: low)"
-      ],
-      "observations": [
-        "Formation effectiveness: Lost 1-2 on 2 shots against 4. v10 competitive record with prompts running: 2-1 (C002 W, C003 W, C005 L). Competitive used: 5 of 10 (3-2).",
-        "Should we change formation? No.",
-        "Coordination gaps: the two concessions are the two v10 defects already addressed by v11: (a) nobody presses their MID in or near our half (C002, C005 3'); (b) build-up pass into a 50% press (C005 1'; v11 does not yet change this, see DEF).",
-        "Opponent patterns: Pantera is the same template (PRESS 50%, back three at ~205 ms, forwards at ~1 s) but passes more than the others (PASS 14%) and shoots little (4 SHOOT commands, 4 shots, 2 on target: everything they hit was a real chance).",
-        "Opponent formation: GK, DEF, MID, FWD, FWD.",
-        "MOVE share since v10: 54%, 89%, (59% default AI), 62%. Our agents spend most ticks repositioning. v11 removes the one-step carry; check whether MOVE drops below 50%."
       ]
     },
     {
@@ -3414,6 +2656,764 @@
         "Benchmark FC shows the same latency profile as every human opponent (back three ~206 ms, forwards ~1 s), and 32 FOLLOWs. The reference team's back three is the same thing the human teams run.",
         "Opponent patterns: Benchmark got 5 shots this time (017: 6, 0 on target; 014: ?). Pressing at 17% only; passes 11%.",
         "Opponent formation: GK, DEF, MID, FWD, FWD."
+      ]
+    },
+    {
+      "file": "match-log/competitive/001-vs-bright-auroras.md",
+      "type": "competitive",
+      "number": 1,
+      "opponent": "Bright Auroras",
+      "score_us": 0,
+      "score_them": 5,
+      "result": "L",
+      "date": "2026-10-06",
+      "formation": "1-1-2",
+      "strategy": "Swarm",
+      "deploy_tag": "deploy-v9-2026-10-06",
+      "metrics": {
+        "possession_us": 74,
+        "possession_them": 26,
+        "shots_us": 8,
+        "shots_them": 8,
+        "on_target_us": 0,
+        "on_target_them": 5,
+        "commands_us": 52,
+        "latency_avg_us": 33,
+        "commands_them": 480,
+        "latency_avg_them": 492,
+        "commands": {
+          "move": 14,
+          "press": 0,
+          "intercept": 1,
+          "mark": 6,
+          "pass": 5,
+          "shoot": 1,
+          "clear": 12,
+          "gk_dist": 0
+        },
+        "agents": {
+          "gk": {
+            "latency_avg": 96,
+            "latency_p95": null,
+            "success": 100
+          },
+          "def": {
+            "latency_avg": 88,
+            "latency_p95": null,
+            "success": 100
+          },
+          "mid": {
+            "latency_avg": 85,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd1": {
+            "latency_avg": 88,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd2": {
+            "latency_avg": 94,
+            "latency_p95": null,
+            "success": 100
+          }
+        },
+        "success_avg": 100.0,
+        "latency_gap": -459,
+        "shot_accuracy": 0.0,
+        "shoot_cmd_to_shot": 800.0,
+        "press_share": 0.0,
+        "intercept_share": 1.9,
+        "mark_share": 11.5,
+        "pass_share": 9.6,
+        "shoot_share": 1.9,
+        "prompt_chars_avg": 2903,
+        "prompt_chars_max": 3000,
+        "prompt_rules_avg": 6.8
+      },
+      "coach_interventions": [],
+      "models": {
+        "gk": "Claude Haiku",
+        "def": "Claude Haiku",
+        "mid": "Claude Haiku",
+        "fwd1": "Nova Lite 2",
+        "fwd2": "Nova Lite 2"
+      },
+      "versions": {
+        "gk": "8",
+        "def": "8",
+        "mid": "7",
+        "fwd1": "7",
+        "fwd2": "8"
+      },
+      "prompt_stats": {
+        "gk": {
+          "version": "8",
+          "chars": 2561,
+          "words": 513,
+          "rules": 5,
+          "constraints": 4
+        },
+        "def": {
+          "version": "8",
+          "chars": 2990,
+          "words": 614,
+          "rules": 8,
+          "constraints": 5
+        },
+        "mid": {
+          "version": "7",
+          "chars": 2983,
+          "words": 599,
+          "rules": 8,
+          "constraints": 4
+        },
+        "fwd1": {
+          "version": "7",
+          "chars": 3000,
+          "words": 591,
+          "rules": 7,
+          "constraints": 4
+        },
+        "fwd2": {
+          "version": "8",
+          "chars": 2980,
+          "words": 576,
+          "rules": 6,
+          "constraints": 4
+        }
+      },
+      "performance": {
+        "gk": "weak",
+        "def": "weak",
+        "mid": "weak",
+        "fwd1": "weak",
+        "fwd2": "weak"
+      },
+      "action_items": [
+        "Platform: open the agents page and confirm each agent shows our prompt text and the right model, and that the deployment status is active. Redeploy regardless, and run the readiness check. (priority: high)",
+        "Platform: look for an error or invocation log for the match (Bedrock throttling, model access, timeouts). Ask the organizers whether a 33ms / 52-command match is a known failure mode. (priority: high)",
+        "Before the next competitive match, play one practice match and confirm the healthy signature (400+ commands, agents at 600\u20131000ms, PRESS the top command) before spending a competitive slot. (priority: high)",
+        "During the next competitive match, check the live stats in the first 15 seconds. If our agents are under 200ms, note it and treat the match as a deployment failure. (priority: high)",
+        "Coach Interventions: record whether the live message was sent. (priority: medium)",
+        "Scouting: Bright Auroras shoot 50 times a match; the only defence is preventing shots. Note for a possible rematch. (priority: low)"
+      ],
+      "observations": [
+        "Formation effectiveness: Not measurable. The team that played was not ours.",
+        "Should we change formation? **No. Change nothing in the prompts or models because of this match.** The v9 setup is 3-0 in the practice matches where it demonstrably ran (400+ commands, 600\u20131000ms per agent).",
+        "Coordination gaps: N/A.",
+        "Opponent patterns: Bright Auroras shoot a lot (50 SHOOT, 10%) and convert (5 of 8 on target). Their outfield agents are 200ms except two slow forwards. Possession 26% and they won 5-0: possession is irrelevant on this platform, as in our own 3-0 at 22%.",
+        "Opponent formation: GK, DEF, MID, FWD, FWD.",
+        "**Detection rule for next time:** before kickoff and in the first seconds, check the live command count and latency. Our healthy signature is ~600\u20131000ms per agent. Anything under 200ms for our agents means the prompts are not loaded.",
+        "Candidate causes to check on the platform, in order: (1) the deployment was not active for the competitive match (a redeploy was needed, or competitive uses a separate deploy step); (2) model access or quota errors for Haiku / Nova Lite 2 at match time, with the platform silently substituting a default (the 100% \"success\" column would then be misleading); (3) a cold start in which the first LLM calls timed out and the platform fell back for the whole match; (4) the \"Pre-match fitness\" or readiness check was not run."
+      ]
+    },
+    {
+      "file": "match-log/competitive/002-vs-nankatsu-sc.md",
+      "type": "competitive",
+      "number": 2,
+      "opponent": "Nankatsu SC",
+      "score_us": 5,
+      "score_them": 4,
+      "result": "W",
+      "date": "2026-10-06",
+      "formation": "1-1-2",
+      "strategy": "Swarm",
+      "deploy_tag": "deploy-v10-2026-10-06",
+      "metrics": {
+        "possession_us": 47,
+        "possession_them": 53,
+        "shots_us": 8,
+        "shots_them": 8,
+        "on_target_us": 5,
+        "on_target_them": 4,
+        "commands_us": 615,
+        "latency_avg_us": 730,
+        "commands_them": 615,
+        "latency_avg_them": 514,
+        "commands": {
+          "move": 330,
+          "press": 30,
+          "intercept": 0,
+          "mark": 3,
+          "pass": 67,
+          "shoot": 73,
+          "clear": 35,
+          "gk_dist": 6
+        },
+        "agents": {
+          "gk": {
+            "latency_avg": 658,
+            "latency_p95": null,
+            "success": 100
+          },
+          "def": {
+            "latency_avg": 667,
+            "latency_p95": null,
+            "success": 100
+          },
+          "mid": {
+            "latency_avg": 940,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd1": {
+            "latency_avg": 683,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd2": {
+            "latency_avg": 689,
+            "latency_p95": null,
+            "success": 100
+          }
+        },
+        "success_avg": 100.0,
+        "latency_gap": 216,
+        "shot_accuracy": 62.5,
+        "shoot_cmd_to_shot": 11.0,
+        "press_share": 4.9,
+        "intercept_share": 0.0,
+        "mark_share": 0.5,
+        "pass_share": 10.9,
+        "shoot_share": 11.9,
+        "prompt_chars_avg": 2979,
+        "prompt_chars_max": 2992,
+        "prompt_rules_avg": 7.2
+      },
+      "coach_interventions": [
+        {
+          "when": "\u2014",
+          "message": "None (the match ran unattended; no live messages were sent)",
+          "effect": "\u2014"
+        }
+      ],
+      "models": {
+        "gk": "Claude Haiku",
+        "def": "Claude Haiku",
+        "mid": "Claude Haiku",
+        "fwd1": "Nova Lite 2",
+        "fwd2": "Nova Lite 2"
+      },
+      "versions": {
+        "gk": "9",
+        "def": "9",
+        "mid": "8",
+        "fwd1": "8",
+        "fwd2": "9"
+      },
+      "prompt_stats": {
+        "gk": {
+          "version": "9",
+          "chars": 2936,
+          "words": 579,
+          "rules": 5,
+          "constraints": 5
+        },
+        "def": {
+          "version": "9",
+          "chars": 2990,
+          "words": 609,
+          "rules": 9,
+          "constraints": 4
+        },
+        "mid": {
+          "version": "8",
+          "chars": 2992,
+          "words": 592,
+          "rules": 9,
+          "constraints": 4
+        },
+        "fwd1": {
+          "version": "8",
+          "chars": 2986,
+          "words": 586,
+          "rules": 6,
+          "constraints": 4
+        },
+        "fwd2": {
+          "version": "9",
+          "chars": 2990,
+          "words": 580,
+          "rules": 7,
+          "constraints": 4
+        }
+      },
+      "performance": {
+        "gk": "adequate",
+        "def": "adequate",
+        "mid": "strong",
+        "fwd1": "strong",
+        "fwd2": "adequate"
+      },
+      "action_items": [
+        "v11 brief: close the long-shot gap. DEF presses any carrier in our half between the sides of our box whose line to our goal is clear, not only the one nearest our goal; the swarm presser rule needs a trigger that fires (their MID with the ball in or near our half \u2192 nearest of MID/FWD2 presses, no exceptions). Keep every attacking rule as is. (priority: high)",
+        "v11 brief: write the intercept job as \"INTERCEPT\" with a clear trigger (a pass is being played across you) rather than \"the pass to the opponent closest to him\", which the harness seems to run as FOLLOW. See `strategy/platform-reference.md`. (priority: high)",
+        "Check whether the platform shows a per-agent command breakdown; it would settle where the 71 FOLLOWs and 330 MOVEs come from. (priority: medium)",
+        "Scouting saved: `strategy/opponent-notes/nankatsu-sc.md`. (priority: low)"
+      ],
+      "observations": [
+        "Formation effectiveness: Won 5-4. Attack is the best it has been: 5 goals from 8 shots, 73 SHOOT commands, 67 PASSes, goals from MID and the runner.",
+        "Should we change formation? No. The v10 attacking roles are validated (Tesla 2, Hertz 2, one unattributed).",
+        "Coordination gaps: the defensive layer thinned out under v10. PRESS fell from 158 (017) to 30, INTERCEPT from 20 to 0, and we conceded 4 after conceding 2 in the previous four practice matches combined. Only one swarm player presses at a time by design, Hertz is now too far ahead to ever be the nearest, and DEF presses only the carrier nearest our goal. A MID shooting from midfield with a forward beyond him is pressed by nobody.",
+        "Platform Coach's Corner for us: \"Increase INTERCEPT from 0 to 40+ and add MARK (currently 3)\".",
+        "Opponent patterns: Nankatsu is press-and-shoot (PRESS 54%, INTERCEPT 16%, PASS 2%); fast back three at ~190ms, slow forwards at ~950ms. Same signature as Benchmark FC and Bright Auroras: the human teams appear to run the workshop sample prompts (PRESS_BALL at maximum intensity, INTERCEPT always on). Their gaps behind the press are where our goals came from.",
+        "Opponent formation: GK, DEF, MID, FWD, FWD.",
+        "Health check passed: 615 commands, 658\u2013940ms. The C001 failure did not recur."
+      ]
+    },
+    {
+      "file": "match-log/competitive/003-vs-speedy-gonzales.md",
+      "type": "competitive",
+      "number": 3,
+      "opponent": "Speedy Gonzales",
+      "score_us": 2,
+      "score_them": 0,
+      "result": "W",
+      "date": "2026-10-06",
+      "formation": "1-1-2",
+      "strategy": "Swarm",
+      "deploy_tag": "deploy-v10-2026-10-06",
+      "metrics": {
+        "possession_us": 71,
+        "possession_them": 29,
+        "shots_us": 6,
+        "shots_them": 3,
+        "on_target_us": 2,
+        "on_target_them": 0,
+        "commands_us": 350,
+        "latency_avg_us": 1078,
+        "commands_them": 350,
+        "latency_avg_them": 525,
+        "commands": {
+          "move": 310,
+          "press": 2,
+          "intercept": 0,
+          "mark": 0,
+          "pass": 20,
+          "shoot": 1,
+          "clear": 13,
+          "gk_dist": 4
+        },
+        "agents": {
+          "gk": {
+            "latency_avg": 1157,
+            "latency_p95": null,
+            "success": 100
+          },
+          "def": {
+            "latency_avg": 1082,
+            "latency_p95": null,
+            "success": 100
+          },
+          "mid": {
+            "latency_avg": 1159,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd1": {
+            "latency_avg": 968,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd2": {
+            "latency_avg": 1037,
+            "latency_p95": null,
+            "success": 100
+          }
+        },
+        "success_avg": 100.0,
+        "latency_gap": 553,
+        "shot_accuracy": 33.3,
+        "shoot_cmd_to_shot": 600.0,
+        "press_share": 0.6,
+        "intercept_share": 0.0,
+        "mark_share": 0.0,
+        "pass_share": 5.7,
+        "shoot_share": 0.3,
+        "prompt_chars_avg": 2979,
+        "prompt_chars_max": 2992,
+        "prompt_rules_avg": 7.2
+      },
+      "coach_interventions": [
+        {
+          "when": "\u2014",
+          "message": "None (the match ran unattended; no live messages were sent)",
+          "effect": "\u2014"
+        }
+      ],
+      "models": {
+        "gk": "Claude Haiku",
+        "def": "Claude Haiku",
+        "mid": "Claude Haiku",
+        "fwd1": "Nova Lite 2",
+        "fwd2": "Nova Lite 2"
+      },
+      "versions": {
+        "gk": "9",
+        "def": "9",
+        "mid": "8",
+        "fwd1": "8",
+        "fwd2": "9"
+      },
+      "prompt_stats": {
+        "gk": {
+          "version": "9",
+          "chars": 2936,
+          "words": 579,
+          "rules": 5,
+          "constraints": 5
+        },
+        "def": {
+          "version": "9",
+          "chars": 2990,
+          "words": 609,
+          "rules": 9,
+          "constraints": 4
+        },
+        "mid": {
+          "version": "8",
+          "chars": 2992,
+          "words": 592,
+          "rules": 9,
+          "constraints": 4
+        },
+        "fwd1": {
+          "version": "8",
+          "chars": 2986,
+          "words": 586,
+          "rules": 6,
+          "constraints": 4
+        },
+        "fwd2": {
+          "version": "9",
+          "chars": 2990,
+          "words": 580,
+          "rules": 7,
+          "constraints": 4
+        }
+      },
+      "performance": {
+        "gk": "strong",
+        "def": "strong",
+        "mid": "strong",
+        "fwd1": "adequate",
+        "fwd2": "adequate"
+      },
+      "action_items": [
+        "Before the next competitive match, play one practice match and compare the command mix with C002 (SHOOT ~12%, PRESS ~5%, FOLLOW ~12%). If MOVE is above 80% again with normal latency, the v10 on-ball rules are collapsing into the one-step carry (MID rule 5, FWD1 rule 3) and v11 must remove the carry. If it only happens with ~1.1s latency, it is platform load. (priority: high)",
+        "Scouting saved: `strategy/opponent-notes/speedy-gonzales.md`. (priority: low)"
+      ],
+      "observations": [
+        "Formation effectiveness: 2-0, clean sheet, 71% possession. v10 is 2-0 in competitive play (7 scored, 4 conceded).",
+        "Should we change formation? No.",
+        "Coordination gaps: none visible in the result; the command mix says the agents mostly MOVEd, which worked against a team that only pressed. Do not read the 89% MOVE as a tactic to keep.",
+        "Opponent patterns: Speedy Gonzales is the same template as Nankatsu and Bright Auroras: PRESS 51%, INTERCEPT 19%, fast back three at ~210ms, forwards at ~1000ms. 0 shots on target. Weakest competitive opponent so far.",
+        "Opponent formation: GK, DEF, MID, FWD, FWD.",
+        "Competitive matches used: 3 of 10 (C001 was the deployment failure)."
+      ]
+    },
+    {
+      "file": "match-log/competitive/004-vs-bright-artisans.md",
+      "type": "competitive",
+      "number": 4,
+      "opponent": "Bright Artisans",
+      "score_us": 2,
+      "score_them": 0,
+      "result": "W",
+      "date": "2026-10-06",
+      "formation": "1-1-2",
+      "strategy": "Swarm",
+      "deploy_tag": "deploy-v10-2026-10-06",
+      "metrics": {
+        "possession_us": 75,
+        "possession_them": 25,
+        "shots_us": 6,
+        "shots_them": 1,
+        "on_target_us": 2,
+        "on_target_them": 0,
+        "commands_us": 365,
+        "latency_avg_us": 199,
+        "commands_them": 365,
+        "latency_avg_them": 510,
+        "commands": {
+          "move": 217,
+          "press": 115,
+          "intercept": 0,
+          "mark": 0,
+          "pass": 19,
+          "shoot": 0,
+          "clear": 7,
+          "gk_dist": 7
+        },
+        "agents": {
+          "gk": {
+            "latency_avg": 209,
+            "latency_p95": null,
+            "success": 100
+          },
+          "def": {
+            "latency_avg": 205,
+            "latency_p95": null,
+            "success": 100
+          },
+          "mid": {
+            "latency_avg": 204,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd1": {
+            "latency_avg": 201,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd2": {
+            "latency_avg": 209,
+            "latency_p95": null,
+            "success": 100
+          }
+        },
+        "success_avg": 100.0,
+        "latency_gap": -311,
+        "shot_accuracy": 33.3,
+        "press_share": 31.5,
+        "intercept_share": 0.0,
+        "mark_share": 0.0,
+        "pass_share": 5.2,
+        "shoot_share": 0.0,
+        "prompt_chars_avg": 2979,
+        "prompt_chars_max": 2992,
+        "prompt_rules_avg": 7.2
+      },
+      "coach_interventions": [
+        {
+          "when": "\u2014",
+          "message": "None (the match ran unattended; no live messages were sent)",
+          "effect": "\u2014"
+        }
+      ],
+      "models": {
+        "gk": "Claude Haiku",
+        "def": "Claude Haiku",
+        "mid": "Claude Haiku",
+        "fwd1": "Nova Lite 2",
+        "fwd2": "Nova Lite 2"
+      },
+      "versions": {
+        "gk": "9",
+        "def": "9",
+        "mid": "8",
+        "fwd1": "8",
+        "fwd2": "9"
+      },
+      "prompt_stats": {
+        "gk": {
+          "version": "9",
+          "chars": 2936,
+          "words": 579,
+          "rules": 5,
+          "constraints": 5
+        },
+        "def": {
+          "version": "9",
+          "chars": 2990,
+          "words": 609,
+          "rules": 9,
+          "constraints": 4
+        },
+        "mid": {
+          "version": "8",
+          "chars": 2992,
+          "words": 592,
+          "rules": 9,
+          "constraints": 4
+        },
+        "fwd1": {
+          "version": "8",
+          "chars": 2986,
+          "words": 586,
+          "rules": 6,
+          "constraints": 4
+        },
+        "fwd2": {
+          "version": "9",
+          "chars": 2990,
+          "words": 580,
+          "rules": 7,
+          "constraints": 4
+        }
+      },
+      "performance": {
+        "gk": "adequate",
+        "def": "adequate",
+        "mid": "adequate",
+        "fwd1": "strong",
+        "fwd2": "adequate"
+      },
+      "action_items": [
+        "Platform: before every competitive match, open the agents page and confirm the deployment is active and shows our prompt text; run the readiness check. The first 15 seconds of the live stats tell the truth: under 300 ms per agent means the default AI is playing. (priority: high)",
+        "Ask the organizers whether a full-count match with every agent at ~200 ms is a known fallback (model throttling, timeout fallback) and whether it is logged. (priority: high)",
+        "Scouting: treat the ~200 ms back three of every opponent as the platform's default AI; plan to beat the default AI, not a human tactic. (priority: medium)"
+      ],
+      "observations": [
+        "Formation effectiveness: Not measurable. The default AI won 2-0 with 75% possession against the weakest opponent so far (1 shot).",
+        "Should we change formation? No. Change nothing because of this match.",
+        "**Second deployment-failure signature.** C001: 33 ms, 52 commands (nothing ran). C004: ~200 ms, full command count, 0 SHOOT / MARK / INTERCEPT (default AI ran). Detection rule update: our agents under 300 ms means the prompts are not loaded, whatever the command count.",
+        "**Scouting insight.** Every competitive opponent (Bright Auroras, Nankatsu, Speedy Gonzales, Bright Artisans, Pantera Onca) shows GK/DEF/MID at ~200 ms with a PRESS-heavy, no-MARK profile, and only the two forwards at ~1 s. The ~200 ms profile is what our own default-AI match looks like. Working hypothesis: most teams run real agents only on their forwards and the platform's default AI on the back three. Their back three cannot be out-thought, only out-shot; their forwards are LLM agents and slow.",
+        "Candidate causes to check on the platform: whether v11 was pasted and \"Redeploy\" was mid-flight when the match started, whether the deployment showed as active, Bedrock throttling (five matches in a row for everyone at the same venue), or the readiness check."
+      ]
+    },
+    {
+      "file": "match-log/competitive/005-vs-pantera-onca-dz-team.md",
+      "type": "competitive",
+      "number": 5,
+      "opponent": "Pantera Onca DZ Team",
+      "score_us": 1,
+      "score_them": 2,
+      "result": "L",
+      "date": "2026-10-06",
+      "formation": "1-1-2",
+      "strategy": "Swarm",
+      "deploy_tag": "deploy-v10-2026-10-06",
+      "metrics": {
+        "possession_us": 56,
+        "possession_them": 44,
+        "shots_us": 2,
+        "shots_them": 4,
+        "on_target_us": 1,
+        "on_target_them": 2,
+        "commands_us": 400,
+        "latency_avg_us": 679,
+        "commands_them": 400,
+        "latency_avg_them": 504,
+        "commands": {
+          "move": 246,
+          "press": 13,
+          "intercept": 0,
+          "mark": 58,
+          "pass": 26,
+          "shoot": 33,
+          "clear": 22,
+          "gk_dist": 2
+        },
+        "agents": {
+          "gk": {
+            "latency_avg": 637,
+            "latency_p95": null,
+            "success": 100
+          },
+          "def": {
+            "latency_avg": 649,
+            "latency_p95": null,
+            "success": 100
+          },
+          "mid": {
+            "latency_avg": 713,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd1": {
+            "latency_avg": 661,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd2": {
+            "latency_avg": 675,
+            "latency_p95": null,
+            "success": 100
+          }
+        },
+        "success_avg": 100.0,
+        "latency_gap": 175,
+        "shot_accuracy": 50.0,
+        "shoot_cmd_to_shot": 6.1,
+        "press_share": 3.2,
+        "intercept_share": 0.0,
+        "mark_share": 14.5,
+        "pass_share": 6.5,
+        "shoot_share": 8.2,
+        "prompt_chars_avg": 2979,
+        "prompt_chars_max": 2992,
+        "prompt_rules_avg": 7.2
+      },
+      "coach_interventions": [
+        {
+          "when": "\u2014",
+          "message": "None (the match ran unattended; no live messages were sent)",
+          "effect": "\u2014"
+        }
+      ],
+      "models": {
+        "gk": "Claude Haiku",
+        "def": "Claude Haiku",
+        "mid": "Claude Haiku",
+        "fwd1": "Nova Lite 2",
+        "fwd2": "Nova Lite 2"
+      },
+      "versions": {
+        "gk": "9",
+        "def": "9",
+        "mid": "8",
+        "fwd1": "8",
+        "fwd2": "9"
+      },
+      "prompt_stats": {
+        "gk": {
+          "version": "9",
+          "chars": 2936,
+          "words": 579,
+          "rules": 5,
+          "constraints": 5
+        },
+        "def": {
+          "version": "9",
+          "chars": 2990,
+          "words": 609,
+          "rules": 9,
+          "constraints": 4
+        },
+        "mid": {
+          "version": "8",
+          "chars": 2992,
+          "words": 592,
+          "rules": 9,
+          "constraints": 4
+        },
+        "fwd1": {
+          "version": "8",
+          "chars": 2986,
+          "words": 586,
+          "rules": 6,
+          "constraints": 4
+        },
+        "fwd2": {
+          "version": "9",
+          "chars": 2990,
+          "words": 580,
+          "rules": 7,
+          "constraints": 4
+        }
+      },
+      "performance": {
+        "gk": "adequate",
+        "def": "weak",
+        "mid": "weak",
+        "fwd1": "adequate",
+        "fwd2": "adequate"
+      },
+      "action_items": [
+        "Deploy v11 and play one practice match: confirm the healthy signature (600\u20131200 ms), MOVE under 50%, MARK and PRESS both present, FOLLOW only when we have the ball, DEF PRESS count. Then the next competitive match. (priority: high)",
+        "v12 candidate if the practice match repeats the C005 1' turnover: DEF and GK under pressure in our half CLEAR long toward Hertz (the runner) before passing short to MID. (priority: medium)",
+        "Investigate the SHOOT-command vs shot gap (33 commands, 2 shots): are agents issuing SHOOT without the ball? The platform may have a per-agent view. (priority: medium)",
+        "Scouting saved: `strategy/opponent-notes/pantera-onca-dz-team.md`. (priority: low)"
+      ],
+      "observations": [
+        "Formation effectiveness: Lost 1-2 on 2 shots against 4. v10 competitive record with prompts running: 2-1 (C002 W, C003 W, C005 L). Competitive used: 5 of 10 (3-2).",
+        "Should we change formation? No.",
+        "Coordination gaps: the two concessions are the two v10 defects already addressed by v11: (a) nobody presses their MID in or near our half (C002, C005 3'); (b) build-up pass into a 50% press (C005 1'; v11 does not yet change this, see DEF).",
+        "Opponent patterns: Pantera is the same template (PRESS 50%, back three at ~205 ms, forwards at ~1 s) but passes more than the others (PASS 14%) and shoots little (4 SHOOT commands, 4 shots, 2 on target: everything they hit was a real chance).",
+        "Opponent formation: GK, DEF, MID, FWD, FWD.",
+        "MOVE share since v10: 54%, 89%, (59% default AI), 62%. Our agents spend most ticks repositioning. v11 removes the one-step carry; check whether MOVE drops below 50%."
       ]
     }
   ],
