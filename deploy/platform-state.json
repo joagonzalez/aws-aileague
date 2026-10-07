@@ -1,5 +1,5 @@
 {
-  "_about": "What each player actually runs on the platform. deploy/paste-ready.md and the dashboard's Current Deployment card are generated from this. 'prompt': 'current' means prompts/<slot>/current.md; any other value is an explicit file (an override). Update this file whenever what's deployed differs from current.md, and remove an override when a release replaces it.",
+  "_about": "What each player actually runs on the platform. deploy/paste-ready.md and the dashboard's Current Deployment card are generated from this. 'prompt': 'current' means prompts/<slot>/current.md; any other value is an explicit file (an override). Update this file whenever what's deployed differs from current.md, and remove an override when a release replaces it. DEF on Nova Micro from v12 is a one-match speed test (match 020 action item); switch back to Claude Haiku here if his play degrades.",
   "updated": "2026-10-06",
   "players": {
     "gk": {
@@ -8,7 +8,7 @@
     },
     "def": {
       "prompt": "current",
-      "model": "Claude Haiku"
+      "model": "Nova Micro"
     },
     "mid": {
       "prompt": "current",

@@ -3864,27 +3864,27 @@
   "current_formation": "1-1-2",
   "current_config": {
     "gk": {
-      "version": "10",
+      "version": "11",
       "model": "Claude Haiku",
       "source": "prompts/gk/current.md"
     },
     "def": {
-      "version": "10",
-      "model": "Claude Haiku",
+      "version": "11",
+      "model": "Nova Micro",
       "source": "prompts/def/current.md"
     },
     "mid": {
-      "version": "9",
+      "version": "10",
       "model": "Claude Haiku",
       "source": "prompts/mid/current.md"
     },
     "fwd1": {
-      "version": "9",
+      "version": "10",
       "model": "Nova Lite 2",
       "source": "prompts/fwd1/current.md"
     },
     "fwd2": {
-      "version": "10",
+      "version": "11",
       "model": "Nova Lite 2",
       "source": "prompts/fwd2/current.md"
     }
@@ -4028,8 +4028,8 @@
       },
       "v11": {
         "version": "11",
-        "chars": 2849,
-        "words": 561,
+        "chars": 2823,
+        "words": 555,
         "rules": 5,
         "constraints": 5
       }
@@ -4107,8 +4107,8 @@
       },
       "v11": {
         "version": "11",
-        "chars": 3136,
-        "words": 636,
+        "chars": 2977,
+        "words": 607,
         "rules": 9,
         "constraints": 4
       }
@@ -4179,8 +4179,8 @@
       },
       "v10": {
         "version": "10",
-        "chars": 3026,
-        "words": 599,
+        "chars": 2973,
+        "words": 588,
         "rules": 9,
         "constraints": 4
       }
@@ -4251,8 +4251,8 @@
       },
       "v10": {
         "version": "10",
-        "chars": 3341,
-        "words": 653,
+        "chars": 2971,
+        "words": 585,
         "rules": 7,
         "constraints": 5
       }
@@ -4330,8 +4330,8 @@
       },
       "v11": {
         "version": "11",
-        "chars": 2944,
-        "words": 577,
+        "chars": 2906,
+        "words": 566,
         "rules": 8,
         "constraints": 4
       }
