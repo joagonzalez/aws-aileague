@@ -24,6 +24,7 @@
 | 034 | practice | 2-1 W | v14 |
 | 037 | practice | 4-3 W | v14, Tesla x4; conceded 3 under a 27% press |
 | 039 | practice | 2-1 W | v14, their GK own goal |
+| 042 | practice | 0-4 L | v15 validation: 1 shot, no Tesla goal, Jay Smooth x4; v15 rolled back to v14 |
 
 ## Official description
 Balanced. Solid fundamentals: plays through the midfield, holds shape, finishes cleanly.

@@ -1,26 +1,31 @@
 {
   "_about": "What each player actually runs on the platform. deploy/paste-ready.md and the dashboard's Current Deployment card are generated from this. 'prompt': 'current' means prompts/<slot>/current.md; any other value is an explicit file (an override). Update this file whenever what's deployed differs from current.md, and remove an override when a release replaces it. DEF tried Nova Micro in match 022 (830 ms, no faster than Haiku) and is back on Claude Haiku from v13.",
-  "updated": "2026-10-06",
+  "updated": "2026-10-07",
   "players": {
     "gk": {
-      "prompt": "current",
-      "model": "Claude Haiku"
+      "prompt": "prompts/gk/v13.md",
+      "model": "Claude Haiku",
+      "note": "v14 release file; v15 failed its validation match (practice 042, 0-4 vs Benchmark, 1 shot) and was rolled back on 2026-10-07"
     },
     "def": {
-      "prompt": "current",
-      "model": "Claude Haiku"
+      "prompt": "prompts/def/v13.md",
+      "model": "Claude Haiku",
+      "note": "v14 release file; v15 failed its validation match (practice 042, 0-4 vs Benchmark, 1 shot) and was rolled back on 2026-10-07"
     },
     "mid": {
-      "prompt": "current",
-      "model": "Claude Haiku"
+      "prompt": "prompts/mid/v12.md",
+      "model": "Claude Haiku",
+      "note": "v14 release file; v15 failed its validation match (practice 042, 0-4 vs Benchmark, 1 shot) and was rolled back on 2026-10-07"
     },
     "fwd1": {
-      "prompt": "current",
-      "model": "Nova Lite 2"
+      "prompt": "prompts/fwd1/v12.md",
+      "model": "Nova Lite 2",
+      "note": "v14 release file; v15 failed its validation match (practice 042, 0-4 vs Benchmark, 1 shot) and was rolled back on 2026-10-07"
     },
     "fwd2": {
-      "prompt": "current",
-      "model": "Nova Lite 2"
+      "prompt": "prompts/fwd2/v13.md",
+      "model": "Nova Lite 2",
+      "note": "v14 release file; v15 failed its validation match (practice 042, 0-4 vs Benchmark, 1 shot) and was rolled back on 2026-10-07"
     }
   }
 }

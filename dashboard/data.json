@@ -6798,6 +6798,156 @@
       ]
     },
     {
+      "file": "match-log/practice/042-vs-the-benchmark-fc.md",
+      "type": "practice",
+      "number": 42,
+      "opponent": "The Benchmark FC",
+      "score_us": 0,
+      "score_them": 4,
+      "result": "L",
+      "date": "2026-10-07",
+      "formation": "1-2-1",
+      "strategy": "Swarm",
+      "deploy_tag": "deploy-v15-2026-10-07",
+      "metrics": {
+        "possession_us": 63,
+        "possession_them": 37,
+        "shots_us": 1,
+        "shots_them": 11,
+        "on_target_us": 0,
+        "on_target_them": 4,
+        "commands_us": 385,
+        "latency_avg_us": 918,
+        "commands_them": 385,
+        "latency_avg_them": 529,
+        "commands": {
+          "move": 154,
+          "press": 138,
+          "intercept": 36,
+          "mark": 0,
+          "pass": 12,
+          "shoot": 33,
+          "clear": 11,
+          "gk_dist": 1
+        },
+        "agents": {
+          "gk": {
+            "latency_avg": 686,
+            "latency_p95": null,
+            "success": 100
+          },
+          "def": {
+            "latency_avg": 1010,
+            "latency_p95": null,
+            "success": 100
+          },
+          "mid": {
+            "latency_avg": 985,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd1": {
+            "latency_avg": 669,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd2": {
+            "latency_avg": 1280,
+            "latency_p95": null,
+            "success": 100
+          }
+        },
+        "success_avg": 100.0,
+        "latency_gap": 389,
+        "shot_accuracy": 0.0,
+        "shoot_cmd_to_shot": 3.0,
+        "press_share": 35.8,
+        "intercept_share": 9.4,
+        "mark_share": 0.0,
+        "pass_share": 3.1,
+        "shoot_share": 8.6,
+        "prompt_chars_avg": 2985,
+        "prompt_chars_max": 2999,
+        "prompt_rules_avg": 8.6
+      },
+      "coach_interventions": [
+        {
+          "when": "\u2014",
+          "message": "None (watched, no messages sent)",
+          "effect": "\u2014"
+        }
+      ],
+      "models": {
+        "gk": "Claude Haiku",
+        "def": "Claude Haiku",
+        "mid": "Claude Haiku",
+        "fwd1": "Nova Lite 2",
+        "fwd2": "Nova Lite 2"
+      },
+      "versions": {
+        "gk": "14",
+        "def": "14",
+        "mid": "13",
+        "fwd1": "13",
+        "fwd2": "14"
+      },
+      "prompt_stats": {
+        "gk": {
+          "version": "14",
+          "chars": 2965,
+          "words": 579,
+          "rules": 6,
+          "constraints": 5
+        },
+        "def": {
+          "version": "14",
+          "chars": 2983,
+          "words": 598,
+          "rules": 10,
+          "constraints": 3
+        },
+        "mid": {
+          "version": "13",
+          "chars": 2999,
+          "words": 589,
+          "rules": 9,
+          "constraints": 3
+        },
+        "fwd1": {
+          "version": "13",
+          "chars": 2998,
+          "words": 588,
+          "rules": 8,
+          "constraints": 5
+        },
+        "fwd2": {
+          "version": "14",
+          "chars": 2978,
+          "words": 577,
+          "rules": 10,
+          "constraints": 4
+        }
+      },
+      "performance": {
+        "gk": "weak",
+        "def": "weak",
+        "mid": "weak",
+        "fwd1": "weak",
+        "fwd2": "weak"
+      },
+      "action_items": [
+        "Deploy v14 from deploy/paste-ready.md (now regenerated from the v14 files), confirm all five agents show it, export a backup. (priority: high)",
+        "Competitive: first-15-second latency check; \"be more aggressive and shoot!\" at kick-off. (priority: high)",
+        "Post-competition: v16 starts from the v14 text; test the v15 ideas one at a time. (priority: low)"
+      ],
+      "observations": [
+        "Formation effectiveness: v15 0-1; v14 vs Benchmark 5-0. The gate (\"nothing worse than v14's signature vs a balanced team\") fails on shots (1 vs 3-9), goals (0 vs 2-6) and Tesla (0).",
+        "Should we change formation? No. **Decision: roll back to v14 for the four remaining competitive matches.** deploy/platform-state.json now points every player at the v14 release files; deploy/paste-ready.md is v14 text again (verified against the deploy-v14 tag). current.md stays v15 as the record of the last approved release; a future v16 starts from v14's text, not v15's.",
+        "Lesson: three edits at once cannot be separated with one match. Post-competition, if v15's ideas are revisited, one edit per practice match, Total Attack and Benchmark both.",
+        "Opponent formation: GK, DEF, MID, FWD, FWD."
+      ]
+    },
+    {
       "file": "match-log/competitive/006-vs-cloud-queens.md",
       "type": "competitive",
       "number": 6,
@@ -6954,29 +7104,29 @@
   "current_formation": "1-2-1",
   "current_config": {
     "gk": {
-      "version": "14",
+      "version": "13",
       "model": "Claude Haiku",
-      "source": "prompts/gk/current.md"
+      "source": "prompts/gk/v13.md"
     },
     "def": {
-      "version": "14",
+      "version": "13",
       "model": "Claude Haiku",
-      "source": "prompts/def/current.md"
+      "source": "prompts/def/v13.md"
     },
     "mid": {
-      "version": "13",
+      "version": "12",
       "model": "Claude Haiku",
-      "source": "prompts/mid/current.md"
+      "source": "prompts/mid/v12.md"
     },
     "fwd1": {
-      "version": "13",
+      "version": "12",
       "model": "Nova Lite 2",
-      "source": "prompts/fwd1/current.md"
+      "source": "prompts/fwd1/v12.md"
     },
     "fwd2": {
-      "version": "14",
+      "version": "13",
       "model": "Nova Lite 2",
-      "source": "prompts/fwd2/current.md"
+      "source": "prompts/fwd2/v13.md"
     }
   },
   "versions": {
@@ -7548,7 +7698,7 @@
     }
   },
   "stats": {
-    "total_matches": 47,
+    "total_matches": 48,
     "competitive": {
       "played": 6,
       "remaining": 4,
@@ -7559,32 +7709,32 @@
       "goals_against": 15
     },
     "practice": {
-      "played": 41,
+      "played": 42,
       "wins": 23,
       "draws": 2,
-      "losses": 16
+      "losses": 17
     }
   },
   "performance_trends": {
     "gk": {
-      "avg": 2.09,
-      "matches_rated": 47
+      "avg": 2.06,
+      "matches_rated": 48
     },
     "def": {
-      "avg": 2.06,
-      "matches_rated": 47
+      "avg": 2.04,
+      "matches_rated": 48
     },
     "mid": {
-      "avg": 2.32,
-      "matches_rated": 47
+      "avg": 2.29,
+      "matches_rated": 48
     },
     "fwd1": {
-      "avg": 2.06,
-      "matches_rated": 47
+      "avg": 2.04,
+      "matches_rated": 48
     },
     "fwd2": {
-      "avg": 1.81,
-      "matches_rated": 47
+      "avg": 1.79,
+      "matches_rated": 48
     }
   }
 }

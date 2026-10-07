@@ -1,5 +1,7 @@
 # Rollback
 
+**Status 2026-10-07: v15 failed its validation match (042, 0-4 vs Benchmark) and is rolled back. `deploy/platform-state.json` points every player at the v14 release files, so `paste-ready.md` is v14 text; `current.md` remains v15 as the last approved release.**
+
 Every release is tagged `deploy-vN-YYYY-MM-DD` and the tag holds the exact paste text that was deployed. To put a previous release back on the platform:
 
 ```bash
