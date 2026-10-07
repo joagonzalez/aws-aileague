@@ -44,6 +44,12 @@ Observation: the ~200 ms, press-heavy, no-MARK, no-SHOOT profile of our agents i
 4. What are the **~200 ms agents**: ours in C004, and the GK/DEF/MID of every opponent and of The Benchmark FC? If that is a built-in or default agent, it changes how the stats should be read.
 5. Can a match in which the platform demonstrably did not run the team's agents (C001: 52 commands at 33 ms) be **replayed or annulled**, since the cause is on the platform side?
 
+## 4a. C006 vs Cloud Queens (0-4, 2026-10-07): one slot on the default agent
+
+- Shannon (GK, Claude Haiku) answered in **220 ms** all match while Turing / Tesla / Hertz / Lovelace answered in 1010–1226 ms. Our GK has never been under 620 ms with his prompt running. GK Dist 9.
+- A third failure mode: C001 all five at 33 ms (nothing ran), C004 all five at ~200 ms (default agent), C006 one slot at 220 ms (default agent on one player of a deployed team). Platform showed Success 100%.
+- Question: can a single agent fall back to the default agent mid-deployment (a model-access or throttling error on one invocation path?), and how would a team detect it before kick-off?
+
 ## 4b. Command-count questions (practice 023–027 on v13, 2026-10-07)
 
 6. **CLEAR_OVERRIDE persists with the word removed.** v13 has no "clear" anywhere in any prompt; the "Clear" count is still 9–23 per match (v12: 25). What emits CLEAR_OVERRIDE: the agent choosing it, or the harness on a timeout / unparseable response? Does it reset the player to the default AI for one tick or until the next command?
