@@ -47,6 +47,7 @@ How this agent's positioning fits with adjacent positions. Agents cannot talk to
 Rules:
 - Must be bidirectionally consistent (if DEF clears long toward the forwards, the forwards' prompts must say to stay high for it)
 - No "tell", "call for", "signal" or "communicate". Match 001's command list has no talk command, so these instructions do nothing
+- **No left / right / "your side".** We can be HOME or AWAY (attacking +x or −x) and the platform's formation selector (1-2-1 since match 012) decides the start spots, so a side has no stable meaning to the agent. Express position relative to what every agent sees: central (nearer the goal-to-goal line than either touchline), ahead of / behind the ball, near a touchline or end line, a short pass from a named teammate, goal-side (nearer our goal than the ball). This is why the formation selector needs no prompt changes
 - Keep coordination simple — complex multi-agent protocols break down
 
 ### 5b. Situational Rules (optional, from the official template's layer 3)
