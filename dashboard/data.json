@@ -7390,6 +7390,152 @@
       ]
     },
     {
+      "file": "match-log/practice/046-vs-the-benchmark-fc.md",
+      "type": "practice",
+      "number": 46,
+      "opponent": "The Benchmark FC",
+      "score_us": 4,
+      "score_them": 0,
+      "result": "W",
+      "date": "2026-10-07",
+      "formation": "1-2-1",
+      "strategy": "Swarm",
+      "deploy_tag": "deploy-v14-2026-10-07",
+      "metrics": {
+        "possession_us": 54,
+        "possession_them": 46,
+        "shots_us": 4,
+        "shots_them": 7,
+        "on_target_us": 4,
+        "on_target_them": 0,
+        "commands_us": 425,
+        "latency_avg_us": 944,
+        "commands_them": 425,
+        "latency_avg_them": 608,
+        "commands": {
+          "move": 143,
+          "press": 179,
+          "intercept": 33,
+          "mark": 3,
+          "pass": 15,
+          "shoot": 38,
+          "clear": 12,
+          "gk_dist": 2
+        },
+        "agents": {
+          "gk": {
+            "latency_avg": 675,
+            "latency_p95": null,
+            "success": 100
+          },
+          "def": {
+            "latency_avg": 875,
+            "latency_p95": null,
+            "success": 100
+          },
+          "mid": {
+            "latency_avg": 963,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd1": {
+            "latency_avg": 657,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd2": {
+            "latency_avg": 1115,
+            "latency_p95": null,
+            "success": 100
+          }
+        },
+        "success_avg": 100.0,
+        "latency_gap": 336,
+        "shot_accuracy": 100.0,
+        "shoot_cmd_to_shot": 10.5,
+        "press_share": 42.1,
+        "intercept_share": 7.8,
+        "mark_share": 0.7,
+        "pass_share": 3.5,
+        "shoot_share": 8.9,
+        "prompt_chars_avg": 2952,
+        "prompt_chars_max": 2983,
+        "prompt_rules_avg": 8.6
+      },
+      "coach_interventions": [
+        {
+          "when": "\u2014",
+          "message": "None (watched, no messages sent)",
+          "effect": "\u2014"
+        }
+      ],
+      "models": {
+        "gk": "Claude Haiku",
+        "def": "Claude Haiku",
+        "mid": "Claude Haiku",
+        "fwd1": "Nova Lite 2",
+        "fwd2": "Nova Lite 2"
+      },
+      "versions": {
+        "gk": "13",
+        "def": "13",
+        "mid": "12",
+        "fwd1": "12",
+        "fwd2": "13"
+      },
+      "prompt_stats": {
+        "gk": {
+          "version": "13",
+          "chars": 2936,
+          "words": 573,
+          "rules": 6,
+          "constraints": 5
+        },
+        "def": {
+          "version": "13",
+          "chars": 2970,
+          "words": 597,
+          "rules": 10,
+          "constraints": 3
+        },
+        "mid": {
+          "version": "12",
+          "chars": 2983,
+          "words": 584,
+          "rules": 9,
+          "constraints": 3
+        },
+        "fwd1": {
+          "version": "12",
+          "chars": 2920,
+          "words": 572,
+          "rules": 8,
+          "constraints": 5
+        },
+        "fwd2": {
+          "version": "13",
+          "chars": 2949,
+          "words": 571,
+          "rules": 10,
+          "constraints": 4
+        }
+      },
+      "performance": {
+        "gk": "strong",
+        "def": "strong",
+        "mid": "strong",
+        "fwd1": "strong",
+        "fwd2": "strong"
+      },
+      "action_items": [
+        "Competitive: first-15-second latency check; \"be more aggressive and shoot!\" at kick-off. (priority: high)"
+      ],
+      "observations": [
+        "v14 frozen for the competitive matches; this is its signature at normal speed.",
+        "Opponent formation: GK, DEF, MID, FWD, FWD."
+      ]
+    },
+    {
       "file": "match-log/competitive/006-vs-cloud-queens.md",
       "type": "competitive",
       "number": 6,
@@ -8153,7 +8299,7 @@
     }
   },
   "stats": {
-    "total_matches": 51,
+    "total_matches": 52,
     "competitive": {
       "played": 6,
       "remaining": 4,
@@ -8164,32 +8310,32 @@
       "goals_against": 15
     },
     "practice": {
-      "played": 45,
-      "wins": 26,
+      "played": 46,
+      "wins": 27,
       "draws": 2,
       "losses": 17
     }
   },
   "performance_trends": {
     "gk": {
-      "avg": 2.06,
-      "matches_rated": 51
+      "avg": 2.08,
+      "matches_rated": 52
     },
     "def": {
-      "avg": 2.04,
-      "matches_rated": 51
+      "avg": 2.06,
+      "matches_rated": 52
     },
     "mid": {
-      "avg": 2.27,
-      "matches_rated": 51
+      "avg": 2.29,
+      "matches_rated": 52
     },
     "fwd1": {
-      "avg": 2.04,
-      "matches_rated": 51
+      "avg": 2.06,
+      "matches_rated": 52
     },
     "fwd2": {
-      "avg": 1.8,
-      "matches_rated": 51
+      "avg": 1.83,
+      "matches_rated": 52
     }
   }
 }

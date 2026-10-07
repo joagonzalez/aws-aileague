@@ -26,6 +26,7 @@
 | 039 | practice | 2-1 W | v14, their GK own goal |
 | 042 | practice | 0-4 L | v15 validation: 1 shot, no Tesla goal, Jay Smooth x4; v15 rolled back to v14 |
 | 044 | practice | 1-0 W | v14 redeployed; slowest match on record (1592 ms, 32 commands per agent) |
+| 046 | practice | 4-0 W | v14; Tesla x3, Hertz; 0 on target against; platform at normal speed (944 ms) |
 
 ## Official description
 Balanced. Solid fundamentals: plays through the midfield, holds shape, finishes cleanly.
