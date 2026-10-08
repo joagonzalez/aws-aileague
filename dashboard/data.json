@@ -7687,6 +7687,302 @@
         "Opponent patterns: Cloud Queens is the standard template with more passing (12%) and accurate finishing (4 of 6).",
         "Opponent formation: GK, DEF, MID, FWD, FWD."
       ]
+    },
+    {
+      "file": "match-log/competitive/007-vs-bright-ballistas.md",
+      "type": "competitive",
+      "number": 7,
+      "opponent": "Bright Ballistas",
+      "score_us": 2,
+      "score_them": 3,
+      "result": "L",
+      "date": "2026-10-08",
+      "formation": "1-2-1",
+      "strategy": "Swarm",
+      "deploy_tag": "deploy-v14-2026-10-07",
+      "metrics": {
+        "possession_us": 51,
+        "possession_them": 49,
+        "shots_us": 3,
+        "shots_them": 6,
+        "on_target_us": 2,
+        "on_target_them": 3,
+        "commands_us": 475,
+        "latency_avg_us": 412,
+        "commands_them": 475,
+        "latency_avg_them": 530,
+        "commands": {
+          "move": 152,
+          "press": 292,
+          "intercept": 0,
+          "mark": 0,
+          "pass": 13,
+          "shoot": 0,
+          "clear": 15,
+          "gk_dist": 3
+        },
+        "agents": {
+          "gk": {
+            "latency_avg": null,
+            "latency_p95": null,
+            "success": 100
+          },
+          "def": {
+            "latency_avg": null,
+            "latency_p95": null,
+            "success": 100
+          },
+          "mid": {
+            "latency_avg": null,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd1": {
+            "latency_avg": null,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd2": {
+            "latency_avg": null,
+            "latency_p95": null,
+            "success": 100
+          }
+        },
+        "success_avg": 100.0,
+        "latency_gap": -118,
+        "shot_accuracy": 66.7,
+        "press_share": 61.5,
+        "intercept_share": 0.0,
+        "mark_share": 0.0,
+        "pass_share": 2.7,
+        "shoot_share": 0.0,
+        "prompt_chars_avg": 2952,
+        "prompt_chars_max": 2983,
+        "prompt_rules_avg": 8.6
+      },
+      "coach_interventions": [
+        {
+          "when": "\u2014",
+          "message": "None (watched, no messages sent)",
+          "effect": "\u2014"
+        }
+      ],
+      "models": {
+        "gk": "Claude Haiku",
+        "def": "Claude Haiku",
+        "mid": "Claude Haiku",
+        "fwd1": "Nova Lite 2",
+        "fwd2": "Nova Lite 2"
+      },
+      "versions": {
+        "gk": "13",
+        "def": "13",
+        "mid": "12",
+        "fwd1": "12",
+        "fwd2": "13"
+      },
+      "prompt_stats": {
+        "gk": {
+          "version": "13",
+          "chars": 2936,
+          "words": 573,
+          "rules": 6,
+          "constraints": 5
+        },
+        "def": {
+          "version": "13",
+          "chars": 2970,
+          "words": 597,
+          "rules": 10,
+          "constraints": 3
+        },
+        "mid": {
+          "version": "12",
+          "chars": 2983,
+          "words": 584,
+          "rules": 9,
+          "constraints": 3
+        },
+        "fwd1": {
+          "version": "12",
+          "chars": 2920,
+          "words": 572,
+          "rules": 8,
+          "constraints": 5
+        },
+        "fwd2": {
+          "version": "13",
+          "chars": 2949,
+          "words": 571,
+          "rules": 10,
+          "constraints": 4
+        }
+      },
+      "performance": {
+        "gk": "weak",
+        "def": "weak",
+        "mid": "weak",
+        "fwd1": "strong",
+        "fwd2": "weak"
+      },
+      "action_items": [
+        "Before each remaining competitive match: export the team JSON and compare it with deploy/paste-ready.md (v14), then watch the first 15 seconds: any agent near 200 ms = default agent; abort-level problem. (priority: high)",
+        "Organizers (bug.md): fourth competitive match with the default-agent signature. (priority: high)"
+      ],
+      "observations": [
+        "Formation effectiveness: not readable; the 412 ms average and the 0/0/0 command profile say our prompts were not (fully) running.",
+        "Competitive record 3-5 after C008 (C001, C004, C006, C007 compromised by deployment or the default agent).",
+        "Opponent formation: GK, DEF, MID, FWD, FWD."
+      ]
+    },
+    {
+      "file": "match-log/competitive/008-vs-oceanix.md",
+      "type": "competitive",
+      "number": 8,
+      "opponent": "Oceanix",
+      "score_us": 2,
+      "score_them": 3,
+      "result": "L",
+      "date": "2026-10-08",
+      "formation": "1-2-1",
+      "strategy": "Swarm",
+      "deploy_tag": "deploy-v14-2026-10-07",
+      "metrics": {
+        "possession_us": 73,
+        "possession_them": 27,
+        "shots_us": 6,
+        "shots_them": 4,
+        "on_target_us": 2,
+        "on_target_them": 3,
+        "commands_us": 460,
+        "latency_avg_us": 929,
+        "commands_them": 460,
+        "latency_avg_them": 535,
+        "commands": {
+          "move": 309,
+          "press": 88,
+          "intercept": 0,
+          "mark": 0,
+          "pass": 24,
+          "shoot": 17,
+          "clear": 15,
+          "gk_dist": 7
+        },
+        "agents": {
+          "gk": {
+            "latency_avg": 948,
+            "latency_p95": null,
+            "success": 100
+          },
+          "def": {
+            "latency_avg": 1014,
+            "latency_p95": null,
+            "success": 100
+          },
+          "mid": {
+            "latency_avg": 962,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd1": {
+            "latency_avg": 999,
+            "latency_p95": null,
+            "success": 100
+          },
+          "fwd2": {
+            "latency_avg": 903,
+            "latency_p95": null,
+            "success": 100
+          }
+        },
+        "success_avg": 100.0,
+        "latency_gap": 394,
+        "shot_accuracy": 33.3,
+        "shoot_cmd_to_shot": 35.3,
+        "press_share": 19.1,
+        "intercept_share": 0.0,
+        "mark_share": 0.0,
+        "pass_share": 5.2,
+        "shoot_share": 3.7,
+        "prompt_chars_avg": 2952,
+        "prompt_chars_max": 2983,
+        "prompt_rules_avg": 8.6
+      },
+      "coach_interventions": [
+        {
+          "when": "\u2014",
+          "message": "None (watched, no messages sent)",
+          "effect": "\u2014"
+        }
+      ],
+      "models": {
+        "gk": "Claude Haiku",
+        "def": "Claude Haiku",
+        "mid": "Claude Haiku",
+        "fwd1": "Nova Lite 2",
+        "fwd2": "Nova Lite 2"
+      },
+      "versions": {
+        "gk": "13",
+        "def": "13",
+        "mid": "12",
+        "fwd1": "12",
+        "fwd2": "13"
+      },
+      "prompt_stats": {
+        "gk": {
+          "version": "13",
+          "chars": 2936,
+          "words": 573,
+          "rules": 6,
+          "constraints": 5
+        },
+        "def": {
+          "version": "13",
+          "chars": 2970,
+          "words": 597,
+          "rules": 10,
+          "constraints": 3
+        },
+        "mid": {
+          "version": "12",
+          "chars": 2983,
+          "words": 584,
+          "rules": 9,
+          "constraints": 3
+        },
+        "fwd1": {
+          "version": "12",
+          "chars": 2920,
+          "words": 572,
+          "rules": 8,
+          "constraints": 5
+        },
+        "fwd2": {
+          "version": "13",
+          "chars": 2949,
+          "words": 571,
+          "rules": 10,
+          "constraints": 4
+        }
+      },
+      "performance": {
+        "gk": "adequate",
+        "def": "weak",
+        "mid": "weak",
+        "fwd1": "adequate",
+        "fwd2": "adequate"
+      },
+      "action_items": [
+        "v16 (one constraint line on MID), validated in one practice match vs Total Attack: MOVE share under 50%, shots at or above 4, Tesla scoring. Deploy for the last competitive matches only if it passes; v14 otherwise. (priority: high)",
+        "Scouting saved: strategy/opponent-notes/oceanix.md. (priority: low)"
+      ],
+      "observations": [
+        "Formation effectiveness: lost 2-3 with everything running: v14's first competitive loss with a verified deployment. v14 vs human teams: 0-1 clean (C008), plus C006/C007 compromised.",
+        "Competitive with prompts verified running since v10: C002 W 5-4, C003 W 2-0, C005 L 1-2, C008 L 2-3 (2-2, 10 for, 9 against). The human teams that beat us press at 50%+ (Pantera 50%, Oceanix 54%); the ones we beat press less (Nankatsu 54% but no GK threat; Speedy 51%).",
+        "Candidate single fix (v16): add the MOVE-with-ball constraint Lovelace already has to Tesla ('NEVER MOVE with the ball, except the one sideways step of rule 4 \u2014 SHOOT or PASS it at once'), so possession under press turns into shots or lofts instead of a sideways carry. No rule changes.",
+        "Opponent formation: GK, DEF, MID, FWD, FWD."
+      ]
     }
   ],
   "current_formation": "1-2-1",
@@ -8299,15 +8595,15 @@
     }
   },
   "stats": {
-    "total_matches": 52,
+    "total_matches": 54,
     "competitive": {
-      "played": 6,
-      "remaining": 4,
+      "played": 8,
+      "remaining": 2,
       "wins": 3,
       "draws": 0,
-      "losses": 3,
-      "goals_for": 10,
-      "goals_against": 15
+      "losses": 5,
+      "goals_for": 14,
+      "goals_against": 21
     },
     "practice": {
       "played": 46,
@@ -8318,24 +8614,24 @@
   },
   "performance_trends": {
     "gk": {
-      "avg": 2.08,
-      "matches_rated": 52
+      "avg": 2.06,
+      "matches_rated": 54
     },
     "def": {
-      "avg": 2.06,
-      "matches_rated": 52
+      "avg": 2.02,
+      "matches_rated": 54
     },
     "mid": {
-      "avg": 2.29,
-      "matches_rated": 52
+      "avg": 2.24,
+      "matches_rated": 54
     },
     "fwd1": {
-      "avg": 2.06,
-      "matches_rated": 52
+      "avg": 2.07,
+      "matches_rated": 54
     },
     "fwd2": {
-      "avg": 1.83,
-      "matches_rated": 52
+      "avg": 1.81,
+      "matches_rated": 54
     }
   }
 }

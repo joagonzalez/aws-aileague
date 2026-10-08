@@ -50,6 +50,10 @@ Observation: the ~200 ms, press-heavy, no-MARK, no-SHOOT profile of our agents i
 - A third failure mode: C001 all five at 33 ms (nothing ran), C004 all five at ~200 ms (default agent), C006 one slot at 220 ms (default agent on one player of a deployed team). Platform showed Success 100%.
 - Question: can a single agent fall back to the default agent mid-deployment (a model-access or throttling error on one invocation path?), and how would a team detect it before kick-off?
 
+## 4a2. C007 vs Bright Ballistas (2-3, 2026-10-08): team average 412 ms, no per-agent table
+
+- Our team average latency 412 ms (healthy range 850-1000); the report's per-agent table was empty. Command mix: PRESS 292, MOVE 152, **0 SHOOT, 0 MARK, 0 INTERCEPT**, the C004 default-agent profile. Fourth competitive match of eight with a deployment/default-agent signature (C001, C004, C006, C007). We exported the team before the day's matches and it matched our paste file.
+
 ## 4b. Command-count questions (practice 023–027 on v13, 2026-10-07)
 
 6. **CLEAR_OVERRIDE persists with the word removed.** v13 has no "clear" anywhere in any prompt; the "Clear" count is still 9–23 per match (v12: 25). What emits CLEAR_OVERRIDE: the agent choosing it, or the harness on a timeout / unparseable response? Does it reset the player to the default AI for one tick or until the next command?
