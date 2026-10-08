@@ -3,29 +3,29 @@
   "updated": "2026-10-08",
   "players": {
     "gk": {
-      "prompt": "prompts/gk/v13.md",
+      "prompt": "prompts/gk/v9.md",
       "model": "Claude Haiku",
-      "note": "v14 release file, unchanged in v16; current.md for this position is still the rolled-back v15 file."
+      "note": "v10 release file, redeployed 2026-10-08 for the last competitive matches: the only release with competitive wins against human teams (C002 5-4, C003 2-0). v16 (MID v14) and v14 remain available via their tags."
     },
     "def": {
-      "prompt": "prompts/def/v13.md",
+      "prompt": "prompts/def/v9.md",
       "model": "Claude Haiku",
-      "note": "v14 release file, unchanged in v16; current.md for this position is still the rolled-back v15 file."
+      "note": "v10 release file, redeployed 2026-10-08 for the last competitive matches: the only release with competitive wins against human teams (C002 5-4, C003 2-0). v16 (MID v14) and v14 remain available via their tags."
     },
     "mid": {
-      "prompt": "prompts/mid/v14.md",
+      "prompt": "prompts/mid/v8.md",
       "model": "Claude Haiku",
-      "note": "v16 release: v14 MID (v12 file) with the sideways step removed and a MOVE-with-ball constraint (C008). The other four stay on their v14 release files."
+      "note": "v10 release file, redeployed 2026-10-08 for the last competitive matches: the only release with competitive wins against human teams (C002 5-4, C003 2-0). v16 (MID v14) and v14 remain available via their tags."
     },
     "fwd1": {
-      "prompt": "prompts/fwd1/v12.md",
+      "prompt": "prompts/fwd1/v8.md",
       "model": "Nova Lite 2",
-      "note": "v14 release file, unchanged in v16; current.md for this position is still the rolled-back v15 file."
+      "note": "v10 release file, redeployed 2026-10-08 for the last competitive matches: the only release with competitive wins against human teams (C002 5-4, C003 2-0). v16 (MID v14) and v14 remain available via their tags."
     },
     "fwd2": {
-      "prompt": "prompts/fwd2/v13.md",
+      "prompt": "prompts/fwd2/v9.md",
       "model": "Nova Lite 2",
-      "note": "v14 release file, unchanged in v16; current.md for this position is still the rolled-back v15 file."
+      "note": "v10 release file, redeployed 2026-10-08 for the last competitive matches: the only release with competitive wins against human teams (C002 5-4, C003 2-0). v16 (MID v14) and v14 remain available via their tags."
     }
   }
 }

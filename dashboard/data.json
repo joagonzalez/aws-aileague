@@ -7988,42 +7988,42 @@
   "current_formation": "1-2-1",
   "current_config": {
     "gk": {
-      "version": "13",
+      "version": "9",
       "model": "Claude Haiku",
-      "source": "prompts/gk/v13.md"
+      "source": "prompts/gk/v9.md"
     },
     "def": {
-      "version": "13",
+      "version": "9",
       "model": "Claude Haiku",
-      "source": "prompts/def/v13.md"
+      "source": "prompts/def/v9.md"
     },
     "mid": {
-      "version": "14",
+      "version": "8",
       "model": "Claude Haiku",
-      "source": "prompts/mid/v14.md"
+      "source": "prompts/mid/v8.md"
     },
     "fwd1": {
-      "version": "12",
+      "version": "8",
       "model": "Nova Lite 2",
-      "source": "prompts/fwd1/v12.md"
+      "source": "prompts/fwd1/v8.md"
     },
     "fwd2": {
-      "version": "13",
+      "version": "9",
       "model": "Nova Lite 2",
-      "source": "prompts/fwd2/v13.md"
+      "source": "prompts/fwd2/v9.md"
     }
   },
   "current_release": {
-    "tag": null,
-    "date": null,
-    "summary": null,
+    "tag": "deploy-v10-2026-10-06",
+    "date": "2026-10-06",
+    "summary": "Runner + long shots: Hertz (FWD1 v8, his FWD2 v7 text relabeled) is the runner a long pass ahead; Tesla shoots on any clear line regardless of teammates and passes long to Hertz when blocked; Lovelace level with Tesla as passer/second shooter; DEF presses the deepest central carrier in our half and shoots long when free; GK passes to MID else shoots long. Hertz override removed from platform-state.",
     "updated": "2026-10-08",
     "notes": {
-      "gk": "v14 release file, unchanged in v16; current.md for this position is still the rolled-back v15 file.",
-      "def": "v14 release file, unchanged in v16; current.md for this position is still the rolled-back v15 file.",
-      "mid": "v16 release: v14 MID (v12 file) with the sideways step removed and a MOVE-with-ball constraint (C008). The other four stay on their v14 release files.",
-      "fwd1": "v14 release file, unchanged in v16; current.md for this position is still the rolled-back v15 file.",
-      "fwd2": "v14 release file, unchanged in v16; current.md for this position is still the rolled-back v15 file."
+      "gk": "v10 release file, redeployed 2026-10-08 for the last competitive matches: the only release with competitive wins against human teams (C002 5-4, C003 2-0). v16 (MID v14) and v14 remain available via their tags.",
+      "def": "v10 release file, redeployed 2026-10-08 for the last competitive matches: the only release with competitive wins against human teams (C002 5-4, C003 2-0). v16 (MID v14) and v14 remain available via their tags.",
+      "mid": "v10 release file, redeployed 2026-10-08 for the last competitive matches: the only release with competitive wins against human teams (C002 5-4, C003 2-0). v16 (MID v14) and v14 remain available via their tags.",
+      "fwd1": "v10 release file, redeployed 2026-10-08 for the last competitive matches: the only release with competitive wins against human teams (C002 5-4, C003 2-0). v16 (MID v14) and v14 remain available via their tags.",
+      "fwd2": "v10 release file, redeployed 2026-10-08 for the last competitive matches: the only release with competitive wins against human teams (C002 5-4, C003 2-0). v16 (MID v14) and v14 remain available via their tags."
     }
   },
   "versions": {

@@ -1,6 +1,6 @@
 # Rollback
 
-**Status 2026-10-08: v16 released = v14 with one MID change (prompts/mid/v14.md); the other four players stay on their v14 release files via platform-state overrides. v15 (practice 042, 0-4) is rolled back; `current.md` for GK/DEF/FWD1/FWD2 still holds the v15 files and is not deployed.** If v16 fails its validation match, set `deploy/platform-state.json` mid back to `prompts/mid/v12.md` and regenerate.
+**Status 2026-10-08 (later): the coach chose to redeploy v10 for the last competitive matches (the only release with competitive wins against human teams: C002 5-4, C003 2-0); `platform-state.json` points every player at the v10 files and `paste-ready.md` is v10 text. Earlier the same day: v16 released = v14 with one MID change (prompts/mid/v14.md); the other four players stay on their v14 release files via platform-state overrides. v15 (practice 042, 0-4) is rolled back; `current.md` for GK/DEF/FWD1/FWD2 still holds the v15 files and is not deployed.** If v16 fails its validation match, set `deploy/platform-state.json` mid back to `prompts/mid/v12.md` and regenerate.
 
 Every release is tagged `deploy-vN-YYYY-MM-DD` and the tag holds the exact paste text that was deployed. To put a previous release back on the platform:
 
