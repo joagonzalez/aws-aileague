@@ -7998,9 +7998,9 @@
       "source": "prompts/def/v13.md"
     },
     "mid": {
-      "version": "12",
+      "version": "14",
       "model": "Claude Haiku",
-      "source": "prompts/mid/v12.md"
+      "source": "prompts/mid/v14.md"
     },
     "fwd1": {
       "version": "12",
@@ -8014,16 +8014,16 @@
     }
   },
   "current_release": {
-    "tag": "deploy-v14-2026-10-07",
-    "date": "2026-10-07",
-    "summary": "v13 plus four edits: Hertz presses only their GK outside his box (he lived in the corners chasing keepers), kick-off lofted pass to Hertz free or not, 'you have the ball' wording, Tesla/Lovelace sidestep to open a blocked line then shoot. Validate in one practice match before competitive use.",
-    "updated": "2026-10-07",
+    "tag": null,
+    "date": null,
+    "summary": null,
+    "updated": "2026-10-08",
     "notes": {
-      "gk": "v14 release file; v15 failed its validation match (practice 042, 0-4 vs Benchmark, 1 shot) and was rolled back on 2026-10-07",
-      "def": "v14 release file; v15 failed its validation match (practice 042, 0-4 vs Benchmark, 1 shot) and was rolled back on 2026-10-07",
-      "mid": "v14 release file; v15 failed its validation match (practice 042, 0-4 vs Benchmark, 1 shot) and was rolled back on 2026-10-07",
-      "fwd1": "v14 release file; v15 failed its validation match (practice 042, 0-4 vs Benchmark, 1 shot) and was rolled back on 2026-10-07",
-      "fwd2": "v14 release file; v15 failed its validation match (practice 042, 0-4 vs Benchmark, 1 shot) and was rolled back on 2026-10-07"
+      "gk": "v14 release file, unchanged in v16; current.md for this position is still the rolled-back v15 file.",
+      "def": "v14 release file, unchanged in v16; current.md for this position is still the rolled-back v15 file.",
+      "mid": "v16 release: v14 MID (v12 file) with the sideways step removed and a MOVE-with-ball constraint (C008). The other four stay on their v14 release files.",
+      "fwd1": "v14 release file, unchanged in v16; current.md for this position is still the rolled-back v15 file.",
+      "fwd2": "v14 release file, unchanged in v16; current.md for this position is still the rolled-back v15 file."
     }
   },
   "versions": {
@@ -8072,7 +8072,8 @@
       "v10",
       "v11",
       "v12",
-      "v13"
+      "v13",
+      "v14"
     ],
     "fwd1": [
       "v1",
@@ -8398,6 +8399,13 @@
         "words": 589,
         "rules": 9,
         "constraints": 3
+      },
+      "v14": {
+        "version": "14",
+        "chars": 2896,
+        "words": 571,
+        "rules": 9,
+        "constraints": 4
       }
     },
     "fwd1": {

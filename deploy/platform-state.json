@@ -1,31 +1,31 @@
 {
   "_about": "What each player actually runs on the platform. deploy/paste-ready.md and the dashboard's Current Deployment card are generated from this. 'prompt': 'current' means prompts/<slot>/current.md; any other value is an explicit file (an override). Update this file whenever what's deployed differs from current.md, and remove an override when a release replaces it. DEF tried Nova Micro in match 022 (830 ms, no faster than Haiku) and is back on Claude Haiku from v13.",
-  "updated": "2026-10-07",
+  "updated": "2026-10-08",
   "players": {
     "gk": {
       "prompt": "prompts/gk/v13.md",
       "model": "Claude Haiku",
-      "note": "v14 release file; v15 failed its validation match (practice 042, 0-4 vs Benchmark, 1 shot) and was rolled back on 2026-10-07"
+      "note": "v14 release file, unchanged in v16; current.md for this position is still the rolled-back v15 file."
     },
     "def": {
       "prompt": "prompts/def/v13.md",
       "model": "Claude Haiku",
-      "note": "v14 release file; v15 failed its validation match (practice 042, 0-4 vs Benchmark, 1 shot) and was rolled back on 2026-10-07"
+      "note": "v14 release file, unchanged in v16; current.md for this position is still the rolled-back v15 file."
     },
     "mid": {
-      "prompt": "prompts/mid/v12.md",
+      "prompt": "prompts/mid/v14.md",
       "model": "Claude Haiku",
-      "note": "v14 release file; v15 failed its validation match (practice 042, 0-4 vs Benchmark, 1 shot) and was rolled back on 2026-10-07"
+      "note": "v16 release: v14 MID (v12 file) with the sideways step removed and a MOVE-with-ball constraint (C008). The other four stay on their v14 release files."
     },
     "fwd1": {
       "prompt": "prompts/fwd1/v12.md",
       "model": "Nova Lite 2",
-      "note": "v14 release file; v15 failed its validation match (practice 042, 0-4 vs Benchmark, 1 shot) and was rolled back on 2026-10-07"
+      "note": "v14 release file, unchanged in v16; current.md for this position is still the rolled-back v15 file."
     },
     "fwd2": {
       "prompt": "prompts/fwd2/v13.md",
       "model": "Nova Lite 2",
-      "note": "v14 release file; v15 failed its validation match (practice 042, 0-4 vs Benchmark, 1 shot) and was rolled back on 2026-10-07"
+      "note": "v14 release file, unchanged in v16; current.md for this position is still the rolled-back v15 file."
     }
   }
 }
